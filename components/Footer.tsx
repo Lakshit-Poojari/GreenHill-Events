@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaPinterestP, FaTwitter } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -38,9 +39,9 @@ const Footer = () => {
 
             <Link
               href="https://x.com/si_greenhill"
-              className="w-12 h-12 bg-[#1DA1F2] rounded-md flex items-center justify-center text-white text-xl"
+              className="w-12 h-12 bg-black border border-gray-600 rounded-md flex items-center justify-center text-white text-xl "
             >
-              <FaTwitter />
+              <FaXTwitter />
             </Link>
 
           </div>
@@ -56,9 +57,9 @@ const Footer = () => {
           <p className="text-[#A7A7A7] text-[15px] leading-8">
             Copyright © 2021 Simon Greenhill. All rights reserved.
             Designed & Developed by{" "}
-            <span className="text-white font-medium">
+            <Link href={"https://www.visualytes.com/"} className="text-white font-medium hover:underline">
               Visualytes
-            </span>
+            </Link>
           </p>
         </div>
 
