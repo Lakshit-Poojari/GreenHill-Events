@@ -55,7 +55,7 @@ const Footer = () => {
           </h3>
 
           <p className="text-sm lg:text-[15px] text-[#A7A7A7] leading-7 lg:leading-8 font-['Poppins']">
-            Copyright © 2021 Simon Greenhill. All rights reserved. Designed & <br/>
+            Copyright © 2021 Simon Greenhill. All rights reserved. Designed & 
             <span> Developed by{" "}</span>
             <Link href={"https://www.visualytes.com/"} className="text-white font-medium hover:underline">
               Visualytes
