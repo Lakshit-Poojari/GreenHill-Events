@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className="  flex items-center justify-between mx-16.25 px-3.75 ">
+      <nav className="  flex items-center justify-between mx-16.25 px-6.75 ">
 
         {/* Logo */}
         <div>
