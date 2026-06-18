@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-bounce-x: bounce-x 1s ease-in-out infinite;
+}
+
 :root {
   --background: rgba(24, 22, 22, 1);
   --foreground: #ffffff;
@@ -8,4 +12,13 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+@keyframes bounce-x {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
 }
