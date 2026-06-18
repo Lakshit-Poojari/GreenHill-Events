@@ -4,25 +4,25 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[320px_500px_250px_180px] gap-10 lg:gap-8">
+    <footer className="bg-black text-white py-16 px-23">
+      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.2fr_2fr_1fr_0.8fr] gap-12 py-6">
 
         {/* Social Links */}
         <div>
-          <h3 className="text-2xl font-semibold mb-5">Social Links</h3>
+          <h3 className="text-xl lg:text-2xl font-semibold mb-5">Social Links</h3>
 
-          <div className="flex gap-3">
+          <div className="flex  justify-center md:justify-start gap-3">
 
             <Link
               href="https://www.facebook.com/simongreenhillallin/"
-              className="w-12 h-12 bg-[#1877F2] rounded-md flex items-center justify-center text-white text-xl"
+              className="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 bg-[#1877F2] rounded-md flex items-center justify-center text-white text-xl"
             >
               <FaFacebookF />
             </Link>
 
             <Link
               href="https://www.instagram.com/greenhill_entertainment/?hl=en"
-              className="w-12 h-12 rounded-md flex items-center justify-center text-white text-xl"
+              className="w-12 h-12 rounded-md flex items-center justify-center text-white text-xl "
               style={{
                 background:
                   "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)",
@@ -54,7 +54,7 @@ const Footer = () => {
             Copyright &copy;
           </h3>
 
-          <p className="text-[#A7A7A7] text-[15px] leading-8">
+          <p className="text-sm lg:text-[15px] text-[#A7A7A7] leading-7 lg:leading-8">
             Copyright © 2021 Simon Greenhill. All rights reserved.
             Designed & Developed by{" "}
             <Link href={"https://www.visualytes.com/"} className="text-white font-medium hover:underline">

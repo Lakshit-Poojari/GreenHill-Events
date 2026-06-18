@@ -1,26 +1,38 @@
-"use client"
+"use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React from 'react'
+import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+
   return (
     <header>
-      <nav className='container mx-auto flex items-center justify-between px-23 py-7 border border-gray-800 '>
+      <nav className=" mx-auto flex items-center justify-between px-23 py-7">
 
+        {/* Logo */}
         <div>
-          <Image src={"/greenhill.jpg"} alt='logo' width={300} height={80}/>
+          <Image
+            src="/greenhill.jpg"
+            alt="logo"
+            width={300}
+            height={80}
+            className="w-40 md:w-52 lg:w-72 h-auto"
+          />
         </div>
-        <div>
-          <ul className="flex items-center justify-between gap-18">
+
+        {/* Desktop Menu */}
+        <div className="hidden lg:block">
+          <ul className="flex items-center gap-16  text-xs">
 
             <li>
               <Link
                 href="/"
-                className={`${pathname === "/" ? "text-amber-200" : "hover:text-gray-400"}`}
+                className={pathname === "/" ? "text-amber-200" : "hover:text-gray-400"}
               >
                 HOME
               </Link>
@@ -29,7 +41,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/about"
-                className={`${pathname === "/about" ? "text-amber-200" : "hover:text-gray-400"}`}
+                className={pathname === "/about" ? "text-amber-200" : "hover:text-gray-400"}
               >
                 ABOUT US
               </Link>
@@ -38,7 +50,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/entertainment"
-                className={`${pathname === "/entertainment" ? "text-amber-200" : "hover:text-gray-400"}`}
+                className={pathname === "/entertainment" ? "text-amber-200" : "hover:text-gray-400"}
               >
                 ENTERTAINMENT
               </Link>
@@ -47,7 +59,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/mobile-bars"
-                className={`${pathname === "/mobile-bars" ? "text-amber-200" : "hover:text-gray-400"}`}
+                className={pathname === "/mobile-bars" ? "text-amber-200" : "hover:text-gray-400"}
               >
                 MOBILE BARS
               </Link>
@@ -56,7 +68,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/events"
-                className={`${pathname === "/events" ? "text-amber-200" : "hover:text-gray-400"}`}
+                className={pathname === "/events" ? "text-amber-200" : "hover:text-gray-400"}
               >
                 EVENTS
               </Link>
@@ -65,7 +77,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/blog"
-                className={`${pathname === "/blog" ? "text-amber-200" : "hover:text-gray-400"}`}
+                className={pathname === "/blog" ? "text-amber-200" : "hover:text-gray-400"}
               >
                 BLOG
               </Link>
@@ -74,7 +86,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/contact"
-                className={`${pathname === "/contact" ? "text-amber-200" : "hover:text-gray-400"}`}
+                className={pathname === "/contact" ? "text-amber-200" : "hover:text-gray-400"}
               >
                 CONTACT US
               </Link>
@@ -82,9 +94,128 @@ const Navbar = () => {
 
           </ul>
         </div>
-      </nav>
-    </header>
-  )
-}
 
-export default Navbar
+        {/* Mobile Menu Button */}
+        <button
+          className="lg:hidden flex items-center gap-2"
+          onClick={() => setOpen(!open)}
+        >
+          <span className="font-semibold tracking-widest">
+            MENU
+          </span>
+
+          {open ? (
+            <X size={32} />
+          ) : (
+            <Menu size={32} strokeWidth={2.5} />
+          )}
+        </button>
+      </nav>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="lg:hidden bg-black text-white border-t border-gray-800">
+          <ul className="flex flex-col">
+
+            <li>
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${
+                  pathname === "/" ? "text-amber-200" : "hover:text-gray-400"
+                }`}
+              >
+                HOME
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/about"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${
+                  pathname === "/about" ? "text-amber-200" : "hover:text-gray-400"
+                }`}
+              >
+                ABOUT US
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/entertainment"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${
+                  pathname === "/entertainment"
+                    ? "text-amber-200"
+                    : "hover:text-gray-400"
+                }`}
+              >
+                ENTERTAINMENT
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/mobile-bars"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${
+                  pathname === "/mobile-bars"
+                    ? "text-amber-200"
+                    : "hover:text-gray-400"
+                }`}
+              >
+                MOBILE BARS
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/events"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${
+                  pathname === "/events"
+                    ? "text-amber-200"
+                    : "hover:text-gray-400"
+                }`}
+              >
+                EVENTS
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/blog"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${
+                  pathname === "/blog"
+                    ? "text-amber-200"
+                    : "hover:text-gray-400"
+                }`}
+              >
+                BLOG
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${
+                  pathname === "/contact"
+                    ? "text-amber-200"
+                    : "hover:text-gray-400"
+                }`}
+              >
+                CONTACT US
+              </Link>
+            </li>
+
+          </ul>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Navbar;
