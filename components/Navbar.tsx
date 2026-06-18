@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <header>
-      <nav className=" mx-auto flex items-center justify-between px-23 py-7">
+      <nav className="  flex items-center justify-between mx-16.25 px-3.75 ">
 
         {/* Logo */}
         <div>
@@ -27,12 +27,12 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:block">
-          <ul className="flex items-center gap-16  text-xs">
+          <ul className="flex items-center gap-16 font-['Poppins'] tracking-[0.08em] text-[0.75rem] text-xs">
 
             <li>
               <Link
                 href="/"
-                className={pathname === "/" ? "text-amber-200" : "hover:text-gray-400"}
+                className={pathname === "/" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
               >
                 HOME
               </Link>
@@ -41,7 +41,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/about"
-                className={pathname === "/about" ? "text-amber-200" : "hover:text-gray-400"}
+                className={pathname === "/about" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
               >
                 ABOUT US
               </Link>
@@ -50,7 +50,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/entertainment"
-                className={pathname === "/entertainment" ? "text-amber-200" : "hover:text-gray-400"}
+                className={pathname === "/entertainment" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
               >
                 ENTERTAINMENT
               </Link>
@@ -59,7 +59,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/mobile-bars"
-                className={pathname === "/mobile-bars" ? "text-amber-200" : "hover:text-gray-400"}
+                className={pathname === "/mobile-bars" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
               >
                 MOBILE BARS
               </Link>
@@ -68,7 +68,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/events"
-                className={pathname === "/events" ? "text-amber-200" : "hover:text-gray-400"}
+                className={pathname === "/events" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
               >
                 EVENTS
               </Link>
@@ -77,7 +77,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/blog"
-                className={pathname === "/blog" ? "text-amber-200" : "hover:text-gray-400"}
+                className={pathname === "/blog" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
               >
                 BLOG
               </Link>
@@ -86,7 +86,7 @@ const Navbar = () => {
             <li>
               <Link
                 href="/contact"
-                className={pathname === "/contact" ? "text-amber-200" : "hover:text-gray-400"}
+                className={pathname === "/contact" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
               >
                 CONTACT US
               </Link>
@@ -122,7 +122,7 @@ const Navbar = () => {
                 href="/"
                 onClick={() => setOpen(false)}
                 className={`block px-6 py-4 ${
-                  pathname === "/" ? "text-amber-200" : "hover:text-gray-400"
+                  pathname === "/" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"
                 }`}
               >
                 HOME
@@ -134,7 +134,7 @@ const Navbar = () => {
                 href="/about"
                 onClick={() => setOpen(false)}
                 className={`block px-6 py-4 ${
-                  pathname === "/about" ? "text-amber-200" : "hover:text-gray-400"
+                  pathname === "/about" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"
                 }`}
               >
                 ABOUT US
@@ -147,7 +147,7 @@ const Navbar = () => {
                 onClick={() => setOpen(false)}
                 className={`block px-6 py-4 ${
                   pathname === "/entertainment"
-                    ? "text-amber-200"
+                    ? "text-[rgba(201,172,140,1)]"
                     : "hover:text-gray-400"
                 }`}
               >
@@ -161,7 +161,7 @@ const Navbar = () => {
                 onClick={() => setOpen(false)}
                 className={`block px-6 py-4 ${
                   pathname === "/mobile-bars"
-                    ? "text-amber-200"
+                    ? "text-[rgba(201,172,140,1)]"
                     : "hover:text-gray-400"
                 }`}
               >
@@ -175,7 +175,7 @@ const Navbar = () => {
                 onClick={() => setOpen(false)}
                 className={`block px-6 py-4 ${
                   pathname === "/events"
-                    ? "text-amber-200"
+                    ? "text-[rgba(201,172,140,1)]"
                     : "hover:text-gray-400"
                 }`}
               >
@@ -189,7 +189,7 @@ const Navbar = () => {
                 onClick={() => setOpen(false)}
                 className={`block px-6 py-4 ${
                   pathname === "/blog"
-                    ? "text-amber-200"
+                    ? "text-[rgba(201,172,140,1)]"
                     : "hover:text-gray-400"
                 }`}
               >
@@ -203,7 +203,7 @@ const Navbar = () => {
                 onClick={() => setOpen(false)}
                 className={`block px-6 py-4 ${
                   pathname === "/contact"
-                    ? "text-amber-200"
+                    ? "text-[rgba(201,172,140,1)]"
                     : "hover:text-gray-400"
                 }`}
               >

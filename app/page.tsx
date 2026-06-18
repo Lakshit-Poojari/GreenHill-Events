@@ -9,7 +9,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <div className="px-23">
+      <div className="mx-16.25 px-3.75">
         <HeroSection/>
         <WellcomeToGrennHill/>
         <DistinctOffering/>
