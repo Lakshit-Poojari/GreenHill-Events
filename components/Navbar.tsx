@@ -27,7 +27,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:block">
-          <ul className="flex items-center gap-16 font-['Poppins'] tracking-[0.08em] text-[0.75rem] text-xs">
+          <ul className="flex items-center gap-22 font-['Poppins'] tracking-[0.08em] text-[0.75rem] text-xs">
 
             <li>
               <Link

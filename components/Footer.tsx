@@ -4,18 +4,18 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-16 mx-16.25 px-3.75">
-      <div className="container mx-auto  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.2fr_2fr_1fr_0.8fr] gap-12 py-6">
+    <footer className="bg-black text-white py-16  px-3.75">
+      <div className="mx-16.25  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.2fr_2fr_1fr_0.8fr] gap-12 py-6">
 
         {/* Social Links */}
-        <div>
-          <h3 className="text-xl lg:text-2xl font-semibold mb-5">Social Links</h3>
+        <div className="">
+          <h3 className=" font-[1.2em] font-['Playfair_Display'] mb-3">Social Links</h3>
 
-          <div className="flex  justify-center md:justify-start gap-3">
+          <div className="flex  md:justify-start gap-3">
 
             <Link
               href="https://www.facebook.com/simongreenhillallin/"
-              className="w-10 h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 bg-[#1877F2] rounded-md flex items-center justify-center text-white text-xl"
+              className="w-12 h-12 md:w-11 md:h-11 lg:w-12 lg:h-12 bg-[#1877F2] rounded-md flex items-center justify-center text-white text-xl"
             >
               <FaFacebookF />
             </Link>
@@ -50,13 +50,13 @@ const Footer = () => {
 
         {/* Copyright */}
         <div>
-          <h3 className="text-xl font-semibold mb-5">
+          <h3 className="font-[1.2em] font-['Playfair_Display'] mb-3">
             Copyright &copy;
           </h3>
 
-          <p className="text-sm lg:text-[15px] text-[#A7A7A7] leading-7 lg:leading-8">
-            Copyright © 2021 Simon Greenhill. All rights reserved.
-            Designed & Developed by{" "}
+          <p className="text-sm lg:text-[15px] text-[#A7A7A7] leading-7 lg:leading-8 font-['Poppins']">
+            Copyright © 2021 Simon Greenhill. All rights reserved. Designed & <br/>
+            <span> Developed by{" "}</span>
             <Link href={"https://www.visualytes.com/"} className="text-white font-medium hover:underline">
               Visualytes
             </Link>
@@ -65,11 +65,11 @@ const Footer = () => {
 
         {/* Contact */}
         <div>
-          <h3 className="text-xl font-semibold mb-5">
+          <h3 className="font-[1.2em] font-['Playfair_Display'] mb-3">
             Contact
           </h3>
 
-          <div className="space-y-2 text-[#A7A7A7] text-[15px] leading-8">
+          <div className=" text-[#A7A7A7] text-[15px] font-['Poppins'] leading-8">
             <p>London</p>
             <p>
               Tel: <span className="text-white">01483 497213</span>
@@ -89,11 +89,11 @@ const Footer = () => {
 
         {/* Terms */}
         <div>
-          <h3 className="text-xl font-semibold mb-5">
+          <h3 className="font-[1.2em] font-['Playfair_Display'] mb-3">
             Terms
           </h3>
 
-          <div className="flex flex-col gap-4 text-[#A7A7A7] text-[15px]">
+          <div className="flex flex-col gap-4 mb-0.5 text-[#A7A7A7] text-[15px] font-['Poppins']">
             <Link href="#">Terms & conditions</Link>
             <Link href="#">Privacy policy & cookies</Link>
             <Link href="#">Terms of use</Link>
