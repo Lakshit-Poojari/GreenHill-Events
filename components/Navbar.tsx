@@ -17,21 +17,27 @@ const Navbar = () => {
             <li className='hover:text-gray-400 '>
               <Link href={"/"}>HOME</Link>
             </li>
+
             <li className='hover:text-gray-400'>
               <Link href={"/"}>ABOUT US</Link>
             </li>
+
             <li className='hover:text-gray-400'>
               <Link href={"/"}>ENTERTAINMENT</Link>
             </li>
+
             <li className='hover:text-gray-400'>
               <Link href={"/"}>MOBILE BARS</Link>
             </li>
+
             <li className='hover:text-gray-400'>
               <Link href={"/"}>EVENTS</Link>
             </li>
+
             <li className='hover:text-gray-400'>
               <Link href={"/"}>BLOG</Link>
             </li>
+            
             <li className='hover:text-gray-400'>
               <Link href={"/"}>CONTACT US</Link>
             </li>
