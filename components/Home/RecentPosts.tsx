@@ -83,7 +83,7 @@ const RecentPosts = () => {
   };
 
   return (
-    <div className="mx-16.25 px-6.75 py-18">
+    <div className="mx-16.25 px-6.75 py-17">
       <div className="text-center">
         <p className="text-[4.125rem] font-['Playfair_Display']">
           Recent Posts
@@ -114,7 +114,7 @@ const RecentPosts = () => {
             onTransitionEnd={handleTransitionEnd}
           >
             {extendedPosts.map((post, i) => (
-              <div key={`${post.id}-${i}`} className="w-1/3  px-4">
+              <div key={`${post.id}-${i}`} className="w-1/3 shrink-0 px-4">
                 
                 <div className="border rounded-lg overflow-hidden shadow-md h-full flex flex-col">
                   <Image
@@ -125,7 +125,7 @@ const RecentPosts = () => {
                     className="w-full h-60 object-cover"
                   />
 
-                  <div className="p-4 flex flex-col ">
+                  <div className="p-4 flex flex-col grow">
                     <div className="mb-3">
                       <span className="bg-black text-white text-xs px-3 py-1 rounded">
                         {post.category}

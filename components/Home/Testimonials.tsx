@@ -56,13 +56,13 @@ const Testimonials = () => {
   
   return (
     <>
-      <div className='mx-16.25 px-6.75 py-22 text-center '>
+      <div className='mx-16.25 px-6.75 py-17 text-center '>
         <div>
           <p className="text-[4.125rem] font-['Playfair_Display']">Testimonials</p>
           <hr className="w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]"/>
         </div>
         <div>
-          <section className="relative flex items-center h-70 justify-center py-25">
+          <section className="relative flex items-center h-70 justify-center py-17">
 
                 {/* Left Button */}
                 <button

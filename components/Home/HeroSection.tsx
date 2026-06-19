@@ -30,7 +30,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative flex items-center h-150 justify-center py-55">
+    <section className="relative flex items-center h-150 justify-center py-17">
 
       {/* Left Button */}
       <button
