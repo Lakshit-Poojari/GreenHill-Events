@@ -85,8 +85,8 @@ const Navbar = () => {
 
             <li>
               <Link
-                href="/contact"
-                className={pathname === "/contact" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
+                href={"/contact-us"}
+                className={pathname === "/contact-us" ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400"}
               >
                 CONTACT US
               </Link>
