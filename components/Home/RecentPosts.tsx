@@ -117,13 +117,16 @@ const RecentPosts = () => {
               <div key={`${post.id}-${i}`} className="w-1/3 shrink-0 px-4">
                 
                 <div className="border rounded-lg overflow-hidden shadow-md h-full flex flex-col">
+                  <div className="overflow-hidden rounded-lg m-1 ">
+
                   <Image
                     src={post.image}
                     alt={post.title}
                     width={1000}
                     height={500}
-                    className="w-full h-60 object-cover"
+                    className="w-full h-60 object-cover  transition-transform duration-700 ease-out hover:scale-120"
                   />
+                  </div>
 
                   <div className="p-4 flex flex-col grow">
                     <div className="mb-3">
