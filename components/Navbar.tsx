@@ -28,29 +28,27 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed border-b border-[#88868466] font-['Poppins'] top-0 left-0 w-full  z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-black/95 shadow-md py-2"
-          : "bg-transparent py-5"
+          ? "bg-black/95 shadow-md  h-17"
+          : "bg-transparent py-7"
       }`}
     >
       <nav className="flex items-center justify-between mx-16.25 px-6.75">
         {/* Logo */}
         <div>
-          <Image
-            src="/greenhill.jpg"
-            alt="logo"
-            width={300}
-            height={80}
-            className={`h-auto transition-all duration-300 
-                : "w-40 md:w-52 lg:w-72"
-            }`}
-          />
+<Image
+  src="/greenhill.jpg"
+  alt="logo"
+  width={400}
+  height={400}
+  className="h-17 w-auto transition-all duration-300"
+/>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden lg:block">
-          <ul className="flex items-center gap-22 font-['Poppins'] tracking-[0.08em] text-xs">
+          <ul className="flex items-center gap-20 font-['Poppins'] tracking-[0.08em] text-xs">
             <li>
               <Link href="/" className={navClass("/")}>
                 HOME
@@ -58,7 +56,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/about-us" className={navClass("/about")}>
+              <Link href="/about-us" className={navClass("/about-us")}>
                 ABOUT US
               </Link>
             </li>
@@ -73,7 +71,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/mobile-bar" className={navClass("/mobile-bars")}>
+              <Link href="/mobile-bar" className={navClass("/mobile-bar")}>
                 MOBILE BARS
               </Link>
             </li>
