@@ -1,7 +1,13 @@
-"use client"
 
+
+import type { Metadata } from "next";
 import Link from 'next/link'
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: "Contact Us - GreenHillEvent",
+  // description: "",     ###############################################################
+}
 
 const page = () => {
   return (
