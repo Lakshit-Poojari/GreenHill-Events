@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-        <div className='mx-16.25 px-6.75 pt-34  text-center'>
+        <div className='mx-16.25 px-6.75 pt-26 text-center'>
             <div>
                 <p className="font-['Poppins'] text-[5.5rem]  font-light text-center text-white">
                     Contact Us
