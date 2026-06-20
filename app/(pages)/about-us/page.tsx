@@ -11,8 +11,8 @@ const page = () => {
                 </p>
                 <hr className="w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
             </div>
-            <div className='flex flex-row my-8'>
-              <div className="text-[#C9AC8C] text-lg italic justify-start lg:w-1/2 font-['Old Standard TT']">
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-8 my-8'>
+              <div className="text-[#C9AC8C] text-lg italic text-justify space-y-1.5  font-['Old Standard TT']">
                 <p>
                   Since 2007, Greenhill Events have been forging a reputation as a pioneer in the event entertainment industry. 
                   With our unique consultative approach, we have been able to create bespoke event experiences for a variety of 
@@ -34,7 +34,7 @@ const page = () => {
                   bride and grooms at countless weddings alongside our appearances at the many sporting events, concerts & festivals.
                 </p>
               </div>
-              <div className='lg:w-1/2'>
+              <div className=''>
                 <Image src={"/About/About.jpg"} alt="About" width={700} height={450}/>
               </div>
             </div>
