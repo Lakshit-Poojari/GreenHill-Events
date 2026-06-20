@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div >Mobile - Bar</div>
+    <div className="pt-34">Mobile - Bar</div>
   )
 }
 
