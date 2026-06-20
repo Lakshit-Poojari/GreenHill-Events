@@ -9,7 +9,7 @@ const page = () => {
                 <p className="font-['Poppins'] text-[6.5rem] font-light text-center text-white">
                     About Us
                 </p>
-                <hr className="w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
+                <hr className="w-[12%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8 my-8'>
               <div className="text-[#C9AC8C] text-lg italic text-justify space-y-1.5  font-['Old Standard TT']">

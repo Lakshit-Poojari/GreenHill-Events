@@ -17,7 +17,7 @@ const page = () => {
                 <p className="font-['Poppins'] text-[5.5rem]  font-light text-center text-white">
                     Contact Us
                 </p>
-                <hr className="w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
+                <hr className="w-[12%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
             </div>
             <div>
                 <p className="text-center font-['Old Standard T'] italic text-[rgba(201,172,140,1)]  mt-10 text-[1.2rem]">
