@@ -13,15 +13,12 @@ const Footer = () => {
 
           <div className="flex  md:justify-start gap-3">
 
-            <Link
-              href="https://www.facebook.com/simongreenhillallin/"
-              className="w-12 h-12 md:w-11 md:h-11 lg:w-12 lg:h-12 bg-[#1877F2] rounded-md flex items-center justify-center text-white text-xl"
-            >
+            <Link href="https://www.facebook.com/simongreenhillallin/"
+              className="w-12 h-12 md:w-11 md:h-11 lg:w-12 lg:h-12 bg-[#1877F2] rounded-md flex items-center justify-center text-white text-xl" >
               <FaFacebookF />
             </Link>
 
-            <Link
-              href="https://www.instagram.com/greenhill_entertainment/?hl=en"
+            <Link href="https://www.instagram.com/greenhill_entertainment/?hl=en"
               className="w-12 h-12 rounded-md flex items-center justify-center text-white text-xl "
               style={{
                 background:
@@ -30,17 +27,13 @@ const Footer = () => {
               <FaInstagram />
             </Link>
 
-            <Link
-              href="https://uk.pinterest.com/simongreenhill7/"
-              className="w-12 h-12 bg-[#E60023] rounded-md flex items-center justify-center text-white text-xl"
-            >
+            <Link href="https://uk.pinterest.com/simongreenhill7/"
+              className="w-12 h-12 bg-[#E60023] rounded-md flex items-center justify-center text-white text-xl">
               <FaPinterestP />
             </Link>
 
-            <Link
-              href="https://x.com/si_greenhill"
-              className="w-12 h-12 bg-black border border-gray-600 rounded-md flex items-center justify-center text-white text-xl "
-            >
+            <Link href="https://x.com/si_greenhill"
+              className="w-12 h-12 bg-black border border-gray-600 rounded-md flex items-center justify-center text-white text-xl ">
               <FaXTwitter />
             </Link>
 
