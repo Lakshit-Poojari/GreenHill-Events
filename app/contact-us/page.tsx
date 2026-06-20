@@ -38,8 +38,6 @@ With many ways to contact us you can choose which ever method suits you best
                     </Link>
                 </div>
             </div>
-
-
         </div>
     </>
   )
