@@ -1,16 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
+import SectionHeading from '../SectionHeading'
 
 const Heading = () => {
   return (
     <>
         <div className='mx-16.25 px-6.75'>
-            <div>
-                <p className="font-['Poppins'] text-[5.5rem] font-light text-center text-white">
-                    Events
-                </p>
-                <hr className="w-[12%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
-            </div>
+            <SectionHeading title='Events'/>
+            
             <div>
                 <p className="text-center font-['Old Standard T'] italic text-[rgba(201,172,140,1)]  mt-10 text-[1.2rem]">
                     With over 20 years in the entertainment industry, Simon has vast experience across a wide range of events, together with a large network of entertainers to call upon. This means he is well placed to help you organise your own event, however big or small.

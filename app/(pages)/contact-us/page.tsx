@@ -1,5 +1,6 @@
 
 
+import SectionHeading from "@/components/SectionHeading";
 import type { Metadata } from "next";
 import Link from 'next/link'
 import React from 'react'
@@ -13,12 +14,8 @@ const page = () => {
   return (
     <>
         <div className='mx-16.25 px-6.75 pt-26 text-center'>
-            <div>
-                <p className="font-['Poppins'] text-[5.5rem]  font-light text-center text-white">
-                    Contact Us
-                </p>
-                <hr className="w-[12%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
-            </div>
+            <SectionHeading title='Contact Us'/>
+            
             <div>
                 <p className="text-center font-['Old Standard T'] italic text-[rgba(201,172,140,1)]  mt-10 text-[1.2rem]">
                     If you would like to get in touch with us to discuss your requirements for any event that you may be organising, then we will be more than happy to help.
