@@ -1,4 +1,5 @@
 import BottlePhotos from '@/components/MobileBar/BottlePhotos'
+import ClientReview from '@/components/MobileBar/ClientReview'
 import DryHire from '@/components/MobileBar/DryHire'
 import Events from '@/components/MobileBar/Events'
 import MobileBarCompany from '@/components/MobileBar/MobileBarCompany'
@@ -39,7 +40,9 @@ const page = () => {
       </div>
 
       <PartyPhotos/>
-      
+
+      <ClientReview/>
+
       <ServiceCard/>
       
     </div>
