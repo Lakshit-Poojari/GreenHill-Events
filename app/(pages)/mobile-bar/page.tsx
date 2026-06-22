@@ -3,6 +3,7 @@ import DryHire from '@/components/MobileBar/DryHire'
 import Events from '@/components/MobileBar/Events'
 import MobileBarCompany from '@/components/MobileBar/MobileBarCompany'
 import MobileBarIntro from '@/components/MobileBar/MobileBarIntro'
+import PartyPhotos from '@/components/MobileBar/PartyPhotos'
 import SectionHeading from '@/components/SectionHeading'
 import ServiceCard from '@/components/ServiceCard'
 import Link from 'next/link'
@@ -37,6 +38,8 @@ const page = () => {
         </div>
       </div>
 
+      <PartyPhotos/>
+      
       <ServiceCard/>
       
     </div>
