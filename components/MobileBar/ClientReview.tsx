@@ -19,12 +19,12 @@ const ClientReview = () => {
   return (
     <>
         <div className='text-center mx-16.25 px-6.75 py-6 '>
-            <div className="font-['Cormorant_Garamond'] text-[#C9AC8C] italic font-bold text-[27.2px] tracking-[4.08px]">
+            <div className="font-['Cormorant_Garamond'] text-[#C9AC8C] italic font-bold text-[27.2px] py-6 tracking-[4.08px]">
                 <p>What our clients say…</p>
             </div>
             {clientreviews.map((review, index) => (
                     <div key={index} className='text-center py-3'>
-                        <p className=" italic text-[20.4px] leading-6 tracking-[0.6px] text-[#C9AC8C] font-['Cormorant_Garamond']">{review.review}</p>
+                        <p className=" italic text-[20.4px] leading-5 tracking-[0.6px] text-[#C9AC8C] font-['Cormorant_Garamond']">"{review.review}"</p>
                         <p className="font-['Cormorant_Garamond']">{review.name}</p>
                     </div>
                         )

@@ -43,6 +43,10 @@ const page = () => {
 
       <ClientReview/>
 
+      <div>
+        <p className="font-['Poppins'] text-[4.5rem] py-70 font-light text-center text-white">Make yours an event to remember!</p>
+      </div>
+
       <ServiceCard/>
       
     </div>
