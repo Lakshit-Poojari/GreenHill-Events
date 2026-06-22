@@ -1,3 +1,4 @@
+import BottlePhotos from '@/components/MobileBar/BottlePhotos'
 import Events from '@/components/MobileBar/Events'
 import MobileBarIntro from '@/components/MobileBar/MobileBarIntro'
 import SectionHeading from '@/components/SectionHeading'
@@ -12,6 +13,7 @@ const page = () => {
       <SectionHeading title='The Greenhill Mobile Bar'/>
       <MobileBarIntro/>
       <Events/>
+      <BottlePhotos/>
       <ServiceCard/>
     </div>
   )
