@@ -3,7 +3,7 @@ import React from 'react'
 const ContactForm = () => {
   return (
     <>
-        <div className="max-w-6xl mx-auto px-8 py-12 text-white">
+        <div className="max-w-4xl mx-auto px-8 py-12 text-white">
             <p className="text-xl font-medium">Mobile Bar Enquiry</p>
 
             <p className="mt-2 text-lg">
@@ -45,8 +45,8 @@ const ContactForm = () => {
                 </div>
 
                 {/* Submit Button */}
-                <button type="submit" className="bg-[#BDBDBD] text-[#9A9A9A] px-10 py-4 rounded-full text-2xl font-medium
-                 hover:bg-[#C9AC8C] hover:text-black transition-all duration-300">
+                <button type="submit" className="bg-[#333] text-white px-10 py-4 rounded-full text-2xl font-medium
+                 hover:bg-[#BDBDBD] hover:text-[#939393] transition-all duration-300">
                     Submit
                 </button>
             </form>
