@@ -1,5 +1,6 @@
 import BottlePhotos from '@/components/MobileBar/BottlePhotos'
 import ClientReview from '@/components/MobileBar/ClientReview'
+import ContactForm from '@/components/MobileBar/ContactForm'
 import DryHire from '@/components/MobileBar/DryHire'
 import Events from '@/components/MobileBar/Events'
 import MobileBarCompany from '@/components/MobileBar/MobileBarCompany'
@@ -12,7 +13,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className="pt-26 text-center">
+    <div className="pt-26 ">
 
       <SectionHeading title='The Greenhill Mobile Bar'/>
 
@@ -48,6 +49,8 @@ const page = () => {
       </div>
 
       <ServiceCard/>
+
+      <ContactForm/>
       
     </div>
   )
