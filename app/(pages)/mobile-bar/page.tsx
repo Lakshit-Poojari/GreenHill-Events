@@ -1,6 +1,7 @@
 import BottlePhotos from '@/components/MobileBar/BottlePhotos'
 import DryHire from '@/components/MobileBar/DryHire'
 import Events from '@/components/MobileBar/Events'
+import MobileBarCompany from '@/components/MobileBar/MobileBarCompany'
 import MobileBarIntro from '@/components/MobileBar/MobileBarIntro'
 import SectionHeading from '@/components/SectionHeading'
 import ServiceCard from '@/components/ServiceCard'
@@ -16,6 +17,7 @@ const page = () => {
       <Events/>
       <BottlePhotos/>
       <DryHire/>
+      <MobileBarCompany/>
       <ServiceCard/>
     </div>
   )
