@@ -3,7 +3,7 @@ import React from 'react'
 const EntertaimentEvents = () => {
   return (
     <>
-      <div>
+      <div className='text-center mx-16.25 px-6.75'>
         <div>
           <p>We can arrange entertainment for a wide range of events:</p>
           <hr className="w-[12%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />          

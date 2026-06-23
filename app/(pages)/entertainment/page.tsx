@@ -1,3 +1,4 @@
+import ContactForm from '@/components/ContactForm'
 import EntertaimentEvents from '@/components/Entertainment/EntertaimentEvents'
 import Text from '@/components/Entertainment/Text'
 import SectionHeading from '@/components/SectionHeading'
@@ -9,10 +10,11 @@ const page = () => {
       <div style={{
           backgroundImage: "url('/Entertainment/room.jpg')",
         }}
-        className="mx-16.25 px-6.75 pt-26 text-center bg-cover bg-center bg-no-repeat">
+        className="pt-26 bg-cover bg-center bg-no-repeat">
         <SectionHeading title="Entertainment" />
         <Text />
         <EntertaimentEvents />
+        <ContactForm/>
       </div>
     </>
   )

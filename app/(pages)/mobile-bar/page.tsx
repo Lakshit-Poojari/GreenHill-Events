@@ -50,7 +50,7 @@ const page = () => {
 
       <ServiceCard/>
 
-      <ContactForm/>
+      <ContactForm bgClass="bg-[#1a1919]"/>
       
     </div>
   )
