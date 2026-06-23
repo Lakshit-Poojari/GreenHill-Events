@@ -74,66 +74,65 @@ const EntertaimentEvents = () => {
   return (
     <>
       <div className='text-center '>
-        <div>
+        <div className='py-6'>
           <p>We can arrange entertainment for a wide range of events:</p>
-          <hr className="w-[12%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />          
+          <hr className="w-[12%]  mt-2 border-2 mx-auto rounded-full border-[#C9AC8C]" />          
         </div>
-        <div className='bg-[#686868]  '>
 
-   <div className="mx-4 md:mx-8 lg:mx-16.25  px-4 md:px-6.75 py-10">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {cards.map((card, index) => (
-          <div key={index} className="group w-full h-112.5 perspective-[1000px]" >
-            <div className=" relative h-full w-full transition-transform duration-700 transform-3d group-hover:transform-[rotateY(180deg)] ">
-              {/* Front */}
-              <div className="absolute inset-0 backface-hidden">
-                <Image src={card.image} fill alt={`Event ${index + 1}`} className="object-cover rounded-lg" />
+        <div className='bg-[#686868]  py-6'>
+
+          <div className="mx-4 md:mx-8 lg:mx-16.25  px-4 md:px-6.75 py-10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {
+                  cards.map((card, index) => (
+                    <div key={index}   className={`group w-full h-112.5 perspective-[1000px] ${
+                        cards.length % 2 !== 0 && index === cards.length - 1
+                          ? "lg:col-span-2 lg:max-w-[50%] lg:mx-auto"
+                          : ""
+                      }`} >
+                      <div className=" relative h-full w-full transition-transform duration-700 transform-3d group-hover:transform-[rotateY(180deg)] ">
+                        {/* Front */}
+                        <div className="absolute inset-0 backface-hidden">
+                          <Image src={card.image} fill alt={`Event ${index + 1}`} className="object-cover object-left rounded-lg brightness-35 " />
+                        </div>
+                          <div className="absolute backface-hidden w-3xl top-40 left-1/2 -translate-x-1/2 z-10">
+                            <h3 className="text-white text-2xl  md:text-3xl font-bold text-center">
+                              {card.title}
+                            </h3>
+                            <hr className="w-[102] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
+                          </div>
+
+
+                        {/* Back */}
+                        <div className=" absolute inset-0 flex flex-col justify-between bg-black text-white p-6 rounded-lg 
+                          transform-[rotateY(180deg)] backface-hidden ">
+                          <p className="md:text-lg text-[#C9AC8C] leading-relaxed">
+                            {card.text}
+                          </p>
+
+                          {
+                            index >= 4 && (
+                              <Link href="" className="self-center">
+                                <button className="px-6 py-3 border border-[#C9AC8C] rounded-full text-[#C9AC8C]  hover:bg-[#C9AC8C]
+                                    hover:text-black">
+                                  FIND OUT MORE
+                                </button>
+                              </Link>
+                            )
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
               </div>
-                <div className="absolute backface-hidden top-40 left-1/2 -translate-x-1/2 z-10">
-                  <h3 className="text-white text-2xl md:text-3xl font-bold text-center">
-                    {card.title}
-                  </h3>
-                  <hr className="w-[80%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
-                </div>
-
-
-              {/* Back */}
-              <div
-  className="
-    absolute inset-0
-    flex flex-col
-    justify-between
-    bg-black text-white
-    p-6
-    rounded-lg
-    transform-[rotateY(180deg)]
-    backface-hidden
-  "
->
-  <p className="md:text-lg text-[#C9AC8C] leading-relaxed">
-    {card.text}
-  </p>
-
-  {index >= 4 && (
-    <Link href="" className="self-center">
-      <button className="px-6 py-3 border border-[#C9AC8C] rounded-full text-[#C9AC8C]  hover:bg-[#C9AC8C]
-          hover:text-black">
-        FIND OUT MORE
-      </button>
-    </Link>
-  )}
-</div>
-            </div>
           </div>
-        ))}
-      </div>
-    </div>
 
           <div className='mx-16.25 px-6.75'>
             <p className='text-[#C9AC8C]'>As well as providing entertainment solutions we can also provide refreshments.
               <span className='text-white'>The Greenhill Bars </span>, a fleet of beautifully restored rice horseboxes, 
-              are our modern and stylish mobile bar solutions. With drink menus featuring extensive gin collections, prosecco 
-              and champagne, they really are the perfect addition to any event.</p>
+                are our modern and stylish mobile bar solutions. With drink menus featuring extensive gin collections, prosecco 
+                and champagne, they really are the perfect addition to any event.</p>
           </div>
 
         </div>
