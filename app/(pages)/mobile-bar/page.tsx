@@ -1,6 +1,6 @@
 import BottlePhotos from '@/components/MobileBar/BottlePhotos'
 import ClientReview from '@/components/MobileBar/ClientReview'
-import ContactForm from '@/components/MobileBar/ContactForm'
+import ContactForm from '@/components/ContactForm'
 import DryHire from '@/components/MobileBar/DryHire'
 import Events from '@/components/MobileBar/Events'
 import MobileBarCompany from '@/components/MobileBar/MobileBarCompany'
