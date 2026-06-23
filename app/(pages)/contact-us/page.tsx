@@ -17,7 +17,7 @@ const page = () => {
             <SectionHeading title='Contact Us'/>
             
             <div>
-                <p className="text-center font-['Old Standard T'] italic text-[rgba(201,172,140,1)]  mt-10 text-[1.2rem]">
+                <p className="text-center font-['Old Standard T'] italic text-[#C9AC8C]  mt-10 text-[1.2rem]">
                     If you would like to get in touch with us to discuss your requirements for any event that you may be organising, then we will be more than happy to help.
 With many ways to contact us you can choose which ever method suits you best    
                 </p>
