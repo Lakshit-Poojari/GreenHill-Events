@@ -74,10 +74,7 @@ const EntertaimentEvents = () => {
   return (
     <>
       <div className='text-center '>
-        <div className='py-6'>
-          <p>We can arrange entertainment for a wide range of events:</p>
-          <hr className="w-[12%]  mt-2 border-2 mx-auto rounded-full border-[#C9AC8C]" />          
-        </div>
+        
 
         <div className='bg-[#686868]  py-6'>
 
