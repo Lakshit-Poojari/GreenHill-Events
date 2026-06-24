@@ -29,7 +29,7 @@ const page = () => {
                         and finding new ways to ensure that his new and existing clients’ events stand out.</p>
                 </div>
                 <div>
-                    <Image src={"/About/Our-Founder.jpg"} alt="About" width={600} height={100}/>
+                    <Image src={"/About/Our-Founder.jpg"} alt="our-founder" width={600} height={100}/>
                 </div>
             </div>
         </div>

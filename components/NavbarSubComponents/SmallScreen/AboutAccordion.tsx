@@ -6,19 +6,19 @@ import React, { useState } from "react";
 const aboutMenu = [
   {
     name: "OUR FOUNDER",
-    href: "/about-us/our-founder",
+    href: "/our-founder",
   },
   {
     name: "VISION & VALUES",
-    href: "/about-us/vision-and-values",
+    href: "/vision-and-values",
   },
   {
     name: "CASE STUDIES",
-    href: "/about-us/case-studies",
+    href: "/case-studies",
   },
   {
     name: "CAREERS",
-    href: "/about-us/careers",
+    href: "/careers",
   },
 ];
 
