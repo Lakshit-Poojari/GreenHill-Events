@@ -9,6 +9,8 @@ import AboutDropDown from "./NavbarSubComponents/LargeScreen/AboutDropDown";
 import EntertainmentDropDown from "./NavbarSubComponents/LargeScreen/EntertainmentDropDown";
 import MobileBarDropDown from "./NavbarSubComponents/LargeScreen/MobileBarDropDown";
 import AboutAccordion from "./NavbarSubComponents/SmallScreen/AboutAccordion";
+import EntertainmentAccordian from "./NavbarSubComponents/SmallScreen/EntertainmentAccordian";
+import MobileBarAccordian from "./NavbarSubComponents/SmallScreen/MobileBarAccordian";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -102,21 +104,15 @@ const Navbar = () => {
             </li>
 
             <li>
-<AboutAccordion/>
+              <AboutAccordion/>
             </li>
 
             <li>
-              <Link href="/entertainment" onClick={() => setOpen(false)}
-                className={`block px-6 py-4 ${navClass("/entertainment")}`}>
-                ENTERTAINMENT
-              </Link>
+              <EntertainmentAccordian/>
             </li>
 
             <li>
-              <Link href="/mobile-bars" onClick={() => setOpen(false)}  
-                className={`block px-6 py-4 ${navClass("/mobile-bars")}`} >
-                MOBILE BARS
-              </Link>
+              <MobileBarAccordian/>
             </li>
 
             <li>

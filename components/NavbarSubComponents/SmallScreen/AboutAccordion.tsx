@@ -27,14 +27,15 @@ const AboutAccordion = () => {
 
   return (
     <>
-    
-      <button
+        <Link href="/about-us">
+      <button 
         onClick={() => setAboutOpen(!aboutOpen)}
         className="w-full flex justify-between px-6 py-4"
       >
         ABOUT US
         <span className="text-2xl">{aboutOpen ? "̭" : "̬"}</span>
       </button>
+      </Link>
 
       {aboutOpen && (
         <ul className="bg-[#111] pl-8">
