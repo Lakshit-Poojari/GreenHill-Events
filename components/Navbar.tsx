@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import NavbarEntertainmentComponent from "./NavbarSubComponents/NavbarEntertainmentComponent";
+import NavbarAboutComponent from "./NavbarSubComponents/NavbarAboutComponent";
 
 
 
@@ -50,12 +51,12 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/about-us" className={navClass("/about-us")}>
-                ABOUT US
-              </Link>
+              <NavbarAboutComponent/>
             </li>
 
-            <li><NavbarEntertainmentComponent/></li>
+            <li>
+              <NavbarEntertainmentComponent/>
+            </li>
 
             <li>
               <Link href="/mobile-bar" className={navClass("/mobile-bar")}>

@@ -58,7 +58,7 @@ const NavbarEntertainmentComponent = () => {
         <li className="relative group">
             <Link href="/entertainment" className={`flex items-center gap-2 ${navClass("/entertainment")}`}>
                 ENTERTAINMENT
-                <span className="text-3xl mb-8">ˬ</span>
+                <span className="text-3xl mb-7.5">ˬ</span>
             </Link>
 
             <ul className=" absolute top-full left-0 invisible

@@ -10,7 +10,7 @@ const page = () => {
     <>
       <div
         style={{
-          backgroundImage: "url('/Entertainment/room.jpg')",
+          backgroundImage:"linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/Entertainment/room.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
