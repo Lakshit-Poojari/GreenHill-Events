@@ -2,8 +2,19 @@ import ContactForm from '@/components/ContactForm'
 import EntertaimentEvents from '@/components/Entertainment/EntertaimentEvents'
 import Text from '@/components/Entertainment/Text'
 import SectionHeading from '@/components/SectionHeading'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: "Entertainment - GreenHillEvent",
+  // description: "",     ###############################################################
+  icons: {
+    icon: "/faviconV2.png",
+    shortcut: "/faviconV2.png",
+    apple: "/faviconV2.png",
+  },
+};
 
 const page = () => {
   return (

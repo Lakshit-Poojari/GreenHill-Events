@@ -10,6 +10,17 @@ import SectionHeading from '@/components/SectionHeading'
 import ServiceCard from '@/components/ServiceCard'
 import Link from 'next/link'
 import React from 'react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Mobile Bar - GreenHillEvent",
+  // description: "",     ###############################################################
+  icons: {
+    icon: "/faviconV2.png",
+    shortcut: "/faviconV2.png",
+    apple: "/faviconV2.png",
+  },
+};
 
 const page = () => {
   return (

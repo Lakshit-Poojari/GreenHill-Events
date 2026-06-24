@@ -1,7 +1,18 @@
 import Heading from '@/components/Event/Heading'
 import Photos from '@/components/Event/Photos'
 import ServiceCard from '@/components/ServiceCard'
+import { Metadata } from 'next';
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: "Events - GreenHillEvent",
+  // description: "",     ###############################################################
+  icons: {
+    icon: "/faviconV2.png",
+    shortcut: "/faviconV2.png",
+    apple: "/faviconV2.png",
+  },
+};
 
 const page = () => {
   return (
