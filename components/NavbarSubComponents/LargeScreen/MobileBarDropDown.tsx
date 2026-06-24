@@ -33,7 +33,7 @@ export const mobileBarsMenu = [
   },
 ];
 
-const NavbarMobileBarComponent = () => {
+const MobileBarDropDown = () => {
     const pathname = usePathname();
 
     const navClass = (path: string) =>
@@ -81,4 +81,4 @@ const NavbarMobileBarComponent = () => {
   )
 }
 
-export default NavbarMobileBarComponent
+export default MobileBarDropDown

@@ -47,7 +47,7 @@ const entertainmentMenu = [
   },
 ];
 
-const NavbarEntertainmentComponent = () => {
+const EntertainmentDropDown = () => {
     const pathname = usePathname();
 
     const navClass = (path: string) =>
@@ -77,4 +77,4 @@ const NavbarEntertainmentComponent = () => {
   )
 }
 
-export default NavbarEntertainmentComponent
+export default EntertainmentDropDown

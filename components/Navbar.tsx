@@ -5,9 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import NavbarEntertainmentComponent from "./NavbarSubComponents/LargeScreen/NavbarEntertainmentComponent";
-import NavbarAboutComponent from "./NavbarSubComponents/LargeScreen/NavbarAboutComponent";
-import NavbarMobileBarComponent from "./NavbarSubComponents/LargeScreen/NavbarMobileBarComponent";
+import NavbarEntertainmentComponent from "./NavbarSubComponents/LargeScreen/EntertainmentDropDown";
+import NavbarAboutComponent from "./NavbarSubComponents/LargeScreen/AboutDropDown";
+import NavbarMobileBarComponent from "./NavbarSubComponents/LargeScreen/MobileBarDropDown";
 
 
 

@@ -23,7 +23,7 @@ const aboutMenu = [
   },
 ];
 
-const NavbarAboutComponent = () => {
+const AboutDropDown = () => {
     const pathname = usePathname();
     
     const navClass = (path: string) =>
@@ -51,4 +51,4 @@ const NavbarAboutComponent = () => {
   )
 }
 
-export default NavbarAboutComponent
+export default AboutDropDown
