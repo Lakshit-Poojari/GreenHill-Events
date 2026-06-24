@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 const aboutMenu = [
   {
     name: "OUR FOUNDER",
-    href: "/about-us/our-founder",
+    href: "/our-founder",
   },
   {
     name: "VISION & VALUES",
