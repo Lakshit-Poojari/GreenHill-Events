@@ -6,27 +6,27 @@ import React, { useState } from "react";
 const mobileBarMenu = [
   {
     name: "BAR",
-    href: "/mobile-bars/bar",
+    href: "/bar",
     children: [
       {
         name: "DRY HIRE",
-        href: "/mobile-bars/bar/dry-hire",
+        href: "/dry-hire",
       },
       {
         name: "STANDARD BAR",
-        href: "/mobile-bars/bar/standard-bar",
+        href: "/standard-bar",
       },
       {
         name: "COMPLIMENTARY BAR",
-        href: "/mobile-bars/bar/complimentary-bar",
+        href: "/complimentary-bar",
       },
       {
         name: "SPORTING & FESTIVAL BAR",
-        href: "/mobile-bars/bar/sporting-festival-bar",
+        href: "/sporting-festival-bar",
       },
       {
         name: "OUR BAR",
-        href: "/mobile-bars/bar/our-bar",
+        href: "/our-bar",
       },
     ],
   },
