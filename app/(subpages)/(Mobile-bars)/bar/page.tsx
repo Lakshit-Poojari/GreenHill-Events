@@ -80,14 +80,14 @@ const page = () => {
                     </div>
                 </div>
             </div>
-            <div className={`grid gap-8 items-stretch ${
+            <div className={`grid gap-15 mx-9 items-stretch ${
                 services.length === 1
                 ? "grid-cols-1 max-w-md mx-auto"
                 : services.length === 2
                 ? "grid-cols-2 max-w-4xl mx-auto"
                 : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}`}>
                 {services.map((service, index) => (
-                    <div key={index} className="shadow-md overflow-hidden flex flex-col min-h-187.5">
+                    <div key={index} className="shadow-md overflow-hidden flex flex-col min-h-197.5">
                         <Image src={service.image} alt={service.title} width={500} height={300} className="w-full h-64 object-cover"/>
 
                         <div className="p-6 flex flex-col flex-1">
