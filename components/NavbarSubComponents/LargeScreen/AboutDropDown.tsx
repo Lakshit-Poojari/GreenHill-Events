@@ -30,7 +30,7 @@ const AboutDropDown = () => {
         pathname === path ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400 transition";
   return (
     <>
-        <li className="relative group">
+        
             <Link href="/about-us" className={`flex items-center gap-2 ${navClass("/about-us")}`}>
                 ABOUT US
                 <span className="text-3xl mb-7.5">ˬ</span>
@@ -46,7 +46,7 @@ const AboutDropDown = () => {
                 </li>
                 ))}
             </ul>
-        </li>
+        
     </>
   )
 }

@@ -5,11 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import NavbarEntertainmentComponent from "./NavbarSubComponents/LargeScreen/EntertainmentDropDown";
-import NavbarAboutComponent from "./NavbarSubComponents/LargeScreen/AboutDropDown";
-import NavbarMobileBarComponent from "./NavbarSubComponents/LargeScreen/MobileBarDropDown";
-
-
+import AboutDropDown from "./NavbarSubComponents/LargeScreen/AboutDropDown";
+import EntertainmentDropDown from "./NavbarSubComponents/LargeScreen/EntertainmentDropDown";
+import MobileBarDropDown from "./NavbarSubComponents/LargeScreen/MobileBarDropDown";
+import AboutAccordion from "./NavbarSubComponents/SmallScreen/AboutAccordion";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -51,16 +50,16 @@ const Navbar = () => {
               </Link>
             </li>
 
-            <li>
-              <NavbarAboutComponent/>
+            <li className="relative group">
+              <AboutDropDown/>
             </li>
 
-            <li>
-              <NavbarEntertainmentComponent/>
+            <li className="relative group">
+              <EntertainmentDropDown/>
             </li>
 
-            <li>
-              <NavbarMobileBarComponent/>
+            <li className="relative group">
+              <MobileBarDropDown/>
             </li>
 
             <li>
@@ -103,10 +102,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/about" onClick={() => setOpen(false)}
-                className={`block px-6 py-4 ${navClass("/about")}`}>
-                ABOUT US
-              </Link>
+<AboutAccordion/>
             </li>
 
             <li>

@@ -55,7 +55,7 @@ const EntertainmentDropDown = () => {
 
   return (
     <>
-        <li className="relative group">
+        
             <Link href="/entertainment" className={`flex items-center gap-2 ${navClass("/entertainment")}`}>
                 ENTERTAINMENT
                 <span className="text-3xl mb-7.5">ˬ</span>
@@ -72,7 +72,7 @@ const EntertainmentDropDown = () => {
                     </li>
                 ))}
             </ul>
-        </li>
+       
     </>
   )
 }

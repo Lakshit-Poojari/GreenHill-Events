@@ -40,7 +40,7 @@ const MobileBarDropDown = () => {
         pathname === path ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400 transition";
   return (
     <>
-        <li className="relative group">
+        
         <Link
             href="/mobile-bar"
             className={`flex items-center gap-2 ${navClass("/mobile-bars")}`}
@@ -76,7 +76,7 @@ const MobileBarDropDown = () => {
             </li>
             ))}
         </ul>
-        </li>
+        
     </>
   )
 }
