@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import NavbarEntertainmentComponent from "./NavbarSubComponents/NavbarEntertainmentComponent";
-import NavbarAboutComponent from "./NavbarSubComponents/NavbarAboutComponent";
+import NavbarEntertainmentComponent from "./NavbarSubComponents/LargeScreen/NavbarEntertainmentComponent";
+import NavbarAboutComponent from "./NavbarSubComponents/LargeScreen/NavbarAboutComponent";
+import NavbarMobileBarComponent from "./NavbarSubComponents/LargeScreen/NavbarMobileBarComponent";
 
 
 
@@ -59,9 +60,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link href="/mobile-bar" className={navClass("/mobile-bar")}>
-                MOBILE BARS
-              </Link>
+              <NavbarMobileBarComponent/>
             </li>
 
             <li>
