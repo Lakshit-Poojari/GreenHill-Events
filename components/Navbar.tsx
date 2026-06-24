@@ -5,6 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import NavbarEntertainmentComponent from "./NavbarSubComponents/NavbarEntertainmentComponent";
+
+
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -52,11 +55,7 @@ const Navbar = () => {
               </Link>
             </li>
 
-            <li>
-              <Link href="/entertainment" className={navClass("/entertainment")}>
-                ENTERTAINMENT
-              </Link>
-            </li>
+            <li><NavbarEntertainmentComponent/></li>
 
             <li>
               <Link href="/mobile-bar" className={navClass("/mobile-bar")}>
