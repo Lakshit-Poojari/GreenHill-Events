@@ -1,7 +1,4 @@
 import EntertainmentCards from '@/components/Entertainment/EntertainmentCards';
-import SectionHeading from '@/components/SectionHeading'
-import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 
 const cards = [

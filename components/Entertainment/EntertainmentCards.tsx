@@ -22,20 +22,22 @@ const EntertainmentCards = ({
   cards,
 }: Props) => {
   return (
-    <div className="pt-26 mx-16.25 px-6.75">
-      <SectionHeading title={heading} />
+    <div className="pt-26 ">
+      <div className="text-center mx-16.25 px-6.75">
+        <SectionHeading  title={heading} />
+      </div>
 
-      <div className="text-[#C9AC8C] text-lg italic text-center space-y-1.5 py-4 font-['Old_Standard_TT']">
+      <div className="text-[#C9AC8C] mx-16.25 px-6.75 text-lg italic text-center space-y-1.5 py-4 font-['Old_Standard_TT']">
         <p>{description}</p>
       </div>
 
       <div className="bg-[#686868] py-6">
-        <div className="mx-4 md:mx-8 lg:mx-16.25 px-4 md:px-6.75 py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="mx-4 md:mx-8 lg:mx-16.25 px-4 md:px-6.75 py-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {cards.map((card, index) => (
               <div
                 key={index}
-                className={`group w-full h-112.5 perspective-[1000px]
+                className={`group w-full h-95.5 perspective-[1000px]
                   ${
                     cards.length % 2 !== 0 &&
                     index === cards.length - 1
@@ -43,15 +45,15 @@ const EntertainmentCards = ({
                       : ""
                   }`}
               >
-                <div className="relative h-full w-full transition-transform duration-700 transform-3d group-hover:transform-[rotateY(180deg)]">
+                <div className="relative min-h-85 w-full transition-transform  duration-700 transform-3d group-hover:transform-[rotateY(180deg)]">
 
                   {/* Front */}
-                  <div className="absolute inset-0 backface-hidden">
+                  <div className="absolute shadow-lg rounded-lg shadow-[#454545] inset-0 backface-hidden">
                     <Image
                       src={card.image}
                       fill
                       alt={card.title1}
-                      className="object-cover object-left rounded-lg brightness-35"
+                      className="object-cover object-top rounded-lg brightness-55"
                     />
                   </div>
 
@@ -68,7 +70,7 @@ const EntertainmentCards = ({
                   </div>
 
                   {/* Back */}
-                  <div className="absolute inset-0 bg-black rounded-lg p-6 flex flex-col justify-between transform-[rotateY(180deg)] backface-hidden">
+                  <div className="absolute inset-0 bg-black shadow-lg rounded-lg shadow-[#454545]  p-6 flex flex-col justify-between transform-[rotateY(180deg)] backface-hidden">
                     <p className="text-[#C9AC8C]">
                       {card.text}
                     </p>
