@@ -26,7 +26,7 @@ const mobileBarMenu = [
       },
       {
         name: "OUR BAR",
-        href: "/our-bar",
+        href: "/our-bars",
       },
     ],
   },
