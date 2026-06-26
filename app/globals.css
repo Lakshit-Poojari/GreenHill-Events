@@ -22,3 +22,52 @@ body {
     transform: translateX(20px);
   }
 }
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-width: 0px;
+  }
+
+  100% {
+    width: 350px;   /* Increase radius */
+    height: 350px;  /* Increase radius */
+    opacity: 0;
+    border-width: 10px;
+  }
+}
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-width: 5px;
+  }
+
+  100% {
+    width: 250px;   /* Increase radius */
+    height: 250px;  /* Increase radius */
+    opacity: 0;
+    border-width: 30px;
+  }
+}
+
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.1px solid #828282;
+  border-radius: 9999px;
+  animation: ripple 2.5s ease-out infinite;
+}
+
+.delay-1 {
+  animation-delay: 0.8s;
+}
+
+.delay-2 {
+  animation-delay: 1.6s;
+}
