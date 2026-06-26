@@ -45,7 +45,7 @@ const EntertainmentCards = ({
                       : ""
                   }`}
               >
-                <div className="relative min-h-85 w-full transition-transform  duration-700 transform-3d group-hover:transform-[rotateY(180deg)]">
+                <div className="relative min-h-89 w-full transition-transform  duration-700 transform-3d group-hover:transform-[rotateY(180deg)]">
 
                   {/* Front */}
                   <div className="absolute shadow-lg rounded-lg shadow-[#454545] inset-0 backface-hidden">

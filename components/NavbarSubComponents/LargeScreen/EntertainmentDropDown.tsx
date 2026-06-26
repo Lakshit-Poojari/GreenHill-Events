@@ -39,7 +39,7 @@ const entertainmentMenu = [
   },
   {
     name: "WEIRD STUFF",
-    href: "/entertainment/weird-stuff",
+    href: "/entertainment/crazy-weird",
   },
   {
     name: "BESPOKE",
