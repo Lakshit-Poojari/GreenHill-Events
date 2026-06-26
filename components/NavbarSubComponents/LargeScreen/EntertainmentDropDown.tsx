@@ -43,7 +43,7 @@ const entertainmentMenu = [
   },
   {
     name: "BESPOKE",
-    href: "/entertainment/bespoke",
+    href: "/bespoke",
   },
 ];
 
