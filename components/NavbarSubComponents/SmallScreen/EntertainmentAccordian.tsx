@@ -30,7 +30,7 @@ const entertainmentMenu = [
   },
   {
     name: "DJ'S & MUSICIANS",
-    href: "/entertainment/djs-musicians",
+    href: "/entertainment/djs",
   },
   {
     name: "SHOWS",
