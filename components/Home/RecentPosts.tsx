@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FaClock, FaUser } from "react-icons/fa";
 
 const posts = [
   {
     id: 1,
+    slug: "costa-smeralda-event-entertainment",
     image: "/Home/RecentPost/costa.webp",
     category: "CASE STUDIES",
     title: "COSTA SMERALDA EVENT ENTERTAINMENT",
@@ -16,6 +18,7 @@ const posts = [
   },
   {
     id: 2,
+    slug: "ica-bespoke-entertainment",
     image: "/Home/RecentPost/ica.webp",
     category: "CASE STUDIES",
     title: "ICA - BESPOKE ENTERTAINMENT",
@@ -25,6 +28,7 @@ const posts = [
   },
   {
     id: 3,
+    slug: "kia-oval-bar-entertainment",
     image: "/Home/RecentPost/kia.webp",
     category: "CASE STUDIES",
     title: "KIA OVAL BAR/ENTERTAINMENT",
@@ -34,6 +38,7 @@ const posts = [
   },
   {
     id: 4,
+    slug: "surprise-birthday-event-management",
     image: "/Home/RecentPost/surprise.webp",
     category: "CASE STUDIES",
     title: "SURPRISE BIRTHDAY - EVENT MANAGEMENT",
@@ -119,13 +124,15 @@ const RecentPosts = () => {
                 <div className="border rounded-lg overflow-hidden shadow-md h-full flex flex-col">
                   <div className="overflow-hidden rounded-lg m-1 ">
 
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    width={1000}
-                    height={500}
-                    className="w-full h-60 object-cover  transition-transform duration-700 ease-out hover:scale-120"
-                  />
+                  <Link href={`/${post.slug}`}>
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      width={1000}
+                      height={500}
+                      className="w-full h-60 object-cover  transition-transform duration-700 ease-out hover:scale-120"
+                    />
+                  </Link>
                   </div>
 
                   <div className="p-4 flex flex-col grow">
