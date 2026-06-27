@@ -27,7 +27,7 @@ const entertainmentMenu = [
   },
   {
     name: "PARTY BANDS",
-    href: "/entertainment/bands",
+    href: "/entertainment/party-bands",
   },
   {
     name: "DJ'S & MUSICIANS",
