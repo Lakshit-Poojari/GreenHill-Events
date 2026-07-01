@@ -1,4 +1,5 @@
-import "../../globals.css";
+import Navbar from "@/components/Admin/Navbar";
+import "../../../globals.css";
 
 export default function DashboardLayout({
   children,
@@ -7,7 +8,11 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      {children}
+      <Navbar />
+
+      <main className="mx-auto max-w-7xl p-6">
+        {children}
+      </main>
     </>
   );
 }
