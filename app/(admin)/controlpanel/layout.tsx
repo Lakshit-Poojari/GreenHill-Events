@@ -19,7 +19,7 @@ export default function ControlPanelLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div>
       {children}
     </div>
   );

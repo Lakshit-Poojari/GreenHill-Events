@@ -6,12 +6,12 @@ import { useState } from "react";
 const page = () => {
   const [showPassword, setShowPassword] = useState(false);
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="flex h-screen items-center justify-center from-stone-100 via-white to-stone-200 px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl">
 
-        {/* Heading */}
+        {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-[#C9AC8C]">
+          <h1 className="text-4xl font-bold tracking-wide text-[#C9AC8C]">
             Green Hill Events
           </h1>
 
@@ -20,40 +20,41 @@ const page = () => {
           </p>
         </div>
 
-        <form className="space-y-6">
+        <form className="space-y-5">
 
           {/* Email */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-700">
               Email
             </label>
 
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-700 outline-none transition-all duration-200 focus:border-[#C9AC8C] focus:ring-2 focus:ring-[#C9AC8C]/20"
-            />
+            <input id="email" type="email" placeholder="Enter your email"
+              className="h-12 w-full rounded-lg border border-gray-300 px-4 text-gray-700 placeholder-gray-400 transition duration-200 
+              focus:border-[#C9AC8C] focus:ring-2 focus:ring-[#C9AC8C]/20 focus:outline-none"/>
           </div>
 
           {/* Password */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="mb-2 block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
 
             <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 pr-12 text-gray-700 outline-none transition-all duration-200 focus:border-[#C9AC8C] focus:ring-2 focus:ring-[#C9AC8C]/20"
+              <input id="password"  type={showPassword ? "text" : "password"} placeholder="Enter your password"
+                className="h-12 w-full rounded-lg border border-gray-300 px-4 pr-12 text-gray-700 placeholder-gray-400 transition duration-200 
+                focus:border-[#C9AC8C] focus:ring-2 focus:ring-[#C9AC8C]/20 focus:outline-none"
               />
 
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-gray-500 transition hover:text-[#C9AC8C]"
-              >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              <button type="button" onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-gray-500 transition hover:text-[#C9AC8C]">
+                {showPassword ? (
+                  <EyeOff size={20} />
+                ) : (
+                  <Eye size={20} />
+                )}
               </button>
             </div>
           </div>
@@ -61,13 +62,11 @@ const page = () => {
           {/* Login Button */}
           <button
             type="submit"
-            className="w-full cursor-pointer rounded-lg bg-[#C9AC8C] py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-[#b89671] active:scale-[0.98]"
+            className="h-12 w-full rounded-lg bg-[#C9AC8C] font-semibold text-white transition duration-300 hover:bg-[#b89671] hover:shadow-lg active:scale-[0.98]"
           >
             Login
           </button>
-
         </form>
-
       </div>
     </div>
   );
