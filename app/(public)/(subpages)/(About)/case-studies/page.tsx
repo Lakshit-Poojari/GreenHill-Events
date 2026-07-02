@@ -1,4 +1,4 @@
-import SectionHeading from '@/components/SectionHeading'
+import SectionHeading from '@/components/public/SectionHeading'
 import Image from 'next/image'
 import React from 'react'
 import { FaComment, FaUser } from 'react-icons/fa'

@@ -1,6 +1,6 @@
-import Heading from '@/components/Event/Heading'
-import Photos from '@/components/Event/Photos'
-import ServiceCard from '@/components/ServiceCard'
+import Heading from '@/components/public/Event/Heading'
+import Photos from '@/components/public/Event/Photos'
+import ServiceCard from '@/components/public/ServiceCard'
 import { Metadata } from 'next';
 import React from 'react'
 

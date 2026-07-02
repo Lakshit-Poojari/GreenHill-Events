@@ -1,9 +1,10 @@
-import { Companys } from "@/components/Home/Companys";
-import DistinctOffering from "@/components/Home/DistinctOffering";
-import HeroSection from "@/components/Home/HeroSection";
-import RecentPosts from "@/components/Home/RecentPosts";
-import Testimonials from "@/components/Home/Testimonials";
-import WellcomeToGrennHill from "@/components/Home/WellcomeToGrennHill";
+// import { Companys } from "@/components/public/Home/Companys";
+import { Companys } from "@/components/public/Home/Companys";
+import DistinctOffering from "@/components/public/Home/DistinctOffering";
+import HeroSection from "@/components/public/Home/HeroSection";
+import RecentPosts from "@/components/public/Home/RecentPosts";
+import Testimonials from "@/components/public/Home/Testimonials";
+import WellcomeToGrennHill from "@/components/public/Home/WellcomeToGrennHill";
 import Image from "next/image";
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import SectionHeading from '@/components/SectionHeading'
+import SectionHeading from '@/components/public/SectionHeading'
 import React from 'react'
 
 const page = () => {

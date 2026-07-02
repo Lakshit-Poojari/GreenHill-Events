@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { caseStudies } from "@/components/Home/RecntPostCaseStudy/data";
-import CaseStudyTemplate from "@/components/Home/RecntPostCaseStudy/CaseStudyTemplate";
+import { caseStudies } from "@/components/public/Home/RecntPostCaseStudy/data";
+import CaseStudyTemplate from "@/components/public/Home/RecntPostCaseStudy/CaseStudyTemplate";
 
 
 interface Props {

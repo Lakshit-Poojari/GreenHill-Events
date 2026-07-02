@@ -1,4 +1,4 @@
-import EntertainmentCards from '@/components/Entertainment/EntertainmentCards'
+import EntertainmentCards from '@/components/public/Entertainment/EntertainmentCards'
 import React from 'react'
 
 const cards = [
