@@ -15,6 +15,7 @@ export default function Navbar() {
 
           <Link href="/controlpanel/dashboard">Dashboard</Link>
 
+          <Link href="/controlpanel/entertainment">Entertainment</Link>
 
           <Link href="/controlpanel/posts">Posts</Link>
 
