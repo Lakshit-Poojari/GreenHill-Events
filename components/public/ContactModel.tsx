@@ -12,7 +12,7 @@ export default function ContactModal({ open, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[9999] bg-black/80 flex items-center justify-center"
+      className="fixed inset-0 z-9999 bg-black/80 flex items-center justify-center"
       onClick={onClose}
     >
       <div
@@ -83,7 +83,7 @@ export default function ContactModal({ open, onClose }: Props) {
                 </h3>
 
                 {/* Placeholder */}
-                <div className="flex h-20 w-[304px] items-center justify-between rounded bg-white px-4 shadow">
+                <div className="flex h-20 w-76 items-center justify-between rounded bg-white px-4 shadow">
                     <div className="flex items-center gap-4">
                     <div className="h-7 w-7 border-2 border-gray-500"></div>
                     <span className="text-lg text-gray-800">
