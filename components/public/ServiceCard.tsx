@@ -26,29 +26,40 @@ const serviceCards = [
 
 const ServiceCard = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-      {serviceCards.map((service, index) => {
-        const Icon = service.icon;
+ <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+  {serviceCards.map((service, index) => {
+    const Icon = service.icon;
 
-        return (
-          <div key={index} className="flex flex-col items-center justify-center py-10"
-            style={{ backgroundColor: service.bgColor }} >
-            <Icon className="text-white text-8xl mb-6" />
-
-            <h2 className="text-white text-5xl font-['Playfair_Display']">
-              {service.title}
-            </h2>
-
-            <Link href="/contact-us">
-              <button className="mt-5 mb-3 text-[1rem] border border-white rounded-4xl px-5 py-3 text-white
-                 animate-[bounce-x_0.49s_ease-in-out_infinite] transition duration-300" >
-                SEE MORE
-              </button>
-            </Link>
+    return (
+      <div key={index} className="p-2">
+        <div
+          style={{ backgroundColor: service.bgColor }}
+          className="group flex h-full flex-col items-center justify-between rounded-3xl px-8 py-12 text-center shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+        >
+          {/* Icon */}
+          <div className="flex h-24 w-24 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
+            <Icon className="text-5xl text-white sm:text-6xl" />
           </div>
-        );
-      })}
-    </div>
+
+          {/* Title */}
+          <h2 className="mt-8 font-['Playfair_Display'] text-3xl text-white sm:text-4xl">
+            {service.title}
+          </h2>
+
+          {/* Divider */}
+          <div className="my-6 h-0.5 w-16 rounded-full bg-white/40" />
+
+          {/* Button */}
+          <Link href="/contact-us">
+            <button className="rounded-full border border-white px-6 py-3 text-sm font-medium tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-lg">
+              SEE MORE
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  })}
+</div>
   );
 };
 
