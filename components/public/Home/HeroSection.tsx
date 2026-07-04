@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronsDown } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const text = [
@@ -29,8 +30,15 @@ const HeroSection = () => {
     setCurrentText((prev) => (prev - 1 + text.length) % text.length);
   };
 
+  const scrollToNext = () => {
+    window.scrollBy({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section className="relative flex items-center h-150 justify-center py-17">
+    <section className="relative flex items-center pb-10 h-150 justify-center py-17">
 
       {/* Left Button */}
       <button
@@ -52,6 +60,13 @@ const HeroSection = () => {
       >
         &#10095;
       </button>
+      <button
+      onClick={scrollToNext}
+      className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex h-19 w-14 items-center justify-center rounded-full border-2 border-white bg-transparent text-white transition-all duration-300 hover:border-[#C8AD8C] hover:bg-[#C8AD8C] hover:text-black"
+      aria-label="Scroll Down"
+    >
+      <ChevronsDown className="h-10 pt-2  w-6 animate-bounce" />
+    </button>
 
     </section>
   );
