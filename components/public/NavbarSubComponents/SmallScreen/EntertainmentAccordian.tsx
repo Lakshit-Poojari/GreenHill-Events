@@ -50,7 +50,7 @@ const EntertainmentAccordian = () => {
   const [entertainmentOpen, setEntertainmentOpen] = useState(false);
 
   return (
-    <li>
+    <>
         <Link href="/entertainment">
       <button
         onClick={() => setEntertainmentOpen(!entertainmentOpen)}
@@ -75,7 +75,7 @@ const EntertainmentAccordian = () => {
           ))}
         </ul>
       )}
-    </li>
+    </>
   );
 };
 

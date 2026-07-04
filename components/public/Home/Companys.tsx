@@ -56,7 +56,7 @@ export const Companys = () => {
             {
                 sliderImages.map((img, index) => (
                 <div key={index} className="relative min-w-[20%] h-30 flex items-center justify-center" >
-                    <Image src={img} alt={`logo-${index}`} fill className="object-contain p-2 "/>
+                    <Image src={img} alt={`logo-${index}`} fill sizes="(max-width: 640px) 50vw,(max-width: 1024px) 33vw, 20vw" className="object-contain p-2 "/>
                 </div>
                 ))
             }

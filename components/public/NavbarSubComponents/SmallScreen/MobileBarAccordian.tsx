@@ -37,7 +37,7 @@ const MobileBarAccordian = () => {
   const [barOpen, setBarOpen] = useState(false);
 
   return (
-    <li>
+    <>
         <Link href="/mobile-bar">
       <button
         onClick={() => setMobileBarsOpen(!mobileBarsOpen)}
@@ -78,7 +78,7 @@ const MobileBarAccordian = () => {
           ))}
         </ul>
       )}
-    </li>
+    </>
   );
 };
 
