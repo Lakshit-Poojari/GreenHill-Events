@@ -38,14 +38,14 @@ const Navbar = () => {
       ${ scrolled ? "bg-black/95 shadow-md  h-17" : "bg-transparent py-7" }`}>
       <nav className="flex items-center justify-between mx-16.25 px-6.75">
         {/* Logo */}
-        <div>
+        <div className="shrink-0">
           <Image src="/greenhill.jpg" alt="logo" width={400} height={400}
-            className="h-17 w-auto transition-all duration-300" />
+            className="h-12 sm:h-14 md:h-16 lg:h-17 lg:w-60 xl:w-85 w-auto transition-all duration-300" />
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden lg:block">
-          <ul className="flex items-center gap-20 font-['Poppins'] tracking-[0.08em] text-xs">
+          <ul className="flex items-center gap-8 md:gap-10 lg:gap-6 xl:gap-15 font-['Poppins'] text-[11px] lg:text-xs xl:text-sm">
             <li>
               <Link href="/" className={navClass("/")}>
                 HOME

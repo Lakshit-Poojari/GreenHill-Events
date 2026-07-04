@@ -41,7 +41,7 @@ const HeroSection = () => {
       </button>
 
       {/* Text */}
-      <p className="max-w-5xl mx-auto  px-20 text-center text-6xl font-['Playfair_Display'] text-white">
+      <p className="max-w-5xl mx-auto md:pt-5 px-20 text-center text-5xl sm:text-6xl font-['Playfair_Display'] text-white">
         {text[currentText]}
       </p>
 

@@ -40,15 +40,15 @@ const DistinctOffering = () => {
         <hr className="w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
 
         {/* Navigation Buttons */}
-        <div className="flex justify-center gap-2 mt-6 mb-2">
+        <div className="mt-6 mb-2 flex flex-wrap justify-center gap-2 sm:gap-3">
           {offerings.map((item, index) => (
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={`px-5 py-3 rounded-sm transition-all duration-300 ${
+              className={`rounded-sm px-3 py-2 text-sm transition-all duration-300 sm:px-5 sm:py-3 sm:text-base ${
                 activeTab === index
                   ? "bg-white text-black"
-                  : "text-white border-[#f68a59] bg-[#f79468] hover:bg-[#f47e4c]"
+                  : "bg-[#f79468] text-white hover:bg-[#f47e4c]"
               }`}
             >
               {item.title}
