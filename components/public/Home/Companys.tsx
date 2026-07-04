@@ -15,26 +15,54 @@ const images = [
 ];
 
 export const Companys = () => {
-  const [current, setCurrent] = useState(0);
+  // Start from the middle copy
+  const [current, setCurrent] = useState(images.length);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  // Three copies for seamless infinite looping
+  const sliderImages = [...images, ...images, ...images];
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
+      nextSlide();
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
+  // Re-enable transition after instant jump
+  useEffect(() => {
+    if (!isTransitioning) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
+    }
+  }, [isTransitioning]);
+
   const nextSlide = () => {
-    setCurrent((prev) => (prev + 1) % images.length);
+    setIsTransitioning(true);
+    setCurrent((prev) => prev + 1);
   };
 
   const prevSlide = () => {
-    setCurrent((prev) => (prev - 1 + images.length) % images.length);
+    setIsTransitioning(true);
+    setCurrent((prev) => prev - 1);
   };
 
-  // duplicate images for seamless looping
-  const sliderImages = [...images, ...images];
+  const handleTransitionEnd = () => {
+    // Reached third copy → jump back to middle
+    if (current >= images.length * 2) {
+      setIsTransitioning(false);
+      setCurrent((prev) => prev - images.length);
+    }
+    // Reached first copy → jump forward to middle
+    else if (current < images.length) {
+      setIsTransitioning(false);
+      setCurrent((prev) => prev + images.length);
+    }
+  };
 
   return (
     <section className="py-17 mx-16.25 px-6.75">
@@ -42,35 +70,53 @@ export const Companys = () => {
 
         {/* Left Button */}
         <button
-            onClick={prevSlide}
-            className="absolute left-5 top-1/2 -translate-y-1/2 z-30 text-[64px] leading-none text-[#C9A227]/70 hover:text-[#C9A227]"
-            >
-            &#10094;
+          onClick={prevSlide}
+          className="absolute left-5 top-1/2 -translate-y-1/2 z-30 text-[64px] leading-none text-[#C9A227]/70 hover:text-[#C9A227]"
+        >
+          &#10094;
         </button>
 
         {/* Slider */}
         <div className="overflow-hidden w-full mx-16">
-          <div className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${current * 20}%)`, }}>
-
-            {
-                sliderImages.map((img, index) => (
-                <div key={index} className="relative min-w-[20%] h-30 flex items-center justify-center" >
-                    <Image src={img} alt={`logo-${index}`} fill sizes="(max-width: 640px) 50vw,(max-width: 1024px) 33vw, 20vw" className="object-contain p-2 "/>
-                </div>
-                ))
-            }
+          <div
+            className={`flex ${
+              isTransitioning
+                ? "transition-transform duration-700 ease-in-out"
+                : ""
+            }`}
+            style={{
+              transform: `translateX(-${current * 20}%)`,
+            }}
+            onTransitionEnd={handleTransitionEnd}
+          >
+            {sliderImages.map((img, index) => (
+              <div
+                key={index}
+                className="relative min-w-[20%] h-30 flex items-center justify-center"
+              >
+                <Image
+                  src={img}
+                  alt={`logo-${index}`}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  className="object-contain p-2"
+                />
+              </div>
+            ))}
           </div>
         </div>
 
         {/* Right Button */}
         <button
-        onClick={nextSlide}
-        className="absolute right-5 top-1/2 -translate-y-1/2 z-30 text-[64px] leading-none text-[#C9A227]/70 hover:text-[#C9A227]"
+          onClick={nextSlide}
+          className="absolute right-5 top-1/2 -translate-y-1/2 z-30 text-[64px] leading-none text-[#C9A227]/70 hover:text-[#C9A227]"
         >
-        &#10095;
+          &#10095;
         </button>
+
       </div>
     </section>
   );
-}
+};
+
+export default Companys;
