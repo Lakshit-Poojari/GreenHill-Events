@@ -6,21 +6,25 @@ const serviceCards = [
     icon: FaTheaterMasks,
     title: "Entertainment",
     bgColor: "#171d23",
+    href:"/entertainment",
   },
   {
     icon: FaCalendarAlt,
     title: "Events",
     bgColor: "#2d3745",
+    href:"/events",
   },
   {
     icon: FaCocktail,
     title: "Mobile Bar",
     bgColor: "#a87350",
+    href:"/mobile-bar",
   },
   {
     icon: FaHandsHelping,
     title: "Hire",
     bgColor: "#a99a64",
+    href:"/",
   },
 ];
 
@@ -50,7 +54,7 @@ const ServiceCard = () => {
           <div className="my-6 h-0.5 w-16 rounded-full bg-white/40" />
 
           {/* Button */}
-          <Link href="/contact-us">
+          <Link href={service.href}>
             <button className="rounded-full border border-white px-6 py-3 text-sm font-medium tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-lg">
               SEE MORE
             </button>

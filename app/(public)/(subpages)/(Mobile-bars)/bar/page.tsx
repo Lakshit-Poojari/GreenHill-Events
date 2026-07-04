@@ -19,7 +19,7 @@ const services = [
     description: `We attend your event with our experienced team of bar staff and a full range of mouth-watering drinks 
                  designed by us or chosen by you.We are personal license holders, we will formally take care of the TENS 
                  application if one is required. Cash and payments are taken. A hire fee is payable with an agreed minimum spend.`,
-    link: "/cocktail-bar",
+    link: "/standard-bar",
   },
   {
     title: "Complimentary Bar",
@@ -27,7 +27,7 @@ const services = [
     description: `We attend your event and run a ‘tab’ for hosts who would like to entertain their guests with complimentary 
                   drinks of their choice. Our software allows us to track all drinks in real time to give the host a breakdown 
                   of everything that was spent, on what and when. A hire fee is payable with an agreed minimum spend.`,
-    link: "/wedding-bar",
+    link: "/complimentary-bar",
   },
   {
     title: "Sporting & festivals",
@@ -35,7 +35,7 @@ const services = [
     description: `We provide high-quality bars to a multitude of events, including festivals, concerts, stadiums and sporting 
                   venues. We have worked with venues and events such as Saracens Rugby, Twickenham, London Stadium, Kia Oval, 
                   Winter wonderland Hyde Park.`,
-    link: "/corporate-events",
+    link: "/sporting-festival-bar",
   },
   {
     title: "Our Bars",
@@ -46,7 +46,7 @@ const services = [
                   bars. Not forgetting Bella & Neller our simply perfect pop-up bar that can be ready for any occasion. Following 
                   Simons love of rugby our horsebox bars are named after players who played for his hometown rugby team Halifax 
                   Panthers.`,
-    link: "/private-parties",
+    link: "/our-bars",
   },
 ];
 
