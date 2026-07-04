@@ -43,7 +43,7 @@ const MobileBarDropDown = () => {
         
         <Link
             href="/mobile-bar"
-            className={`flex items-center gap-2 ${navClass("/mobile-bars")}`}
+            className={`flex items-center gap-2 ${navClass("/mobile-bar")}`}
         >
             MOBILE BARS
             <span className="text-3xl mb-7.5">ˬ</span>

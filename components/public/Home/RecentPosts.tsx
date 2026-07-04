@@ -49,7 +49,24 @@ const posts = [
 ];
 
 const RecentPosts = () => {
-  // Start at index 4 (the first item of the second set)
+  // Responsive cards-per-view: 1 = mobile, 2 = tablet, 3 = desktop
+  const [cardsPerView, setCardsPerView] = useState(3);
+
+  useEffect(() => {
+    const getCardsPerView = () => {
+      if (window.innerWidth < 640) return 1; // mobile
+      if (window.innerWidth < 1024) return 2; // tablet
+      return 3; // desktop
+    };
+
+    const handleResize = () => setCardsPerView(getCardsPerView());
+
+    handleResize(); // set on mount
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Start at index = posts.length (first item of the second/original set)
   const [currentIndex, setCurrentIndex] = useState(posts.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
@@ -87,79 +104,83 @@ const RecentPosts = () => {
     }
   };
 
+  // Width of a single card as a % of the track, and how far to translate
+  const cardWidthPercent = 100 / cardsPerView;
+  const translatePercent = currentIndex * cardWidthPercent;
+
   return (
-    <div className="mx-16.25 px-6.75 py-17">
+    <div className="mx-4 px-2 py-10 sm:mx-8 sm:px-4 sm:py-14 lg:mx-16.25 lg:px-6.75 lg:py-17">
       <div className="text-center">
-        <p className="text-[4.125rem] font-['Playfair_Display']">
+        <p className="text-4xl sm:text-5xl lg:text-[4.125rem] font-['Playfair_Display']">
           Recent Posts
         </p>
         <hr className="w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
       </div>
 
-      <section className="relative flex items-center justify-center mt-12 overflow-hidden">
-        
+      <section className="relative flex items-center justify-center h-180 mt-12 overflow-hidden">
         {/* Left Button */}
         <button
           onClick={prevPost}
-          className="absolute left-0 top-1/2 -translate-y-1/2 text-5xl text-white z-20 bg-black/20 hover:bg-black/50 rounded-full w-12 h-12 flex items-center justify-center"
+          className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl sm:text-4xl lg:text-5xl text-white z-20 bg-black/20 hover:bg-black/50 rounded-full w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center"
         >
           &#10094;
         </button>
 
         {/* Carousel Window */}
-        <div className="w-full px-16 overflow-hidden">
-          {/* Sliding Track */}
+        <div className="w-full px-4 sm:px-8 lg:px-16">
           <div
-            className={`flex w-full ${
-              isTransitioning ? "transition-transform duration-500 ease-in-out" : ""
+            className={`flex ${
+              isTransitioning
+                ? "transition-transform duration-500 ease-in-out"
+                : ""
             }`}
             style={{
-              transform: `translateX(-${(currentIndex * 100) / 3}%)`,
+              transform: `translateX(-${translatePercent}%)`,
             }}
             onTransitionEnd={handleTransitionEnd}
           >
             {extendedPosts.map((post, i) => (
-              <div key={`${post.id}-${i}`} className="w-1/3 shrink-0 px-4">
-                
-                <div className="border rounded-lg overflow-hidden shadow-md h-full flex flex-col">
-                  <div className="overflow-hidden rounded-lg m-1 ">
-
-                  <Link href={`/${post.slug}`}>
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      width={1000}
-                      height={500}
-                      className="w-full h-60 object-cover  transition-transform duration-700 ease-out hover:scale-120"
-                    />
-                  </Link>
+              <div
+                key={`${post.id}-${i}`}
+                className="shrink-0 px-2 sm:px-3 lg:px-4"
+                style={{ width: `${cardWidthPercent}%` }}
+              >
+                <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-black/20 backdrop-blur-sm shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-[#C9AC8C] hover:shadow-2xl">
+                  <div className="m-2 overflow-hidden rounded-xl">
+                    <Link href={`/${post.slug}`}>
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        width={1000}
+                        height={500}
+                        className="h-48 sm:h-56 lg:h-60 w-full object-cover transition-transform duration-700 hover:scale-110"
+                      />
+                    </Link>
                   </div>
 
-                  <div className="p-4 flex flex-col grow">
-                    <div className="mb-3">
-                      <span className="bg-black text-white text-xs px-3 py-1 rounded">
-                        {post.category}
-                      </span>
-                    </div>
+                  <div className="flex flex-1 flex-col p-4 sm:p-5">
+                    <span className="mb-4 w-fit rounded-full bg-[#C9AC8C] px-3 py-1 text-xs text-black">
+                      {post.category}
+                    </span>
 
-                    <h2 className="text-xl font-semibold text-left">
+                    <h2 className="text-lg sm:text-xl font-semibold text-white">
                       {post.title}
                     </h2>
 
-                    <div className="flex gap-6 mt-4 text-sm text-white">
+                    <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-300">
                       <div className="flex items-center gap-2">
-                        <FaUser />
-                        <span>{post.author}</span>
+                        <FaUser className="text-[#C9AC8C]" />
+                        {post.author}
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <FaClock />
-                        <span>{post.date}</span>
+                        <FaClock className="text-[#C9AC8C]" />
+                        {post.date}
                       </div>
                     </div>
 
                     {post.youtube && (
-                      <div className="mt-5">
+                      <div className="mt-5 overflow-hidden rounded-xl">
                         <iframe
                           width="100%"
                           height="250"
@@ -173,13 +194,12 @@ const RecentPosts = () => {
                     )}
 
                     {post.description && (
-                      <p className="mt-4 text-sm leading-7 whitespace-pre-line text-white">
+                      <p className="mt-5 text-sm leading-7 text-gray-300 line-clamp-10">
                         {post.description}
                       </p>
                     )}
                   </div>
                 </div>
-
               </div>
             ))}
           </div>
@@ -188,11 +208,10 @@ const RecentPosts = () => {
         {/* Right Button */}
         <button
           onClick={nextPost}
-          className="absolute right-0 top-1/2 -translate-y-1/2 text-5xl text-white z-20 bg-black/20 hover:bg-black/50 rounded-full w-12 h-12 flex items-center justify-center"
+          className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl sm:text-4xl lg:text-5xl text-white z-20 bg-black/20 hover:bg-black/50 rounded-full w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center"
         >
           &#10095;
         </button>
-
       </section>
     </div>
   );

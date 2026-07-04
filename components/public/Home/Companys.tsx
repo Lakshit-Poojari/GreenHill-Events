@@ -65,7 +65,7 @@ export const Companys = () => {
   };
 
   return (
-    <section className="py-17 mx-16.25 px-6.75">
+    <section className=" pb-12 mx-16.25">
       <div className="container mx-auto relative flex items-center">
 
         {/* Left Button */}
@@ -92,14 +92,14 @@ export const Companys = () => {
             {sliderImages.map((img, index) => (
               <div
                 key={index}
-                className="relative min-w-[20%] h-30 flex items-center justify-center"
+                className="relative min-w-full sm:min-w-[50%] md:min-w-[33.333%] lg:min-w-[25%] xl:min-w-[20%] h-20 sm:h-24 md:h-28 lg:h-30 flex items-center justify-center"
               >
                 <Image
                   src={img}
                   alt={`logo-${index}`}
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                  className="object-contain p-2"
+                  className="object-contain pl-4"
                 />
               </div>
             ))}
