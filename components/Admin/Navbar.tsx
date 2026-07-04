@@ -1,43 +1,42 @@
 "use client";
 
-import Link from "next/link";
+import { Menu, LogOut } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="h-16 border-b bg-#0000">
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 h-16 border-b border-gray-800 bg-[#181616]">
+      <div className="flex h-full items-center justify-between px-6">
 
-        <h1 className="text-2xl font-bold text-[#C9AC8C]">
-          Green Hill Admin
-        </h1>
+        {/* Left */}
+        <div className="flex items-center gap-4">
+          <button className="lg:hidden text-white">
+            <Menu size={24} />
+          </button>
 
-        <nav className="flex items-center gap-8">
+          <h2 className="text-lg font-semibold text-white">
+            Dashboard
+          </h2>
+        </div>
 
-          <Link href="/controlpanel/dashboard">Dashboard</Link>
-
-          <Link href="/controlpanel/entertainment">Entertainment</Link>
-
-          <Link href="/controlpanel/posts">Posts</Link>
-
-          <Link href="/controlpanel/comments">Comments</Link>
-
-          {/* Show only if SUPER_ADMIN */}
-          <Link href="/controlpanel/users">Users</Link>
-
-        </nav>
-
+        {/* Right */}
         <div className="flex items-center gap-4">
 
-          <span className="font-medium">
-            Admin
-          </span>
+          <div className="text-right">
+            <p className="text-sm text-white font-medium">
+              Green Hill Admin
+            </p>
 
-          <button className="rounded-md bg-red-500 px-4 py-2 text-white">
+            <p className="text-xs text-gray-400">
+              SUPER_ADMIN
+            </p>
+          </div>
+
+          <button className="flex items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm text-white hover:bg-red-600">
+            <LogOut size={16} />
             Logout
           </button>
 
         </div>
-
       </div>
     </header>
   );
