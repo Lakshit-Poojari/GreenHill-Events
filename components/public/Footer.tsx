@@ -64,7 +64,7 @@ const Footer = () => {
 
           <div className=" text-[#A7A7A7] text-[15px] font-['Poppins'] leading-8">
             <p>London</p>
-            <p>
+            {/* <p>
               Tel: <span className="text-white">01483 497213</span>
             </p>
             <p>
@@ -76,7 +76,47 @@ const Footer = () => {
             </p>
             <p className="text-white break-all">
               simon@simongreenhill.com
-            </p>
+            </p> */}
+            <div className="space-y-2 text-gray-300">
+  <p>
+    Tel:{" "}
+    <a
+      href="tel:01483497213"
+      className="text-white hover:text-[rgba(201,172,140,1)] transition-colors"
+    >
+      01483 497213
+    </a>
+  </p>
+
+  <p>
+    Mob:{" "}
+    <a
+      href="tel:07595219612"
+      className="text-white hover:text-[rgba(201,172,140,1)] transition-colors"
+    >
+      07595 219612
+    </a>
+  </p>
+
+  <p>
+    Email:{" "}
+    <a
+      href="mailto:hello@simongreenhill.com"
+      className="text-white break-all hover:text-[rgba(201,172,140,1)] transition-colors"
+    >
+      hello@simongreenhill.com
+    </a>
+  </p>
+
+  <p>
+    <a
+      href="mailto:simon@simongreenhill.com"
+      className="text-white break-all hover:text-[rgba(201,172,140,1)] transition-colors"
+    >
+      simon@simongreenhill.com
+    </a>
+  </p>
+</div>
           </div>
         </div>
 
