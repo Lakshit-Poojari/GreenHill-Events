@@ -28,3 +28,8 @@ export interface createUserType {
   status: "ACTIVE" | "INACTIVE";
   created_by?: number;
 }
+
+export interface loginUserType {
+  email: string;
+  password: string;
+}
