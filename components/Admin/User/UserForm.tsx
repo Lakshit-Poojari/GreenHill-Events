@@ -54,11 +54,11 @@ export default function UserForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 rounded-xl border bg-white p-6 shadow-sm"
+      className="space-y-6 grid gap-6 md:grid-cols-2 rounded-xl border border-gray-700 bg-[#181616] p-6"
     >
       {/* Name */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-lg font-medium text-gray-300">
           Full Name
         </label>
 
@@ -68,14 +68,14 @@ export default function UserForm({
           value={formData.name}
           onChange={handleChange}
           placeholder="Enter full name"
-          className="w-full rounded-lg border px-4 py-3 outline-none transition focus:border-[#C9AC8C]"
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
           required
         />
       </div>
 
       {/* Email */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-lg font-medium text-gray-300">
           Email
         </label>
 
@@ -85,14 +85,14 @@ export default function UserForm({
           value={formData.email}
           onChange={handleChange}
           placeholder="Enter email"
-          className="w-full rounded-lg border px-4 py-3 outline-none transition focus:border-[#C9AC8C]"
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
           required
         />
       </div>
 
       {/* Password */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-lg font-medium text-gray-300">
           Password
         </label>
 
@@ -107,7 +107,7 @@ export default function UserForm({
                 ? "Leave blank to keep current password"
                 : "Enter password"
             }
-            className="w-full rounded-lg border px-4 py-3 pr-12 outline-none transition focus:border-[#C9AC8C]"
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 pr-12 text-white outline-none transition focus:border-[#C9AC8C]"
             required={!isEdit}
           />
 
@@ -119,9 +119,9 @@ export default function UserForm({
             className="absolute right-4 top-1/2 -translate-y-1/2"
           >
             {showPassword ? (
-              <EyeOff size={20} />
+              <EyeOff size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-[#C9AC8C]" />
             ) : (
-              <Eye size={20} />
+              <Eye size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-[#C9AC8C]" />
             )}
           </button>
         </div>
@@ -129,7 +129,7 @@ export default function UserForm({
 
       {/* Confirm Password */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-lg font-medium text-gray-300">
           Confirm Password
         </label>
 
@@ -148,7 +148,7 @@ export default function UserForm({
                 ? "Leave blank to keep current password"
                 : "Confirm password"
             }
-            className="w-full rounded-lg border px-4 py-3 pr-12 outline-none transition focus:border-[#C9AC8C]"
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
             required={!isEdit}
           />
 
@@ -162,9 +162,9 @@ export default function UserForm({
             className="absolute right-4 top-1/2 -translate-y-1/2"
           >
             {showConfirmPassword ? (
-              <EyeOff size={20} />
+              <EyeOff size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-[#C9AC8C]"/>
             ) : (
-              <Eye size={20} />
+              <Eye size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-[#C9AC8C]"/>
             )}
           </button>
         </div>
@@ -172,7 +172,7 @@ export default function UserForm({
 
       {/* Status */}
       <div>
-        <label className="mb-2 block text-sm font-medium text-gray-700">
+        <label className="mb-2 block text-lg font-medium text-gray-300">
           Status
         </label>
 
@@ -180,27 +180,27 @@ export default function UserForm({
           name="status"
           value={formData.status}
           onChange={handleChange}
-          className="w-full rounded-lg border px-4 py-3 outline-none transition focus:border-[#C9AC8C]"
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
         >
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
+          <option value="Active" className="bg-[#232121] text-white">Active</option>
+          <option value="Inactive" className="bg-[#232121] text-white">Inactive</option>
         </select>
 
 
       </div>
 
       {/* Buttons */}
-      <div className="flex justify-end gap-3">
+      <div className="flex justify-end gap-4 p-7">
         <button
           type="button"
-          className="rounded-lg border px-6 py-3 font-medium hover:bg-gray-100"
+          className="rounded-lg border border-gray-700 px-4  text-white transition hover:border-red-500 hover:text-red-500"
         >
           Cancel
         </button>
 
         <button
           type="submit"
-          className="rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-white transition hover:opacity-90"
+          className="rounded-lg bg-[#C9AC8C] px-4  font-semibold text-black transition hover:opacity-90"
         >
           {isEdit ? "Update Admin" : "Create Admin"}
         </button>

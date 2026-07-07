@@ -25,12 +25,12 @@ const UserTable = ({
 }: UserTableProps) => {
   if (users.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-gray-300 bg-white py-16 text-center">
-        <h3 className="text-lg font-semibold text-gray-700">
+      <div className="rounded-xl border border-gray-700 bg-[#181616] py-16 text-center">
+        <h3 className="text-lg font-semibold text-white">
           No Users Found
         </h3>
 
-        <p className="mt-2 text-sm text-gray-500">
+        <p className="mt-2 text-sm text-gray-400">
           Try changing your search or create a new admin.
         </p>
       </div>
@@ -38,11 +38,11 @@ const UserTable = ({
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl border border-gray-700 bg-[#181616] shadow-lg">
       <div className="overflow-x-auto">
-        <table className="min-w-full">
-          <thead className="bg-gray-100">
-            <tr className="text-left text-sm font-semibold text-gray-700">
+        <table className="min-w-full divide-y divide-gray-700">
+          <thead className="bg-[#232121]">
+            <tr className="text-left text-sm font-semibold text-gray-300">
               <th className="px-6 py-4">Name</th>
               <th className="px-6 py-4">Email</th>
               <th className="px-6 py-4">Role</th>
@@ -55,15 +55,15 @@ const UserTable = ({
             {users.map((user) => (
               <tr
                 key={user.id}
-                className="border-t border-gray-200 hover:bg-gray-50"
+                className="border-t border-gray-700 transition hover:bg-[#232121]"
               >
                 {/* Name */}
-                <td className="px-6 py-4 font-medium text-gray-800">
+                <td className="px-6 py-4 font-medium text-white">
                   {user.name}
                 </td>
 
                 {/* Email */}
-                <td className="px-6 py-4 text-gray-600">
+                <td className="px-6 py-4 text-gray-400">
                   {user.email}
                 </td>
 
@@ -71,10 +71,10 @@ const UserTable = ({
                 <td className="px-6 py-4">
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                      user.role === "SUPER_ADMIN"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-blue-100 text-blue-700"
-                    }`}
+    user.role === "SUPER_ADMIN"
+      ? "bg-[#C9AC8C]/20 text-[#C9AC8C]"
+      : "bg-blue-500/20 text-blue-400"
+  }`}
                   >
                     {user.role === "SUPER_ADMIN"
                       ? "Super Admin"
@@ -86,10 +86,10 @@ const UserTable = ({
                 <td className="px-6 py-4">
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-medium ${
-                      user.status === "Active"
-                        ? "bg-green-100 text-green-700"
-                        : "bg-red-100 text-red-700"
-                    }`}
+    user.status === "Active"
+      ? "bg-green-500/20 text-green-400"
+      : "bg-red-500/20 text-red-400"
+  }`}
                   >
                     {user.status}
                   </span>
@@ -102,7 +102,7 @@ const UserTable = ({
                     <button
                       title="Edit User"
                       onClick={() => onEdit(user.id)}
-                      className="rounded-lg bg-blue-50 p-2 text-blue-600 transition hover:bg-blue-100"
+                      className="rounded-lg bg-blue-500/10 p-2 text-blue-400 transition hover:bg-blue-500/20"
                     >
                       <Edit size={18} />
                     </button>
@@ -116,10 +116,10 @@ const UserTable = ({
                       }
                       onClick={() => onRoleChange(user.id)}
                       className={`rounded-lg p-2 transition ${
-                        user.role === "SUPER_ADMIN"
-                          ? "bg-yellow-50 text-yellow-700 hover:bg-yellow-100"
-                          : "bg-green-50 text-green-700 hover:bg-green-100"
-                      }`}
+  user.role === "SUPER_ADMIN"
+    ? "bg-[#C9AC8C]/10 text-[#C9AC8C] hover:bg-[#C9AC8C]/20"
+    : "bg-green-500/10 text-green-400 hover:bg-green-500/20"
+}`}
                     >
                       <Shield size={18} />
                     </button>
@@ -128,7 +128,7 @@ const UserTable = ({
                     <button
                       title="Delete User"
                       onClick={() => onDelete(user.id)}
-                      className="rounded-lg bg-red-50 p-2 text-red-600 transition hover:bg-red-100"
+                      className="rounded-lg bg-red-500/10 p-2 text-red-400 transition hover:bg-red-500/20"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -141,7 +141,7 @@ const UserTable = ({
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between border-t border-gray-200 px-6 py-4 text-sm text-gray-500">
+      <div className="flex items-center justify-between border-t border-gray-700 px-6 py-4 text-sm text-gray-400">
         <span>
           Showing <strong>{users.length}</strong>{" "}
           user{users.length > 1 ? "s" : ""}

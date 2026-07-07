@@ -20,3 +20,11 @@ export interface User {
   created_by: number | null;
   last_login_at: Date | null;
 }
+
+export interface createUserType {
+  full_name: string;
+  email: string;
+  password: string;
+  status: "ACTIVE" | "INACTIVE";
+  created_by?: number;
+}

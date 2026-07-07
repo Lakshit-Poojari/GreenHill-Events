@@ -19,17 +19,18 @@ const page = () => {
         <div>
           <Link
             href="/controlpanel/users"
-            className="mb-2 inline-flex items-center gap-2 text-sm text-gray-500 transition hover:text-[#C9AC8C]"
+            className="mb-2 inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
+            text-white transition-all duration-300 hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
           >
             <ArrowLeft size={18} />
             Back to Users
           </Link>
 
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-3xl font-bold text-white">
             Create Admin
           </h1>
 
-          <p className="mt-1 text-gray-500">
+          <p className="mt-1 text-[#C9AC8C]">
             Add a new administrator account.
           </p>
         </div>
