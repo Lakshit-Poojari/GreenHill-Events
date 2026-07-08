@@ -9,7 +9,7 @@ export interface Category {
   id: number;
   category_name: string;
   menu_name: string;
-  slug: string;
+  slug?: string;
   image: string;
   description: string;
   status: CategoryStatus;
@@ -22,6 +22,7 @@ export interface CreateCategoryType {
   category_name: string;
   menu_name: string;
   image: string;
+  slug: string
   description: string;
   status: CategoryStatus;
   created_by: number;
