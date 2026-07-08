@@ -81,7 +81,7 @@ export async function deleteCategoryService(id:number){
 
         return result
     } catch (error) {
-        console.error();
+        console.error("Delete Category Service Error", error);
         throw error;
     }
 }
