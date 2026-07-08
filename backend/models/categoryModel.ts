@@ -5,7 +5,7 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 export async function createCategoryModel(category:CreateCategoryType, ) {
     try {
         const [result] = await db.query<ResultSetHeader>(
-            `INSERT INTO categories (category_name, menu_name, slug, image, description, status, created_by),
+            `INSERT INTO categories (category_name, menu_name, slug, image, description, long_description, status, created_by)
             VALUES(?, ?, ?, ?, ?, ?, ?)`
             [
                 category.category_name,
@@ -13,6 +13,7 @@ export async function createCategoryModel(category:CreateCategoryType, ) {
                 category.slug,
                 category.image,
                 category.description,
+                category.long_description,
                 category.status,
                 category.created_by
             ]
@@ -52,13 +53,15 @@ export async function getSingleCategoryModel(id:number){
 export async function updateCategoryModel(id: number, category: UpdateCategoryType, slug: string){
     try {
         const [row] = await db.query<ResultSetHeader>(
-            `UPDATE categories SET category_name = ?, menu_name = ?, slug = ?, image = ?, description = ?, status = ? WHERE id = ?`,
+            `UPDATE categories SET category_name = ?, menu_name = ?, slug = ?, image = ?, description = ?, long_description = ?, 
+            status = ? WHERE id = ?`,
             [
                 category.category_name,
                 category.menu_name,
                 slug,
                 category.image,
                 category.description,
+                category.long_description,
                 category.status,
                 id,
             ]

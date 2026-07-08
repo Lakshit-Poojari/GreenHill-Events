@@ -6,7 +6,7 @@ export async function createCategoryService(category:CreateCategoryType ){
         const slug = category.category_name.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
 
         if (!category.category_name || !category.menu_name ||
-            !category.image || !category.description || 
+            !category.image || !category.description || !category.long_description ||
             !category.status || !category.created_by) {
             throw new Error("All Field Required")
         }
@@ -29,7 +29,7 @@ export async function createCategoryService(category:CreateCategoryType ){
 export async function updateCategoryService(id: number, slug:string, category:UpdateCategoryType){
     try {
         if (!category.category_name || !category.menu_name ||
-            !category.image || !category.description || 
+            !category.image || !category.description || !category.long_description ||
             !category.status ) {
             throw new Error("All Field Required")
         }

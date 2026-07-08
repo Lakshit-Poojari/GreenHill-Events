@@ -12,6 +12,7 @@ export interface Category {
   slug?: string;
   image: string;
   description: string;
+  long_description: string;
   status: CategoryStatus;
   created_by: number;
   created_at: Date;
@@ -24,6 +25,7 @@ export interface CreateCategoryType {
   image: string;
   slug: string
   description: string;
+  long_description: string;
   status: CategoryStatus;
   created_by: number;
 }
@@ -33,5 +35,6 @@ export interface UpdateCategoryType {
   menu_name: string;
   image: string;
   description: string;
+  long_description: string;
   status: CategoryStatus;
 }
