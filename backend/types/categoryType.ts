@@ -29,9 +29,9 @@ export interface CreateCategoryType {
 }
 
 export interface UpdateCategoryType {
-  category_name?: string;
-  menu_name?: string;
-  image?: string;
-  description?: string;
-  status?: CategoryStatus;
+  category_name: string;
+  menu_name: string;
+  image: string;
+  description: string;
+  status: CategoryStatus;
 }

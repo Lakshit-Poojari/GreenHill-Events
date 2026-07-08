@@ -20,8 +20,7 @@ export async function createCategoryModel(category:CreateCategoryType, ) {
         return result
     } catch (error) {
         console.error("Create Catgory Model Error:", error);
-        throw error;
-        
+        throw error;      
     }
 }
 
@@ -37,7 +36,7 @@ export async function getAllCategoryModel(){
     }
 }
 
-export async function getSingleCategoryModel(Category:Category, id:number){
+export async function getSingleCategoryModel(id:number){
     try {
         const [row] = await db.query<RowDataPacket[]>(`SELECT * FROM categories WHERE id= ?`,
             [id]
@@ -80,5 +79,15 @@ export async function deleteCategoryModel(id:number){
     } catch (error) {
         console.error("Delete Category Model Error:", error);
         throw error; 
+    }
+}
+
+export async function getCategoryBySlug(slug:string){
+    try {
+        const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM categories WHERE slug=?`,[slug])
+        return result
+    } catch (error) {
+        console.error("Get Category Model By Slug Error:",error);
+        throw error;
     }
 }
