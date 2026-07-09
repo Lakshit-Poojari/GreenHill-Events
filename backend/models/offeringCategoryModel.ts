@@ -75,9 +75,7 @@ export async function deleteOfferingCategoryModel(id:number){
     }
 }
 
-export async function getOfferingCategoryBySlugModel(
-    slug: string
-): Promise<OfferingCategory | null> {
+export async function getOfferingCategoryBySlugModel(slug: string): Promise<OfferingCategory | null> {
     try {
         const [rows] = await db.query<(OfferingCategory & RowDataPacket)[]>(
             `SELECT *
@@ -89,7 +87,7 @@ export async function getOfferingCategoryBySlugModel(
 
         return rows.length > 0 ? rows[0] : null;
     } catch (error) {
-        console.error("Error in getCategoryBySlugModel:", error);
+        console.error("Error in get Category By Slug Model:", error);
         throw error;
     }
 }
