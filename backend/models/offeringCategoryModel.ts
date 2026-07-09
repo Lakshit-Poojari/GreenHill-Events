@@ -74,3 +74,22 @@ export async function deleteOfferingCategoryModel(id:number){
         throw error;
     }
 }
+
+export async function getOfferingCategoryBySlugModel(
+    slug: string
+): Promise<OfferingCategory | null> {
+    try {
+        const [rows] = await db.query<(OfferingCategory & RowDataPacket)[]>(
+            `SELECT *
+             FROM offering_categories
+             WHERE slug = ?
+             LIMIT 1`,
+            [slug]
+        );
+
+        return rows.length > 0 ? rows[0] : null;
+    } catch (error) {
+        console.error("Error in getCategoryBySlugModel:", error);
+        throw error;
+    }
+}
