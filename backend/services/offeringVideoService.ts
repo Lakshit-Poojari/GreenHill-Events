@@ -2,7 +2,7 @@ import { getSingleOfferingModel } from "../models/offeringModel";
 import { createOfferingVideoModel, deleteOfferingVideoModel, getAllOfferingVideoModel, getSingleOfferingVideoModel, updateOfferingVideoModel } from "../models/offeringVideoModel";
 import { CreateOfferingVideo, UpdateOfferingVideo } from "../types/offeringVideoType";
 
-export async function createOfferingVideoService(video:CreateOfferingVideo, id:number){
+export async function createOfferingVideoService(video:CreateOfferingVideo){
     try {
         if (!video.offering_id || !video.youtube_url.trim() || video.display_order === undefined) {
             throw new Error("All fields are required.");
