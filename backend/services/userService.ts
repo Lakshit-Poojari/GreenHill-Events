@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { createUserType, loginUserType } from "../types/userTypes";
 import { createUserModel, getUserModel } from "../models/userModel";
 import bcrypt from "bcrypt";
@@ -14,9 +13,9 @@ export async function createUserService(user: createUserType){
         }
 
         // check if Admin exist
-        const existingAdmin = await getUserModel(user.email) as any[]
+        const existingUser = await getUserModel(user.email)
 
-        if (existingAdmin && existingAdmin.length > 0) {
+        if (existingUser && existingUser.length > 0) {
             throw new Error("User Already Exist Please Login")
         }
 
@@ -43,10 +42,14 @@ export async function loginUserService(loginUser: loginUserType){
         const existingAdmin = await getUserModel(loginUser.email) as any[]
 
         if (!existingAdmin || existingAdmin.length === 0) {
-            throw new Error("User Does't Exist Please Register")
+            throw new Error("User Doesn't Exist")
         }
 
         const admin = existingAdmin[0]
+
+        if (admin.status !== "ACTIVE") {
+            throw new Error("Account is inactive");
+        }
 
         // check password
         const isPasswordValid = await bcrypt.compare(loginUser.password, admin.password)

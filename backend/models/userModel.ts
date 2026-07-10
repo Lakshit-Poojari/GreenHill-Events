@@ -1,4 +1,4 @@
-import { ResultSetHeader } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 import db from "../lib/db";
 import { createUserType } from "../types/userTypes";
 
@@ -23,12 +23,12 @@ export async function createUserModel(user: createUserType){
 
 export async function getUserModel(email:string){
     try {
-        const [row] = await db.query(
+        const [row] = await db.query<RowDataPacket[]>(
             "SELECT * FROM users WHERE email = ?", [email]
         )
         return row;
     } catch (error) {
-        console.error();
+        console.error("Get User Model Error:", error);
         throw error;
     }
 }
