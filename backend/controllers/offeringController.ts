@@ -16,7 +16,7 @@ export async function updateOfferingController(id:number, offering:UpdateOfferin
         const result = await updateOfferingService(id, offering, slug)
         return result
     } catch (error) {
-        console.error("Create Offering Controller Error", error);
+        console.error("Update Offering Controller Error", error);
         throw new Error
     }
 }
@@ -26,7 +26,7 @@ export async function getAllOfferingController(){
         const result = await getAllOfferingService()
         return result
     } catch (error) {
-        console.error("Create Offering Controller Error", error);
+        console.error("Get All Offering Controller Error", error);
         throw new Error
     }
 }
@@ -36,7 +36,7 @@ export async function getSingleOfferingController(id:number){
         const result = await getSingleOfferingService(id)
         return result
     } catch (error) {
-        console.error("Create Offering Controller Error", error);
+        console.error("Get Single Offering Controller Error", error);
         throw new Error
     }
 }
@@ -46,7 +46,7 @@ export async function deleteOfferingController(id:number){
         const result = await deleteOfferingService(id)
         return result
     } catch (error) {
-        console.error("Create Offering Controller Error", error);
+        console.error("Delete Offering Controller Error", error);
         throw new Error
     }
 }
