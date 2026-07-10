@@ -34,12 +34,12 @@ export async function updateOfferingService(id:number, offering:UpdateOffering, 
 
         const existingOffering = await getSingleOfferingModel(id)
 
-        if(existingOffering){
+        if(!existingOffering){
             throw new Error("Offering not found.")
         }
 
-        const duplicateOffering = await getOfferingBySlugModel(slug)
-        if(duplicateOffering) {
+        const duplicateOffering = await getOfferingBySlugModel(offering.slug)
+        if(duplicateOffering && duplicateOffering.id !== id) {
             throw new Error("Offering already exists.");
         }
 

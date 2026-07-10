@@ -39,9 +39,9 @@ export async function updateOfferingCategoryService(id:number, category:updateOf
             throw new Error("Category not found.");
         }
 
-        const duplicateCategory = await getOfferingCategoryBySlugModel(slug)
+        const duplicateCategory = await getOfferingCategoryBySlugModel(category.slug)
 
-        if (duplicateCategory) {
+        if (duplicateCategory && duplicateCategory.id !== id) {
             throw new Error("Category already exists.");
         }
         const result = await UpdateOfferingCategoryModel(id, category)
