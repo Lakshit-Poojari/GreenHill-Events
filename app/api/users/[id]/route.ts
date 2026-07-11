@@ -1,4 +1,4 @@
-import { deleteUserController, getUserByIdController, updateUserController } from "@/backend/controllers/userController";
+import { deleteUserController, getUserByIdController, updateUserController, updateUserStatusController } from "@/backend/controllers/userController";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request:NextRequest, {params}:{params: Promise<{id:string}>}){
@@ -52,6 +52,39 @@ export async function PUT(request:NextRequest, {params}:{params:Promise<{id:stri
                 status:400
             }
         )
+    }
+}
+
+
+
+export async function PATCH(request:NextRequest, { params }: { params: Promise<{ id: string }>}){
+    try {
+        const {id} = await params
+        const body = await request.json()
+
+        await updateUserStatusController(Number(id), body)
+        return NextResponse.json(
+            {
+                success: true,
+                message: "User status updated successfully",
+            },
+            {
+                status: 200,
+            }
+        )
+    } catch (error) {
+        return NextResponse.json(
+            {
+                success: false,
+                message:
+                    error instanceof Error
+                        ? error.message
+                        : "Internal Server Error",
+            },
+            {
+                status: 400,
+            }   
+        )     
     }
 }
 
