@@ -94,3 +94,17 @@ export async function getCategoryBySlug(slug:string){
         throw error;
     }
 }
+
+export async function updateCategoryStatusModel(id: number, status: string) {
+    try {
+        const [result] = await db.query<ResultSetHeader>(
+            "UPDATE categories SET status = ? WHERE id = ?",
+            [status, id]
+        );
+
+        return result;
+    } catch (error) {
+        console.error("Update Category Status Model Error:", error);
+        throw error;
+    }
+}

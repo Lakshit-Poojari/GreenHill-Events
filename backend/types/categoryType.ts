@@ -38,3 +38,7 @@ export interface UpdateCategoryType {
   long_description: string;
   status: CategoryStatus;
 }
+
+export interface UpdateCategoryStatusType {
+    status: CategoryStatus;
+}

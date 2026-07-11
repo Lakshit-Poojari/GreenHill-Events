@@ -1,5 +1,5 @@
-import { createCategoryModel, deleteCategoryModel, getAllCategoryModel, getCategoryBySlug, getSingleCategoryModel, updateCategoryModel, } from "../models/categoryModel";
-import { CreateCategoryType, UpdateCategoryType } from "../types/categoryType";
+import { createCategoryModel, deleteCategoryModel, getAllCategoryModel, getCategoryBySlug, getSingleCategoryModel, updateCategoryModel, updateCategoryStatusModel, } from "../models/categoryModel";
+import { CategoryStatus, CreateCategoryType, UpdateCategoryType } from "../types/categoryType";
 
 export async function createCategoryService(category:CreateCategoryType ){
     try {
@@ -82,6 +82,25 @@ export async function deleteCategoryService(id:number){
         return result
     } catch (error) {
         console.error("Delete Category Service Error", error);
+        throw error;
+    }
+}
+
+export async function updateCategoryStatusService(id: number, status: CategoryStatus) {
+    try {
+        if (!id || !status) {
+            throw new Error("Category ID and status are required");
+        }
+
+        const existingCategory = await getSingleCategoryModel(id);
+
+        if (!existingCategory || existingCategory.length === 0) {
+            throw new Error("Category not found");
+        }
+
+        return await updateCategoryStatusModel(id, status);
+    } catch (error) {
+        console.error("Update Category Status Service Error:", error);
         throw error;
     }
 }

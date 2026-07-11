@@ -1,5 +1,5 @@
-import { createCategoryService, deleteCategoryService, getAllCategoryService, getSingleCategoryService, updateCategoryService } from "../services/categoryService";
-import { CreateCategoryType, UpdateCategoryType } from "../types/categoryType";
+import { createCategoryService, deleteCategoryService, getAllCategoryService, getSingleCategoryService, updateCategoryService, updateCategoryStatusService } from "../services/categoryService";
+import { CategoryStatus, CreateCategoryType, UpdateCategoryType } from "../types/categoryType";
 
 export async function createCategoryController(category:CreateCategoryType){
     try {
@@ -52,6 +52,15 @@ export async function deleteCategoryController(id:number){
         return result
     } catch (error) {
         console.error("Delete Category Controller Error", error);
+        throw error;
+    }
+}
+
+export async function updateCategoryStatusController(id: number, status: CategoryStatus) {
+    try {
+        return await updateCategoryStatusService(id, status);
+    } catch (error) {
+        console.error("Update Category Status Controller Error:", error);
         throw error;
     }
 }
