@@ -1,4 +1,4 @@
-import { getUserByIdController, updateUserController } from "@/backend/controllers/userController";
+import { deleteUserController, getUserByIdController, updateUserController } from "@/backend/controllers/userController";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request:NextRequest, {params}:{params: Promise<{id:string}>}){
@@ -36,6 +36,34 @@ export async function PUT(request:NextRequest, {params}:{params:Promise<{id:stri
             {
                 success:true,
                 message:"User detail updated successfully"
+            },
+            {
+                status:200
+            }
+        )
+    } catch (error) {
+        return NextResponse.json(
+            {
+                success:false,
+                message:error instanceof Error?
+                        error.message : "Internal server error"
+            },
+            {
+                status:400
+            }
+        )
+    }
+}
+
+export async function DELETE(request:NextRequest, {params}:{params:Promise<{id:string}>}){
+    try {
+        const {id} = await params;
+        await deleteUserController(Number(id))
+
+        return NextResponse.json(
+            {
+                success:true,
+                message:"User deleted successfully"
             },
             {
                 status:200
