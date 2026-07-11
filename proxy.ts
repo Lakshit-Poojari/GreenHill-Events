@@ -1,5 +1,5 @@
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyToken } from "./backend/middleware/authMiddleware";
 
 export function proxy(request:NextRequest){
     const token = request.cookies.get("token")?.value;
@@ -8,7 +8,17 @@ export function proxy(request:NextRequest){
         return NextResponse.redirect(new URL("/login", request.url))
     }
 
-    return NextResponse.next()
+    try {
+        const user = verifyToken(token);
+
+        if(user.role !== "SUPER_ADMIN"){
+            return NextResponse.redirect(new URL("/login", request.url))
+        }
+        
+        return NextResponse.next();
+    } catch {
+        return NextResponse.redirect(new URL("/login", request.url));
+    }
 }
 
 export const config = {
