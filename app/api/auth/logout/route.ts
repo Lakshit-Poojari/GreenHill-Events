@@ -15,4 +15,5 @@ export async function POST(){
         path: "/",
         maxAge: 60 * 60 * 24,
     })
+    return response;
 }
