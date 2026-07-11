@@ -11,7 +11,7 @@ export async function GET(){
         return NextResponse.json({message:"Unauthorised"}, {status:401})
     }
     try {
-        const user = await verifyToken(token)
+        const user = verifyToken(token)
 
         return NextResponse.json({success:true, user:user}, {status:200})
     } catch (error) {
