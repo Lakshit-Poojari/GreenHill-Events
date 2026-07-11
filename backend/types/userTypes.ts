@@ -33,3 +33,10 @@ export interface loginUserType {
   email: string;
   password: string;
 }
+
+export interface UpdateUserType {
+    full_name: string;
+    email: string;
+    role: UserRole;
+    status: UserStatus;
+}

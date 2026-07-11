@@ -1,6 +1,6 @@
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 import db from "../lib/db";
-import { createUserType } from "../types/userTypes";
+import { createUserType, UpdateUserType } from "../types/userTypes";
 
 export async function createUserModel(user: createUserType){
     try {
@@ -29,6 +29,88 @@ export async function getUserModel(email:string){
         return row;
     } catch (error) {
         console.error("Get User Model Error:", error);
+        throw error;
+    }
+}
+
+export async function getUserByIdModel(id: number) {
+    try {
+        const [rows] = await db.query<RowDataPacket[]>(
+            "SELECT * FROM users WHERE id = ?",
+            [id]
+        );
+
+        return rows;
+    } catch (error) {
+        console.error("Get User By ID Model Error:", error);
+        throw error;
+    }
+}
+
+export async function getAllUserModel() {
+    try {
+        const [rows] = await db.query<RowDataPacket[]>(
+            "SELECT * FROM users ORDER BY id DESC"
+        );
+
+        return rows;
+    } catch (error) {
+        console.error("Get Users Model Error:", error);
+        throw error;
+    }
+}
+
+export async function updateUserModel(
+    id: number,
+    user: UpdateUserType
+) {
+    try {
+        const [result] = await db.query<ResultSetHeader>(
+            `UPDATE users
+             SET full_name = ?, email = ?, status = ?
+             WHERE id = ?`,
+            [
+                user.full_name,
+                user.email,
+                user.status,
+                id,
+            ]
+        );
+
+        return result;
+    } catch (error) {
+        console.error("Update User Model Error:", error);
+        throw error;
+    }
+}
+
+export async function deleteUserModel(id: number) {
+    try {
+        const [result] = await db.query<ResultSetHeader>(
+            "DELETE FROM users WHERE id = ?",
+            [id]
+        );
+
+        return result;
+    } catch (error) {
+        console.error("Delete User Model Error:", error);
+        throw error;
+    }
+}
+
+export async function updateUserStatusModel(
+    id: number,
+    status: string
+) {
+    try {
+        const [result] = await db.query<ResultSetHeader>(
+            "UPDATE users SET status = ? WHERE id = ?",
+            [status, id]
+        );
+
+        return result;
+    } catch (error) {
+        console.error("Update User Status Model Error:", error);
         throw error;
     }
 }
