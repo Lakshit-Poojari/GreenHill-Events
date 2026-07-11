@@ -39,7 +39,8 @@ export async function POST(request:NextRequest){
         return NextResponse.json(
             {
                 success:false,
-                message: error instanceof Error? error.message : "Internal Error"
+                message: error instanceof Error? 
+                        error.message : "Internal Error"
             },
             {status:400}
         )
