@@ -96,10 +96,7 @@ export async function getUserByIdService(id: number) {
     }
 }
 
-export async function updateUserService(
-    id: number,
-    user: UpdateUserType
-) {
+export async function updateUserService(id: number, user: UpdateUserType) {
     try {
         if (!id) {
             throw new Error("User ID is required");
@@ -141,10 +138,7 @@ export async function deleteUserService(id: number) {
     }
 }
 
-export async function updateUserStatusService(
-    id: number,
-    status: UserStatus
-) {
+export async function updateUserStatusService(id: number, status: UserStatus) {
     try {
         if (!id || !status) {
             throw new Error("User ID and status are required");
