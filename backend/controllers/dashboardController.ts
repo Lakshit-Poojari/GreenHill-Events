@@ -1,5 +1,10 @@
 import { getDashboardStatsService } from "../services/dashboardService";
 
 export async function getDashboardStatsController() {
-    return await getDashboardStatsService();
+    try {
+        return await getDashboardStatsService();
+    } catch (error) {
+        console.error("Get Dashboard Stats Controller Error:", error);
+        throw error;
+    }
 }
