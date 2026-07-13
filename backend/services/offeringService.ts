@@ -1,5 +1,5 @@
-import { createOfferingModel, deleteOfferingModel, getAllOfferingModel, getOfferingBySlugModel, getSingleOfferingModel, updateOfferingModel } from "../models/offeringModel";
-import { CreateOffering, UpdateOffering } from "../types/offeringType";
+import { createOfferingModel, deleteOfferingModel, getAllOfferingModel, getOfferingBySlugModel, getSingleOfferingModel, updateOfferingModel, updateOfferingStatusModel } from "../models/offeringModel";
+import { CreateOffering, OfferingStatus, UpdateOffering } from "../types/offeringType";
 
 export async function createOfferingService(offering:CreateOffering){
     try {
@@ -76,6 +76,26 @@ export async function deleteOfferingService(id:number){
         return result
     } catch (error) {
         console.error("Error in Delete Offering Service", error);
+        throw error;
+    }
+}
+
+
+export async function updateOfferingStatusService(id: number, status: OfferingStatus) {
+    try {
+        if (!id || !status) {
+            throw new Error("Offering ID and status are required");
+        }
+
+        const existingOffering = await getSingleOfferingModel(id);
+
+        if (!existingOffering) {
+            throw new Error("Offering not found");
+        }
+
+        return await updateOfferingStatusModel(id, status);
+    } catch (error) {
+        console.error("Update Offering Status Service Error:", error);
         throw error;
     }
 }

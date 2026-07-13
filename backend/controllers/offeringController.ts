@@ -1,5 +1,5 @@
-import { createOfferingService, deleteOfferingService, getAllOfferingService, getSingleOfferingService, updateOfferingService } from "../services/offeringService";
-import { CreateOffering, Offering, UpdateOffering } from "../types/offeringType";
+import { createOfferingService, deleteOfferingService, getAllOfferingService, getSingleOfferingService, updateOfferingService, updateOfferingStatusService } from "../services/offeringService";
+import { CreateOffering, Offering, OfferingStatus, UpdateOffering } from "../types/offeringType";
 
 export async function createOfferingController(offering:CreateOffering){
     try {
@@ -48,5 +48,14 @@ export async function deleteOfferingController(id:number){
     } catch (error) {
         console.error("Delete Offering Controller Error", error);
         throw new Error
+    }
+}
+
+export async function updateOfferingStatusController(id: number, status: OfferingStatus) {
+    try {
+        return await updateOfferingStatusService(id, status);
+    } catch (error) {
+        console.error("Update Category Status Controller Error:", error);
+        throw error;
     }
 }

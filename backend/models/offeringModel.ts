@@ -100,3 +100,17 @@ export async function getOfferingBySlugModel(slug: string) {
         throw error;
     }
 }
+
+export async function updateOfferingStatusModel(id: number, status: string) {
+    try {
+        const [result] = await db.query<ResultSetHeader>(
+            "UPDATE offering SET status = ? WHERE id = ?",
+            [status, id]
+        );
+
+        return result;
+    } catch (error) {
+        console.error("Update Offering Status Model Error:", error);
+        throw error;
+    }
+}
