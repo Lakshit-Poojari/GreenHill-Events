@@ -1,12 +1,16 @@
-import { createUserType, loginUserType, UpdateUserType, UserStatus } from "../types/userTypes";
+import { createUserType, loginUserType, UpdateUserType, UserRole, UserStatus } from "../types/userTypes";
 import { createUserModel, deleteUserModel, getAllUserModel, getUserByIdModel, getUserModel, updateUserModel, updateUserStatusModel } from "../models/userModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 
 const SECRET_KEY = process.env.JWT_SECRET!;
 
-export async function createUserService(user: createUserType){
+export async function createUserService(user: createUserType, loggedInUserRole: UserRole){
     try {
+        if (loggedInUserRole !== "SUPER_ADMIN") {
+        throw new Error("You are not authorized to create users.");
+        }
+
         // check all fied are present
         if(!user.full_name || !user.email || !user.password || !user.status){
             throw new Error("All Field Required")
@@ -96,8 +100,11 @@ export async function getUserByIdService(id: number) {
     }
 }
 
-export async function updateUserService(id: number, user: UpdateUserType) {
+export async function updateUserService(id: number, user: UpdateUserType, loggedInUserRole: UserRole) {
     try {
+        if (loggedInUserRole !== "SUPER_ADMIN") {
+            throw new Error("You are not authorized to update users.");
+        }
         if (!id) {
             throw new Error("User ID is required");
         }
@@ -119,8 +126,12 @@ export async function updateUserService(id: number, user: UpdateUserType) {
     }
 }
 
-export async function deleteUserService(id: number) {
+export async function deleteUserService(id: number, loggedInUserRole: UserRole) {
     try {
+        if (loggedInUserRole !== "SUPER_ADMIN") {
+            throw new Error("You are not authorized to delete users.");
+        }
+
         if (!id) {
             throw new Error("User ID is required");
         }
