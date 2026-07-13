@@ -3,6 +3,11 @@
 import { Menu, LogOut } from "lucide-react";
 
 export default function Navbar() {
+  const logout = async () => {
+    await fetch("/api/auth/logout", { method: "POST", credentials: "include",});
+
+    window.location.href = "/controlpanel/login";
+  };
   return (
     <header className="sticky top-0 z-50 h-16 border-b border-gray-800 bg-[#181616]">
       <div className="flex h-full items-center justify-between px-6">
@@ -31,7 +36,7 @@ export default function Navbar() {
             </p>
           </div>
 
-          <button className="flex items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm text-white hover:bg-red-600">
+          <button onClick={logout} className="flex items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm text-white hover:bg-red-600">
             <LogOut size={16} />
             Logout
           </button>

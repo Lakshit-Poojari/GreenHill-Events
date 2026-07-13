@@ -23,6 +23,10 @@ export function proxy(request:NextRequest){
 
 export const config = {
     matcher:[
-        "/controlpanel/:path*",
+        "/controlpanel/dashboard/:path*",
+        "/controlpanel/users/:path*",
+        "/controlpanel/posts/:path*",
+        "/controlpanel/comments/:path*",
+        "/controlpanel/entertainment/:path*",
     ]
 }
