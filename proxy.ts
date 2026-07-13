@@ -5,24 +5,24 @@ export function proxy(request:NextRequest){
     const token = request.cookies.get("token")?.value;
 
     if (!token) {
-        return NextResponse.redirect(new URL("/login", request.url))
+        return NextResponse.redirect(new URL("/controlpanel/login", request.url))
     }
 
     try {
         const user = verifyToken(token);
 
         if(user.role !== "SUPER_ADMIN"){
-            return NextResponse.redirect(new URL("/login", request.url))
+            return NextResponse.redirect(new URL("/controlpanel/login", request.url))
         }
         
         return NextResponse.next();
     } catch {
-        return NextResponse.redirect(new URL("/login", request.url));
+        return NextResponse.redirect(new URL("/controlpanel/login", request.url));
     }
 }
 
 export const config = {
     matcher:[
-        "/controlpanel/users/:path*",
+        "/controlpanel/:path*",
     ]
 }
