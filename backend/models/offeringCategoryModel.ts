@@ -91,3 +91,17 @@ export async function getOfferingCategoryBySlugModel(slug: string): Promise<Offe
         throw error;
     }
 }
+
+export async function updateOfferingCategoryStatusModel(id: number, status: string) {
+    try {
+        const [result] = await db.query<ResultSetHeader>(
+            "UPDATE offering_categories SET status = ? WHERE id = ?",
+            [status, id]
+        );
+
+        return result;
+    } catch (error) {
+        console.error("Update offering categories Status Model Error:", error);
+        throw error;
+    }
+}

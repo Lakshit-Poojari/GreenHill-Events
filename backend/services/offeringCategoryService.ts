@@ -1,5 +1,5 @@
-import { createOfferingCategoryModel, deleteOfferingCategoryModel, getAllOfferingCategoryModel, getOfferingCategoryBySlugModel, getSIngleOfferingCategoryModel, UpdateOfferingCategoryModel } from "../models/offeringCategoryModel";
-import { createOfferingCategory, updateOfferingCategory } from "../types/offeringCategoryType";
+import { createOfferingCategoryModel, deleteOfferingCategoryModel, getAllOfferingCategoryModel, getOfferingCategoryBySlugModel, getSIngleOfferingCategoryModel, UpdateOfferingCategoryModel, updateOfferingCategoryStatusModel } from "../models/offeringCategoryModel";
+import { createOfferingCategory, offeringCategoryStatus, updateOfferingCategory } from "../types/offeringCategoryType";
 
 
 export async function createOfferingCategoryService(category: createOfferingCategory) {
@@ -78,7 +78,26 @@ export async function deleteOfferingCategoryService(id:number){
         const result = await deleteOfferingCategoryModel(id)
         return result
     } catch (error) {
-        console.error("Error in Delet Offering Category Model", error);
+        console.error("Error in Delete Offering Category Model", error);
+        throw error;
+    }
+}
+
+export async function updateOfferingCategoryStatusService(id: number, status: offeringCategoryStatus) {
+    try {
+        if (!id || !status) {
+            throw new Error("Offering Category ID and status are required");
+        }
+
+        const existingOfferingCategory = await getSIngleOfferingCategoryModel(id);
+
+        if (!existingOfferingCategory || existingOfferingCategory.length === 0) {
+            throw new Error("Offering Category not found");
+        }
+
+        return await updateOfferingCategoryStatusModel(id, status);
+    } catch (error) {
+        console.error("Update Offering Category Status Service Error:", error);
         throw error;
     }
 }
