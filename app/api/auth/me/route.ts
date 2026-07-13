@@ -13,7 +13,7 @@ export async function GET(){
     try {
         const user = verifyToken(token)
 
-        return NextResponse.json({success:true, user:user}, {status:200})
+        return NextResponse.json({success:true, data:user}, {status:200})
     } catch (error) {
         return NextResponse.json({success:false, message:"Invalid token"}, {status:401})
     }

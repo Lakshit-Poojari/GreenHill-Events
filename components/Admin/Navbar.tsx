@@ -1,13 +1,43 @@
 "use client";
 
 import { Menu, LogOut } from "lucide-react";
+import { useEffect, useState } from "react";
+
+interface Profile {
+  user_id: number;
+  name: string;
+  email: string;
+  role: string;
+}
 
 export default function Navbar() {
+  const [profile, setprofile] = useState<Profile | null>(null);
   const logout = async () => {
     await fetch("/api/auth/logout", { method: "POST", credentials: "include",});
 
     window.location.href = "/controlpanel/login";
   };
+
+  useEffect(() => {
+    me()
+  }, [])
+  
+
+  const me = async() => {
+      try {
+          const response = await fetch("/api/auth/me");
+
+          const result = await response.json();
+
+          if (result.success) {
+              setprofile(result.data);
+          }
+      } catch (error) {
+          console.error(error);
+      }
+  }
+
+
   return (
     <header className="sticky top-0 z-50 h-16 border-b border-gray-800 bg-[#181616]">
       <div className="flex h-full items-center justify-between px-6">
@@ -28,11 +58,11 @@ export default function Navbar() {
 
           <div className="text-right">
             <p className="text-sm text-white font-medium">
-              Green Hill Admin
+              {profile?.email}
             </p>
 
             <p className="text-xs text-gray-400">
-              SUPER_ADMIN
+              {profile?.role}
             </p>
           </div>
 
