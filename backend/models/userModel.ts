@@ -114,3 +114,10 @@ export async function updateUserStatusModel(
         throw error;
     }
 }
+
+export async function updateLastLoginModel(id: number) {
+    await db.query(
+        "UPDATE users SET last_login_at = NOW() WHERE id = ?",
+        [id]
+    );
+}

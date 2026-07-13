@@ -1,9 +1,9 @@
 import { createUserType, loginUserType, UpdateUserType, UserRole, UserStatus } from "../types/userTypes";
-import { createUserModel, deleteUserModel, getAllUserModel, getUserByIdModel, getUserModel, updateUserModel, updateUserStatusModel } from "../models/userModel";
+import { createUserModel, deleteUserModel, getAllUserModel, getUserByIdModel, getUserModel, updateLastLoginModel, updateUserModel, updateUserStatusModel } from "../models/userModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 
-const SECRET_KEY = process.env.JWT_SECRET!;
+const SECRET_KEY = process.env.SECRET_KEY!;
 
 export async function createUserService(user: createUserType, loggedInUserRole: UserRole){
     try {
@@ -61,6 +61,8 @@ export async function loginUserService(loginUser: loginUserType){
         if (!isPasswordValid) {
             throw new Error("Invalid Credentials")
         }
+
+        await updateLastLoginModel(admin.id);
 
         // create token
         const token = jwt.sign({ id: admin.id, email: admin.email, role: admin.role }, SECRET_KEY, { expiresIn: "1d" });
