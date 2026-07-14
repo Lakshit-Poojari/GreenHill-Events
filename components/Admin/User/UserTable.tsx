@@ -4,10 +4,10 @@ import { Edit, Shield, Trash2 } from "lucide-react";
 
 export interface User {
   id: number;
-  name: string;
+  full_name: string;
   email: string;
   role: "SUPER_ADMIN" | "ADMIN";
-  status: "Active" | "Inactive";
+  status: "ACTIVE" | "INACTIVE";
 }
 
 interface UserTableProps {
@@ -59,7 +59,7 @@ const UserTable = ({
               >
                 {/* Name */}
                 <td className="px-6 py-4 font-medium text-white">
-                  {user.name}
+                  {user.full_name}
                 </td>
 
                 {/* Email */}
@@ -72,8 +72,8 @@ const UserTable = ({
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
     user.role === "SUPER_ADMIN"
-      ? "bg-[#C9AC8C]/20 text-[#C9AC8C]"
-      : "bg-blue-500/20 text-blue-400"
+  ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
+: "border border-[#00BFFF] bg-[#00BFFF]/10 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] hover:bg-[#00BFFF]/20"
   }`}
                   >
                     {user.role === "SUPER_ADMIN"
@@ -86,12 +86,12 @@ const UserTable = ({
                 <td className="px-6 py-4">
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-medium ${
-    user.status === "Active"
-      ? "bg-green-500/20 text-green-400"
-      : "bg-red-500/20 text-red-400"
+    user.status === "ACTIVE"
+    ? "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
+: "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131] hover:bg-[#FF3131]/20"
   }`}
                   >
-                    {user.status}
+                    {user.status === "ACTIVE" ? "Active" : "Inactive"}
                   </span>
                 </td>
 
@@ -102,7 +102,7 @@ const UserTable = ({
                     <button
                       title="Edit User"
                       onClick={() => onEdit(user.id)}
-                      className="rounded-lg bg-blue-500/10 p-2 text-blue-400 transition hover:bg-blue-500/20"
+                      className="rounded-lg border border-[#00BFFF] bg-[#00BFFF]/10 p-2 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] transition-all duration-300 hover:bg-[#00BFFF]/20 hover:shadow-[0_0_12px_#00BFFF]"
                     >
                       <Edit size={18} />
                     </button>
@@ -117,8 +117,8 @@ const UserTable = ({
                       onClick={() => onRoleChange(user.id)}
                       className={`rounded-lg p-2 transition ${
   user.role === "SUPER_ADMIN"
-    ? "bg-[#C9AC8C]/10 text-[#C9AC8C] hover:bg-[#C9AC8C]/20"
-    : "bg-green-500/10 text-green-400 hover:bg-green-500/20"
+   ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
+: "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
 }`}
                     >
                       <Shield size={18} />
@@ -128,7 +128,7 @@ const UserTable = ({
                     <button
                       title="Delete User"
                       onClick={() => onDelete(user.id)}
-                      className="rounded-lg bg-red-500/10 p-2 text-red-400 transition hover:bg-red-500/20"
+                      className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]"
                     >
                       <Trash2 size={18} />
                     </button>
