@@ -165,8 +165,8 @@ const Page = () => {
                       <span
                         className={`rounded-full px-3 py-1 text-xs font-semibold ${
                           category.status === "ACTIVE"
-                            ? "bg-green-500/20 text-green-400"
-                            : "bg-red-500/20 text-red-400"
+      ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
+      : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
                         }`}
                       >
                         {category.status}
@@ -177,7 +177,7 @@ const Page = () => {
 <div className="flex justify-center gap-3">
   <Link
     href={`/controlpanel/entertainment/categories/${category.id}`}
-    className="rounded-lg bg-emerald-500 p-2 text-white hover:bg-emerald-600"
+    className="rounded-lg border border-[#39FF14] bg-[#39FF14]/10 p-2 text-[#39FF14] shadow-[0_0_8px_#39FF14] transition-all duration-300 hover:scale-105 hover:bg-[#39FF14]/20 hover:shadow-[0_0_12px_#39FF14]"
     title="View"
   >
     <Eye size={18} />
@@ -185,7 +185,7 @@ const Page = () => {
 
   <Link
     href={`/controlpanel/entertainment/categories/${category.id}/edit`}
-    className="rounded-lg bg-blue-500 p-2 text-white hover:bg-blue-600"
+    className="rounded-lg border border-[#00E5FF] bg-[#00E5FF]/10 p-2 text-[#00E5FF] shadow-[0_0_8px_#00E5FF] transition-all duration-300 hover:bg-[#00E5FF]/20 hover:shadow-[0_0_12px_#00E5FF]"
     title="Edit"
   >
     <Pencil size={18} />
@@ -194,7 +194,7 @@ const Page = () => {
   <button
     type="button"
     onClick={() => handleDelete(category.id)}
-    className="rounded-lg bg-red-500 p-2 text-white hover:bg-red-600"
+    className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]"
     title="Delete"
   >
     <Trash2 size={18} />

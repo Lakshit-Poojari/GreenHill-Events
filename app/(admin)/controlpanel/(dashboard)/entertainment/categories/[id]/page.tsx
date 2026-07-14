@@ -116,8 +116,8 @@ const Page = () => {
             <span
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
                 category.status === "ACTIVE"
-                  ? "bg-green-500/20 text-green-400"
-                  : "bg-red-500/20 text-red-400"
+      ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
+      : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
               }`}
             >
               {category.status}
