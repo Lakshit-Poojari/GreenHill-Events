@@ -63,7 +63,7 @@ export async function updateCategoryService(id: number, slug:string, category:Up
 
 export async function getAllCategoryService(){
     try {
-        const [result] = await getAllCategoryModel()
+        const result = await getAllCategoryModel()
         return result
     } catch (error) {
         console.error("Get All Category Service Error", error);

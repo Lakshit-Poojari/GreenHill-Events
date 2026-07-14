@@ -2,8 +2,40 @@
 
 import Link from "next/link";
 import { ArrowLeft, Plus, Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const page = () => {
+interface Category {
+  id: number;
+  category_name: string;
+  slug: string;
+  status: "ACTIVE" | "INACTIVE";
+}
+
+const Page = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllCategory();
+  }, []);
+
+  const getAllCategory = async () => {
+    try {
+      const response = await fetch("/api/categories");
+      const result = await response.json();
+      console.log('====================================');
+      console.log(result);
+      console.log('====================================');
+      if (result.success) {
+        setCategories(result.category);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Back Button */}
@@ -45,76 +77,98 @@ const page = () => {
         />
       </div>
 
-      {/* Category Table Placeholder */}
-        {/* Categories Table */}
-        <div className="overflow-hidden rounded-xl border border-gray-700 bg-[#181616] shadow-lg">
+      {/* Categories Table */}
+      <div className="overflow-hidden rounded-xl border border-gray-700 bg-[#181616] shadow-lg">
         <div className="overflow-x-auto">
-            <table className="min-w-full">
+          <table className="min-w-full">
             <thead className="bg-[#242222]">
-                <tr>
+              <tr>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                    Image
+                  Category
                 </th>
+
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                    Category
+                  Slug
                 </th>
+
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                    Slug
+                  Status
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                    Status
-                </th>
+
                 <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">
-                    Actions
+                  Actions
                 </th>
-                </tr>
+              </tr>
             </thead>
 
             <tbody>
-                <tr className="border-t border-gray-700 hover:bg-[#222020]">
-                <td className="px-6 py-4">
-                    <img
-                    src="/placeholder.jpg"
-                    alt="Singing"
-                    className="h-12 w-12 rounded-lg object-cover"
-                    />
-                </td>
-
-                <td className="px-6 py-4 text-white">Singing</td>
-
-                <td className="px-6 py-4 text-gray-300">
-                    singing
-                </td>
-
-                <td className="px-6 py-4">
-                    <span className="rounded-full bg-green-500/20 px-3 py-1 text-xs font-semibold text-green-400">
-                    Active
-                    </span>
-                </td>
-
-                <td className="px-6 py-4">
-                    <div className="flex justify-center gap-3">
-                    <Link
-                        href="/controlpanel/entertainment/categories/edit/1"
-                        className="rounded-lg bg-blue-500 p-2 text-white hover:bg-blue-600"
-                    >
-                        Edit
-                    </Link>
-
-                    <button className="rounded-lg bg-red-500 p-2 text-white hover:bg-red-600">
-                        Delete
-                    </button>
-                    </div>
-                </td>
+              {loading ? (
+                <tr>
+                  <td
+                    colSpan={4}
+                    className="px-6 py-8 text-center text-gray-400"
+                  >
+                    Loading...
+                  </td>
                 </tr>
+              ) : categories.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan={4}
+                    className="px-6 py-8 text-center text-gray-400"
+                  >
+                    No categories found.
+                  </td>
+                </tr>
+              ) : (
+                categories.map((category) => (
+                  <tr
+                    key={category.id}
+                    className="border-t border-gray-700 hover:bg-[#222020]"
+                  >
+                    <td className="px-6 py-4 text-white">
+                      {category.category_name}
+                    </td>
 
-                
+                    <td className="px-6 py-4 text-gray-300">
+                      {category.slug}
+                    </td>
+
+                    <td className="px-6 py-4">
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                          category.status === "ACTIVE"
+                            ? "bg-green-500/20 text-green-400"
+                            : "bg-red-500/20 text-red-400"
+                        }`}
+                      >
+                        {category.status}
+                      </span>
+                    </td>
+
+                    <td className="px-6 py-4">
+                      <div className="flex justify-center gap-3">
+                        <Link
+                          href={`/controlpanel/entertainment/categories/edit/${category.id}`}
+                          className="rounded-lg bg-blue-500 p-2 text-white hover:bg-blue-600"
+                        >
+                          Edit
+                        </Link>
+
+                        <button className="rounded-lg bg-red-500 p-2 text-white hover:bg-red-600">
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
-            </table>
+          </table>
         </div>
-        </div>
+      </div>
     </div>
   );
 };
 
-export default page;
+export default Page;
