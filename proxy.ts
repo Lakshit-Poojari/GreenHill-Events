@@ -9,16 +9,14 @@ export function proxy(request:NextRequest){
     }
 
     try {
-        const user = verifyToken(token);
+    verifyToken(token);
 
-        if(user.role !== "SUPER_ADMIN"){
-            return NextResponse.redirect(new URL("/controlpanel/login", request.url))
-        }
-        
-        return NextResponse.next();
-    } catch {
-        return NextResponse.redirect(new URL("/controlpanel/login", request.url));
-    }
+    return NextResponse.next();
+  } catch {
+    return NextResponse.redirect(
+      new URL("/controlpanel/login", request.url)
+    );
+  }
 }
 
 export const config = {
