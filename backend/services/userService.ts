@@ -5,16 +5,25 @@ import jwt from "jsonwebtoken"
 
 const SECRET_KEY = process.env.SECRET_KEY!;
 
-export async function createUserService(user: createUserType, loggedInUserRole: UserRole){
+export async function createUserService(user: createUserType, ){
     try {
-        if (loggedInUserRole !== "SUPER_ADMIN") {
-        throw new Error("You are not authorized to create users.");
-        }
+        
 
-        // check all fied are present
-        if(!user.full_name || !user.email || !user.password || !user.status){
-            throw new Error("All Field Required")
-        }
+if (!user.full_name?.trim()) {
+    throw new Error("Full Name is required");
+}
+
+if (!user.email?.trim()) {
+    throw new Error("Email is required");
+}
+
+if (!user.password?.trim()) {
+    throw new Error("Password is required");
+}
+
+if (!user.status) {
+    throw new Error("Status is required");
+}
 
         // check if Admin exist
         const existingUser = await getUserModel(user.email)
@@ -102,11 +111,9 @@ export async function getUserByIdService(id: number) {
     }
 }
 
-export async function updateUserService(id: number, user: UpdateUserType, loggedInUserRole: UserRole) {
+export async function updateUserService(id: number, user: UpdateUserType, ) {
     try {
-        if (loggedInUserRole !== "SUPER_ADMIN") {
-            throw new Error("You are not authorized to update users.");
-        }
+       
         if (!id) {
             throw new Error("User ID is required");
         }
@@ -128,12 +135,9 @@ export async function updateUserService(id: number, user: UpdateUserType, logged
     }
 }
 
-export async function deleteUserService(id: number, loggedInUserRole: UserRole) {
+export async function deleteUserService(id: number,) {
     try {
-        if (loggedInUserRole !== "SUPER_ADMIN") {
-            throw new Error("You are not authorized to delete users.");
-        }
-
+       
         if (!id) {
             throw new Error("User ID is required");
         }

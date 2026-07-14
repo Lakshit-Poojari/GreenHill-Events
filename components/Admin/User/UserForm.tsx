@@ -1,60 +1,90 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Eye, EyeOff } from "lucide-react";
 
 export interface UserFormData {
-  name: string;
+  full_name: string;
   email: string;
   password: string;
   confirmPassword: string;
-  status: "Active" | "Inactive";
+  status: "ACTIVE" | "INACTIVE";
 }
 
 interface UserFormProps {
   initialData?: UserFormData;
-  onSubmit: (data: UserFormData) => void;
+  onSubmit: (data: UserFormData) => void | Promise<void>;
   isEdit?: boolean;
+  loading?: boolean;
 }
 
 export default function UserForm({
   initialData,
   onSubmit,
   isEdit = false,
+  loading = false,
 }: UserFormProps) {
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] =
     useState(false);
 
   const [formData, setFormData] = useState<UserFormData>(
     initialData || {
-      name: "",
+      full_name: "",
       email: "",
       password: "",
       confirmPassword: "",
-      status: "Active",
+      status: "ACTIVE",
     }
   );
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+const handleChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+) => {
+  const { name, value } = e.target;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  let formattedValue = value;
+
+  switch (name) {
+    case "full_name":
+      formattedValue = value.replace(/\s{2,}/g, " ");
+      break;
+
+    case "email":
+      formattedValue = value.trim().toLowerCase();
+      break;
+
+    default:
+      formattedValue = value;
+  }
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]: formattedValue,
+  }));
+};
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    onSubmit(formData);
+    if (
+      formData.password &&
+      formData.password !== formData.confirmPassword
+    ) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    await onSubmit(formData);
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 grid gap-6 md:grid-cols-2 rounded-xl border border-gray-700 bg-[#181616] p-6"
+      className="grid gap-6 rounded-xl border border-gray-700 bg-[#181616] p-6 md:grid-cols-2"
     >
       {/* Name */}
       <div>
@@ -64,11 +94,12 @@ export default function UserForm({
 
         <input
           type="text"
-          name="name"
-          value={formData.name}
+          name="full_name"
+          value={formData.full_name}
           onChange={handleChange}
           placeholder="Enter full name"
-          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+          disabled={loading}
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
           required
         />
       </div>
@@ -85,7 +116,8 @@ export default function UserForm({
           value={formData.email}
           onChange={handleChange}
           placeholder="Enter email"
-          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+          disabled={loading}
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
           required
         />
       </div>
@@ -107,21 +139,21 @@ export default function UserForm({
                 ? "Leave blank to keep current password"
                 : "Enter password"
             }
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 pr-12 text-white outline-none transition focus:border-[#C9AC8C]"
+            disabled={loading}
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 pr-12 text-white outline-none transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
             required={!isEdit}
           />
 
           <button
             type="button"
-            onClick={() =>
-              setShowPassword(!showPassword)
-            }
+            onClick={() => setShowPassword(!showPassword)}
+            disabled={loading}
             className="absolute right-4 top-1/2 -translate-y-1/2"
           >
             {showPassword ? (
-              <EyeOff size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-[#C9AC8C]" />
+              <EyeOff className="text-gray-400 hover:text-[#C9AC8C]" size={20} />
             ) : (
-              <Eye size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-[#C9AC8C]" />
+              <Eye className="text-gray-400 hover:text-[#C9AC8C]" size={20} />
             )}
           </button>
         </div>
@@ -135,11 +167,7 @@ export default function UserForm({
 
         <div className="relative">
           <input
-            type={
-              showConfirmPassword
-                ? "text"
-                : "password"
-            }
+            type={showConfirmPassword ? "text" : "password"}
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
@@ -148,23 +176,23 @@ export default function UserForm({
                 ? "Leave blank to keep current password"
                 : "Confirm password"
             }
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+            disabled={loading}
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 pr-12 text-white outline-none transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
             required={!isEdit}
           />
 
           <button
             type="button"
             onClick={() =>
-              setShowConfirmPassword(
-                !showConfirmPassword
-              )
+              setShowConfirmPassword(!showConfirmPassword)
             }
+            disabled={loading}
             className="absolute right-4 top-1/2 -translate-y-1/2"
           >
             {showConfirmPassword ? (
-              <EyeOff size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-[#C9AC8C]"/>
+              <EyeOff className="text-gray-400 hover:text-[#C9AC8C]" size={20} />
             ) : (
-              <Eye size={20} className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-[#C9AC8C]"/>
+              <Eye className="text-gray-400 hover:text-[#C9AC8C]" size={20} />
             )}
           </button>
         </div>
@@ -180,29 +208,37 @@ export default function UserForm({
           name="status"
           value={formData.status}
           onChange={handleChange}
-          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+          disabled={loading}
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
         >
-          <option value="Active" className="bg-[#232121] text-white">Active</option>
-          <option value="Inactive" className="bg-[#232121] text-white">Inactive</option>
+          <option value="ACTIVE">Active</option>
+          <option value="INACTIVE">Inactive</option>
         </select>
-
-
       </div>
 
       {/* Buttons */}
-      <div className="flex justify-end gap-4 p-7">
+      <div className="flex justify-end gap-4 p-7 md:col-span-2">
         <button
           type="button"
-          className="rounded-lg border border-gray-700 px-4  text-white transition hover:border-red-500 hover:text-red-500"
+          onClick={() => router.push("/controlpanel/users")}
+          disabled={loading}
+          className="rounded-lg border border-gray-700 px-4 py-2 text-white transition hover:border-red-500 hover:text-red-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Cancel
         </button>
 
         <button
           type="submit"
-          className="rounded-lg bg-[#C9AC8C] px-4  font-semibold text-black transition hover:opacity-90"
+          disabled={loading}
+          className="rounded-lg bg-[#C9AC8C] px-4 py-2 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isEdit ? "Update Admin" : "Create Admin"}
+          {loading
+            ? isEdit
+              ? "Updating..."
+              : "Creating..."
+            : isEdit
+            ? "Update Admin"
+            : "Create Admin"}
         </button>
       </div>
     </form>
