@@ -6,7 +6,7 @@ export async function createCategoryModel(category:CreateCategoryType, ) {
     try {
         const [result] = await db.query<ResultSetHeader>(
             `INSERT INTO categories (category_name, menu_name, slug, image, description, long_description, status, created_by)
-            VALUES(?, ?, ?, ?, ?, ?, ?)`,
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
             [
                 category.category_name,
                 category.menu_name,

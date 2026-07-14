@@ -8,7 +8,13 @@ export async function createCategoryService(category:CreateCategoryType ){
         if (!category.category_name || !category.menu_name ||
             !category.image || !category.description || !category.long_description ||
             !category.status || !category.created_by) {
-            throw new Error("All Field Required")
+            if (!category.category_name) throw new Error("Category Name Required");
+            if (!category.menu_name) throw new Error("Menu Name Required");
+            if (!category.image) throw new Error("Image Required");
+            if (!category.description) throw new Error("Description Required");
+            if (!category.long_description) throw new Error("Long Description Required");
+            if (!category.status) throw new Error("Status Required");
+            if (!category.created_by) throw new Error("Created By Required");
         }
 
         const existingCategory = await getCategoryBySlug(slug) 
