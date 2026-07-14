@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Plus, Search } from "lucide-react";
+import { ArrowLeft, Eye, Pencil, Plus, Search, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Category {
@@ -33,6 +33,33 @@ const Page = () => {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+    const handleDelete = async (id: number) => {
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this categories?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`/api/categories/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+
+        getAllCategory(); // refresh list
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -147,18 +174,32 @@ const Page = () => {
                     </td>
 
                     <td className="px-6 py-4">
-                      <div className="flex justify-center gap-3">
-                        <Link
-                          href={`/controlpanel/entertainment/categories/edit/${category.id}`}
-                          className="rounded-lg bg-blue-500 p-2 text-white hover:bg-blue-600"
-                        >
-                          Edit
-                        </Link>
+<div className="flex justify-center gap-3">
+  <Link
+    href={`/controlpanel/entertainment/categories/${category.id}`}
+    className="rounded-lg bg-emerald-500 p-2 text-white hover:bg-emerald-600"
+    title="View"
+  >
+    <Eye size={18} />
+  </Link>
 
-                        <button className="rounded-lg bg-red-500 p-2 text-white hover:bg-red-600">
-                          Delete
-                        </button>
-                      </div>
+  <Link
+    href={`/controlpanel/entertainment/categories/${category.id}/edit`}
+    className="rounded-lg bg-blue-500 p-2 text-white hover:bg-blue-600"
+    title="Edit"
+  >
+    <Pencil size={18} />
+  </Link>
+
+  <button
+    type="button"
+    onClick={() => handleDelete(category.id)}
+    className="rounded-lg bg-red-500 p-2 text-white hover:bg-red-600"
+    title="Delete"
+  >
+    <Trash2 size={18} />
+  </button>
+</div>
                     </td>
                   </tr>
                 ))
