@@ -32,10 +32,12 @@ export async function createCategoryService(category:CreateCategoryType ){
     }
 }
 
-export async function updateCategoryService(id: number, slug:string, category:UpdateCategoryType){
+export async function updateCategoryService(id: number, category:UpdateCategoryType){
     try {
+        const slug = category.category_name.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
+        
         if (!category.category_name || !category.menu_name ||
-            !category.image || !category.description || !category.long_description ||
+            !category.description || !category.long_description ||
             !category.status ) {
             throw new Error("All Field Required")
         }
@@ -48,7 +50,7 @@ export async function updateCategoryService(id: number, slug:string, category:Up
 
         const duplicateCategory = await getCategoryBySlug(slug)
 
-        if (duplicateCategory.length >= 0 && duplicateCategory[0].id !== id) {
+        if (duplicateCategory.length > 0 && duplicateCategory[0].id !== id) {
             throw new Error("Category already exists.");
         }
 

@@ -50,27 +50,69 @@ export async function getSingleCategoryModel(id:number){
 }
 
 
-export async function updateCategoryModel(id: number, category: UpdateCategoryType, slug: string){
-    try {
-        const [row] = await db.query<ResultSetHeader>(
-            `UPDATE categories SET category_name = ?, menu_name = ?, slug = ?, image = ?, description = ?, long_description = ?, 
-            status = ? WHERE id = ?`,
-            [
-                category.category_name,
-                category.menu_name,
-                slug,
-                category.image,
-                category.description,
-                category.long_description,
-                category.status,
-                id,
-            ]
-    );
-        return row
-    } catch (error) {
-        console.error("Update Category Model Error:", error);
-        throw error;
+export async function updateCategoryModel(
+  id: number,
+  category: UpdateCategoryType,
+  slug: string
+) {
+  try {
+    let row: ResultSetHeader;
+
+    if (category.image) {
+      // Update including image
+      const [result] = await db.query<ResultSetHeader>(
+        `UPDATE categories
+         SET category_name = ?,
+             menu_name = ?,
+             slug = ?,
+             image = ?,
+             description = ?,
+             long_description = ?,
+             status = ?
+         WHERE id = ?`,
+        [
+          category.category_name,
+          category.menu_name,
+          slug,
+          category.image,
+          category.description,
+          category.long_description,
+          category.status,
+          id,
+        ]
+      );
+
+      row = result;
+    } else {
+      // Keep existing image
+      const [result] = await db.query<ResultSetHeader>(
+        `UPDATE categories
+         SET category_name = ?,
+             menu_name = ?,
+             slug = ?,
+             description = ?,
+             long_description = ?,
+             status = ?
+         WHERE id = ?`,
+        [
+          category.category_name,
+          category.menu_name,
+          slug,
+          category.description,
+          category.long_description,
+          category.status,
+          id,
+        ]
+      );
+
+      row = result;
     }
+
+    return row;
+  } catch (error) {
+    console.error("Update Category Model Error:", error);
+    throw error;
+  }
 }
 
 export async function deleteCategoryModel(id:number){

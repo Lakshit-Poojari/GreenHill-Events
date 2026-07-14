@@ -12,9 +12,9 @@ export async function createCategoryController(category:CreateCategoryType){
     }
 }
 
-export async function updateCategoryController(id: number,  slug: string, category:UpdateCategoryType,) {
+export async function updateCategoryController(id: number,   category:UpdateCategoryType,) {
     try {
-        const result = await updateCategoryService(id,  slug, category,) 
+        const result = await updateCategoryService(id, category,) 
 
         return result
     } catch (error) {

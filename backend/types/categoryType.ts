@@ -33,7 +33,7 @@ export interface CreateCategoryType {
 export interface UpdateCategoryType {
   category_name: string;
   menu_name: string;
-  image: File;
+  image?: File | null;
   description: string;
   long_description: string;
   status: CategoryStatus;
