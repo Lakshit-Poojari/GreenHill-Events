@@ -1,4 +1,4 @@
-import { createUserService, deleteUserService, getAllUserService, getUserByIdService, loginUserService, updateUserService, updateUserStatusService } from "../services/userService";
+import { createUserService, deleteUserService, getAllUserService, getUserByIdService, loginUserService, updateUserRoleService, updateUserService, updateUserStatusService } from "../services/userService";
 import { createUserType, loginUserType, UpdateUserType, UserStatus } from "../types/userTypes";
 
 export async function createUserController(user: createUserType) {
@@ -69,4 +69,8 @@ export async function updateUserStatusController(id: number, status: UserStatus)
         console.error("Create Admin Controller Error:", error);
         throw error;        
     }
+}
+
+export async function updateUserRoleController(id: number, role: "SUPER_ADMIN" | "ADMIN") {
+  return await updateUserRoleService(id, role);
 }

@@ -1,5 +1,5 @@
 import { createUserType, loginUserType, UpdateUserType, UserRole, UserStatus } from "../types/userTypes";
-import { createUserModel, deleteUserModel, getAllUserModel, getUserByIdModel, getUserModel, updateLastLoginModel, updateUserModel, updateUserStatusModel } from "../models/userModel";
+import { createUserModel, deleteUserModel, getAllUserModel, getUserByIdModel, getUserModel, updateLastLoginModel, updateUserModel, updateUserRoleModel, updateUserStatusModel } from "../models/userModel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken"
 
@@ -172,4 +172,15 @@ export async function updateUserStatusService(id: number, status: UserStatus) {
         console.error("Update User Status Service Error:", error);
         throw error;
     }
+}
+
+export async function updateUserRoleService(
+  id: number,
+  role: "SUPER_ADMIN" | "ADMIN"
+) {
+  if (!role) {
+    throw new Error("Role is required");
+  }
+
+  return await updateUserRoleModel(id, role);
 }

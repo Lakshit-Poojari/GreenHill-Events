@@ -14,7 +14,7 @@ interface UserTableProps {
   users: User[];
   onEdit: (id: number) => void;
   onDelete: (id: number) => void;
-  onRoleChange: (id: number) => void;
+  onRoleChange: (id: number, role: "SUPER_ADMIN" | "ADMIN") => void;
   onView: (id: number) => void;
 }
 
@@ -125,7 +125,7 @@ const UserTable = ({
                           ? "Demote to Admin"
                           : "Promote to Super Admin"
                       }
-                      onClick={() => onRoleChange(user.id)}
+                      onClick={() => onRoleChange(user.id, user.role)}
                       className={`rounded-lg p-2 transition ${
                         user.role === "SUPER_ADMIN"
                         ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"

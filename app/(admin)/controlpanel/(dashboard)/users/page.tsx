@@ -86,11 +86,25 @@ const handleView = (id: number) => {
   router.push(`/controlpanel/users/${id}`);
 };
 
-const handleRoleChange = async (id: number) => {
+const handleRoleChange = async (
+  id: number,
+  currentRole: "SUPER_ADMIN" | "ADMIN"
+) => {
   try {
-    const response = await fetch(`/api/users/${id}`, {
+    const newRole =
+      currentRole === "SUPER_ADMIN"
+        ? "ADMIN"
+        : "SUPER_ADMIN";
+
+    const response = await fetch(`/api/users/${id}/role`, {
       method: "PATCH",
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        role: newRole,
+      }),
     });
 
     const result = await response.json();
@@ -99,14 +113,12 @@ const handleRoleChange = async (id: number) => {
       throw new Error(result.message);
     }
 
-    alert(result.message || "Role updated successfully.");
+    alert(result.message);
 
     fetchUsers();
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message);
-    } else {
-      alert("Something went wrong.");
     }
   }
 };

@@ -121,3 +121,16 @@ export async function updateLastLoginModel(id: number) {
         [id]
     );
 }
+
+export async function updateUserRoleModel(
+  id: number,
+  role: "SUPER_ADMIN" | "ADMIN"
+) {
+  const query = `
+    UPDATE users
+    SET role = ?
+    WHERE id = ?
+  `;
+
+  return await db.query(query, [role, id]);
+}
