@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit, Shield, Trash2 } from "lucide-react";
+import { Edit, Eye, Shield, Trash2 } from "lucide-react";
 
 export interface User {
   id: number;
@@ -15,6 +15,7 @@ interface UserTableProps {
   onEdit: (id: number) => void;
   onDelete: (id: number) => void;
   onRoleChange: (id: number) => void;
+  onView: (id: number) => void;
 }
 
 const UserTable = ({
@@ -22,6 +23,7 @@ const UserTable = ({
   onEdit,
   onDelete,
   onRoleChange,
+  onView
 }: UserTableProps) => {
   if (users.length === 0) {
     return (
@@ -71,10 +73,10 @@ const UserTable = ({
                 <td className="px-6 py-4">
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
-    user.role === "SUPER_ADMIN"
-  ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
-: "border border-[#00BFFF] bg-[#00BFFF]/10 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] hover:bg-[#00BFFF]/20"
-  }`}
+                      user.role === "SUPER_ADMIN"
+                      ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
+                      : "border border-[#00BFFF] bg-[#00BFFF]/10 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] hover:bg-[#00BFFF]/20"
+                    }`}
                   >
                     {user.role === "SUPER_ADMIN"
                       ? "Super Admin"
@@ -86,10 +88,10 @@ const UserTable = ({
                 <td className="px-6 py-4">
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-medium ${
-    user.status === "ACTIVE"
-    ? "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
-: "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131] hover:bg-[#FF3131]/20"
-  }`}
+                      user.status === "ACTIVE"
+                      ? "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
+                      : "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131] hover:bg-[#FF3131]/20"
+                    }`}
                   >
                     {user.status === "ACTIVE" ? "Active" : "Inactive"}
                   </span>
@@ -98,6 +100,15 @@ const UserTable = ({
                 {/* Actions */}
                 <td className="px-6 py-4">
                   <div className="flex justify-center gap-3">
+                        {/* View */}
+                    <button
+                      title="View User"
+                      onClick={() => onView(user.id)}
+                      className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:bg-[#A855F7]/20 hover:shadow-[0_0_12px_#A855F7]"
+                    >
+                      <Eye size={18} />
+                    </button>
+
                     {/* Edit */}
                     <button
                       title="Edit User"
@@ -116,10 +127,10 @@ const UserTable = ({
                       }
                       onClick={() => onRoleChange(user.id)}
                       className={`rounded-lg p-2 transition ${
-  user.role === "SUPER_ADMIN"
-   ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
-: "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
-}`}
+                        user.role === "SUPER_ADMIN"
+                        ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
+                        : "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
+                      }`}
                     >
                       <Shield size={18} />
                     </button>

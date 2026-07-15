@@ -9,8 +9,6 @@ import UserTable, { User } from "@/components/Admin/User/UserTable";
 import DeleteDialog from "@/components/Admin/User/DeleteDialog";
 
 
-
-
 export default function UserManagementPage() {
   const router = useRouter();
 
@@ -84,12 +82,34 @@ const handleDeleteConfirm = async () => {
   }
 };
 
-  const handleRoleChange = (id: number) => {
-    console.log("Change Role:", id);
+const handleView = (id: number) => {
+  router.push(`/controlpanel/users/${id}`);
+};
 
-    // Later:
-    // Open Role Change Dialog
-  };
+const handleRoleChange = async (id: number) => {
+  try {
+    const response = await fetch(`/api/users/${id}`, {
+      method: "PATCH",
+      credentials: "include",
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message);
+    }
+
+    alert(result.message || "Role updated successfully.");
+
+    fetchUsers();
+  } catch (error) {
+    if (error instanceof Error) {
+      alert(error.message);
+    } else {
+      alert("Something went wrong.");
+    }
+  }
+};
 
   const filteredUsers = users.filter((user) => {
   const matchesSearch =
@@ -115,11 +135,11 @@ if (loading) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-3xl font-bold white">
             User Management
           </h1>
 
-          <p className="mt-1 text-gray-500">
+          <p className="mt-1 text-[#C9AC8C]">
             Manage administrator accounts.
           </p>
         </div>
@@ -144,6 +164,7 @@ if (loading) {
   onEdit={(id) => router.push(`/controlpanel/users/${id}/edit`)}
   onDelete={handleDeleteClick}
   onRoleChange={handleRoleChange}
+  onView={(id) => router.push(`/controlpanel/users/${id}`)}
 />
 
       <DeleteDialog
