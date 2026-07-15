@@ -2,26 +2,126 @@
 
 import Link from "next/link";
 import { ArrowLeft, Save } from "lucide-react";
-import { useState } from "react";
+  import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 
 const Page = () => {
-  // Dummy data (Replace with API response)
-  const [formData, setFormData] = useState({
-    category_id: "1",
-    name: "Singing Waiters",
-    slug: "singing-waiters",
-    display_order: 1,
-    status: "ACTIVE",
-  });
+    const { id } = useParams<{ id: string }>();
+const router = useRouter();
+const [loading, setLoading] = useState(true);
+const [saving, setSaving] = useState(false);
+const [categories, setCategories] = useState<{ id: number; category_name: string }[]>([]);
+const [formData, setFormData] = useState({
+  category_id: 0,
+  name: "",
+  display_order: 1,
+  status: "ACTIVE",
+});
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+const getOfferingCategory = async () => {
+  try {
+    const response = await fetch(`/api/offeringCategories/${id}`);
+    const result = await response.json();
+
+    if (result.success) {
+      const category = result.offeringCategory[0];
+      console.log("API category:", category);
+
+      setFormData({
+  category_id: category.category_id,
+  name: category.name,
+  display_order: category.display_order,
+  status: category.status,
+});
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  getOfferingCategory();
+  fetchEntertainmentCategories();
+}, [id]);
+
+const handleChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+) => {
+  const { name, value } = e.target;
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]:
+      name === "display_order" || name === "category_id"
+        ? Number(value)
+        : value,
+  }));
+};
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  try {
+    setSaving(true);
+
+    console.log("Submitting:", formData);
+
+    const response = await fetch(`/api/offeringCategories/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...formData,
+        updated_by: 1, // Replace with logged-in user ID
+      }),
     });
-  };
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message);
+    }
+
+    alert(result.message);
+
+    router.push("/controlpanel/entertainment/offering/offeringcategory");
+  } catch (error) {
+    alert(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong."
+    );
+  } finally {
+    setSaving(false);
+  }
+};
+
+const fetchEntertainmentCategories = async () => {
+  try {
+    const response = await fetch("/api/categories", {
+      credentials: "include",
+    });
+
+    const result = await response.json();
+
+if (result.success) {
+  setCategories(result.category);
+}
+  } catch (error) {
+    console.error("Failed to fetch entertainment categories", error);
+  }
+};
+
+if (loading) {
+  return (
+    <div className="flex h-64 items-center justify-center">
+      <p className="text-white">Loading...</p>
+    </div>
+  );
+}
 
   return (
     <div className="space-y-6">
@@ -47,7 +147,7 @@ const Page = () => {
 
       {/* Form */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg">
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Entertainment Category */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -60,10 +160,13 @@ const Page = () => {
               onChange={handleChange}
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
             >
-              <option value="1">Singers</option>
-              <option value="2">Musicians</option>
-              <option value="3">Dancers</option>
-              <option value="4">Magicians</option>
+               <option value="">Select Entertainment Category</option>
+
+  {categories.map((category) => (
+    <option key={category.id} value={category.id}>
+      {category.category_name}
+    </option>
+  ))}
             </select>
           </div>
 
@@ -124,13 +227,14 @@ const Page = () => {
               Cancel
             </Link>
 
-            <button
-              type="submit"
-              className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition hover:bg-[#b89470]"
-            >
-              <Save size={18} />
-              Update Category
-            </button>
+           <button
+  type="submit"
+  disabled={saving}
+  className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition hover:bg-[#b89470] disabled:cursor-not-allowed disabled:opacity-60"
+>
+  <Save size={18} />
+  {saving ? "Updating..." : "Update Category"}
+</button>
           </div>
         </form>
       </div>

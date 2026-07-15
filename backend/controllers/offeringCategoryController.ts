@@ -11,9 +11,9 @@ export async function createofferingCategoryController(category: createOfferingC
     }
 }
 
-export async function updateofferingCategoryController(id:number, category:updateOfferingCategory, slug:string){
+export async function updateofferingCategoryController(id:number, category:updateOfferingCategory){
     try {
-        const result = await updateOfferingCategoryService(id, category, slug)
+        const result = await updateOfferingCategoryService(id, category)
         return result
     } catch (error) {
         console.error(error);

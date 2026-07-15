@@ -33,7 +33,6 @@ const Page = () => {
         try {
             const response = await fetch("/api/offeringCategories");
       const result = await response.json();
-      console.log(result);
       
       if (result.success) {
         setOfferingCategories(result.offeringCategory);
@@ -44,6 +43,40 @@ const Page = () => {
       setLoading(false);
     }
       }
+
+const handleDelete = async (id: number) => {
+  const confirmDelete = confirm(
+    "Are you sure you want to delete this category?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    const response = await fetch(`/api/offeringCategories/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message);
+    }
+
+    alert(result.message);
+
+    // Remove deleted category from state
+    setOfferingCategories((prev) =>
+      prev.filter((category) => category.id !== id)
+    );
+  } catch (error) {
+    alert(
+      error instanceof Error ? error.message : "Something went wrong."
+    );
+  }
+};
+
+    
 
  if (loading) {
   return (
@@ -173,7 +206,7 @@ const Page = () => {
                                     <Edit size={18} />
                                 </Link>
 
-                                <button className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]">
+                                <button type="button" onClick={() => handleDelete(category.id)} className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]">
                                     <Trash2 size={18} />
                                 </button>
                                 </div>

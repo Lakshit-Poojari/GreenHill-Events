@@ -65,6 +65,8 @@ export async function UpdateOfferingCategoryModel(id:number, category:updateOffe
         throw error;
     }
 }
+
+
 export async function deleteOfferingCategoryModel(id:number){
     try {
         const [result] = await db.query<ResultSetHeader>("DELETE FROM offering_categories WHERE id=?",[id])

@@ -28,12 +28,7 @@ const fetchEntertainmentCategories = async () => {
     });
 
     const result = await response.json();
-    console.log(JSON.stringify(result, null, 2));
-    console.log(result.category.category_name);
-    
-    
 
-    
 
 if (result.success) {
   setCategories(result.category);

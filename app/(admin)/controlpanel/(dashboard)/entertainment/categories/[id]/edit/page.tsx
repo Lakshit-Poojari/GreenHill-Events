@@ -34,7 +34,6 @@ const Page = () => {
       if (!response.ok) {
         throw new Error(result.message);
       }
-      console.log(result);
       const category = result.category;
 
       setFormData({

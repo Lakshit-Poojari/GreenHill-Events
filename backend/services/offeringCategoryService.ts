@@ -27,17 +27,43 @@ export async function createOfferingCategoryService(category: createOfferingCate
         throw error;
     }
 }
-export async function updateOfferingCategoryService(id:number, category:updateOfferingCategory, slug:string){
+
+
+export async function updateOfferingCategoryService(id:number, category:updateOfferingCategory){
     try {
-        if(!id || !category.category_id || !category.name?.trim() ||
-            !category.slug?.trim() || category.display_order === undefined || !category.status){
-            throw new Error("All Field Required")
-        }
+        
+        if (!id) {
+    throw new Error("Offering category ID is required.");
+}
+
+if (!category.category_id) {
+    throw new Error("Entertainment category is required.");
+}
+
+if (!category.name?.trim()) {
+    throw new Error("Offering category name is required.");
+}
+
+if (category.display_order === undefined || category.display_order === null) {
+    throw new Error("Display order is required.");
+}
+
+if (!category.status) {
+    throw new Error("Status is required.");
+}
         const existingCategory = await getSIngleOfferingCategoryModel(id)
 
         if (existingCategory.length === 0 ) {
             throw new Error("Category not found.");
         }
+
+        const slug = category.name
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "");
+
+category.slug = slug;
 
         const duplicateCategory = await getOfferingCategoryBySlugModel(category.slug)
 

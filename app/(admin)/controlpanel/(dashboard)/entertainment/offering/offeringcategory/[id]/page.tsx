@@ -18,7 +18,6 @@ interface OfferingCategory {
 
 const Page = () => {
     const { id } = useParams()
-    console.log(id,"params");
     
 const [offeringcategory, setOfferingCategory] = useState<OfferingCategory | null>(null);
 const [loading, setLoading] = useState(true);
@@ -27,7 +26,6 @@ const [loading, setLoading] = useState(true);
   try {
     const response = await fetch(`/api/offeringCategories/${id}`);
     const result = await response.json();
-    console.log(result);
 
     if (result.success) {
       setOfferingCategory(result.offeringCategory[0]);
@@ -138,11 +136,7 @@ if (!offeringcategory) {
           <div className="md:col-span-2">
             <p className="text-sm text-gray-400">Last Updated</p>
             <p className="mt-1 text-lg font-medium text-white">
-              {new Date(offeringcategory.updated_at).toLocaleDateString("en-GB", {
-  day: "2-digit",
-  month: "short",
-  year: "numeric",
-})}
+              {new Date(offeringcategory.updated_at).toLocaleString()}
             </p>
           </div>
         </div>

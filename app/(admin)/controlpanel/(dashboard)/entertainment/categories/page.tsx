@@ -23,9 +23,6 @@ const Page = () => {
     try {
       const response = await fetch("/api/categories");
       const result = await response.json();
-      // console.log('====================================');
-      // console.log(result);
-      // console.log('====================================');
       if (result.success) {
         setCategories(result.category);
       }

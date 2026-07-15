@@ -6,6 +6,8 @@ export async function GET(request: NextRequest, {params}:{params:Promise<{id:str
         const {id} = await params;
         const offeringCategory = await getSingleofferingCategoryController(Number(id))
 
+            console.log(offeringCategory[0], "result");
+
         return NextResponse.json(
             {
                 success:true,
@@ -31,8 +33,9 @@ export async function PUT(request:NextRequest, {params}:{params:Promise<{id:stri
     try {
         const {id, slug} = await params;
         const body = await request.json()
+        console.log(body);
 
-        await updateofferingCategoryController(Number(id), body, String(slug) )
+        await updateofferingCategoryController(Number(id), body )
         return NextResponse.json(
             {
                 success:true,
@@ -61,7 +64,7 @@ export async function PATCH(request:NextRequest, { params }: { params: Promise<{
         const {id} = await params
         const body = await request.json()
 
-        await updateofferingCategoryStatusController(Number(id), body)
+        await updateofferingCategoryController(Number(id), body)
         return NextResponse.json(
             {
                 success: true,
@@ -87,7 +90,7 @@ export async function PATCH(request:NextRequest, { params }: { params: Promise<{
     }
 }
 
-export async function DELETE({params}:{params:Promise<{id:string}>}){
+export async function DELETE(request: NextRequest, {params}:{params:Promise<{id:string}>}){
     try {
         const {id} = await params;
         await deleteofferingCategoryController(Number(id))
