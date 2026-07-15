@@ -43,26 +43,27 @@ const page = () => {
                 </Link>
 
                 {/* Offerings */}
-                <Link href="/controlpanel/entertainment/offering"
-                    className="group rounded-xl border  bg-[#181616] border-gray-700 p-6 shadow-sm transition 
-                    hover:-translate-y-1 hover:border-[#C9AC8C]  hover:shadow-[0_12px_35px_rgba(201,172,140,0.8)]">
+                <Link
+                href="/controlpanel/entertainment/offering"
+                className="group rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-sm transition
+                hover:-translate-y-1 hover:border-[#C9AC8C]
+                hover:shadow-[0_12px_35px_rgba(201,172,140,0.8)]"
+                >
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-[#C9AC8C]/15 text-[#C9AC8C]">
+                    <FolderKanban size={28} />
+                </div>
 
-                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-[#C9AC8C]/15 text-[#C9AC8C]">
-                        <FolderKanban size={28} />
-                    </div>
+                <h2 className="text-xl font-semibold text-white group-hover:text-[#C9AC8C]">
+                    Offerings
+                </h2>
 
-                    <h2 className="text-xl font-semibold text-white group-hover:text-[#C9AC8C] ">
-                        Offerings
-                    </h2>
+                <p className="mt-2 text-sm text-gray-400">
+                    Manage offering categories and performers displayed on the website.
+                </p>
 
-                    <p className="mt-2 text-sm text-gray-400">
-                        Create, edit, and manage entertainment offerings available on the
-                        website.
-                    </p>
-
-                    <div className="mt-6 text-sm font-medium text-[#C9AC8C]">
-                        Manage Offerings →
-                    </div>
+                <div className="mt-6 text-sm font-medium text-[#C9AC8C]">
+                    Manage Offerings →
+                </div>
                 </Link>
 
             </div>
