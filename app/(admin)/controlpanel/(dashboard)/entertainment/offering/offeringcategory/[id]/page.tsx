@@ -2,24 +2,58 @@
 
 import Link from "next/link";
 import { ArrowLeft, Edit } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
-const category = {
-  id: 1,
-  name: "Singing Waiters",
-  entertainmentCategory: "Singers",
-  slug: "singing-waiters",
-  displayOrder: 1,
-  status: "ACTIVE",
-  updatedBy: "Super Admin",
-  updatedAt: "15 Jul 2026, 10:30 AM",
-};
+interface OfferingCategory {
+  id: number;
+  category_id: number;
+  name: string;
+  slug: string;
+  display_order: number;
+  status: "ACTIVE" | "INACTIVE";
+  updated_by: number;
+  updated_at: string;
+}
 
 const Page = () => {
+    const { id } = useParams()
+    console.log(id,"params");
+    
+const [offeringcategory, setOfferingCategory] = useState<OfferingCategory | null>(null);
+const [loading, setLoading] = useState(true);
+    
+  const getOfferingCategory = async () => {
+  try {
+    const response = await fetch(`/api/offeringCategories/${id}`);
+    const result = await response.json();
+    console.log(result);
+
+    if (result.success) {
+      setOfferingCategory(result.offeringCategory[0]);
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+useEffect(() => {
+  getOfferingCategory();
+}, [id]);
+if (loading) {
+  return <div className="text-white">Loading...</div>;
+}
+
+if (!offeringcategory) {
+  return <div className="text-white">Category not found.</div>;
+}
   return (
     <div className="space-y-6">
       {/* Back */}
       <Link
-        href="/controlpanel/entertainment/offering/categories"
+        href="/controlpanel/entertainment/offering/offeringcategory"
         className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
@@ -39,7 +73,7 @@ const Page = () => {
         </div>
 
         <Link
-          href={`/controlpanel/entertainment/offering/offeringcategory/${category.id}/edit`}
+          href={`/controlpanel/entertainment/offering/offeringcategory/${offeringcategory.id}/edit`}
           className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
         >
           <Edit size={18} />
@@ -53,7 +87,7 @@ const Page = () => {
           <div>
             <p className="text-sm text-gray-400">Name</p>
             <p className="mt-1 text-lg font-medium text-white">
-              {category.name}
+              {offeringcategory.name}
             </p>
           </div>
 
@@ -62,21 +96,21 @@ const Page = () => {
               Entertainment Category
             </p>
             <p className="mt-1 text-lg font-medium text-white">
-              {category.entertainmentCategory}
+              {offeringcategory.category_id}
             </p>
           </div>
 
           <div>
             <p className="text-sm text-gray-400">Slug</p>
             <p className="mt-1 text-lg font-medium text-white">
-              {category.slug}
+              {offeringcategory.slug}
             </p>
           </div>
 
           <div>
             <p className="text-sm text-gray-400">Display Order</p>
             <p className="mt-1 text-lg font-medium text-white">
-              {category.displayOrder}
+              {offeringcategory.display_order}
             </p>
           </div>
 
@@ -85,26 +119,30 @@ const Page = () => {
 
             <span
               className={`mt-2 inline-flex rounded-full px-3 py-1 text-sm font-semibold ${
-                category.status === "ACTIVE"
-                  ? "bg-green-500/20 text-green-400"
-                  : "bg-red-500/20 text-red-400"
+                offeringcategory.status === "ACTIVE"
+                        ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
+      : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
               }`}
             >
-              {category.status}
+              {offeringcategory.status}
             </span>
           </div>
 
-          <div>
+          {/* <div>
             <p className="text-sm text-gray-400">Updated By</p>
             <p className="mt-1 text-lg font-medium text-white">
-              {category.updatedBy}
+              {offeringCategories.}
             </p>
-          </div>
+          </div> */}
 
           <div className="md:col-span-2">
             <p className="text-sm text-gray-400">Last Updated</p>
             <p className="mt-1 text-lg font-medium text-white">
-              {category.updatedAt}
+              {new Date(offeringcategory.updated_at).toLocaleDateString("en-GB", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+})}
             </p>
           </div>
         </div>

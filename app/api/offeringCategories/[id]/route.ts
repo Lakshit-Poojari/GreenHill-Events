@@ -1,7 +1,7 @@
 import { deleteofferingCategoryController, getSingleofferingCategoryController, updateofferingCategoryController, updateofferingCategoryStatusController } from "@/backend/controllers/offeringCategoryController";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET({params}:{params:Promise<{id:string}>}){
+export async function GET(request: NextRequest, {params}:{params:Promise<{id:string}>}){
     try {
         const {id} = await params;
         const offeringCategory = await getSingleofferingCategoryController(Number(id))
