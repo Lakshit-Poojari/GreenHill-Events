@@ -7,7 +7,7 @@ export async function createOfferingCategoryService(category: createOfferingCate
 
         const slug = category.name.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
 
-        if (!category.category_id || !category.name || !category.slug || 
+        if (!category.category_id || !category.name || 
             category.display_order === undefined || !category.status
         ) {
             throw new Error("All required fields are mandatory.");
@@ -18,7 +18,7 @@ export async function createOfferingCategoryService(category: createOfferingCate
             if (existingCategory) {
                 throw new Error("Category already exists.");
             } 
-
+        category.slug = slug;
         const result = await createOfferingCategoryModel(category);
 
         return result;
