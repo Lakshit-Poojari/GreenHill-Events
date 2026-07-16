@@ -64,6 +64,7 @@ export async function getAllOfferingService(){
 export async function getSingleOfferingService(id:number){
     try {
         const result = await getSingleOfferingModel(id)
+        return result
     } catch (error) {
         console.error("Error in Get Single Offering Service", error);
         throw error;

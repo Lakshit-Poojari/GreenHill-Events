@@ -2,20 +2,69 @@
 
 import Link from "next/link";
 import { ArrowLeft, Edit } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const performer = {
-  id: 1,
-  performer_name: "West End Waiters",
-  offering_category: "Harmony Groups",
-  image: "/images/no-image.png",
-  short_description:
-    "A talented group of performers providing unforgettable entertainment.",
-  long_description:
-    "West End Waiters are professional singing waiters who surprise guests with outstanding live performances. They perform at weddings, corporate events, private parties and other special occasions, creating memorable experiences for everyone.",
-  status: "ACTIVE",
-};
+export interface Offering {
+  id: number;
+  offering_category_id: number;
+  performer_name: string;
+  slug: string;
+  image_path: string;
+  small_description: string;
+  large_description: string;
+  status: "ACTIVE" | "INACTIVE";
+  created_at: string;
+  updated_at: string | null;
+  created_by: number;
+  updated_by: number | null;
+}
 
 const Page = () => {
+  const { id } = useParams();
+  
+
+  const [offering, setoffring] = useState<Offering | null>(null);
+  const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      fetchOffering();
+    }, []);
+  
+    const fetchOffering = async () => {
+      try {
+        const response = await fetch(`/api/offerings/${id}`);
+        const result = await response.json();
+        console.log(result);
+        
+  
+        if (!response.ok) {
+          throw new Error(result.message);
+        }
+  
+        setoffring(result.offering[0]);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    if (loading) {
+      return (
+        <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 text-center text-white">
+          Loading...
+        </div>
+      );
+    }
+  
+    if (!offering) {
+      return (
+        <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 text-center text-red-400">
+          Offering not found.
+        </div>
+      );
+    }
   return (
     <div className="space-y-6">
       {/* Back */}
@@ -40,14 +89,14 @@ const Page = () => {
         </div>
 
         <Link
-            href={`/controlpanel/entertainment/offering/performers/${performer.id}/videos`}
+            href={`/controlpanel/entertainment/offering/performers/${offering.id}/videos`}
             className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
             >
             Manage Videos
         </Link>
 
         <Link
-          href={`/controlpanel/entertainment/offering/performers/${performer.id}/edit`}
+          href={`/controlpanel/entertainment/offering/performers/${offering.id}/edit`}
           className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
         >
           <Edit size={18} />
@@ -65,8 +114,8 @@ const Page = () => {
             </h3>
 
             <img
-              src={performer.image}
-              alt={performer.performer_name}
+              src={offering.image_path}
+              alt={offering.performer_name}
               className="h-72 w-full rounded-lg border border-gray-700 object-cover"
             />
           </div>
@@ -79,7 +128,7 @@ const Page = () => {
               </p>
 
               <p className="mt-1 text-lg font-medium text-white">
-                {performer.performer_name}
+                {offering.performer_name}
               </p>
             </div>
 
@@ -89,7 +138,7 @@ const Page = () => {
               </p>
 
               <p className="mt-1 text-white">
-                {performer.offering_category}
+                {offering.offering_category_id}
               </p>
             </div>
 
@@ -100,12 +149,12 @@ const Page = () => {
 
               <span
                 className={`mt-2 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
-                  performer.status === "ACTIVE"
+                  offering.status === "ACTIVE"
                     ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
                     : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
                 }`}
               >
-                {performer.status}
+                {offering.status}
               </span>
             </div>
           </div>
@@ -118,7 +167,7 @@ const Page = () => {
           </h3>
 
           <div className="rounded-lg border border-gray-700 bg-[#222] p-4 text-gray-300">
-            {performer.short_description}
+            {offering.small_description}
           </div>
         </div>
 
@@ -129,7 +178,7 @@ const Page = () => {
           </h3>
 
           <div className="rounded-lg border border-gray-700 bg-[#222] p-4 leading-7 text-gray-300">
-            {performer.long_description}
+            {offering.large_description}
           </div>
         </div>
       </div>

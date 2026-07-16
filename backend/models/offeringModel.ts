@@ -66,7 +66,7 @@ export async function getAllOfferingModel(){
 
 export async function getSingleOfferingModel(id:number){
     try {
-        const result = await db.query<RowDataPacket[]>(`SELECT * FROM offerings WHERE id=?`, [id])
+        const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM offerings WHERE id=?`, [id])
         return result
     } catch (error) {
         console.error("Error in Create Offering Model", error);
