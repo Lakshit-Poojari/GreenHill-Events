@@ -56,7 +56,7 @@ export async function updateOfferingModel(id:number, offering:UpdateOffering){
 type OfferingRow = Offering & RowDataPacket;
 export async function getAllOfferingModel(){
     try {
-        const result = await db.query<OfferingRow[]>(`SELECT * FROM offerings`)
+        const [result] = await db.query<OfferingRow[]>(`SELECT * FROM offerings`)
         return result
     } catch (error) {
         console.error("Error in Create Offering Model", error);

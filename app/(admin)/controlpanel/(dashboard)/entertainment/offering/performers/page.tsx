@@ -9,33 +9,50 @@ import {
   Edit,
   Trash2
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface Performer {
   id: number;
   performer_name: string;
-  offering_category: string;
+  offering_category_id: string;
   image: string;
   status: "ACTIVE" | "INACTIVE";
 }
 
-const dummyPerformers: Performer[] = [
-  {
-    id: 1,
-    performer_name: "West End Waiters",
-    offering_category: "Harmony Groups",
-    image: "/images/no-image.png",
-    status: "ACTIVE",
-  },
-  {
-    id: 2,
-    performer_name: "Leading Ladies",
-    offering_category: "Choirs",
-    image: "/images/no-image.png",
-    status: "INACTIVE",
-  },
-];
+
 
 const Page = () => {
+
+    const [offering, setoffering] = useState<Performer[]>([]);
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchOffering();
+  }, []);
+
+    const fetchOffering = async() =>{
+        try{
+      const response = await fetch("/api/offerings");
+      const result = await response.json();
+      console.log(result.offering);
+      if (result.success) {
+        setoffering(result.offering);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+  return (
+    <div className="flex h-64 items-center justify-center text-white">
+      Loading performers...
+    </div>
+  );
+}
+    
   return (
     <div className="space-y-6">
       {/* Back */}
@@ -106,14 +123,14 @@ const Page = () => {
 </thead>
 
             <tbody>
-  {dummyPerformers.length === 0 ? (
+  {offering.length === 0 ? (
     <tr>
       <td colSpan={4} className="py-8 text-center text-gray-400">
         No performers found.
       </td>
     </tr>
   ) : (
-    dummyPerformers.map((performer) => (
+    offering.map((performer) => (
       <tr
         key={performer.id}
         className="border-t border-gray-700 hover:bg-[#222020]"
@@ -123,7 +140,7 @@ const Page = () => {
         </td>
 
         <td className="px-6 py-4 text-gray-300">
-          {performer.offering_category}
+          {performer.offering_category_id}
         </td>
 
         <td className="px-6 py-4 text-center">
