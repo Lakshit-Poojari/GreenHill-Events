@@ -45,7 +45,7 @@ export default function Sidebar() {
     <aside className="hidden lg:flex w-64 flex-col bg-[#181616] border-r border-gray-800">
       <div className="border-b border-gray-800 p-6">
         <h1 className="text-2xl font-bold text-[#C9AC8C]">
-          Green Hill
+          Green Hill Event
         </h1>
 
         <p className="text-sm text-gray-400">
