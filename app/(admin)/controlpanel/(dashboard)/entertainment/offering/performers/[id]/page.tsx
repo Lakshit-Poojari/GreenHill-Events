@@ -40,6 +40,13 @@ const Page = () => {
         </div>
 
         <Link
+            href={`/controlpanel/entertainment/offering/performers/${performer.id}/videos`}
+            className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
+            >
+            Manage Videos
+        </Link>
+
+        <Link
           href={`/controlpanel/entertainment/offering/performers/${performer.id}/edit`}
           className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
         >
