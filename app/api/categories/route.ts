@@ -47,7 +47,6 @@ export async function POST(request: NextRequest) {
     );
     }
     const user = verifyToken(token);
-    console.log("Decoded Token:", user);
     const formData = await request.formData();
 
     const image = formData.get("image") as File;

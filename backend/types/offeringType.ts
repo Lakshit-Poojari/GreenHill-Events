@@ -17,7 +17,7 @@ export interface Offering {
 export interface CreateOffering {
     offering_category_id: number;
     performer_name: string;
-    slug: string;
+    slug?: string;
     image_path: string;
     small_description: string;
     large_description: string;

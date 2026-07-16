@@ -5,30 +5,86 @@ import { ArrowLeft, Save, Upload } from "lucide-react";
 import { useState } from "react";
 
 const Page = () => {
-  const [formData, setFormData] = useState({
-    offering_category_id: "",
-    performer_name: "",
-    short_description: "",
-    long_description: "",
-    status: "ACTIVE",
-  });
+ const [formData, setFormData] = useState({
+  offering_category_id: "",
+  performer_name: "",
+  small_description: "",
+  large_description: "",
+  status: "ACTIVE",
+});
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+const [image, setImage] = useState<File | null>(null);
+const [loading, setLoading] = useState(false);
+
+const handleChange = (
+  e: React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >
+) => {
+  setFormData((prev) => ({
+    ...prev,
+    [e.target.name]: e.target.value,
+  }));
+};
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    setLoading(true);
+
+    const data = new FormData();
+
+    data.append(
+      "offering_category_id",
+      formData.offering_category_id
+    );
+    data.append("performer_name", formData.performer_name);
+    data.append(
+      "small_description",
+      formData.small_description
+    );
+    data.append(
+      "large_description",
+      formData.large_description
+    );
+    data.append("status", formData.status);
+
+    if (image) {
+      data.append("image", image);
+    }
+
+    const response = await fetch("/api/offerings", {
+      method: "POST",
+      credentials: "include",
+      body: data,
     });
-  };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    const result = await response.json();
 
-    console.log(formData);
-  };
+    if (!response.ok) {
+      alert(result.message || "Failed to create performer");
+      return;
+    }
+
+    alert("Performer created successfully!");
+
+    setFormData({
+      offering_category_id: "",
+      performer_name: "",
+      small_description: "",
+      large_description: "",
+      status: "ACTIVE",
+    });
+
+    setImage(null);
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="space-y-6">
@@ -103,7 +159,17 @@ const Page = () => {
                 type="file"
                 accept="image/*"
                 className="hidden"
-              />
+                onChange={(e) => {
+                    if (e.target.files?.[0]) {
+                    setImage(e.target.files[0]);
+                    }
+                }}
+                />
+                {image && (
+  <p className="mt-2 text-sm text-[#C9AC8C]">
+    Selected: {image.name}
+  </p>
+)}
             </label>
           </div>
 
@@ -114,9 +180,9 @@ const Page = () => {
             </label>
 
             <textarea
-              name="short_description"
+              name="small_description"
               rows={3}
-              value={formData.short_description}
+              value={formData.small_description}
               onChange={handleChange}
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
             />
@@ -129,9 +195,9 @@ const Page = () => {
             </label>
 
             <textarea
-              name="long_description"
+              name="large_description"
               rows={8}
-              value={formData.long_description}
+              value={formData.large_description}
               onChange={handleChange}
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
             />
@@ -164,12 +230,13 @@ const Page = () => {
             </Link>
 
             <button
-              type="submit"
-              className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition hover:bg-[#b89470]"
-            >
-              <Save size={18} />
-              Save Performer
-            </button>
+  type="submit"
+  disabled={loading}
+  className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition hover:bg-[#b89470] disabled:opacity-50"
+>
+  <Save size={18} />
+  {loading ? "Saving..." : "Save Performer"}
+</button>
           </div>
         </form>
       </div>

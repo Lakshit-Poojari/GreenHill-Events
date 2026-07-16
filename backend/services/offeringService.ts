@@ -6,7 +6,7 @@ export async function createOfferingService(offering:CreateOffering){
         const slug = offering.performer_name.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
         
         if (!offering.performer_name || !offering.small_description || !offering.image_path ||
-            !offering.large_description || !offering.status || !offering.offering_category_id
+            !offering.large_description || !offering.status || !offering.offering_category_id || offering.updated_by
         ) {
             throw new Error("All Field Required")
         }
