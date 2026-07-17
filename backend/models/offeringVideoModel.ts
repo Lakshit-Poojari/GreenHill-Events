@@ -43,7 +43,8 @@ export async function updateOfferingVideoModel(id:number, video:UpdateOfferingVi
 type VideoRow = OfferingVideo & RowDataPacket;
 export async function getAllOfferingVideoModel(){
     try {
-        const result = await db.query<VideoRow[]>(`SELECT * FROM offering_videos`)
+        const [result] = await db.query<VideoRow[]>(`SELECT * FROM offering_videos`)
+        return result
     } catch (error) {
         console.error("Get All Offering Video Model Error:", error);
         throw new Error;
@@ -52,7 +53,7 @@ export async function getAllOfferingVideoModel(){
 
 export async function getSingleOfferingVideoModel(id:number){
     try {
-        const result = db.query<RowDataPacket[]>(`SELECT * FROM offering_videos WHERE id=?`, [id])
+        const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM offering_videos WHERE id=?`, [id])
         return result
     } catch (error) {
         console.error("Get Single Offering Video Model Error:", error);
@@ -62,7 +63,8 @@ export async function getSingleOfferingVideoModel(id:number){
 
 export async function deleteOfferingVideoModel(id:number){
     try {
-        const result = db.query<RowDataPacket[]>(`DELETE * FROM offering_videos WHERE id=?`, [id])
+        const [result] = await db.query<ResultSetHeader>(`DELETE FROM offering_videos WHERE id=?`, [id])
+        return result
     } catch (error) {
         console.error("Delete Offering Video Model Error:", error);
         throw new Error;
