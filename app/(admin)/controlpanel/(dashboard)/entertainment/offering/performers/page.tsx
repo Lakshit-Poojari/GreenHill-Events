@@ -45,6 +45,33 @@ const Page = () => {
     }
   };
 
+      const handleDelete = async (id: number) => {
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this categories?"
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`/api/offerings/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+
+        fetchOffering(); // refresh list
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (loading) {
   return (
     <div className="flex h-64 items-center justify-center text-white">
@@ -175,7 +202,7 @@ const Page = () => {
 
   <button
     type="button"
-    // onClick={() => handleDelete(category.id)}
+    onClick={() => handleDelete(performer.id)}
     className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]"
     title="Delete"
   >

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft, Save, Upload } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Page = () => {
  const [formData, setFormData] = useState({
@@ -15,6 +15,29 @@ const Page = () => {
 
 const [image, setImage] = useState<File | null>(null);
 const [loading, setLoading] = useState(false);
+const [categories, setCategories] = useState<
+  { id: number; name: string }[]
+>([]);
+
+useEffect(() => {
+  fetchOfferingCategories();
+}, []);
+
+const fetchOfferingCategories = async () => {
+  try {
+    const response = await fetch("/api/offeringCategories", {
+      credentials: "include",
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      setCategories(result.offeringCategory);
+    }
+  } catch (error) {
+    console.error("Failed to fetch offering categories", error);
+  }
+};
 
 const handleChange = (
   e: React.ChangeEvent<
@@ -118,15 +141,19 @@ const handleSubmit = async (e: React.FormEvent) => {
             </label>
 
             <select
-              name="offering_category_id"
-              value={formData.offering_category_id}
-              onChange={handleChange}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
-            >
-              <option value="">Select Offering Category</option>
-              <option value="1">Harmony Groups</option>
-              <option value="2">Choirs</option>
-            </select>
+  name="offering_category_id"
+  value={formData.offering_category_id}
+  onChange={handleChange}
+  className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+>
+  <option value="">Select Offering Category</option>
+
+  {categories.map((category) => (
+    <option key={category.id} value={category.id}>
+      {category.name}
+    </option>
+  ))}
+</select>
           </div>
 
           {/* Performer Name */}

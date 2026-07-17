@@ -48,7 +48,7 @@ export async function updateOfferingModel(id:number, offering:UpdateOffering){
         )
         return result
     } catch (error) {
-        console.error("Error in Create Offering Model", error);
+        console.error("Error in update Offering Model", error);
         throw error;
     }
 }
@@ -59,7 +59,7 @@ export async function getAllOfferingModel(){
         const [result] = await db.query<OfferingRow[]>(`SELECT * FROM offerings`)
         return result
     } catch (error) {
-        console.error("Error in Create Offering Model", error);
+        console.error("Error in get all Offering Model", error);
         throw error;
     }
 }
@@ -69,17 +69,17 @@ export async function getSingleOfferingModel(id:number){
         const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM offerings WHERE id=?`, [id])
         return result
     } catch (error) {
-        console.error("Error in Create Offering Model", error);
+        console.error("Error in get singleOffering Model", error);
         throw error;
     }
 }
 
 export async function deleteOfferingModel(id:number){
     try {
-        const result = await db.query<RowDataPacket[]>(`DELETE * FROM offerings WHERE id=?`, [id])
+        const [result] = await db.query<ResultSetHeader>(`DELETE FROM offerings WHERE id=?`, [id])
         return result
     } catch (error) {
-        console.error("Error in Create Offering Model", error);
+        console.error("Error in delete Offering Model", error);
         throw error;
     }
 }
