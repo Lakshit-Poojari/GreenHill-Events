@@ -104,7 +104,7 @@ export async function getOfferingBySlugModel(slug: string) {
 export async function updateOfferingStatusModel(id: number, status: string) {
     try {
         const [result] = await db.query<ResultSetHeader>(
-            "UPDATE offering SET status = ? WHERE id = ?",
+            "UPDATE offerings SET status = ? WHERE id = ?",
             [status, id]
         );
 

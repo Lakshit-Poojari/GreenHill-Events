@@ -25,30 +25,56 @@ export async function createOfferingService(offering:CreateOffering){
     }
 }
 
-export async function updateOfferingService(id:number, offering:UpdateOffering, slug:string){
-    try {
-        if (!id || !offering.offering_category_id || !offering.performer_name || !offering.slug ||
-            !offering.image_path || !offering.small_description || !offering.large_description || !offering.status) {
-            throw new Error("All Field Required")
-        }
+export async function updateOfferingService(
+  id: number,
+  offering: UpdateOffering
+) {
+  try {
+console.log("Offering received:", offering);
 
-        const existingOffering = await getSingleOfferingModel(id)
+console.log({
+  offering_category_id: offering.offering_category_id,
+  performer_name: offering.performer_name,
+  image_path: offering.image_path,
+  small_description: offering.small_description,
+  large_description: offering.large_description,
+  status: offering.status,
+});
 
-        if(!existingOffering){
-            throw new Error("Offering not found.")
-        }
+if (
+  !id ||
+  !offering.offering_category_id ||
+  !offering.performer_name ||
+  !offering.image_path ||
+  !offering.small_description ||
+  !offering.large_description ||
+  !offering.status
+) {
+  throw new Error("All Field Required");
+}
 
-        const duplicateOffering = await getOfferingBySlugModel(offering.slug)
-        if(duplicateOffering && duplicateOffering.id !== id) {
-            throw new Error("Offering already exists.");
-        }
+    offering.slug = offering.performer_name
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "");
+    const existingOffering = await getSingleOfferingModel(id);
 
-        const result = await updateOfferingModel(id, offering)
-        return result
-    } catch (error) {
-        console.error("Error in Update Offering Service", error);
-        throw error;
+    if (!existingOffering) {
+      throw new Error("Offering not found.");
     }
+
+    const duplicateOffering = await getOfferingBySlugModel(offering.slug);
+
+    if (duplicateOffering && duplicateOffering.id !== id) {
+      throw new Error("Offering already exists.");
+    }
+
+    return await updateOfferingModel(id, offering);
+  } catch (error) {
+    console.error("Error in Update Offering Service", error);
+    throw error;
+  }
 }
 
 export async function getAllOfferingService(){

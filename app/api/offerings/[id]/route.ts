@@ -29,12 +29,12 @@ export async function GET(request:NextRequest, {params}:{params : Promise<{id:st
     }        
 }
 
-export async function PUT(request:NextRequest, {params}:{params : Promise<{id:string, slug:string}>}){
+export async function PUT(request:NextRequest, {params}:{params : Promise<{id:string}>}){
     try {
-        const {id, slug} = await params;
+        const {id} = await params;
         const body = await request.json()
 
-        await updateOfferingController(Number(id), body, String(slug))
+        await updateOfferingController(Number(id), body, )
         return NextResponse.json(
             {
                 success:true,

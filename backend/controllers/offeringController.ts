@@ -11,9 +11,9 @@ export async function createOfferingController(offering:CreateOffering){
     }
 }
 
-export async function updateOfferingController(id:number, offering:UpdateOffering, slug:string){
+export async function updateOfferingController(id:number, offering:UpdateOffering, ){
     try {
-        const result = await updateOfferingService(id, offering, slug)
+        const result = await updateOfferingService(id, offering)
         return result
     } catch (error) {
         console.error("Update Offering Controller Error", error);
