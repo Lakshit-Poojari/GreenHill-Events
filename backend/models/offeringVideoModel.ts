@@ -2,21 +2,33 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 import db from "../lib/db";
 import { CreateOfferingVideo, OfferingVideo, UpdateOfferingVideo } from "../types/offeringVideoType";
 
-export async function createOfferingVideoModel(video:CreateOfferingVideo){
+export async function createOfferingVideoModel(video: CreateOfferingVideo) {
     try {
         const [result] = await db.query<ResultSetHeader>(
-            `INSERT INTO offering_videos (offering_id, youtube_url,  display_order, updated_by) VALUES(?, ?, ?, ?)`,
+            `INSERT INTO offering_videos
+            (
+                offering_id,
+                youtube_url,
+                display_order,
+                status,
+                created_by,
+                updated_by
+            )
+            VALUES (?, ?, ?, ?, ?, ?)`,
             [
                 video.offering_id,
                 video.youtube_url,
                 video.display_order,
-                video.updated_by,
+                video.status,
+                video.created_by,
+                video.updated_by ?? null,
             ]
-        )
-        return result
+        );
+
+        return result;
     } catch (error) {
         console.error("Create Offering Video Model Error:", error);
-        throw new Error;
+        throw error;
     }
 }
 
@@ -36,28 +48,69 @@ export async function updateOfferingVideoModel(id:number, video:UpdateOfferingVi
         return result
     } catch (error) {
         console.error("Update Offering Video Model Error:", error);
-        throw new Error;
+        throw error;
     }
 }
 
 type VideoRow = OfferingVideo & RowDataPacket;
-export async function getAllOfferingVideoModel(){
+
+export async function getAllOfferingVideoModel() {
     try {
-        const [result] = await db.query<VideoRow[]>(`SELECT * FROM offering_videos`)
-        return result
+        const [result] = await db.query<VideoRow[]>(
+            `
+            SELECT
+                ov.id,
+                ov.offering_id,
+                o.performer_name,
+                ov.youtube_url,
+                ov.display_order,
+                ov.status,
+                ov.created_at,
+                ov.updated_at,
+                ov.created_by,
+                ov.updated_by
+            FROM offering_videos ov
+            INNER JOIN offerings o
+                ON ov.offering_id = o.id
+            ORDER BY o.performer_name ASC, ov.display_order ASC
+            `
+        );
+
+        return result;
     } catch (error) {
         console.error("Get All Offering Video Model Error:", error);
-        throw new Error;
+        throw error;
     }
 }
 
-export async function getSingleOfferingVideoModel(id:number){
+
+export async function getSingleOfferingVideoModel(id: number) {
     try {
-        const [result] = await db.query<RowDataPacket[]>(`SELECT * FROM offering_videos WHERE id=?`, [id])
-        return result
+        const [result] = await db.query<VideoRow[]>(
+            `
+            SELECT
+                ov.id,
+                ov.offering_id,
+                o.performer_name,
+                ov.youtube_url,
+                ov.display_order,
+                ov.status,
+                ov.created_at,
+                ov.updated_at,
+                ov.created_by,
+                ov.updated_by
+            FROM offering_videos ov
+            INNER JOIN offerings o
+                ON ov.offering_id = o.id
+            WHERE ov.id = ?
+            `,
+            [id]
+        );
+
+        return result[0];
     } catch (error) {
         console.error("Get Single Offering Video Model Error:", error);
-        throw new Error;
+        throw error;
     }
 }
 
@@ -67,6 +120,6 @@ export async function deleteOfferingVideoModel(id:number){
         return result
     } catch (error) {
         console.error("Delete Offering Video Model Error:", error);
-        throw new Error;
+        throw error;
     }
 }

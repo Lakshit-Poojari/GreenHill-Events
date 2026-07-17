@@ -2,16 +2,22 @@ import { getSingleOfferingModel } from "../models/offeringModel";
 import { createOfferingVideoModel, deleteOfferingVideoModel, getAllOfferingVideoModel, getSingleOfferingVideoModel, updateOfferingVideoModel } from "../models/offeringVideoModel";
 import { CreateOfferingVideo, UpdateOfferingVideo } from "../types/offeringVideoType";
 
-export async function createOfferingVideoService(video:CreateOfferingVideo){
+export async function createOfferingVideoService(video: CreateOfferingVideo) {
     try {
-        if (!video.offering_id || !video.youtube_url.trim() || video.display_order === undefined) {
+        if (
+            !video.offering_id ||
+            !video.youtube_url.trim() ||
+            video.display_order === undefined ||
+            !video.status ||
+            !video.created_by
+        ) {
             throw new Error("All fields are required.");
         }
 
-        const existingOffering = await getSingleOfferingModel(video.offering_id)
+        const existingOffering = await getSingleOfferingModel(video.offering_id);
 
-        if(!existingOffering){
-            throw new Error("Offering not found.")
+        if (!existingOffering) {
+            throw new Error("Offering not found.");
         }
 
         const result = await createOfferingVideoModel(video);
@@ -19,7 +25,7 @@ export async function createOfferingVideoService(video:CreateOfferingVideo){
         return result;
     } catch (error) {
         console.error("Create Offering Video Service Error", error);
-        throw new Error;
+        throw error;
     }
 }
 
@@ -32,19 +38,18 @@ export async function updateOfferingVideoService(
             !id ||
             !video.offering_id ||
             !video.youtube_url?.trim() ||
-            video.display_order === undefined
+            video.display_order === undefined ||
+            !video.status
         ) {
             throw new Error("All fields are required.");
         }
 
-        // Check if video exists
         const existingVideo = await getSingleOfferingVideoModel(id);
 
         if (!existingVideo) {
             throw new Error("Offering video not found.");
         }
 
-        // Check if offering exists
         const existingOffering = await getSingleOfferingModel(video.offering_id);
 
         if (!existingOffering) {
@@ -66,7 +71,7 @@ export async function getAllOfferingVideoService(){
         return result
     } catch (error) {
         console.error("Get All Offering Video Service Error", error);
-        throw new Error;
+        throw  error;
     }
 }
 
@@ -76,7 +81,7 @@ export async function getSingleOfferingVideoService(id:number){
         return result
     } catch (error) {
         console.error("Get Single Offering Video Service Error", error);
-        throw new Error;
+        throw  error;
     }
 }
 
@@ -86,6 +91,6 @@ export async function deleteOfferingVideoService(id:number){
         return result
     } catch (error) {
         console.error("Delete Offering Video Service Error", error);
-        throw new Error;
+        throw error;
     }
 }

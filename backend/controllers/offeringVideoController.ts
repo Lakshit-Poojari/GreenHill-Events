@@ -1,5 +1,4 @@
 import { createOfferingVideoService, deleteOfferingVideoService, getAllOfferingVideoService, getSingleOfferingVideoService, updateOfferingVideoService } from "../services/offeringVideoService";
-import { OfferingCategory } from "../types/offeringCategoryType";
 import { CreateOfferingVideo, UpdateOfferingVideo } from "../types/offeringVideoType";
 
 export async function createOfferingVideoController(video:CreateOfferingVideo){
@@ -8,7 +7,7 @@ export async function createOfferingVideoController(video:CreateOfferingVideo){
         return result
     } catch (error) {
         console.error("Create Offering Video Controller", error);
-        throw new Error;
+        throw error;
     }
 }
 
@@ -18,7 +17,7 @@ export async function updateOfferingVideoController(video:UpdateOfferingVideo, i
         return result
     } catch (error) {
         console.error("Update Offering Video Controller", error);
-        throw new Error;
+        throw error;
     }
 }
 
@@ -28,7 +27,7 @@ export async function getAllOfferingVideoController(){
         return result
     } catch (error) {
         console.error("Get All Offering Video Controller", error);
-        throw new Error;
+        throw error;
     }
 }
 
@@ -38,7 +37,7 @@ export async function getSingleOfferingVideoController(id:number){
         return result
     } catch (error) {
         console.error("Get Single Offering Video Controller", error);
-        throw new Error;
+        throw error;
     }
 }
 
@@ -48,6 +47,6 @@ export async function deleteOfferingVideoController(id:number){
         return result
     } catch (error) {
         console.error("Delete Offering Video Controller", error);
-        throw new Error;
+        throw error;
     }
 }
