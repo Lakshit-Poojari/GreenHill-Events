@@ -1,16 +1,15 @@
 export interface OfferingVideo {
     id: number;
     offering_id: number;
-    performer_name?: string; // Returned when using JOIN
+    performer_name?: string;
     youtube_url: string;
     display_order: number;
     status: "ACTIVE" | "INACTIVE";
     created_at: Date;
     updated_at: Date;
-    created_by: number;
-    updated_by: number | null;
+    created_by_name?: string;
+    updated_by_name?: string | null;
 }
-
 export interface CreateOfferingVideo {
     offering_id: number;
     youtube_url: string;

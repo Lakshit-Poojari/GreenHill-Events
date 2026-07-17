@@ -35,8 +35,6 @@ export async function updateOfferingVideoService(
 ) {
     try {
         if (
-            !id ||
-            !video.offering_id ||
             !video.youtube_url?.trim() ||
             video.display_order === undefined ||
             !video.status
@@ -48,12 +46,6 @@ export async function updateOfferingVideoService(
 
         if (!existingVideo) {
             throw new Error("Offering video not found.");
-        }
-
-        const existingOffering = await getSingleOfferingModel(video.offering_id);
-
-        if (!existingOffering) {
-            throw new Error("Offering not found.");
         }
 
         const result = await updateOfferingVideoModel(id, video);
@@ -75,14 +67,13 @@ export async function getAllOfferingVideoService(){
     }
 }
 
-export async function getSingleOfferingVideoService(id:number){
-    try {
-        const result = await getSingleOfferingVideoModel(id)
-        return result
-    } catch (error) {
-        console.error("Get Single Offering Video Service Error", error);
-        throw  error;
-    }
+export async function getSingleOfferingVideoService(id: number) {
+  try {
+    return await getSingleOfferingVideoModel(id);
+  } catch (error) {
+    console.error("Get Offering Video By ID Service Error", error);
+    throw error;
+  }
 }
 
 export async function deleteOfferingVideoService(id:number){

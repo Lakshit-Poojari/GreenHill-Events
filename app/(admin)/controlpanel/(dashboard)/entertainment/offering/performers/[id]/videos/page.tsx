@@ -59,10 +59,10 @@ const fetchData = async () => {
     if (performerData.success) {
       setPerformer(performerData.data);
     }
-
+console.log("Video API Response:", videoData);
     if (videoData.success) {
       setVideos(
-        videoData.video.filter(
+        videoData.data.filter(
           (video: OfferingVideo) =>
             video.offering_id === performerId
         )

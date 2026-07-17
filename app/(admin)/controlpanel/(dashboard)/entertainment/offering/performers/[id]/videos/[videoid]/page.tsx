@@ -2,29 +2,79 @@
 
 import Link from "next/link";
 import { ArrowLeft, Edit } from "lucide-react";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const performer = {
-  id: 1,
-  performer_name: "West End Waiters",
-};
+interface Performer {
+  id: number;
+  performer_name: string;
+}
 
-const video = {
-  id: 1,
-  youtube_url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-  display_order: 1,
-  status: "ACTIVE",
-  created_by: "Simon Greenhill",
-  created_at: "16 Jul 2026, 10:30 AM",
-  updated_by: "Lakshit Poojari",
-  updated_at: "17 Jul 2026, 03:45 PM",
-};
+interface OfferingVideo {
+  id: number;
+  offering_id: number;
+  performer_name: string;
+  youtube_url: string;
+  display_order: number;
+  status: "ACTIVE" | "INACTIVE";
+  created_by_name: string;
+  created_at: string;
+  updated_by_name: string | null;
+  updated_at: string;
+}
 
 const Page = () => {
+
+  const params = useParams();
+
+const performerId = Number(params.id);
+const videoId = Number(params.videoid);
+
+const [performer, setPerformer] = useState<Performer | null>(null);
+const [video, setVideo] = useState<OfferingVideo | null>(null);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  fetchVideo();
+}, []);
+
+const fetchVideo = async () => {
+  try {
+    const res = await fetch(`/api/offeringVideo/${videoId}`, {
+      credentials: "include",
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      setVideo(data.data);
+      console.log(data);
+      
+
+      setPerformer({
+        id: data.data.offering_id,
+        performer_name: data.data.performer_name,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+if (loading) {
+  return (
+    <div className="flex h-64 items-center justify-center text-white">
+      Loading...
+    </div>
+  );
+}
   return (
     <div className="space-y-6">
       {/* Back */}
       <Link
-        href={`/controlpanel/entertainment/offering/performers/${performer.id}/videos`}
+        href={`/controlpanel/entertainment/offering/performers/${performerId}/videos`}
         className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
@@ -44,7 +94,7 @@ const Page = () => {
         </div>
 
         <Link
-          href={`/controlpanel/entertainment/offering/performers/${performer.id}/videos/${video.id}/edit`}
+          href={`/controlpanel/entertainment/offering/performers/${performerId}/videos/${videoId}/edit`}
           className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
         >
           <Edit size={18} />
@@ -62,7 +112,7 @@ const Page = () => {
           </p>
 
           <p className="mt-1 text-lg font-medium text-white">
-            {performer.performer_name}
+            {performer?.performer_name}
           </p>
         </div>
 
@@ -74,7 +124,7 @@ const Page = () => {
 
           <div className="overflow-hidden rounded-lg border border-gray-700">
             <iframe
-              src={video.youtube_url}
+              src={video?.youtube_url}
               title="YouTube Video"
               className="aspect-video w-full"
               allowFullScreen
@@ -89,12 +139,12 @@ const Page = () => {
           </p>
 
           <a
-            href={video.youtube_url}
+            href={video?.youtube_url}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-1 block break-all text-[#C9AC8C] hover:underline"
           >
-            {video.youtube_url}
+            {video?.youtube_url}
           </a>
         </div>
 
@@ -105,7 +155,7 @@ const Page = () => {
           </p>
 
           <p className="mt-1 text-white">
-            {video.display_order}
+            {video?.display_order}
           </p>
         </div>
 
@@ -117,12 +167,12 @@ const Page = () => {
 
           <span
             className={`mt-2 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
-              video.status === "ACTIVE"
+              video?.status === "ACTIVE"
                 ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
                 : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
             }`}
           >
-            {video.status}
+            {video?.status}
           </span>
         </div>
 
@@ -139,7 +189,7 @@ const Page = () => {
               </p>
 
               <p className="mt-1 text-white">
-                {video.created_by}
+                {video?.created_by_name}
               </p>
             </div>
 
@@ -149,7 +199,10 @@ const Page = () => {
               </p>
 
               <p className="mt-1 text-white">
-                {video.created_at}
+                
+                {video?.created_at
+  ? new Date(video.created_at).toLocaleString("en-IN")
+  : "-"}
               </p>
             </div>
 
@@ -159,7 +212,8 @@ const Page = () => {
               </p>
 
               <p className="mt-1 text-white">
-                {video.updated_by}
+                {video?.updated_by_name}
+                
               </p>
             </div>
 
@@ -169,7 +223,9 @@ const Page = () => {
               </p>
 
               <p className="mt-1 text-white">
-                {video.updated_at}
+                {video?.updated_at
+  ? new Date(video.updated_at).toLocaleString("en-IN")
+  : "-"}
               </p>
             </div>
           </div>

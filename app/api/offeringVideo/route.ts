@@ -9,20 +9,24 @@ export async function GET() {
     return NextResponse.json(
       {
         success: true,
-        video,
+        data: video,
       },
-      { status: 200 }
+      {
+        status: 200,
+      }
     );
   } catch (error) {
-        return NextResponse.json(
-            {
-                success:false,
-                message:error instanceof Error?
-                        error.message : "Internal server error"
-            },
-            {
-                status:400
-            }
+    return NextResponse.json(
+      {
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Internal server error",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }

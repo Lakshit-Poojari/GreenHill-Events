@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { ArrowLeft, Save } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const performer = {
   id: 1,
@@ -10,41 +12,112 @@ const performer = {
 };
 
 const Page = () => {
-  const [saving, setSaving] = useState(false);
+const params = useParams();
+const router = useRouter();
 
-  const [formData, setFormData] = useState({
-    youtube_url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    display_order: 1,
-    status: "ACTIVE",
-  });
+const performerId = Number(params.id);
+const videoId = Number(params.videoid);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
+const [loading, setLoading] = useState(true);
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]:
-        name === "display_order"
-          ? Number(value)
-          : value,
-    }));
-  };
+const [video, setVideo] = useState<any>(null);
+const [saving, setSaving] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const [formData, setFormData] = useState({
+  offering_id: 0,
+  youtube_url: "",
+  display_order: 1,
+  status: "ACTIVE",
+});
 
-    setSaving(true);
+useEffect(() => {
+  fetchVideo();
+}, []);
 
-    console.log(formData);
+const fetchVideo = async () => {
+  try {
+    const res = await fetch(`/api/offeringVideo/${videoId}`, {
+      credentials: "include",
+    });
 
-    setTimeout(() => {
-      setSaving(false);
-      alert("Video updated successfully.");
-    }, 1000);
-  };
+    const data = await res.json();
 
+    if (data.success) {
+      setVideo(data.data);
+
+setFormData({
+  offering_id: data.data.offering_id,
+  youtube_url: data.data.youtube_url,
+  display_order: data.data.display_order,
+  status: data.data.status,
+});
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault();
+
+  setSaving(true);
+
+  try {
+    const res = await fetch(
+      `/api/offeringVideo/${videoId}`,
+      {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.message);
+    }
+
+    alert("Video updated successfully.");
+
+    router.push(
+      `/controlpanel/entertainment/offering/performers/${performerId}/videos`
+    );
+  } catch (error) {
+    alert(error instanceof Error ? error.message : "Update failed");
+  } finally {
+    setSaving(false);
+  }
+};
+
+const handleChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+) => {
+  const { name, value } = e.target;
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]:
+      name === "display_order"
+        ? Number(value)
+        : value,
+  }));
+};
+
+if (loading) {
+  return (
+    <div className="flex h-64 items-center justify-center text-white">
+      Loading...
+    </div>
+  );
+}
   return (
     <div className="space-y-6">
       {/* Back */}
@@ -65,7 +138,7 @@ const Page = () => {
         <p className="mt-2 text-gray-400">
           Update video details for{" "}
           <span className="font-semibold text-white">
-            {performer.performer_name}
+            {video?.performer_name}
           </span>
         </p>
       </div>
@@ -82,7 +155,7 @@ const Page = () => {
 
             <input
               type="text"
-              value={performer.performer_name}
+              value={video?.performer_name ?? ""}
               disabled
               className="w-full rounded-lg border border-gray-600 bg-[#2a2a2a] px-4 py-3 text-gray-400"
             />
@@ -162,25 +235,29 @@ const Page = () => {
             <div className="grid gap-4 md:grid-cols-2">
               <div>
                 <p className="text-sm text-gray-400">Created By</p>
-                <p className="mt-1 text-white">Simon Greenhill</p>
+                <p className="mt-1 text-white">{video?.created_by_name}</p>
               </div>
 
               <div>
                 <p className="text-sm text-gray-400">Created At</p>
                 <p className="mt-1 text-white">
-                  16 Jul 2026, 10:30 AM
+                                  {video?.created_at
+  ? new Date(video.created_at).toLocaleString("en-IN")
+  : "-"}
                 </p>
               </div>
 
               <div>
                 <p className="text-sm text-gray-400">Updated By</p>
-                <p className="mt-1 text-white">Lakshit Poojari</p>
+                <p className="mt-1 text-white">{video?.updated_by_name}</p>
               </div>
 
               <div>
                 <p className="text-sm text-gray-400">Updated At</p>
                 <p className="mt-1 text-white">
-                  17 Jul 2026, 03:45 PM
+                  {video?.updated_at
+  ? new Date(video.updated_at).toLocaleString("en-IN")
+  : "-"}
                 </p>
               </div>
             </div>
@@ -189,7 +266,7 @@ const Page = () => {
           {/* Buttons */}
           <div className="flex justify-end gap-4 pt-4">
             <Link
-              href={`/controlpanel/entertainment/offering/performers/${performer.id}/videos`}
+              href={`/controlpanel/entertainment/offering/performers/${performerId}/videos`}
               className="rounded-lg border border-gray-600 px-6 py-3 text-white transition hover:border-red-500 hover:text-red-400"
             >
               Cancel

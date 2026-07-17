@@ -2,31 +2,49 @@ import { NextRequest, NextResponse } from "next/server";
 import {deleteOfferingVideoController, getSingleOfferingVideoController, updateOfferingVideoController,} from "@/backend/controllers/offeringVideoController";
 import { verifyToken } from "@/backend/middleware/authMiddleware";
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
     const { id } = await params;
 
-    const result = await getSingleOfferingVideoController(Number(id));
+    const video = await getSingleOfferingVideoController(Number(id));
+
+    if (!video) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Video not found",
+        },
+        {
+          status: 404,
+        }
+      );
+    }
 
     return NextResponse.json(
       {
         success: true,
-        data: result,
+        data: video,
       },
-      { status: 200 }
+      {
+        status: 200,
+      }
     );
   } catch (error) {
-        return NextResponse.json(
-            {
-                success:false,
-                message:error instanceof Error?
-                        error.message : "Internal server error"
-            },
-            {
-                status:400
-            }
-
-        );
+    return NextResponse.json(
+      {
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Internal server error",
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
 
