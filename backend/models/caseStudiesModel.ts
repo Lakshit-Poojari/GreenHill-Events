@@ -90,3 +90,17 @@ export async function deleteCaseStudyModel(id:number){
         throw error;
     }
 }
+
+export async function getCaseStudiesBySlug(slug:string){
+    try {
+        const [result] = await db.query<RowDataPacket[]>(
+            `SELECT * FROM case_study WHERE slug=?`,
+            [slug]
+        )
+
+        return result
+    } catch (error) {
+        console.error("get case study by slug model error", error);
+        throw error;        
+    }
+}
