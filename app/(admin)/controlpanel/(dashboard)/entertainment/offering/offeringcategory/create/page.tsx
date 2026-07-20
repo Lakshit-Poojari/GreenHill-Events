@@ -7,7 +7,9 @@ import { useEffect, useState } from "react";
 
 const Page = () => {
   const router = useRouter();
-    const [categories, setCategories] = useState<{ id: number; category_name: string }[]>([]);
+  const [categories, setCategories] = useState<
+    { id: number; category_name: string }[]
+  >([]);
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -18,28 +20,27 @@ const Page = () => {
   });
 
   useEffect(() => {
-  fetchEntertainmentCategories();
-}, []);
+    fetchEntertainmentCategories();
+  }, []);
 
-const fetchEntertainmentCategories = async () => {
-  try {
-    const response = await fetch("/api/categories", {
-      credentials: "include",
-    });
+  const fetchEntertainmentCategories = async () => {
+    try {
+      const response = await fetch("/api/categories", {
+        credentials: "include",
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-
-if (result.success) {
-  setCategories(result.category);
-}
-  } catch (error) {
-    console.error("Failed to fetch entertainment categories", error);
-  }
-};
+      if (result.success) {
+        setCategories(result.category);
+      }
+    } catch (error) {
+      console.error("Failed to fetch entertainment categories", error);
+    }
+  };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
 
@@ -85,11 +86,7 @@ if (result.success) {
 
       router.push("/controlpanel/entertainment/offering/offeringcategory");
     } catch (error) {
-      alert(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong."
-      );
+      alert(error instanceof Error ? error.message : "Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -108,9 +105,7 @@ if (result.success) {
 
       {/* Header */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg">
-        <h1 className="text-3xl font-bold text-white">
-          Add Offering Category
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Add Offering Category</h1>
 
         <p className="mt-2 text-gray-400">
           Create a new offering category for the entertainment section.
@@ -132,13 +127,13 @@ if (result.success) {
               onChange={handleChange}
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
             >
-               <option value="">Select Entertainment Category</option>
+              <option value="">Select Entertainment Category</option>
 
-  {categories.map((category) => (
-    <option key={category.id} value={category.id}>
-      {category.category_name}
-    </option>
-  ))}
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.category_name}
+                </option>
+              ))}
             </select>
           </div>
 
