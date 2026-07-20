@@ -26,6 +26,7 @@ export interface CreateCaseStudy {
   description: string;
   youtube_url?: string;
   status: CaseStudyStatus;
+  created_by: number;
 }
 
 export interface UpdateCaseStudy {
@@ -35,4 +36,5 @@ export interface UpdateCaseStudy {
   description?: string;
   youtube_url?: string;
   status?: CaseStudyStatus;
+  updated_by?: number;
 }
