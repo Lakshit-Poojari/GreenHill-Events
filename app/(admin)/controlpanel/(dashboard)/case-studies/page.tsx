@@ -2,46 +2,85 @@
 
 import Link from "next/link";
 import { Edit, Eye, Plus, Search, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const posts = [
-  {
-    id: 1,
-    title: "Top Wedding Entertainment Ideas",
-    category: "Wedding",
-    author: "Green Hill Admin",
-    status: "Published",
-    date: "03 Jul 2026",
-  },
-  {
-    id: 2,
-    title: "How to Choose the Perfect Live Band",
-    category: "Entertainment",
-    author: "John Doe",
-    status: "Draft",
-    date: "01 Jul 2026",
-  },
-  {
-    id: 3,
-    title: "Corporate Event Planning Checklist",
-    category: "Corporate",
-    author: "Emma Watson",
-    status: "Published",
-    date: "28 Jun 2026",
-  },
-];
+export interface CaseStudy {
+  id: number;
+  title: string;
+  youtube_url?: string;
+  status: "ACTIVE" | "INACTIVE";
+}
 
+const Page = () => {
+  const [caseStudies, setcaseStudies] = useState<CaseStudy[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
-function page() {
+  useEffect(() => {
+    fetchAllCaseStudies();
+  }, []);
+
+  const fetchAllCaseStudies = async () => {
+    try {
+      const response = await fetch("/api/caseStudy");
+      const result = await response.json();
+      if (result.success) {
+        setcaseStudies(result.caseStudy);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredCaseStudies = caseStudies.filter((caseStudy) =>
+    caseStudy.title.toLowerCase().includes(search.toLowerCase()),
+  );
+
+  const handleDelete = async (id: number) => {
+    const confirmDelete = confirm(
+      "Are you sure you want to delete this case Study?",
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`/api/caseStudy/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+
+        fetchAllCaseStudies(); // refresh list
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-20 text-white">
+        Loading case studies...
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-white">Posts</h1>
-            <p className="mt-2 text-gray-400">
-              Manage all blog posts for the website.
-            </p>
+            <h1 className="text-3xl font-bold text-white">Case Studies</h1>
+            <p className="mt-2 text-gray-400">Manage all case studies.</p>
           </div>
 
           <Link
@@ -64,7 +103,9 @@ function page() {
 
           <input
             type="text"
-            placeholder="Search posts..."
+            placeholder="Search case studies..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className="w-full rounded-lg border border-gray-700 bg-[#111] py-3 pl-10 pr-4 text-white outline-none focus:border-[rgba(201,172,140,1)]"
           />
         </div>
@@ -80,20 +121,12 @@ function page() {
                   Title
                 </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                  Category
-                </th>
-
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                  Author
-                </th>
-
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
+                <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">
                   Status
                 </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                  Date
+                <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">
+                  Video
                 </th>
 
                 <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">
@@ -103,56 +136,55 @@ function page() {
             </thead>
 
             <tbody>
-              {posts.map((post) => (
+              {filteredCaseStudies.map((caseStudy) => (
                 <tr
-                  key={post.id}
+                  key={caseStudy.id}
                   className="border-b border-gray-700 transition hover:bg-[#222]"
                 >
                   <td className="px-6 py-4 font-medium text-white">
-                    {post.title}
+                    {caseStudy.title}
                   </td>
 
-                  <td className="px-6 py-4 text-gray-300">
-                    {post.category}
-                  </td>
-
-                  <td className="px-6 py-4 text-gray-300">
-                    {post.author}
-                  </td>
-
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 text-center">
                     <span
                       className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                        post.status === "Published"
-                          ? "bg-green-500/20 text-green-400"
-                          : "bg-yellow-500/20 text-yellow-400"
+                        caseStudy.status === "ACTIVE"
+                          ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
+                          : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
                       }`}
                     >
-                      {post.status}
+                      {caseStudy.status}
                     </span>
                   </td>
 
-                  <td className="px-6 py-4 text-gray-300">
-                    {post.date}
+                  <td className="px-6 py-4 text-center">
+                    {caseStudy.youtube_url ? (
+                      <span className="text-green-400 ">Available</span>
+                    ) : (
+                      <span className="text-gray-500">—</span>
+                    )}
                   </td>
 
                   <td className="px-6 py-4">
                     <div className="flex justify-center gap-2">
                       <Link
-                        href={`/casestudy/${post.id}`}
-                        className="rounded-lg bg-blue-500/20 p-2 text-blue-400 transition hover:bg-blue-500/30"
+                        href={`/controlpanel/case-studies/view/${caseStudy.id}`}
+                        className="rounded-lg border border-[#39FF14] bg-[#39FF14]/10 p-2 text-[#39FF14] shadow-[0_0_8px_#39FF14] transition-all duration-300 hover:scale-105 hover:bg-[#39FF14]/20 hover:shadow-[0_0_12px_#39FF14]"
                       >
                         <Eye size={18} />
                       </Link>
 
                       <Link
-                        href={`/controlpanel/case-studies/edit/${post.id}`}
-                        className="rounded-lg bg-yellow-500/20 p-2 text-yellow-400 transition hover:bg-yellow-500/30"
+                        href={`/controlpanel/case-studies/edit/${caseStudy.id}`}
+                        className="rounded-lg border border-[#00E5FF] bg-[#00E5FF]/10 p-2 text-[#00E5FF] shadow-[0_0_8px_#00E5FF] transition-all duration-300 hover:bg-[#00E5FF]/20 hover:shadow-[0_0_12px_#00E5FF]"
                       >
                         <Edit size={18} />
                       </Link>
 
-                      <button className="rounded-lg bg-red-500/20 p-2 text-red-400 transition hover:bg-red-500/30">
+                      <button
+                        onClick={() => handleDelete(caseStudy.id)}
+                        className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]"
+                      >
                         <Trash2 size={18} />
                       </button>
                     </div>
@@ -160,13 +192,13 @@ function page() {
                 </tr>
               ))}
 
-              {posts.length === 0 && (
+              {filteredCaseStudies.length === 0 && (
                 <tr>
                   <td
-                    colSpan={6}
+                    colSpan={4}
                     className="px-6 py-12 text-center text-gray-400"
                   >
-                    No case study found.
+                    No case studies found.
                   </td>
                 </tr>
               )}
@@ -175,7 +207,7 @@ function page() {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
