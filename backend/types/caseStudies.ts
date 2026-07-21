@@ -21,7 +21,7 @@ export interface CaseStudy {
 
 export interface CreateCaseStudy {
   title: string;
-  slug: string;
+  slug?: string;
   image: File | string;
   description: string;
   youtube_url?: string;

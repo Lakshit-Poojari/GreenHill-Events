@@ -3,7 +3,7 @@ import { CreateCaseStudy, UpdateCaseStudy } from "../types/caseStudies";
 
 export async function createCaseStudiesService(caseStudies:CreateCaseStudy){
     try {
-        const slug = caseStudies.title.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
+        
         if (!caseStudies.title) {
             throw new Error("Title is required.");
         }
@@ -27,6 +27,7 @@ export async function createCaseStudiesService(caseStudies:CreateCaseStudy){
         if (caseStudies.created_by == null) {
             throw new Error("Created by is required.");
         }
+        const slug = caseStudies.title.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
 
         const CaseStudyExist = await getCaseStudiesBySlug(slug)
 
