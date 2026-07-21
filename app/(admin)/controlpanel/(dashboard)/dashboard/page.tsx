@@ -76,10 +76,10 @@ const page = () => {
       </h2>
       
       <div className="mt-4 flex flex-wrap gap-4">
-        <Link href={"posts"}>
+        <Link href={"case-studies"}>
           <button className="rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium text-black transition-all duration-300 
               hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]">
-            Add Post
+            Add Case Study
           </button>
         </Link>
 

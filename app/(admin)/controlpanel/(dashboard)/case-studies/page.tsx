@@ -45,11 +45,11 @@ function page() {
           </div>
 
           <Link
-            href="/controlpanel/posts/create"
+            href="/controlpanel/case-studies/create"
             className="inline-flex items-center gap-2 rounded-lg bg-[rgba(201,172,140,1)] px-5 py-3 font-semibold text-black transition hover:opacity-90"
           >
             <Plus size={18} />
-            Create Post
+            Create Case Study
           </Link>
         </div>
       </div>
@@ -139,14 +139,14 @@ function page() {
                   <td className="px-6 py-4">
                     <div className="flex justify-center gap-2">
                       <Link
-                        href={`/blog/${post.id}`}
+                        href={`/casestudy/${post.id}`}
                         className="rounded-lg bg-blue-500/20 p-2 text-blue-400 transition hover:bg-blue-500/30"
                       >
                         <Eye size={18} />
                       </Link>
 
                       <Link
-                        href={`/controlpanel/posts/edit/${post.id}`}
+                        href={`/controlpanel/case-studies/edit/${post.id}`}
                         className="rounded-lg bg-yellow-500/20 p-2 text-yellow-400 transition hover:bg-yellow-500/30"
                       >
                         <Edit size={18} />
@@ -166,7 +166,7 @@ function page() {
                     colSpan={6}
                     className="px-6 py-12 text-center text-gray-400"
                   >
-                    No posts found.
+                    No case study found.
                   </td>
                 </tr>
               )}

@@ -12,9 +12,9 @@ export async function createCaseStudyModel(caseStudies:CreateCaseStudy){
                 caseStudies.image,
                 caseStudies.description,
                 caseStudies.youtube_url,
+                caseStudies.created_by,
                 caseStudies.status,
                 caseStudies.slug,
-                caseStudies.created_by
             ]
         )
 
@@ -52,7 +52,26 @@ type CaseStudyRow = CaseStudy & RowDataPacket;
 export async function getAllCaseStudyModel(){
     try {
         const [row] = await db.query<CaseStudyRow[]>(
-            `SELECT * FROM case_study`
+            ` SELECT
+                cs.id,
+                cs.title,
+                cs.image,
+                cs.description,
+                cs.youtube_url,
+                cs.status,
+                cs.slug,
+                cs.created_at,
+                cs.updated_at,
+                cs.created_by,
+                creator.full_name AS created_by_name,
+                cs.updated_by,
+                updater.full_name AS updated_by_name
+            FROM case_study cs
+            LEFT JOIN users creator
+                ON cs.created_by = creator.id
+            LEFT JOIN users updater
+                ON cs.updated_by = updater.id
+            ORDER BY cs.created_at DESC`
         )
         return row
     } catch (error) {
@@ -64,7 +83,26 @@ export async function getAllCaseStudyModel(){
 export async function getSingleCaseStudyModel(id:number){
     try {
         const [row] = await db.query<CaseStudyRow[]>(
-            `SELECT * FROM case_study WHERE id=?`,
+            `SELECT
+                cs.id,
+                cs.title,
+                cs.image,
+                cs.description,
+                cs.youtube_url,
+                cs.status,
+                cs.slug,
+                cs.created_at,
+                cs.updated_at,
+                cs.created_by,
+                creator.full_name AS created_by_name,
+                cs.updated_by,
+                updater.full_name AS updated_by_name
+            FROM case_study cs
+            LEFT JOIN users creator
+                ON cs.created_by = creator.id
+            LEFT JOIN users updater
+                ON cs.updated_by = updater.id
+            WHERE cs.id = ?`,
             [
                 id
             ]

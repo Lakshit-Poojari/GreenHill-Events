@@ -16,10 +16,6 @@ export async function createCaseStudiesService(caseStudies:CreateCaseStudy){
             throw new Error("Description is required.");
         }
 
-        if (!caseStudies.slug) {
-            throw new Error("Slug is required.");
-        }
-
         if (!caseStudies.status) {
             throw new Error("Status is required.");
         }
@@ -35,7 +31,7 @@ export async function createCaseStudiesService(caseStudies:CreateCaseStudy){
             throw new Error("Case study already exist.");
         }
 
-        const result = await createCaseStudyModel(caseStudies)
+        const result = await createCaseStudyModel({...caseStudies,slug})
 
         return result
     } catch (error) {
