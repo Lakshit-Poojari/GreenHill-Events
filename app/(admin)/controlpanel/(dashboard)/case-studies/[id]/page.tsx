@@ -35,7 +35,7 @@ const Page = () => {
       const response = await fetch(`/api/caseStudy/${id}`);
       const result = await response.json();
       console.log(result);
-      
+
       if (result.success) {
         setCaseStudy(result.caseStudy[0]);
       }
@@ -47,11 +47,7 @@ const Page = () => {
   };
 
   if (loading) {
-    return (
-      <div className="py-20 text-center text-white">
-        Loading...
-      </div>
-    );
+    return <div className="py-20 text-center text-white">Loading...</div>;
   }
 
   if (!caseStudy) {
@@ -67,12 +63,8 @@ const Page = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">
-            View Case Study
-          </h1>
-          <p className="mt-1 text-gray-400">
-            View case study details.
-          </p>
+          <h1 className="text-3xl font-bold text-white">View Case Study</h1>
+          <p className="mt-1 text-gray-400">View case study details.</p>
         </div>
 
         <div className="flex gap-3">
@@ -125,7 +117,7 @@ const Page = () => {
 
           <div>
             <h2 className="text-sm text-gray-400">Featured Image</h2>
-{/* 
+            {/* 
             <Image
               src={caseStudy.image}
               alt={caseStudy.title}
@@ -145,9 +137,7 @@ const Page = () => {
 
           {caseStudy.youtube_url && (
             <div>
-              <h2 className="text-sm text-gray-400">
-                YouTube Video
-              </h2>
+              <h2 className="text-sm text-gray-400">YouTube Video</h2>
 
               <iframe
                 className="mt-3 aspect-video w-full max-w-2xl rounded-lg"
@@ -180,9 +170,7 @@ const Page = () => {
 
           <div>
             <p className="text-sm text-gray-400">Updated By</p>
-            <p className="text-white">
-              {caseStudy.updated_by_name ?? "-"}
-            </p>
+            <p className="text-white">{caseStudy.updated_by_name ?? "-"}</p>
           </div>
 
           <div>
