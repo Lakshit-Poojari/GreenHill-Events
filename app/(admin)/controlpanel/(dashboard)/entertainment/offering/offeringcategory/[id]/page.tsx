@@ -17,36 +17,37 @@ interface OfferingCategory {
 }
 
 const Page = () => {
-    const { id } = useParams()
-    
-const [offeringcategory, setOfferingCategory] = useState<OfferingCategory | null>(null);
-const [loading, setLoading] = useState(true);
-    
+  const { id } = useParams();
+
+  const [offeringcategory, setOfferingCategory] =
+    useState<OfferingCategory | null>(null);
+  const [loading, setLoading] = useState(true);
+
   const getOfferingCategory = async () => {
-  try {
-    const response = await fetch(`/api/offeringCategories/${id}`);
-    const result = await response.json();
+    try {
+      const response = await fetch(`/api/offeringCategories/${id}`);
+      const result = await response.json();
 
-    if (result.success) {
-      setOfferingCategory(result.offeringCategory[0]);
+      if (result.success) {
+        setOfferingCategory(result.offeringCategory[0]);
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setLoading(false);
+  };
+
+  useEffect(() => {
+    getOfferingCategory();
+  }, [id]);
+  if (loading) {
+    return <div className="text-white">Loading...</div>;
   }
-};
 
-useEffect(() => {
-  getOfferingCategory();
-}, [id]);
-if (loading) {
-  return <div className="text-white">Loading...</div>;
-}
-
-if (!offeringcategory) {
-  return <div className="text-white">Category not found.</div>;
-}
+  if (!offeringcategory) {
+    return <div className="text-white">Category not found.</div>;
+  }
   return (
     <div className="space-y-6">
       {/* Back */}
@@ -90,9 +91,7 @@ if (!offeringcategory) {
           </div>
 
           <div>
-            <p className="text-sm text-gray-400">
-              Entertainment Category
-            </p>
+            <p className="text-sm text-gray-400">Entertainment Category</p>
             <p className="mt-1 text-lg font-medium text-white">
               {offeringcategory.category_id}
             </p>
@@ -118,8 +117,8 @@ if (!offeringcategory) {
             <span
               className={`mt-2 inline-flex rounded-full px-3 py-1 text-sm font-semibold ${
                 offeringcategory.status === "ACTIVE"
-                        ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
-      : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
+                  ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
+                  : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
               }`}
             >
               {offeringcategory.status}
