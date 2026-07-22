@@ -1,6 +1,7 @@
 "use client";
 
 import { Edit, Eye, Shield, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export interface User {
   id: number;
@@ -25,6 +26,24 @@ const UserTable = ({
   onRoleChange,
   onView,
 }: UserTableProps) => {
+  const [me, setme] = useState<User | null>(null);
+
+  useEffect(() => {
+    fetchuser();
+  }, []);
+
+  const fetchuser = async () => {
+    try {
+      const response = await fetch("/api/auth/me");
+      const result = await response.json();
+
+      if (result.success) {
+        setme(result.user);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   if (users.length === 0) {
     return (
       <div className="rounded-xl border border-gray-700 bg-[#181616] py-16 text-center">
@@ -102,18 +121,21 @@ const UserTable = ({
                     >
                       <Eye size={18} />
                     </button>
-
                     {/* Edit */}
-                    <button
-                      title="Edit User"
-                      onClick={() => onEdit(user.id)}
-                      className="rounded-lg border border-[#00BFFF] bg-[#00BFFF]/10 p-2 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] transition-all duration-300 hover:bg-[#00BFFF]/20 hover:shadow-[0_0_12px_#00BFFF]"
-                    >
-                      <Edit size={18} />
-                    </button>
+                    {me?.role === "SUPER_ADMIN" && (
+                      <button
+                        title="Edit User"
+                        onClick={() => onEdit(user.id)}
+                        className="rounded-lg border border-[#00BFFF] bg-[#00BFFF]/10 p-2 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] transition-all duration-300 hover:bg-[#00BFFF]/20 hover:shadow-[0_0_12px_#00BFFF]"
+                      >
+                        <Edit size={18} />
+                      </button>
+                    )}
+
+                    {/* IN FUTURE NEED TO PROMOTE/DEMOTE USER JUST UNCOMMENT BELOW CODE */}
 
                     {/* Promote / Demote */}
-                    <button
+                    {/* <button
                       title={
                         user.role === "SUPER_ADMIN"
                           ? "Demote to Admin"
@@ -127,16 +149,18 @@ const UserTable = ({
                       }`}
                     >
                       <Shield size={18} />
-                    </button>
+                    </button> */}
 
                     {/* Delete */}
-                    <button
-                      title="Delete User"
-                      onClick={() => onDelete(user.id)}
-                      className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]"
-                    >
-                      <Trash2 size={18} />
-                    </button>
+                    {me?.role === "SUPER_ADMIN" && (
+                      <button
+                        title="Delete User"
+                        onClick={() => onDelete(user.id)}
+                        className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    )}
                   </div>
                 </td>
               </tr>

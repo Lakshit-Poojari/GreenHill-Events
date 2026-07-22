@@ -18,10 +18,24 @@ export default function UserManagementPage() {
   const [selectedUser, setSelectedUser] = useState<number | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [me, setme] = useState<User | null>(null);
 
   useEffect(() => {
-    fetchUsers();
+    fetchuser();
   }, []);
+
+  const fetchuser = async () => {
+    try {
+      const response = await fetch("/api/auth/me");
+      const result = await response.json();
+
+      if (result.success) {
+        setme(result.user);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fetchUsers = async () => {
     try {
@@ -85,7 +99,10 @@ export default function UserManagementPage() {
     router.push(`/controlpanel/users/${id}`);
   };
 
-  const handleRoleChange = async ( id: number, currentRole: "SUPER_ADMIN" | "ADMIN",) => {
+  const handleRoleChange = async (
+    id: number,
+    currentRole: "SUPER_ADMIN" | "ADMIN",
+  ) => {
     try {
       const newRole = currentRole === "SUPER_ADMIN" ? "ADMIN" : "SUPER_ADMIN";
 
@@ -144,12 +161,14 @@ export default function UserManagementPage() {
           <p className="mt-1 text-[#C9AC8C]">Manage administrator accounts.</p>
         </div>
 
-        <Link
-          href="/controlpanel/users/create"
-          className="rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-white transition hover:opacity-90"
-        >
-          Add Admin
-        </Link>
+        {me?.role === "SUPER_ADMIN" && (
+          <Link
+            href="/controlpanel/users/create"
+            className="rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-white transition hover:opacity-90"
+          >
+            Add Admin
+          </Link>
+        )}
       </div>
 
       <SearchBar

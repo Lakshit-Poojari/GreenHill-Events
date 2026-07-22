@@ -20,10 +20,24 @@ const Page = () => {
 
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [me, setme] = useState<User | null>(null);
 
   useEffect(() => {
     fetchUser();
   }, []);
+
+  const fetchuser = async () => {
+    try {
+      const response = await fetch("/api/auth/me");
+      const result = await response.json();
+
+      if (result.success) {
+        setme(result.user);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fetchUser = async () => {
     try {
@@ -84,14 +98,16 @@ const Page = () => {
           <p className="mt-1 text-[#C9AC8C]">Administrator details</p>
         </div>
 
-        <Link
-          href={`/controlpanel/users/${user.id}/edit`}
-          className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition 
+        {me?.role === "SUPER_ADMIN" && (
+          <Link
+            href={`/controlpanel/users/${user.id}/edit`}
+            className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition 
             hover:opacity-90"
-        >
-          <Edit size={18} />
-          Edit User
-        </Link>
+          >
+            <Edit size={18} />
+            Edit User
+          </Link>
+        )}
       </div>
 
       {/* User Details */}

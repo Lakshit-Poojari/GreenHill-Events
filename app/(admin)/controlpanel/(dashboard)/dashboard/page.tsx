@@ -24,18 +24,18 @@ const page = () => {
     fetchuser();
   }, []);
 
-const fetchuser = async () => {
-  try {
-    const response = await fetch("/api/auth/me");
-    const result = await response.json();
+  const fetchuser = async () => {
+    try {
+      const response = await fetch("/api/auth/me");
+      const result = await response.json();
 
-    if (result.success) {
-      setUser(result.user);
+      if (result.success) {
+        setUser(result.user);
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
-};
+  };
 
   const fetchDashboard = async () => {
     try {
