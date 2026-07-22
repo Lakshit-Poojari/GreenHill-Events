@@ -14,15 +14,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children,}: Readonly<{children: React.ReactNode;}>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-  
-      <div className="min-h-full flex flex-col text-white">
-        <Navbar/>
-        {children}
-        <Footer/>
-        <FloatingCallButton />
-      </div>
- 
+    <div className="min-h-full flex flex-col text-white">
+      <Navbar />
+      {children}
+      <Footer />
+      <FloatingCallButton />
+    </div>
   );
 }

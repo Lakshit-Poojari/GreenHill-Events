@@ -72,24 +72,22 @@ const Page = () => {
         <div>
           <Link
             href="/controlpanel/users"
-            className="mb-3 inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+            className="mb-3 inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm 
+              font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
           >
             <ArrowLeft size={18} />
             Back to Users
           </Link>
 
-          <h1 className="text-3xl font-bold text-white">
-            View User
-          </h1>
+          <h1 className="text-3xl font-bold text-white">View User</h1>
 
-          <p className="mt-1 text-[#C9AC8C]">
-            Administrator details
-          </p>
+          <p className="mt-1 text-[#C9AC8C]">Administrator details</p>
         </div>
 
         <Link
           href={`/controlpanel/users/${user.id}/edit`}
-          className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:opacity-90"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition 
+            hover:opacity-90"
         >
           <Edit size={18} />
           Edit User
@@ -98,7 +96,6 @@ const Page = () => {
 
       {/* User Details */}
       <div className="grid gap-6 rounded-xl border border-gray-700 bg-[#181616] p-6 md:grid-cols-2">
-
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-400">
             Full Name
@@ -130,9 +127,7 @@ const Page = () => {
                   : "bg-blue-500/20 text-blue-400"
               }`}
             >
-              {user.role === "SUPER_ADMIN"
-                ? "Super Admin"
-                : "Admin"}
+              {user.role === "SUPER_ADMIN" ? "Super Admin" : "Admin"}
             </span>
           </div>
         </div>
@@ -150,9 +145,7 @@ const Page = () => {
                   : "bg-red-500/20 text-red-400"
               }`}
             >
-              {user.status === "ACTIVE"
-                ? "Active"
-                : "Inactive"}
+              {user.status === "ACTIVE" ? "Active" : "Inactive"}
             </span>
           </div>
         </div>
@@ -174,7 +167,6 @@ const Page = () => {
             {new Date(user.updated_at).toLocaleString()}
           </div>
         </div>
-
       </div>
     </div>
   );

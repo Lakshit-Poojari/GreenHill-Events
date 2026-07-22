@@ -1,4 +1,7 @@
-import { createCaseStudiesController, getAllCaseStudiesController } from "@/backend/controllers/caseStudyController";
+import {
+  createCaseStudiesController,
+  getAllCaseStudiesController,
+} from "@/backend/controllers/caseStudyController";
 import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { CaseStudyStatus } from "@/backend/types/caseStudies";
 import { NextRequest, NextResponse } from "next/server";
@@ -53,19 +56,19 @@ export async function POST(request: NextRequest) {
       description: formData.get("description") as string,
       youtube_url: (formData.get("youtube_url") as string) || undefined,
       status: formData.get("status") as CaseStudyStatus,
-      created_by: user.id
+      created_by: user.id,
     };
 
-    await createCaseStudiesController(body)
+    await createCaseStudiesController(body);
 
     return NextResponse.json(
-        {
-            success:true,
-            message:"Case study created successfully"
-        }, 
-        {
-            status:200
-        }
+      {
+        success: true,
+        message: "Case study created successfully",
+      },
+      {
+        status: 200,
+      },
     );
   } catch (error) {
     return NextResponse.json(

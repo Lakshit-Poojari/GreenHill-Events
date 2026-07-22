@@ -11,12 +11,12 @@ export default function Home() {
   return (
     <>
       <div className="pt-26">
-        <HeroSection/>
-        <WellcomeToGrennHill/>
-        <DistinctOffering/>
-        <Testimonials/>
-        <RecentPosts/>
-        <Companys/>
+        <HeroSection />
+        <WellcomeToGrennHill />
+        <DistinctOffering />
+        <Testimonials />
+        <RecentPosts />
+        <Companys />
       </div>
     </>
   );

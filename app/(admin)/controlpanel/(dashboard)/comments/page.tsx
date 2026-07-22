@@ -6,8 +6,7 @@ const comments = [
     name: "John Doe",
     email: "john@example.com",
     post: "Top Wedding Entertainment Ideas",
-    comment:
-      "Amazing article! We booked a live band after reading this.",
+    comment: "Amazing article! We booked a live band after reading this.",
     status: "Approved",
     date: "01 Jul 2026",
   },
@@ -16,8 +15,7 @@ const comments = [
     name: "Sarah Smith",
     email: "sarah@example.com",
     post: "Corporate Event Planning",
-    comment:
-      "Could you recommend entertainers for product launches?",
+    comment: "Could you recommend entertainers for product launches?",
     status: "Pending",
     date: "30 Jun 2026",
   },
@@ -26,8 +24,7 @@ const comments = [
     name: "Michael Brown",
     email: "michael@example.com",
     post: "Luxury Wedding Trends",
-    comment:
-      "This was really helpful. Looking forward to more blogs!",
+    comment: "This was really helpful. Looking forward to more blogs!",
     status: "Rejected",
     date: "29 Jun 2026",
   },
@@ -44,13 +41,9 @@ export default function CommentsPage() {
     <div className="space-y-8">
       {/* Header */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg">
-        <h1 className="text-3xl font-bold text-white">
-          Comments
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Comments</h1>
 
-        <p className="mt-2 text-gray-400">
-          Manage and moderate blog comments.
-        </p>
+        <p className="mt-2 text-gray-400">Manage and moderate blog comments.</p>
       </div>
 
       {/* Table */}
@@ -75,17 +68,11 @@ export default function CommentsPage() {
                   className="border-b border-gray-700 hover:bg-[#202020]"
                 >
                   <td className="px-6 py-5">
-                    <div className="font-medium text-white">
-                      {comment.name}
-                    </div>
-                    <div className="text-sm text-gray-400">
-                      {comment.email}
-                    </div>
+                    <div className="font-medium text-white">{comment.name}</div>
+                    <div className="text-sm text-gray-400">{comment.email}</div>
                   </td>
 
-                  <td className="px-6 py-5 text-gray-300">
-                    {comment.post}
-                  </td>
+                  <td className="px-6 py-5 text-gray-300">{comment.post}</td>
 
                   <td className="max-w-sm px-6 py-5 text-gray-300">
                     {comment.comment}
@@ -94,18 +81,14 @@ export default function CommentsPage() {
                   <td className="px-6 py-5">
                     <span
                       className={`rounded-full px-3 py-1 text-sm font-medium ${
-                        statusColor[
-                          comment.status as keyof typeof statusColor
-                        ]
+                        statusColor[comment.status as keyof typeof statusColor]
                       }`}
                     >
                       {comment.status}
                     </span>
                   </td>
 
-                  <td className="px-6 py-5 text-gray-400">
-                    {comment.date}
-                  </td>
+                  <td className="px-6 py-5 text-gray-400">{comment.date}</td>
 
                   <td className="px-6 py-5">
                     <div className="flex justify-center gap-2">
@@ -123,10 +106,7 @@ export default function CommentsPage() {
 
               {comments.length === 0 && (
                 <tr>
-                  <td
-                    colSpan={6}
-                    className="py-10 text-center text-gray-400"
-                  >
+                  <td colSpan={6} className="py-10 text-center text-gray-400">
                     No comments found.
                   </td>
                 </tr>

@@ -12,118 +12,109 @@ const performer = {
 };
 
 const Page = () => {
-const params = useParams();
-const router = useRouter();
+  const params = useParams();
+  const router = useRouter();
 
-const performerId = Number(params.id);
-const videoId = Number(params.videoid);
+  const performerId = Number(params.id);
+  const videoId = Number(params.videoid);
 
-const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-const [video, setVideo] = useState<any>(null);
-const [saving, setSaving] = useState(false);
+  const [video, setVideo] = useState<any>(null);
+  const [saving, setSaving] = useState(false);
 
-const [formData, setFormData] = useState({
-  offering_id: 0,
-  youtube_url: "",
-  display_order: 1,
-  status: "ACTIVE",
-});
+  const [formData, setFormData] = useState({
+    offering_id: 0,
+    youtube_url: "",
+    display_order: 1,
+    status: "ACTIVE",
+  });
 
-useEffect(() => {
-  fetchVideo();
-}, []);
+  useEffect(() => {
+    fetchVideo();
+  }, []);
 
-const fetchVideo = async () => {
-  try {
-    const res = await fetch(`/api/offeringVideo/${videoId}`, {
-      credentials: "include",
-    });
+  const fetchVideo = async () => {
+    try {
+      const res = await fetch(`/api/offeringVideo/${videoId}`, {
+        credentials: "include",
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      setVideo(data.data);
+      if (data.success) {
+        setVideo(data.data);
 
-setFormData({
-  offering_id: data.data.offering_id,
-  youtube_url: data.data.youtube_url,
-  display_order: data.data.display_order,
-  status: data.data.status,
-});
+        setFormData({
+          offering_id: data.data.offering_id,
+          youtube_url: data.data.youtube_url,
+          display_order: data.data.display_order,
+          status: data.data.status,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
-const handleSubmit = async (
-  e: React.FormEvent<HTMLFormElement>
-) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  setSaving(true);
+    setSaving(true);
 
-  try {
-    const res = await fetch(
-      `/api/offeringVideo/${videoId}`,
-      {
+    try {
+      const res = await fetch(`/api/offeringVideo/${videoId}`, {
         method: "PATCH",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message);
       }
-    );
 
-    const data = await res.json();
+      alert("Video updated successfully.");
 
-    if (!res.ok) {
-      throw new Error(data.message);
+      router.push(
+        `/controlpanel/entertainment/offering/performers/${performerId}/videos`,
+      );
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Update failed");
+    } finally {
+      setSaving(false);
     }
+  };
 
-    alert("Video updated successfully.");
+  const handleChange = ( e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,) => {
+    const { name, value } = e.target;
 
-    router.push(
-      `/controlpanel/entertainment/offering/performers/${performerId}/videos`
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "display_order" ? Number(value) : value,
+    }));
+  };
+
+  if (loading) {
+    return (
+      <div className="flex h-64 items-center justify-center text-white">
+        Loading...
+      </div>
     );
-  } catch (error) {
-    alert(error instanceof Error ? error.message : "Update failed");
-  } finally {
-    setSaving(false);
   }
-};
-
-const handleChange = (
-  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-) => {
-  const { name, value } = e.target;
-
-  setFormData((prev) => ({
-    ...prev,
-    [name]:
-      name === "display_order"
-        ? Number(value)
-        : value,
-  }));
-};
-
-if (loading) {
-  return (
-    <div className="flex h-64 items-center justify-center text-white">
-      Loading...
-    </div>
-  );
-}
   return (
     <div className="space-y-6">
       {/* Back */}
       <Link
         href={`/controlpanel/entertainment/offering/performers/${performer.id}/videos`}
-        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
+          text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
         Back
@@ -131,9 +122,7 @@ if (loading) {
 
       {/* Header */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg">
-        <h1 className="text-3xl font-bold text-white">
-          Edit Offering Video
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Edit Offering Video</h1>
 
         <p className="mt-2 text-gray-400">
           Update video details for{" "}
@@ -146,7 +135,6 @@ if (loading) {
       {/* Form */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg">
         <form onSubmit={handleSubmit} className="space-y-6">
-
           {/* Performer */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -189,7 +177,8 @@ if (loading) {
               value={formData.youtube_url}
               onChange={handleChange}
               placeholder="Paste YouTube link"
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -205,7 +194,8 @@ if (loading) {
               name="display_order"
               value={formData.display_order}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -219,7 +209,8 @@ if (loading) {
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             >
               <option value="ACTIVE">ACTIVE</option>
               <option value="INACTIVE">INACTIVE</option>
@@ -241,9 +232,9 @@ if (loading) {
               <div>
                 <p className="text-sm text-gray-400">Created At</p>
                 <p className="mt-1 text-white">
-                                  {video?.created_at
-  ? new Date(video.created_at).toLocaleString("en-IN")
-  : "-"}
+                  {video?.created_at
+                    ? new Date(video.created_at).toLocaleString("en-IN")
+                    : "-"}
                 </p>
               </div>
 
@@ -256,8 +247,8 @@ if (loading) {
                 <p className="text-sm text-gray-400">Updated At</p>
                 <p className="mt-1 text-white">
                   {video?.updated_at
-  ? new Date(video.updated_at).toLocaleString("en-IN")
-  : "-"}
+                    ? new Date(video.updated_at).toLocaleString("en-IN")
+                    : "-"}
                 </p>
               </div>
             </div>
@@ -267,7 +258,8 @@ if (loading) {
           <div className="flex justify-end gap-4 pt-4">
             <Link
               href={`/controlpanel/entertainment/offering/performers/${performerId}/videos`}
-              className="rounded-lg border border-gray-600 px-6 py-3 text-white transition hover:border-red-500 hover:text-red-400"
+              className="rounded-lg border border-gray-600 px-6 py-3 text-white transition hover:border-red-500 
+                hover:text-red-400"
             >
               Cancel
             </Link>
@@ -275,7 +267,8 @@ if (loading) {
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition hover:bg-[#b89470] disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition 
+                hover:bg-[#b89470] disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Save size={18} />
               {saving ? "Updating..." : "Update Video"}

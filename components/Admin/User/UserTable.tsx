@@ -23,14 +23,12 @@ const UserTable = ({
   onEdit,
   onDelete,
   onRoleChange,
-  onView
+  onView,
 }: UserTableProps) => {
   if (users.length === 0) {
     return (
       <div className="rounded-xl border border-gray-700 bg-[#181616] py-16 text-center">
-        <h3 className="text-lg font-semibold text-white">
-          No Users Found
-        </h3>
+        <h3 className="text-lg font-semibold text-white">No Users Found</h3>
 
         <p className="mt-2 text-sm text-gray-400">
           Try changing your search or create a new admin.
@@ -65,22 +63,18 @@ const UserTable = ({
                 </td>
 
                 {/* Email */}
-                <td className="px-6 py-4 text-gray-400">
-                  {user.email}
-                </td>
+                <td className="px-6 py-4 text-gray-400">{user.email}</td>
 
                 {/* Role */}
                 <td className="px-6 py-4">
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
                       user.role === "SUPER_ADMIN"
-                      ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
-                      : "border border-[#00BFFF] bg-[#00BFFF]/10 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] hover:bg-[#00BFFF]/20"
+                        ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
+                        : "border border-[#00BFFF] bg-[#00BFFF]/10 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] hover:bg-[#00BFFF]/20"
                     }`}
                   >
-                    {user.role === "SUPER_ADMIN"
-                      ? "Super Admin"
-                      : "Admin"}
+                    {user.role === "SUPER_ADMIN" ? "Super Admin" : "Admin"}
                   </span>
                 </td>
 
@@ -89,8 +83,8 @@ const UserTable = ({
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-medium ${
                       user.status === "ACTIVE"
-                      ? "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
-                      : "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131] hover:bg-[#FF3131]/20"
+                        ? "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
+                        : "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131] hover:bg-[#FF3131]/20"
                     }`}
                   >
                     {user.status === "ACTIVE" ? "Active" : "Inactive"}
@@ -100,7 +94,7 @@ const UserTable = ({
                 {/* Actions */}
                 <td className="px-6 py-4">
                   <div className="flex justify-center gap-3">
-                        {/* View */}
+                    {/* View */}
                     <button
                       title="View User"
                       onClick={() => onView(user.id)}
@@ -128,8 +122,8 @@ const UserTable = ({
                       onClick={() => onRoleChange(user.id, user.role)}
                       className={`rounded-lg p-2 transition ${
                         user.role === "SUPER_ADMIN"
-                        ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
-                        : "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
+                          ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
+                          : "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
                       }`}
                     >
                       <Shield size={18} />
@@ -154,8 +148,8 @@ const UserTable = ({
       {/* Footer */}
       <div className="flex items-center justify-between border-t border-gray-700 px-6 py-4 text-sm text-gray-400">
         <span>
-          Showing <strong>{users.length}</strong>{" "}
-          user{users.length > 1 ? "s" : ""}
+          Showing <strong>{users.length}</strong> user
+          {users.length > 1 ? "s" : ""}
         </span>
 
         <span>Total: {users.length}</span>

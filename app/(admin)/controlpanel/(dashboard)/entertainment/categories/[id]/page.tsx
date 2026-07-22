@@ -66,7 +66,8 @@ const Page = () => {
       {/* Back */}
       <Link
         href="/controlpanel/entertainment/categories"
-        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
+          text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
         Back
@@ -75,9 +76,7 @@ const Page = () => {
       {/* Header */}
       <div className="flex items-center justify-between rounded-xl border border-gray-700 bg-[#181616] p-6">
         <div>
-          <h1 className="text-3xl font-bold text-white">
-            View Category
-          </h1>
+          <h1 className="text-3xl font-bold text-white">View Category</h1>
           <p className="mt-2 text-gray-400">
             View entertainment category details.
           </p>
@@ -85,7 +84,8 @@ const Page = () => {
 
         <Link
           href={`/controlpanel/entertainment/categories/${category.id}/edit`}
-          className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:opacity-90"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition 
+            hover:opacity-90"
         >
           <Pencil size={18} />
           Edit
@@ -116,8 +116,8 @@ const Page = () => {
             <span
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
                 category.status === "ACTIVE"
-      ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
-      : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
+                  ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
+                  : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
               }`}
             >
               {category.status}
@@ -125,17 +125,13 @@ const Page = () => {
           </div>
 
           <div className="md:col-span-2">
-            <p className="mb-2 text-sm text-gray-400">
-              Description
-            </p>
+            <p className="mb-2 text-sm text-gray-400">Description</p>
 
             <p className="text-white">{category.description}</p>
           </div>
 
           <div className="md:col-span-2">
-            <p className="mb-2 text-sm text-gray-400">
-              Long Description
-            </p>
+            <p className="mb-2 text-sm text-gray-400">Long Description</p>
 
             <p className="whitespace-pre-line text-white">
               {category.long_description}
@@ -143,9 +139,7 @@ const Page = () => {
           </div>
 
           <div>
-            <p className="mb-2 text-sm text-gray-400">
-              Created At
-            </p>
+            <p className="mb-2 text-sm text-gray-400">Created At</p>
 
             <p className="text-white">
               {new Date(category.created_at).toLocaleString()}
@@ -153,15 +147,12 @@ const Page = () => {
           </div>
 
           <div>
-            <p className="mb-2 text-sm text-gray-400">
-              Updated At
-            </p>
+            <p className="mb-2 text-sm text-gray-400">Updated At</p>
 
             <p className="text-white">
               {new Date(category.updated_at).toLocaleString()}
             </p>
           </div>
-          
         </div>
       </div>
     </div>

@@ -51,11 +51,7 @@ const Page = () => {
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
+  const handleChange = (e: React.ChangeEvent< HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -68,9 +64,7 @@ const Page = () => {
     }
   };
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -124,7 +118,8 @@ const Page = () => {
       {/* Back Button */}
       <Link
         href="/controlpanel/entertainment/categories"
-        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-amber-500 hover:text-amber-400"
+        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
+        text-white transition hover:border-amber-500 hover:text-amber-400"
       >
         <ArrowLeft size={18} />
         Back
@@ -132,9 +127,7 @@ const Page = () => {
 
       {/* Header */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-6">
-        <h1 className="text-3xl font-bold text-white">
-          Edit Category
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Edit Category</h1>
 
         <p className="mt-2 text-gray-400">
           Update entertainment category details.
@@ -148,126 +141,134 @@ const Page = () => {
             button loading -> Updating...
       */}
 
-          <div className="rounded-xl border border-gray-700 bg-[#181616] p-6">
-      <form className="space-y-6" onSubmit={handleSubmit}>
-        {/* Category Name & Menu Name */}
-        <div className="grid gap-6 md:grid-cols-2">
+      <div className="rounded-xl border border-gray-700 bg-[#181616] p-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          {/* Category Name & Menu Name */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label className="mb-2 block text-sm font-medium text-gray-300">
+                Category Name *
+              </label>
+
+              <input
+                type="text"
+                name="category_name"
+                value={formData.category_name}
+                onChange={handleChange}
+                placeholder="e.g. Musicians"
+                required
+                className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+                  focus:border-[#C9AC8C]"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-medium text-gray-300">
+                Menu Name *
+              </label>
+
+              <input
+                type="text"
+                name="menu_name"
+                value={formData.menu_name}
+                onChange={handleChange}
+                placeholder="e.g. Live Music"
+                required
+                className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+                  focus:border-[#C9AC8C]"
+              />
+            </div>
+          </div>
+
+          {/* Image */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-300">
-              Category Name *
+              Category Image
             </label>
 
             <input
-              type="text"
-              name="category_name"
-              value={formData.category_name}
-              onChange={handleChange}
-              placeholder="e.g. Musicians"
-              required
-              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+              type="file"
+              accept="image/*"
+              onChange={handleImage}
+              className="block w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-sm text-gray-300 file:mr-4 
+                file:rounded-md file:border-0 file:bg-[#C9AC8C] file:px-4 file:py-2 file:text-black"
             />
           </div>
 
+          {/* Description */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-300">
-              Menu Name *
+              Description
             </label>
 
-            <input
-              type="text"
-              name="menu_name"
-              value={formData.menu_name}
+            <textarea
+              rows={4}
+              name="description"
+              value={formData.description}
               onChange={handleChange}
-              placeholder="e.g. Live Music"
-              required
-              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+              placeholder="Enter short description..."
+              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+                focus:border-[#C9AC8C]"
             />
           </div>
-        </div>
 
-        {/* Image */}
-        <div>
-          <label className="mb-2 block text-sm font-medium text-gray-300">
-            Category Image
-          </label>
+          {/* Long Description */}
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              Long Description
+            </label>
 
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImage}
-            className="block w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-sm text-gray-300 file:mr-4 file:rounded-md file:border-0 file:bg-[#C9AC8C] file:px-4 file:py-2 file:text-black"
-          />
-        </div>
+            <textarea
+              rows={8}
+              name="long_description"
+              value={formData.long_description}
+              onChange={handleChange}
+              placeholder="Enter detailed description..."
+              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+                focus:border-[#C9AC8C]"
+            />
+          </div>
 
-        {/* Description */}
-        <div>
-          <label className="mb-2 block text-sm font-medium text-gray-300">
-            Description
-          </label>
+          {/* Status */}
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              Status
+            </label>
 
-          <textarea
-            rows={4}
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Enter short description..."
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
-          />
-        </div>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
+            >
+              <option value="ACTIVE">Active</option>
+              <option value="INACTIVE">Inactive</option>
+            </select>
+          </div>
 
-        {/* Long Description */}
-        <div>
-          <label className="mb-2 block text-sm font-medium text-gray-300">
-            Long Description
-          </label>
+          {/* Buttons */}
+          <div className="flex justify-end gap-4">
+            <Link
+              href="/controlpanel/entertainment/categories"
+              className="rounded-lg border border-gray-700 px-5 py-3 text-white transition hover:border-red-500 
+                hover:text-red-500"
+            >
+              Cancel
+            </Link>
 
-          <textarea
-            rows={8}
-            name="long_description"
-            value={formData.long_description}
-            onChange={handleChange}
-            placeholder="Enter detailed description..."
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
-          />
-        </div>
-
-        {/* Status */}
-        <div>
-          <label className="mb-2 block text-sm font-medium text-gray-300">
-            Status
-          </label>
-
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
-          >
-            <option value="ACTIVE">Active</option>
-            <option value="INACTIVE">Inactive</option>
-          </select>
-        </div>
-
-        {/* Buttons */}
-        <div className="flex justify-end gap-4">
-          <Link
-            href="/controlpanel/entertainment/categories"
-            className="rounded-lg border border-gray-700 px-5 py-3 text-white transition hover:border-red-500 hover:text-red-500"
-          >
-            Cancel
-          </Link>
-
-          <button
-            type="submit"
-            disabled={saving}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            <Save size={18} />
-            {loading ? "Updating..." : "Update Category"}
-          </button>
-        </div>
-      </form>
-    </div>
+            <button
+              type="submit"
+              disabled={saving}
+              className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-semibold text-black transition 
+                hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <Save size={18} />
+              {loading ? "Updating..." : "Update Category"}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

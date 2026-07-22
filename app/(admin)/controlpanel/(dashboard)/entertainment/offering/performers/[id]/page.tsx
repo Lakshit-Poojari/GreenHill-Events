@@ -22,49 +22,47 @@ export interface Offering {
 
 const Page = () => {
   const { id } = useParams();
-  
 
   const [offering, setoffring] = useState<Offering | null>(null);
   const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-      fetchOffering();
-    }, []);
-  
-    const fetchOffering = async () => {
-      try {
-        const response = await fetch(`/api/offerings/${id}`);
-        const result = await response.json();
-        console.log(result);
-        
-  
-        if (!response.ok) {
-          throw new Error(result.message);
-        }
-  
-        setoffring(result.offering[0]);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
+  useEffect(() => {
+    fetchOffering();
+  }, []);
+
+  const fetchOffering = async () => {
+    try {
+      const response = await fetch(`/api/offerings/${id}`);
+      const result = await response.json();
+      console.log(result);
+
+      if (!response.ok) {
+        throw new Error(result.message);
       }
-    };
-  
-    if (loading) {
-      return (
-        <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 text-center text-white">
-          Loading...
-        </div>
-      );
+
+      setoffring(result.offering[0]);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-  
-    if (!offering) {
-      return (
-        <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 text-center text-red-400">
-          Offering not found.
-        </div>
-      );
-    }
+  };
+
+  if (loading) {
+    return (
+      <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 text-center text-white">
+        Loading...
+      </div>
+    );
+  }
+
+  if (!offering) {
+    return (
+      <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 text-center text-red-400">
+        Offering not found.
+      </div>
+    );
+  }
   return (
     <div className="space-y-6">
       {/* Back */}
@@ -79,20 +77,16 @@ const Page = () => {
       {/* Header */}
       <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">
-            View Performer
-          </h1>
+          <h1 className="text-3xl font-bold text-white">View Performer</h1>
 
-          <p className="mt-2 text-gray-400">
-            View performer information.
-          </p>
+          <p className="mt-2 text-gray-400">View performer information.</p>
         </div>
 
         <Link
-            href={`/controlpanel/entertainment/offering/performers/${offering.id}/videos`}
-            className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
-            >
-            Manage Videos
+          href={`/controlpanel/entertainment/offering/performers/${offering.id}/videos`}
+          className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
+        >
+          Manage Videos
         </Link>
 
         <Link
@@ -123,9 +117,7 @@ const Page = () => {
           {/* Information */}
           <div className="space-y-6">
             <div>
-              <p className="text-sm text-gray-400">
-                Performer Name
-              </p>
+              <p className="text-sm text-gray-400">Performer Name</p>
 
               <p className="mt-1 text-lg font-medium text-white">
                 {offering.performer_name}
@@ -133,19 +125,13 @@ const Page = () => {
             </div>
 
             <div>
-              <p className="text-sm text-gray-400">
-                Offering Category
-              </p>
+              <p className="text-sm text-gray-400">Offering Category</p>
 
-              <p className="mt-1 text-white">
-                {offering.offering_category_id}
-              </p>
+              <p className="mt-1 text-white">{offering.offering_category_id}</p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-400">
-                Status
-              </p>
+              <p className="text-sm text-gray-400">Status</p>
 
               <span
                 className={`mt-2 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${

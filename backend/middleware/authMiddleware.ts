@@ -8,10 +8,10 @@ export interface JwtPayload {
 }
 
 export function verifyToken(token: string): JwtPayload {
-    try {
-        return jwt.verify(token, SECRET_KEY) as JwtPayload
-    } catch (error) {
-        console.error("JWT Error authMiddleware:", error);
-        throw error;
-    }
+  try {
+    return jwt.verify(token, SECRET_KEY) as JwtPayload;
+  } catch (error) {
+    console.error("JWT Error authMiddleware:", error);
+    throw error;
+  }
 }

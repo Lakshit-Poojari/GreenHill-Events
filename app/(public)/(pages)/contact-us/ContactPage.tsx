@@ -74,10 +74,7 @@ const Page = () => {
       </div>
 
       {/* Modal */}
-      <ContactModal
-        open={open}
-        onClose={() => setOpen(false)}
-      />
+      <ContactModal open={open} onClose={() => setOpen(false)} />
     </>
   );
 };

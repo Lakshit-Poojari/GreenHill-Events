@@ -9,7 +9,8 @@ const Page = () => {
       {/* Back Button */}
       <Link
         href="/controlpanel/entertainment"
-        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
+          text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
         Back
@@ -31,7 +32,8 @@ const Page = () => {
         {/* Offering Categories */}
         <Link
           href="/controlpanel/entertainment/offering/offeringcategory"
-          className="group rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.25)]"
+          className="group rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-sm transition hover:-translate-y-1 
+            hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.25)]"
         >
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-[#C9AC8C]/15 text-[#C9AC8C]">
             <FolderTree size={28} />
@@ -54,7 +56,8 @@ const Page = () => {
         {/* Performers */}
         <Link
           href="/controlpanel/entertainment/offering/performers"
-          className="group rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.25)]"
+          className="group rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-sm transition hover:-translate-y-1 
+            hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.25)]"
         >
           <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-[#C9AC8C]/15 text-[#C9AC8C]">
             <Users size={28} />

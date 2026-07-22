@@ -39,9 +39,7 @@ const Page = () => {
     }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({
@@ -97,7 +95,8 @@ const Page = () => {
       {/* Back */}
       <Link
         href="/controlpanel/entertainment/offering/offeringcategory"
-        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
+          text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
         Back
@@ -125,7 +124,8 @@ const Page = () => {
               name="category_id"
               value={formData.category_id}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             >
               <option value="">Select Entertainment Category</option>
 
@@ -149,7 +149,8 @@ const Page = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="e.g. Singing Waiters"
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white placeholder:text-gray-500 outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white placeholder:text-gray-500 
+                outline-none focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -165,7 +166,8 @@ const Page = () => {
               value={formData.display_order}
               onChange={handleChange}
               min={1}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white placeholder:text-gray-500 outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white placeholder:text-gray-500 
+                outline-none focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -179,7 +181,8 @@ const Page = () => {
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             >
               <option value="ACTIVE">ACTIVE</option>
               <option value="INACTIVE">INACTIVE</option>
@@ -190,7 +193,8 @@ const Page = () => {
           <div className="flex justify-end gap-4 pt-4">
             <Link
               href="/controlpanel/entertainment/offering/offeringcategory"
-              className="rounded-lg border border-gray-600 px-6 py-3 text-white transition hover:border-red-500 hover:text-red-400"
+              className="rounded-lg border border-gray-600 px-6 py-3 text-white transition hover:border-red-500 
+                hover:text-red-400"
             >
               Cancel
             </Link>
@@ -198,7 +202,8 @@ const Page = () => {
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition hover:bg-[#b89470] disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition 
+                hover:bg-[#b89470] disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Save size={18} />
               {loading ? "Saving..." : "Save Category"}

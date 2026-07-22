@@ -70,7 +70,8 @@ const Page = () => {
         <div className="flex gap-3">
           <Link
             href="/controlpanel/case-studies"
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-white hover:border-[rgba(201,172,140,1)]"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-white 
+              hover:border-[rgba(201,172,140,1)]"
           >
             <ArrowLeft size={18} />
             Back
@@ -78,7 +79,8 @@ const Page = () => {
 
           <Link
             href={`/controlpanel/case-studies/${caseStudy.id}/edit`}
-            className="inline-flex items-center gap-2 rounded-lg bg-[rgba(201,172,140,1)] px-4 py-2 font-semibold text-black hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-lg bg-[rgba(201,172,140,1)] px-4 py-2 font-semibold text-black 
+              hover:opacity-90"
           >
             <Edit size={18} />
             Edit

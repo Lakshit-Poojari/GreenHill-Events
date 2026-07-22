@@ -5,9 +5,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
-import UserForm, {
-  UserFormData,
-} from "@/components/Admin/User/UserForm";
+import UserForm, { UserFormData } from "@/components/Admin/User/UserForm";
 
 const Page = () => {
   const params = useParams();
@@ -102,11 +100,7 @@ const Page = () => {
   }
 
   if (!user) {
-    return (
-      <div className="text-center text-red-500">
-        User not found.
-      </div>
-    );
+    return <div className="text-center text-red-500">User not found.</div>;
   }
 
   return (
@@ -121,13 +115,9 @@ const Page = () => {
           Back to Users
         </Link>
 
-        <h1 className="text-3xl font-bold text-white">
-          Edit Admin
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Edit Admin</h1>
 
-        <p className="mt-1 text-[#C9AC8C]">
-          Update administrator information.
-        </p>
+        <p className="mt-1 text-[#C9AC8C]">Update administrator information.</p>
       </div>
 
       <UserForm

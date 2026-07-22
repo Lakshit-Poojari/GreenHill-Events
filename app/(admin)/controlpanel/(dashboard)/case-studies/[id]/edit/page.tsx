@@ -20,9 +20,7 @@ const Page = () => {
     status: "ACTIVE",
   });
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
     const { name, value } = e.target;
 
     if (name === "image") {
@@ -190,7 +188,8 @@ const Page = () => {
           <div className="flex justify-end gap-4">
             <Link
               href="/controlpanel/case-studies"
-              className="rounded-lg border border-gray-700 px-5 py-3 text-white transition hover:border-red-500 hover:text-red-500"
+              className="rounded-lg border border-gray-700 px-5 py-3 text-white transition hover:border-red-500 
+                hover:text-red-500"
             >
               Cancel
             </Link>
@@ -198,7 +197,8 @@ const Page = () => {
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-semibold text-black transition 
+                hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Save size={18} />
               {saving ? "Updating..." : "Update Case Study"}

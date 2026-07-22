@@ -35,8 +35,8 @@ export interface loginUserType {
 }
 
 export interface UpdateUserType {
-    full_name: string;
-    email: string;
-    role: UserRole;
-    status: UserStatus;
+  full_name: string;
+  email: string;
+  role: UserRole;
+  status: UserStatus;
 }

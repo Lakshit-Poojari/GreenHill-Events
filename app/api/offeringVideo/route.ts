@@ -1,4 +1,7 @@
-import { createOfferingVideoController, getAllOfferingVideoController } from "@/backend/controllers/offeringVideoController";
+import {
+  createOfferingVideoController,
+  getAllOfferingVideoController,
+} from "@/backend/controllers/offeringVideoController";
 import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -13,20 +16,18 @@ export async function GET() {
       },
       {
         status: 200,
-      }
+      },
     );
   } catch (error) {
     return NextResponse.json(
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Internal server error",
+          error instanceof Error ? error.message : "Internal server error",
       },
       {
         status: 500,
-      }
+      },
     );
   }
 }
@@ -43,7 +44,7 @@ export async function POST(request: NextRequest) {
         },
         {
           status: 401,
-        }
+        },
       );
     }
 
@@ -65,20 +66,18 @@ export async function POST(request: NextRequest) {
       },
       {
         status: 201,
-      }
+      },
     );
   } catch (error) {
     return NextResponse.json(
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Internal server error",
+          error instanceof Error ? error.message : "Internal server error",
       },
       {
         status: 400,
-      }
+      },
     );
   }
 }

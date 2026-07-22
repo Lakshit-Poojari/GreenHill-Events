@@ -8,7 +8,6 @@ import SearchBar from "@/components/Admin/User/SearchBar";
 import UserTable, { User } from "@/components/Admin/User/UserTable";
 import DeleteDialog from "@/components/Admin/User/DeleteDialog";
 
-
 export default function UserManagementPage() {
   const router = useRouter();
 
@@ -21,139 +20,128 @@ export default function UserManagementPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  fetchUsers();
-}, []);
+    fetchUsers();
+  }, []);
 
-const fetchUsers = async () => {
-  try {
-    setLoading(true);
+  const fetchUsers = async () => {
+    try {
+      setLoading(true);
 
-    const response = await fetch("/api/users", {
-      method: "GET",
-      credentials: "include",
-    });
+      const response = await fetch("/api/users", {
+        method: "GET",
+        credentials: "include",
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (!response.ok) {
-      throw new Error(result.message);
+      if (!response.ok) {
+        throw new Error(result.message);
+      }
+
+      setUsers(result.users);
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    } finally {
+      setLoading(false);
     }
-
-    setUsers(result.users);
-  } catch (error) {
-    if (error instanceof Error) {
-      alert(error.message);
-    }
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   const handleDeleteClick = (id: number) => {
     setSelectedUser(id);
     setIsDeleteOpen(true);
   };
 
-const handleDeleteConfirm = async () => {
-  if (!selectedUser) return;
+  const handleDeleteConfirm = async () => {
+    if (!selectedUser) return;
 
-  try {
-    const response = await fetch(`/api/users/${selectedUser}`, {
-      method: "DELETE",
-      credentials: "include",
-    });
+    try {
+      const response = await fetch(`/api/users/${selectedUser}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (!response.ok) {
-      throw new Error(result.message);
+      if (!response.ok) {
+        throw new Error(result.message);
+      }
+
+      alert(result.message);
+
+      fetchUsers();
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    } finally {
+      setIsDeleteOpen(false);
+      setSelectedUser(null);
     }
+  };
 
-    alert(result.message);
+  const handleView = (id: number) => {
+    router.push(`/controlpanel/users/${id}`);
+  };
 
-    fetchUsers();
-  } catch (error) {
-    if (error instanceof Error) {
-      alert(error.message);
+  const handleRoleChange = async ( id: number, currentRole: "SUPER_ADMIN" | "ADMIN",) => {
+    try {
+      const newRole = currentRole === "SUPER_ADMIN" ? "ADMIN" : "SUPER_ADMIN";
+
+      const response = await fetch(`/api/users/${id}/role`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          role: newRole,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message);
+      }
+
+      alert(result.message);
+
+      fetchUsers();
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     }
-  } finally {
-    setIsDeleteOpen(false);
-    setSelectedUser(null);
-  }
-};
-
-const handleView = (id: number) => {
-  router.push(`/controlpanel/users/${id}`);
-};
-
-const handleRoleChange = async (
-  id: number,
-  currentRole: "SUPER_ADMIN" | "ADMIN"
-) => {
-  try {
-    const newRole =
-      currentRole === "SUPER_ADMIN"
-        ? "ADMIN"
-        : "SUPER_ADMIN";
-
-    const response = await fetch(`/api/users/${id}/role`, {
-      method: "PATCH",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        role: newRole,
-      }),
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      throw new Error(result.message);
-    }
-
-    alert(result.message);
-
-    fetchUsers();
-  } catch (error) {
-    if (error instanceof Error) {
-      alert(error.message);
-    }
-  }
-};
+  };
 
   const filteredUsers = users.filter((user) => {
-  const matchesSearch =
-    user.full_name.toLowerCase().includes(search.toLowerCase()) ||
-    user.email.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch =
+      user.full_name.toLowerCase().includes(search.toLowerCase()) ||
+      user.email.toLowerCase().includes(search.toLowerCase());
 
-  const matchesRole =
-    role === "ALL" || user.role === role;
+    const matchesRole = role === "ALL" || user.role === role;
 
-  return matchesSearch && matchesRole;
-});
+    return matchesSearch && matchesRole;
+  });
 
-if (loading) {
-  return (
-    <div className="flex h-64 items-center justify-center">
-      <p className="text-lg text-gray-500">Loading users...</p>
-    </div>
-  );
-}
+  if (loading) {
+    return (
+      <div className="flex h-64 items-center justify-center">
+        <p className="text-lg text-gray-500">Loading users...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold white">
-            User Management
-          </h1>
+          <h1 className="text-3xl font-bold white">User Management</h1>
 
-          <p className="mt-1 text-[#C9AC8C]">
-            Manage administrator accounts.
-          </p>
+          <p className="mt-1 text-[#C9AC8C]">Manage administrator accounts.</p>
         </div>
 
         <Link
@@ -171,13 +159,13 @@ if (loading) {
         setRole={setRole}
       />
 
-<UserTable
-  users={filteredUsers}
-  onEdit={(id) => router.push(`/controlpanel/users/${id}/edit`)}
-  onDelete={handleDeleteClick}
-  onRoleChange={handleRoleChange}
-  onView={(id) => router.push(`/controlpanel/users/${id}`)}
-/>
+      <UserTable
+        users={filteredUsers}
+        onEdit={(id) => router.push(`/controlpanel/users/${id}/edit`)}
+        onDelete={handleDeleteClick}
+        onRoleChange={handleRoleChange}
+        onView={(id) => router.push(`/controlpanel/users/${id}`)}
+      />
 
       <DeleteDialog
         isOpen={isDeleteOpen}

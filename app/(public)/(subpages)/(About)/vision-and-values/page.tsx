@@ -1,6 +1,6 @@
-import SectionHeading from '@/components/public/SectionHeading'
-import Image from 'next/image'
-import React from 'react'
+import SectionHeading from "@/components/public/SectionHeading";
+import Image from "next/image";
+import React from "react";
 
 const values = [
   {
@@ -33,32 +33,37 @@ const values = [
 const page = () => {
   return (
     <>
-        <div className="pt-26 mx-16.25 px-6.75">
-            <SectionHeading title='Vision and Values'/>
-            <div className=' '>
-                <div className='flex items-center my-6 py-3 justify-center'>
-                    <Image src={"/About/Vision-Values.jpg"} alt="Vision-Values" width={1000} height={100}/>
-                </div>
-                
-                <div>
-                    <div className="space-y-8 text-center my-6 py-3">
-                        {values.map((value) => (
-                            <div key={value.title}>
-                            <h3 className="text-[#C9AC8C] font-['Old Standard TT'] italic text-2xl font-semibold mb-2">
-                                {value.title}
-                            </h3>
+      <div className="pt-26 mx-16.25 px-6.75">
+        <SectionHeading title="Vision and Values" />
+        <div className=" ">
+          <div className="flex items-center my-6 py-3 justify-center">
+            <Image
+              src={"/About/Vision-Values.jpg"}
+              alt="Vision-Values"
+              width={1000}
+              height={100}
+            />
+          </div>
 
-                            <p className="text-[#C9AC8C] text-xl font-['Poppins'] italic leading-relaxed">
-                                {value.description}
-                            </p>
-                            </div>
-                        ))}
-                    </div>
+          <div>
+            <div className="space-y-8 text-center my-6 py-3">
+              {values.map((value) => (
+                <div key={value.title}>
+                  <h3 className="text-[#C9AC8C] font-['Old Standard TT'] italic text-2xl font-semibold mb-2">
+                    {value.title}
+                  </h3>
+
+                  <p className="text-[#C9AC8C] text-xl font-['Poppins'] italic leading-relaxed">
+                    {value.description}
+                  </p>
                 </div>
+              ))}
             </div>
+          </div>
         </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

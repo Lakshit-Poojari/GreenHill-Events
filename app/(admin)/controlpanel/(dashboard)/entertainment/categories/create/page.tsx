@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {  Save } from "lucide-react";
+import { Save } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -20,7 +20,7 @@ const Page = () => {
 
   const [image, setImage] = useState<File | null>(null);
 
-  const handleChange = (e: React.ChangeEvent< HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -46,19 +46,15 @@ const Page = () => {
       data.append("description", formData.description);
       data.append("long_description", formData.long_description);
       data.append("status", formData.status);
-      
 
       if (image) {
         data.append("image", image);
       }
 
-      const response = await fetch(
-        "/api/categories",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
+      const response = await fetch("/api/categories", {
+        method: "POST",
+        body: data,
+      });
 
       const result = await response.json();
 
@@ -92,7 +88,8 @@ const Page = () => {
               onChange={handleChange}
               placeholder="e.g. Musicians"
               required
-              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+                focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -108,7 +105,8 @@ const Page = () => {
               onChange={handleChange}
               placeholder="e.g. Live Music"
               required
-              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+                focus:border-[#C9AC8C]"
             />
           </div>
         </div>
@@ -123,7 +121,8 @@ const Page = () => {
             type="file"
             accept="image/*"
             onChange={handleImage}
-            className="block w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-sm text-gray-300 file:mr-4 file:rounded-md file:border-0 file:bg-[#C9AC8C] file:px-4 file:py-2 file:text-black"
+            className="block w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-sm text-gray-300 file:mr-4 
+              file:rounded-md file:border-0 file:bg-[#C9AC8C] file:px-4 file:py-2 file:text-black"
           />
         </div>
 
@@ -139,7 +138,8 @@ const Page = () => {
             value={formData.description}
             onChange={handleChange}
             placeholder="Enter short description..."
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+              focus:border-[#C9AC8C]"
           />
         </div>
 
@@ -155,7 +155,8 @@ const Page = () => {
             value={formData.long_description}
             onChange={handleChange}
             placeholder="Enter detailed description..."
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+              focus:border-[#C9AC8C]"
           />
         </div>
 
@@ -169,7 +170,8 @@ const Page = () => {
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none 
+              focus:border-[#C9AC8C]"
           >
             <option value="ACTIVE">Active</option>
             <option value="INACTIVE">Inactive</option>
@@ -180,7 +182,8 @@ const Page = () => {
         <div className="flex justify-end gap-4">
           <Link
             href="/controlpanel/entertainment/categories"
-            className="rounded-lg border border-gray-700 px-5 py-3 text-white transition hover:border-red-500 hover:text-red-500"
+            className="rounded-lg border border-gray-700 px-5 py-3 text-white transition hover:border-red-500 
+              hover:text-red-500"
           >
             Cancel
           </Link>
@@ -188,7 +191,8 @@ const Page = () => {
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-semibold text-black transition 
+              hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Save size={18} />
             {loading ? "Saving..." : "Save Category"}

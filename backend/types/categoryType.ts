@@ -23,7 +23,7 @@ export interface CreateCategoryType {
   category_name: string;
   menu_name: string;
   image: File;
-  slug?: string
+  slug?: string;
   description: string;
   long_description: string;
   status: CategoryStatus;
@@ -40,5 +40,5 @@ export interface UpdateCategoryType {
 }
 
 export interface UpdateCategoryStatusType {
-    status: CategoryStatus;
+  status: CategoryStatus;
 }

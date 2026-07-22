@@ -23,11 +23,7 @@ const Page = () => {
     status: "ACTIVE",
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({
@@ -48,46 +44,46 @@ const Page = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-setLoading(true);
-    const data = new FormData();
+      setLoading(true);
+      const data = new FormData();
 
-    data.append("title", formData.title);
-    data.append("description", formData.description);
-    data.append("youtube_url", formData.youtube_url);
-    data.append("status", formData.status);
+      data.append("title", formData.title);
+      data.append("description", formData.description);
+      data.append("youtube_url", formData.youtube_url);
+      data.append("status", formData.status);
 
-    if (formData.image) {
-      data.append("image", formData.image);
+      if (formData.image) {
+        data.append("image", formData.image);
+      }
+
+      const response = await fetch("/api/caseStudy", {
+        method: "POST",
+        credentials: "include",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        alert(result.message || "Failed to create case study");
+        return;
+      }
+
+      alert("Case study created successfully!");
+
+      setFormData({
+        title: "",
+        image: null,
+        description: "",
+        youtube_url: "",
+        status: "ACTIVE",
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
     }
-
-    const response = await fetch("/api/caseStudy", {
-      method: "POST",
-      credentials: "include",
-      body: data,
-    })
-
-        const result = await response.json();
-
-    if (!response.ok) {
-      alert(result.message || "Failed to create case study");
-      return;
-    }
-
-   alert("Case study created successfully!");
-
-    setFormData({
-      title: "",
-      image: null,
-      description: "",
-      youtube_url: "",
-      status: "ACTIVE",
-    });
-  } catch (error) {
-    console.error(error);
-    alert("Something went wrong.");
-  } finally {
-    setLoading(false);
-  }
   };
   return (
     <div className="space-y-6">
@@ -102,7 +98,8 @@ setLoading(true);
 
         <Link
           href="/controlpanel/case-studies"
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-white transition hover:border-[rgba(201,172,140,1)]"
+          className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-white 
+            transition hover:border-[rgba(201,172,140,1)]"
         >
           <ArrowLeft size={18} />
           Back
@@ -110,7 +107,10 @@ setLoading(true);
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-6 rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg"
+      >
         {/* Title */}
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -124,7 +124,8 @@ setLoading(true);
             value={formData.title}
             onChange={handleChange}
             placeholder="Enter case study title"
-            className="w-full rounded-lg border border-gray-700 bg-[#111] px-4 py-3 text-white outline-none focus:border-[rgba(201,172,140,1)]"
+            className="w-full rounded-lg border border-gray-700 bg-[#111] px-4 py-3 text-white outline-none 
+              focus:border-[rgba(201,172,140,1)]"
           />
         </div>
 
@@ -135,13 +136,14 @@ setLoading(true);
           </label>
 
           <input
-          ref={fileInputRef}
+            ref={fileInputRef}
             type="file"
             name="image"
             onChange={handleImageChange}
             accept="image/*"
             required
-            className="w-full rounded-lg border border-gray-700 bg-[#111] p-3 text-gray-300 file:mr-4 file:rounded-lg file:border-0 file:bg-[rgba(201,172,140,1)] file:px-4 file:py-2 file:text-black"
+            className="w-full rounded-lg border border-gray-700 bg-[#111] p-3 text-gray-300 file:mr-4 file:rounded-lg 
+              file:border-0 file:bg-[rgba(201,172,140,1)] file:px-4 file:py-2 file:text-black"
           />
         </div>
 
@@ -158,7 +160,8 @@ setLoading(true);
             onChange={handleChange}
             placeholder="Write the case study..."
             required
-            className="w-full rounded-lg border border-gray-700 bg-[#111] px-4 py-3 text-white outline-none focus:border-[rgba(201,172,140,1)]"
+            className="w-full rounded-lg border border-gray-700 bg-[#111] px-4 py-3 text-white outline-none 
+              focus:border-[rgba(201,172,140,1)]"
           />
         </div>
 
@@ -175,7 +178,8 @@ setLoading(true);
             value={formData.youtube_url}
             onChange={handleChange}
             placeholder="https://www.youtube.com/watch?v=..."
-            className="w-full rounded-lg border border-gray-700 bg-[#111] px-4 py-3 text-white outline-none focus:border-[rgba(201,172,140,1)]"
+            className="w-full rounded-lg border border-gray-700 bg-[#111] px-4 py-3 text-white outline-none 
+              focus:border-[rgba(201,172,140,1)]"
           />
         </div>
 
@@ -185,7 +189,13 @@ setLoading(true);
             Status
           </label>
 
-          <select name="status" value={formData.status} onChange={handleChange} className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]">
+          <select
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+            className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+              focus:border-[#C9AC8C]"
+          >
             <option value="ACTIVE">Active</option>
             <option value="INACTIVE">Inactive</option>
           </select>
@@ -200,14 +210,15 @@ setLoading(true);
             Cancel
           </Link>
 
-<button
-  type="submit"
-  disabled={loading}
-  className="inline-flex items-center gap-2 rounded-lg bg-[rgba(201,172,140,1)] px-6 py-3 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
->
-  <Save size={18} />
-  {loading ? "Saving..." : "Save Case Study"}
-</button>
+          <button
+            type="submit"
+            disabled={loading}
+            className="inline-flex items-center gap-2 rounded-lg bg-[rgba(201,172,140,1)] px-6 py-3 font-semibold text-black 
+              transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <Save size={18} />
+            {loading ? "Saving..." : "Save Case Study"}
+          </button>
         </div>
       </form>
     </div>

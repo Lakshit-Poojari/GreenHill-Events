@@ -1,47 +1,47 @@
-import { createOfferingController, getAllOfferingController } from "@/backend/controllers/offeringController";
+import {
+  createOfferingController,
+  getAllOfferingController,
+} from "@/backend/controllers/offeringController";
 import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(){
-    try {
-        const offering = await getAllOfferingController()
-        return NextResponse.json(
-            {
-                success:true,
-                offering
-            }
-        )
-    } catch (error) {
-        return NextResponse.json(
-            {
-                success:false,
-                message:error instanceof Error?
-                        error.message : "Internal server error"
-            },
-            {
-                status:400
-            }
-        )        
-    }
+export async function GET() {
+  try {
+    const offering = await getAllOfferingController();
+    return NextResponse.json({
+      success: true,
+      offering,
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        message:
+          error instanceof Error ? error.message : "Internal server error",
+      },
+      {
+        status: 400,
+      },
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
   try {
-
-        const token = request.cookies.get("token")?.value;
+    const token = request.cookies.get("token")?.value;
 
     if (!token) {
-    return NextResponse.json(
+      return NextResponse.json(
         {
-        success: false,
-        message: "Unauthorized",
+          success: false,
+          message: "Unauthorized",
         },
         {
-        status: 401,
-        }
-    );
+          status: 401,
+        },
+      );
     }
-    
+
     const formData = await request.formData();
 
     const image = formData.get("image") as File | null;
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
         message:
           error instanceof Error ? error.message : "Internal server error",
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }

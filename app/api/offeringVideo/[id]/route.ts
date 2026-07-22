@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import {deleteOfferingVideoController, getSingleOfferingVideoController, updateOfferingVideoController,} from "@/backend/controllers/offeringVideoController";
+import {
+  deleteOfferingVideoController,
+  getSingleOfferingVideoController,
+  updateOfferingVideoController,
+} from "@/backend/controllers/offeringVideoController";
 import { verifyToken } from "@/backend/middleware/authMiddleware";
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
   try {
     const { id } = await params;
 
@@ -19,7 +20,7 @@ export async function GET(
         },
         {
           status: 404,
-        }
+        },
       );
     }
 
@@ -30,28 +31,23 @@ export async function GET(
       },
       {
         status: 200,
-      }
+      },
     );
   } catch (error) {
     return NextResponse.json(
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Internal server error",
+          error instanceof Error ? error.message : "Internal server error",
       },
       {
         status: 500,
-      }
+      },
     );
   }
 }
 
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
   try {
     const token = request.cookies.get("token")?.value;
 
@@ -63,7 +59,7 @@ export async function PATCH(
         },
         {
           status: 401,
-        }
+        },
       );
     }
 
@@ -77,7 +73,7 @@ export async function PATCH(
         ...body,
         updated_by: user.id,
       },
-      Number(id)
+      Number(id),
     );
 
     return NextResponse.json(
@@ -86,23 +82,21 @@ export async function PATCH(
         message: "Offering video updated successfully",
         data: result,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json(
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Internal server error",
+          error instanceof Error ? error.message : "Internal server error",
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
   try {
     const { id } = await params;
 
@@ -113,18 +107,18 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
         success: true,
         message: "Offering video deleted successfully",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error: any) {
-        return NextResponse.json(
-            {
-                success:false,
-                message:error instanceof Error?
-                        error.message : "Internal server error"
-            },
-            {
-                status:400
-            }
-        );
-    }
+    return NextResponse.json(
+      {
+        success: false,
+        message:
+          error instanceof Error ? error.message : "Internal server error",
+      },
+      {
+        status: 400,
+      },
+    );
+  }
 }

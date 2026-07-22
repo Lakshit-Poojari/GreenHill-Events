@@ -5,116 +5,104 @@ import { ArrowLeft, Save, Upload } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const Page = () => {
- const [formData, setFormData] = useState({
-  offering_category_id: "",
-  performer_name: "",
-  small_description: "",
-  large_description: "",
-  status: "ACTIVE",
-});
+  const [formData, setFormData] = useState({
+    offering_category_id: "",
+    performer_name: "",
+    small_description: "",
+    large_description: "",
+    status: "ACTIVE",
+  });
 
-const [image, setImage] = useState<File | null>(null);
-const [loading, setLoading] = useState(false);
-const [categories, setCategories] = useState<
-  { id: number; name: string }[]
->([]);
+  const [image, setImage] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>(
+    [],
+  );
 
-useEffect(() => {
-  fetchOfferingCategories();
-}, []);
+  useEffect(() => {
+    fetchOfferingCategories();
+  }, []);
 
-const fetchOfferingCategories = async () => {
-  try {
-    const response = await fetch("/api/offeringCategories", {
-      credentials: "include",
-    });
+  const fetchOfferingCategories = async () => {
+    try {
+      const response = await fetch("/api/offeringCategories", {
+        credentials: "include",
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (result.success) {
-      setCategories(result.offeringCategory);
+      if (result.success) {
+        setCategories(result.offeringCategory);
+      }
+    } catch (error) {
+      console.error("Failed to fetch offering categories", error);
     }
-  } catch (error) {
-    console.error("Failed to fetch offering categories", error);
-  }
-};
+  };
 
-const handleChange = (
-  e: React.ChangeEvent<
-    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-  >
-) => {
-  setFormData((prev) => ({
-    ...prev,
-    [e.target.name]: e.target.value,
-  }));
-};
+  const handleChange = ( e: React.ChangeEvent< HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  try {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const data = new FormData();
+      const data = new FormData();
 
-    data.append(
-      "offering_category_id",
-      formData.offering_category_id
-    );
-    data.append("performer_name", formData.performer_name);
-    data.append(
-      "small_description",
-      formData.small_description
-    );
-    data.append(
-      "large_description",
-      formData.large_description
-    );
-    data.append("status", formData.status);
+      data.append("offering_category_id", formData.offering_category_id);
+      data.append("performer_name", formData.performer_name);
+      data.append("small_description", formData.small_description);
+      data.append("large_description", formData.large_description);
+      data.append("status", formData.status);
 
-    if (image) {
-      data.append("image", image);
+      if (image) {
+        data.append("image", image);
+      }
+
+      const response = await fetch("/api/offerings", {
+        method: "POST",
+        credentials: "include",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        alert(result.message || "Failed to create performer");
+        return;
+      }
+
+      alert("Performer created successfully!");
+
+      setFormData({
+        offering_category_id: "",
+        performer_name: "",
+        small_description: "",
+        large_description: "",
+        status: "ACTIVE",
+      });
+
+      setImage(null);
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
     }
-
-    const response = await fetch("/api/offerings", {
-      method: "POST",
-      credentials: "include",
-      body: data,
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      alert(result.message || "Failed to create performer");
-      return;
-    }
-
-    alert("Performer created successfully!");
-
-    setFormData({
-      offering_category_id: "",
-      performer_name: "",
-      small_description: "",
-      large_description: "",
-      status: "ACTIVE",
-    });
-
-    setImage(null);
-  } catch (error) {
-    console.error(error);
-    alert("Something went wrong.");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <div className="space-y-6">
       {/* Back */}
       <Link
         href="/controlpanel/entertainment/offering/performers"
-        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
+          text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
         Back
@@ -122,13 +110,9 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       {/* Header */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg">
-        <h1 className="text-3xl font-bold text-white">
-          Create Performer
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Create Performer</h1>
 
-        <p className="mt-2 text-gray-400">
-          Add a new performer to the system.
-        </p>
+        <p className="mt-2 text-gray-400">Add a new performer to the system.</p>
       </div>
 
       {/* Form */}
@@ -141,19 +125,20 @@ const handleSubmit = async (e: React.FormEvent) => {
             </label>
 
             <select
-  name="offering_category_id"
-  value={formData.offering_category_id}
-  onChange={handleChange}
-  className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
->
-  <option value="">Select Offering Category</option>
+              name="offering_category_id"
+              value={formData.offering_category_id}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
+            >
+              <option value="">Select Offering Category</option>
 
-  {categories.map((category) => (
-    <option key={category.id} value={category.id}>
-      {category.name}
-    </option>
-  ))}
-</select>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Performer Name */}
@@ -168,7 +153,8 @@ const handleSubmit = async (e: React.FormEvent) => {
               value={formData.performer_name}
               onChange={handleChange}
               placeholder="Enter performer name"
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -178,7 +164,8 @@ const handleSubmit = async (e: React.FormEvent) => {
               Performer Image
             </label>
 
-            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-gray-600 bg-[#222] px-4 py-8 text-gray-400 transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]">
+            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed 
+              border-gray-600 bg-[#222] px-4 py-8 text-gray-400 transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]">
               <Upload size={20} />
               <span>Choose Image</span>
 
@@ -187,16 +174,16 @@ const handleSubmit = async (e: React.FormEvent) => {
                 accept="image/*"
                 className="hidden"
                 onChange={(e) => {
-                    if (e.target.files?.[0]) {
+                  if (e.target.files?.[0]) {
                     setImage(e.target.files[0]);
-                    }
+                  }
                 }}
-                />
-                {image && (
-  <p className="mt-2 text-sm text-[#C9AC8C]">
-    Selected: {image.name}
-  </p>
-)}
+              />
+              {image && (
+                <p className="mt-2 text-sm text-[#C9AC8C]">
+                  Selected: {image.name}
+                </p>
+              )}
             </label>
           </div>
 
@@ -211,7 +198,8 @@ const handleSubmit = async (e: React.FormEvent) => {
               rows={3}
               value={formData.small_description}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -226,7 +214,8 @@ const handleSubmit = async (e: React.FormEvent) => {
               rows={8}
               value={formData.large_description}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -240,7 +229,8 @@ const handleSubmit = async (e: React.FormEvent) => {
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
+                focus:border-[#C9AC8C]"
             >
               <option value="ACTIVE">ACTIVE</option>
               <option value="INACTIVE">INACTIVE</option>
@@ -251,19 +241,20 @@ const handleSubmit = async (e: React.FormEvent) => {
           <div className="flex justify-end gap-4 pt-4">
             <Link
               href="/controlpanel/entertainment/offering/performers"
-              className="rounded-lg border border-gray-600 px-6 py-3 text-white transition hover:border-red-500 hover:text-red-400"
+              className="rounded-lg border border-gray-600 px-6 py-3 text-white transition hover:border-red-500 
+                hover:text-red-400"
             >
               Cancel
             </Link>
 
             <button
-  type="submit"
-  disabled={loading}
-  className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition hover:bg-[#b89470] disabled:opacity-50"
->
-  <Save size={18} />
-  {loading ? "Saving..." : "Save Performer"}
-</button>
+              type="submit"
+              disabled={loading}
+              className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-6 py-3 font-medium text-black transition hover:bg-[#b89470] disabled:opacity-50"
+            >
+              <Save size={18} />
+              {loading ? "Saving..." : "Save Performer"}
+            </button>
           </div>
         </form>
       </div>

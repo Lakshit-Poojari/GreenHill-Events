@@ -28,8 +28,7 @@ export default function UserForm({
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [formData, setFormData] = useState<UserFormData>(
     initialData || {
@@ -38,42 +37,37 @@ export default function UserForm({
       password: "",
       confirmPassword: "",
       status: "ACTIVE",
-    }
+    },
   );
 
-const handleChange = (
-  e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-) => {
-  const { name, value } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,) => {
+    const { name, value } = e.target;
 
-  let formattedValue = value;
+    let formattedValue = value;
 
-  switch (name) {
-    case "full_name":
-      formattedValue = value.replace(/\s{2,}/g, " ");
-      break;
+    switch (name) {
+      case "full_name":
+        formattedValue = value.replace(/\s{2,}/g, " ");
+        break;
 
-    case "email":
-      formattedValue = value.trim().toLowerCase();
-      break;
+      case "email":
+        formattedValue = value.trim().toLowerCase();
+        break;
 
-    default:
-      formattedValue = value;
-  }
+      default:
+        formattedValue = value;
+    }
 
-  setFormData((prev) => ({
-    ...prev,
-    [name]: formattedValue,
-  }));
-};
+    setFormData((prev) => ({
+      ...prev,
+      [name]: formattedValue,
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (
-      formData.password &&
-      formData.password !== formData.confirmPassword
-    ) {
+    if (formData.password && formData.password !== formData.confirmPassword) {
       alert("Passwords do not match.");
       return;
     }
@@ -99,7 +93,8 @@ const handleChange = (
           onChange={handleChange}
           placeholder="Enter full name"
           disabled={loading}
-          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+            focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
           required
         />
       </div>
@@ -117,7 +112,8 @@ const handleChange = (
           onChange={handleChange}
           placeholder="Enter email"
           disabled={loading}
-          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
+            focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
           required
         />
       </div>
@@ -135,12 +131,11 @@ const handleChange = (
             value={formData.password}
             onChange={handleChange}
             placeholder={
-              isEdit
-                ? "Leave blank to keep current password"
-                : "Enter password"
+              isEdit ? "Leave blank to keep current password" : "Enter password"
             }
             disabled={loading}
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 pr-12 text-white outline-none transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 pr-12 text-white outline-none 
+              transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
             required={!isEdit}
           />
 
@@ -151,7 +146,10 @@ const handleChange = (
             className="absolute right-4 top-1/2 -translate-y-1/2"
           >
             {showPassword ? (
-              <EyeOff className="text-gray-400 hover:text-[#C9AC8C]" size={20} />
+              <EyeOff
+                className="text-gray-400 hover:text-[#C9AC8C]"
+                size={20}
+              />
             ) : (
               <Eye className="text-gray-400 hover:text-[#C9AC8C]" size={20} />
             )}
@@ -177,20 +175,22 @@ const handleChange = (
                 : "Confirm password"
             }
             disabled={loading}
-            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 pr-12 text-white outline-none transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 pr-12 text-white outline-none 
+              transition focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
             required={!isEdit}
           />
 
           <button
             type="button"
-            onClick={() =>
-              setShowConfirmPassword(!showConfirmPassword)
-            }
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             disabled={loading}
             className="absolute right-4 top-1/2 -translate-y-1/2"
           >
             {showConfirmPassword ? (
-              <EyeOff className="text-gray-400 hover:text-[#C9AC8C]" size={20} />
+              <EyeOff
+                className="text-gray-400 hover:text-[#C9AC8C]"
+                size={20}
+              />
             ) : (
               <Eye className="text-gray-400 hover:text-[#C9AC8C]" size={20} />
             )}
@@ -209,7 +209,8 @@ const handleChange = (
           value={formData.status}
           onChange={handleChange}
           disabled={loading}
-          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none 
+            focus:border-[#C9AC8C] disabled:cursor-not-allowed disabled:opacity-50"
         >
           <option value="ACTIVE">Active</option>
           <option value="INACTIVE">Inactive</option>
@@ -222,7 +223,8 @@ const handleChange = (
           type="button"
           onClick={() => router.push("/controlpanel/users")}
           disabled={loading}
-          className="rounded-lg border border-gray-700 px-4 py-2 text-white transition hover:border-red-500 hover:text-red-500 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg border border-gray-700 px-4 py-2 text-white transition hover:border-red-500 
+            hover:text-red-500 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Cancel
         </button>
@@ -230,15 +232,16 @@ const handleChange = (
         <button
           type="submit"
           disabled={loading}
-          className="rounded-lg bg-[#C9AC8C] px-4 py-2 font-semibold text-black transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-lg bg-[#C9AC8C] px-4 py-2 font-semibold text-black transition hover:opacity-90 
+            disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading
             ? isEdit
               ? "Updating..."
               : "Creating..."
             : isEdit
-            ? "Update Admin"
-            : "Create Admin"}
+              ? "Update Admin"
+              : "Create Admin"}
         </button>
       </div>
     </form>

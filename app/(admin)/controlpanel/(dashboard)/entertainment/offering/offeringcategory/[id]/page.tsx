@@ -53,14 +53,16 @@ const Page = () => {
       {/* Back */}
       <Link
         href="/controlpanel/entertainment/offering/offeringcategory"
-        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+        className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
+          text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
         Back
       </Link>
 
       {/* Header */}
-      <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
+        md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white">
             Offering Category Details
@@ -73,7 +75,8 @@ const Page = () => {
 
         <Link
           href={`/controlpanel/entertainment/offering/offeringcategory/${offeringcategory.id}/edit`}
-          className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition hover:bg-[#b89470]"
+          className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition 
+            hover:bg-[#b89470]"
         >
           <Edit size={18} />
           Edit Category

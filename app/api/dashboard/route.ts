@@ -5,12 +5,10 @@ export async function GET() {
   try {
     const data = await getDashboardStatsController();
 
-    return NextResponse.json(
-        {
-            success: true,
-            data,
-        }
-    );
+    return NextResponse.json({
+      success: true,
+      data,
+    });
   } catch (error) {
     console.error("Dashboard API Error:", error);
 
@@ -19,7 +17,7 @@ export async function GET() {
         success: false,
         message: "Failed to fetch dashboard statistics",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -2,10 +2,7 @@ import { updateUserRoleController } from "@/backend/controllers/userController";
 import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH( request: NextRequest,{ params }: { params: Promise<{ id: string }> },) {
   try {
     const token = request.cookies.get("token")?.value;
 
@@ -15,7 +12,7 @@ export async function PATCH(
           success: false,
           message: "Unauthorized",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -27,7 +24,7 @@ export async function PATCH(
           success: false,
           message: "Only SUPER_ADMIN can change user roles.",
         },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -41,18 +38,16 @@ export async function PATCH(
         success: true,
         message: "User role updated successfully.",
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     return NextResponse.json(
       {
         success: false,
         message:
-          error instanceof Error
-            ? error.message
-            : "Internal Server Error",
+          error instanceof Error ? error.message : "Internal Server Error",
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }

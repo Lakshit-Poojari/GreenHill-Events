@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "../../../globals.css";
 
-
-
 export const metadata: Metadata = {
   title: "GreenHillEvent",
   // description: "",     ###############################################################
@@ -13,14 +11,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <div >
-      {children}
-    </div>
-  );
+export default function AuthLayout({ children,}: {children: React.ReactNode;}) {
+  return <div>{children}</div>;
 }

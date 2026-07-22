@@ -1,10 +1,10 @@
-import ContactForm from '@/components/public/ContactForm'
-import EntertaimentEvents from '@/components/public/Entertainment/EntertaimentEvents'
-import Text from '@/components/public/Entertainment/Text'
-import SectionHeading from '@/components/public/SectionHeading'
-import { Metadata } from 'next'
-import Image from 'next/image'
-import React from 'react'
+import ContactForm from "@/components/public/ContactForm";
+import EntertaimentEvents from "@/components/public/Entertainment/EntertaimentEvents";
+import Text from "@/components/public/Entertainment/Text";
+import SectionHeading from "@/components/public/SectionHeading";
+import { Metadata } from "next";
+import Image from "next/image";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "Entertainment - GreenHillEvent",
@@ -21,7 +21,8 @@ const page = () => {
     <>
       <div
         style={{
-          backgroundImage:"linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/Entertainment/room.jpg')",
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/Entertainment/room.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -34,8 +35,10 @@ const page = () => {
         <div className="relative z-10">
           <SectionHeading title="Entertainment" />
           <Text />
-          <div className='py-6 text-center'>
-            <p className='text-3xl'>We can arrange entertainment for a wide range of events:</p>
+          <div className="py-6 text-center">
+            <p className="text-3xl">
+              We can arrange entertainment for a wide range of events:
+            </p>
             <hr className="w-[12%] mt-2 border-2 mx-auto rounded-full border-[#C9AC8C]" />
           </div>
           <EntertaimentEvents />
@@ -43,6 +46,6 @@ const page = () => {
         </div>
       </div>
     </>
-  )
-}
-export default page
+  );
+};
+export default page;
