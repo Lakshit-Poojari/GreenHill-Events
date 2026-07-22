@@ -22,6 +22,7 @@ export default function UserManagementPage() {
 
   useEffect(() => {
     fetchuser();
+    fetchUsers();
   }, []);
 
   const fetchuser = async () => {
