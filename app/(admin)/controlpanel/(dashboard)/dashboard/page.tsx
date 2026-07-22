@@ -3,6 +3,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+interface User {
+  id: number;
+  full_name: string;
+  email: string;
+  role: "SUPER_ADMIN" | "ADMIN";
+}
+
 const page = () => {
   const [stats, setStats] = useState({
     posts: 0,
@@ -10,10 +17,25 @@ const page = () => {
     users: 0,
   });
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     fetchDashboard();
+    fetchuser();
   }, []);
+
+const fetchuser = async () => {
+  try {
+    const response = await fetch("/api/auth/me");
+    const result = await response.json();
+
+    if (result.success) {
+      setUser(result.user);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   const fetchDashboard = async () => {
     try {
@@ -105,14 +127,13 @@ const page = () => {
             </button>
           </Link>
 
-          <Link href={"users"}>
-            <button
-              className="rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium text-black transition-all duration-300 
-                hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
-            >
-              Add User
-            </button>
-          </Link>
+          {user?.role === "SUPER_ADMIN" && (
+            <Link href={"users"}>
+              <button className="rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]">
+                Add User
+              </button>
+            </Link>
+          )}
 
           <Link href={"entertainment"}>
             <button

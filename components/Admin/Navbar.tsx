@@ -29,7 +29,7 @@ export default function Navbar() {
       const result = await response.json();
 
       if (result.success) {
-        setprofile(result.data);
+        setprofile(result.user);
       }
     } catch (error) {
       console.error(error);
