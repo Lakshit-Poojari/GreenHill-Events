@@ -28,7 +28,16 @@ export async function createCaseStudyModel(caseStudies:CreateCaseStudy){
 export async function updateCaseStudyModel(id: number, caseStudies:UpdateCaseStudy){
     try {
         const [result] = await db.query<ResultSetHeader>(
-            `ALTER case_study SET title=?, image=?, description=?, youtube_url=?, status=?, slug=?, updated_by=? WHERE id=?`,
+            ` UPDATE case_study
+    SET
+        title = ?,
+        image = ?,
+        description = ?,
+        youtube_url = ?,
+        status = ?,
+        slug = ?,
+        updated_by = ?
+    WHERE id = ?`,
             [
                 caseStudies.title,
                 caseStudies.image,

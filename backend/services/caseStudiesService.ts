@@ -42,8 +42,9 @@ export async function createCaseStudiesService(caseStudies:CreateCaseStudy){
 
 export async function updateCaseStudiesService(id:number, caseStudies:UpdateCaseStudy){
     try {
-        if (id) {
-            throw new Error("Case study is required")
+        
+        if (!id) {
+            throw new Error("Case study ID is required")
         }
         const fields = [
             ["Title", caseStudies.title],

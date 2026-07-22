@@ -1,4 +1,5 @@
 import { deleteCaseStudiesController, getSingleCaseStudiesController, updateCaseStudiesController } from "@/backend/controllers/caseStudyController";
+import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { CaseStudyStatus } from "@/backend/types/caseStudies";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -35,14 +36,29 @@ export async function PUT(request:NextRequest, {params}:{params:Promise<{id:stri
         const {id} = await params
         const formData = await request.formData()
 
+        const token = request.cookies.get("token")?.value;
+
+if (!token) {
+    return NextResponse.json(
+        {
+            success: false,
+            message: "Unauthorized",
+        },
+        { status: 401 }
+    );
+}
+
+const user = verifyToken(token);
+
         const body = {
             title: formData.get("title") as string,
             image: (formData.get("image") as File),
             description: formData.get("description") as string,
             youtube_url: (formData.get("youtube_url") as string) || undefined,
-            status: formData.get("status") as CaseStudyStatus
+            status: formData.get("status") as CaseStudyStatus,
+            updated_by: user.id,
         }
-        
+        console.log(body);
         await updateCaseStudiesController(Number(id), body)
         return NextResponse.json(
             {

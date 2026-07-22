@@ -175,7 +175,7 @@ const Page = () => {
                       </Link>
 
                       <Link
-                        href={`/controlpanel/case-studies/edit/${caseStudy.id}`}
+                        href={`/controlpanel/case-studies/${caseStudy.id}/edit`}
                         className="rounded-lg border border-[#00E5FF] bg-[#00E5FF]/10 p-2 text-[#00E5FF] shadow-[0_0_8px_#00E5FF] transition-all duration-300 hover:bg-[#00E5FF]/20 hover:shadow-[0_0_12px_#00E5FF]"
                       >
                         <Edit size={18} />
