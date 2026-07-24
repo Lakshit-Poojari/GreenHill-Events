@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       created_by: user.id,
     };
 
-    await createOfferingController(offering);
+    await createOfferingController(offering, user.id);
 
     return NextResponse.json({
       success: true,

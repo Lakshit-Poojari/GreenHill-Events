@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 export interface Offering {
   id: number;
   offering_category_id: number;
+  offering_category_name: string;
   performer_name: string;
   slug: string;
   image_path: string;
@@ -16,8 +17,8 @@ export interface Offering {
   status: "ACTIVE" | "INACTIVE";
   created_at: string;
   updated_at: string | null;
-  created_by: number;
-  updated_by: number | null;
+  updated_by: string | null;
+  created_by: string | null;
 }
 
 const Page = () => {
@@ -127,7 +128,9 @@ const Page = () => {
             <div>
               <p className="text-sm text-gray-400">Offering Category</p>
 
-              <p className="mt-1 text-white">{offering.offering_category_id}</p>
+              <p className="mt-1 text-white">
+                {offering.offering_category_name}
+              </p>
             </div>
 
             <div>
@@ -165,6 +168,40 @@ const Page = () => {
 
           <div className="rounded-lg border border-gray-700 bg-[#222] p-4 leading-7 text-gray-300">
             {offering.large_description}
+          </div>
+        </div>
+        {/* Audit Information */}
+        <div className="mt-8">
+          <h3 className="mb-4 text-sm font-medium text-gray-400">
+            Audit Information
+          </h3>
+
+          <div className="grid gap-6 rounded-lg border border-gray-700 bg-[#222] p-4 md:grid-cols-2">
+            <div>
+              <p className="text-sm text-gray-400">Created By</p>
+              <p className="mt-1 text-white">{offering.created_by ?? "-"}</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-400">Created At</p>
+              <p className="mt-1 text-white">
+                {new Date(offering.created_at).toLocaleString()}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-400">Updated By</p>
+              <p className="mt-1 text-white">{offering.updated_by ?? "-"}</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-400">Updated At</p>
+              <p className="mt-1 text-white">
+                {offering.updated_at
+                  ? new Date(offering.updated_at).toLocaleString()
+                  : "-"}
+              </p>
+            </div>
           </div>
         </div>
       </div>

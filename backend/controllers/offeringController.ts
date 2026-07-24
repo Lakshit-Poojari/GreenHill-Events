@@ -13,9 +13,12 @@ import {
   UpdateOffering,
 } from "../types/offeringType";
 
-export async function createOfferingController(offering: CreateOffering) {
+export async function createOfferingController(
+  offering: CreateOffering,
+  createdby: number,
+) {
   try {
-    const result = await createOfferingService(offering);
+    const result = await createOfferingService(offering, createdby);
     return result;
   } catch (error) {
     console.error("Create Offering Controller Error", error);
@@ -23,9 +26,13 @@ export async function createOfferingController(offering: CreateOffering) {
   }
 }
 
-export async function updateOfferingController( id: number, offering: UpdateOffering,) {
+export async function updateOfferingController(
+  id: number,
+  offering: UpdateOffering,
+  updatedBy: number,
+) {
   try {
-    const result = await updateOfferingService(id, offering);
+    const result = await updateOfferingService(id, offering, updatedBy);
     return result;
   } catch (error) {
     console.error("Update Offering Controller Error", error);
@@ -63,7 +70,10 @@ export async function deleteOfferingController(id: number) {
   }
 }
 
-export async function updateOfferingStatusController( id: number, status: OfferingStatus,) {
+export async function updateOfferingStatusController(
+  id: number,
+  status: OfferingStatus,
+) {
   try {
     return await updateOfferingStatusService(id, status);
   } catch (error) {

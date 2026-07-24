@@ -8,6 +8,7 @@ interface Performer {
   id: number;
   performer_name: string;
   offering_category_id: string;
+  offering_category_name: string;
   image: string;
   status: "ACTIVE" | "INACTIVE";
 }
@@ -83,8 +84,10 @@ const Page = () => {
       </Link>
 
       {/* Header */}
-      <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
-        md:items-center md:justify-between">
+      <div
+        className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
+        md:items-center md:justify-between"
+      >
         <div>
           <h1 className="text-3xl font-bold text-white">Performers</h1>
 
@@ -158,7 +161,7 @@ const Page = () => {
                     </td>
 
                     <td className="px-6 py-4 text-gray-300">
-                      {performer.offering_category_id}
+                      {performer.offering_category_name}
                     </td>
 
                     <td className="px-6 py-4 text-center">

@@ -4,9 +4,13 @@ import {
   updateOfferingController,
   updateOfferingStatusController,
 } from "@/backend/controllers/offeringController";
+import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
 
@@ -34,12 +38,30 @@ export async function GET( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function PUT( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
+    const token = request.cookies.get("token")?.value;
+
+    if (!token) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unauthorized",
+        },
+        {
+          status: 401,
+        },
+      );
+    }
+
+    const user = verifyToken(token);
     const { id } = await params;
     const body = await request.json();
 
-    await updateOfferingController(Number(id), body);
+    await updateOfferingController(Number(id), body, user.id);
     return NextResponse.json(
       {
         success: true,
@@ -63,7 +85,10 @@ export async function PUT( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function DELETE( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     await deleteOfferingController(Number(id));
@@ -91,7 +116,10 @@ export async function DELETE( request: NextRequest, { params }: { params: Promis
   }
 }
 
-export async function PATCH( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     const body = await request.json();

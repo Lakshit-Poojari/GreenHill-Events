@@ -12,6 +12,7 @@ export interface Offering {
   created_at: Date;
   updated_at: Date;
   updated_by: number | null;
+  created_by: number | null;
 }
 
 export interface CreateOffering {
@@ -22,7 +23,7 @@ export interface CreateOffering {
   small_description: string;
   large_description: string;
   status: OfferingStatus;
-  updated_by?: number;
+  created_by?: number;
 }
 
 export interface UpdateOffering {

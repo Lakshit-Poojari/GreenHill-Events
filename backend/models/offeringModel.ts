@@ -10,7 +10,7 @@ export async function createOfferingModel(offering: CreateOffering) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO offerings (
-                offering_category_id, performer_name, slug, image_path, small_description, large_description, status, updated_by
+                offering_category_id, performer_name, slug, image_path, small_description, large_description, status, created_by
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -21,7 +21,7 @@ export async function createOfferingModel(offering: CreateOffering) {
         offering.small_description,
         offering.large_description,
         offering.status,
-        offering.updated_by,
+        offering.created_by,
       ],
     );
     return result;
@@ -31,7 +31,11 @@ export async function createOfferingModel(offering: CreateOffering) {
   }
 }
 
-export async function updateOfferingModel( id: number, offering: UpdateOffering,) {
+export async function updateOfferingModel(
+  id: number,
+  offering: UpdateOffering,
+  updatedBy: number,
+) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       `UPDATE offerings SET 
@@ -46,7 +50,7 @@ export async function updateOfferingModel( id: number, offering: UpdateOffering,
         offering.small_description,
         offering.large_description,
         offering.status,
-        offering.updated_by,
+        updatedBy,
         id,
       ],
     );
@@ -60,7 +64,29 @@ export async function updateOfferingModel( id: number, offering: UpdateOffering,
 type OfferingRow = Offering & RowDataPacket;
 export async function getAllOfferingModel() {
   try {
-    const [result] = await db.query<OfferingRow[]>(`SELECT * FROM offerings`);
+    const [result] = await db.query<OfferingRow[]>(`
+      SELECT
+        o.id,
+        o.offering_category_id,
+        oc.name AS offering_category_name,
+        o.performer_name,
+        o.slug,
+        o.image_path,
+        o.small_description,
+        o.large_description,
+        o.status,
+        cu.full_name AS created_by,
+        o.created_at,
+        uu.full_name AS updated_by,
+        o.updated_at
+      FROM offerings o
+      LEFT JOIN offering_categories oc
+        ON o.offering_category_id = oc.id
+      LEFT JOIN users cu
+        ON o.created_by = cu.id
+      LEFT JOIN users uu
+        ON o.updated_by = uu.id
+    `);
     return result;
   } catch (error) {
     console.error("Error in get all Offering Model", error);
@@ -71,7 +97,30 @@ export async function getAllOfferingModel() {
 export async function getSingleOfferingModel(id: number) {
   try {
     const [result] = await db.query<RowDataPacket[]>(
-      `SELECT * FROM offerings WHERE id=?`,
+      `
+        SELECT
+          o.id,
+          o.offering_category_id,
+          oc.name AS offering_category_name,
+          o.performer_name,
+          o.slug,
+          o.image_path,
+          o.small_description,
+          o.large_description,
+          o.status,
+          cu.full_name AS created_by,
+          o.created_at,
+          uu.full_name AS updated_by,
+          o.updated_at
+        FROM offerings o
+        LEFT JOIN offering_categories oc
+          ON o.offering_category_id = oc.id
+        LEFT JOIN users cu
+          ON o.created_by = cu.id
+        LEFT JOIN users uu
+          ON o.updated_by = uu.id
+        WHERE o.id = ?
+      `,
       [id],
     );
     return result;

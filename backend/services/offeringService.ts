@@ -13,7 +13,10 @@ import {
   UpdateOffering,
 } from "../types/offeringType";
 
-export async function createOfferingService(offering: CreateOffering) {
+export async function createOfferingService(
+  offering: CreateOffering,
+  createdby: number,
+) {
   try {
     const slug = offering.performer_name
       .toLowerCase()
@@ -28,7 +31,7 @@ export async function createOfferingService(offering: CreateOffering) {
       !offering.large_description ||
       !offering.status ||
       !offering.offering_category_id ||
-      offering.updated_by
+      !offering.created_by
     ) {
       throw new Error("All Field Required");
     }
@@ -38,7 +41,11 @@ export async function createOfferingService(offering: CreateOffering) {
     if (existingOffering) {
       throw new Error("Offering already exists.");
     }
-    const result = await createOfferingModel({ ...offering, slug });
+    const result = await createOfferingModel({
+      ...offering,
+      slug,
+      created_by: createdby,
+    });
 
     return result;
   } catch (error) {
@@ -47,7 +54,11 @@ export async function createOfferingService(offering: CreateOffering) {
   }
 }
 
-export async function updateOfferingService( id: number, offering: UpdateOffering,) {
+export async function updateOfferingService(
+  id: number,
+  offering: UpdateOffering,
+  updatedBy: number,
+) {
   try {
     console.log("Offering received:", offering);
 
@@ -89,7 +100,7 @@ export async function updateOfferingService( id: number, offering: UpdateOfferin
       throw new Error("Offering already exists.");
     }
 
-    return await updateOfferingModel(id, offering);
+    return await updateOfferingModel(id, offering, updatedBy);
   } catch (error) {
     console.error("Error in Update Offering Service", error);
     throw error;
@@ -126,7 +137,10 @@ export async function deleteOfferingService(id: number) {
   }
 }
 
-export async function updateOfferingStatusService( id: number, status: OfferingStatus,) {
+export async function updateOfferingStatusService(
+  id: number,
+  status: OfferingStatus,
+) {
   try {
     if (!id || !status) {
       throw new Error("Offering ID and status are required");
