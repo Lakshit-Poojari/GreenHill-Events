@@ -13,19 +13,19 @@ export async function createOfferingVideoModel(video: CreateOfferingVideo) {
             (
                 offering_id,
                 youtube_url,
+                soundcloud_link,
                 display_order,
                 status,
-                created_by,
-                updated_by
+                created_by
             )
-            VALUES (?, ?, ?, ?, ?, ?)`,
+            VALUES (?, ?, ?, ?, ?)`,
       [
         video.offering_id,
         video.youtube_url,
+        video.soundcloud_link ?? null,
         video.display_order,
         video.status,
         video.created_by,
-        video.updated_by ?? null,
       ],
     );
 
@@ -36,16 +36,30 @@ export async function createOfferingVideoModel(video: CreateOfferingVideo) {
   }
 }
 
-export async function updateOfferingVideoModel( id: number, video: UpdateOfferingVideo,) {
+export async function updateOfferingVideoModel(
+  id: number,
+  video: UpdateOfferingVideo,
+) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       `
-            UPDATE offering_videos SET offering_id = ?, youtube_url = ?, display_order = ?, updated_by = ?
-            WHERE id = ?`,
+      UPDATE offering_videos
+      SET
+        offering_id = ?,
+        youtube_url = ?,
+        soundcloud_link = ?,
+        display_order = ?,
+        status = ?,
+        updated_by = ?
+        soundcloud_link = ?
+      WHERE id = ?
+      `,
       [
         video.offering_id,
         video.youtube_url,
+        video.soundcloud_link ?? null,
         video.display_order,
+        video.status,
         video.updated_by,
         id,
       ],
@@ -68,6 +82,7 @@ export async function getAllOfferingVideoModel() {
         ov.offering_id,
         o.performer_name,
         ov.youtube_url,
+        ov.soundcloud_link,
         ov.display_order,
         ov.status,
         ov.created_at,
@@ -103,6 +118,7 @@ export async function getSingleOfferingVideoModel(id: number) {
         ov.offering_id,
         o.performer_name,
         ov.youtube_url,
+        ov.soundcloud_link,
         ov.display_order,
         ov.status,
         ov.created_at,

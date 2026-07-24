@@ -55,7 +55,6 @@ export async function POST(request: NextRequest) {
       ...body,
       status: body.status ?? "ACTIVE",
       created_by: user.id,
-      updated_by: user.id,
     });
 
     return NextResponse.json(

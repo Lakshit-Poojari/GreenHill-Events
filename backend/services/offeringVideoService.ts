@@ -15,7 +15,6 @@ export async function createOfferingVideoService(video: CreateOfferingVideo) {
   try {
     if (
       !video.offering_id ||
-      !video.youtube_url.trim() ||
       video.display_order === undefined ||
       !video.status ||
       !video.created_by
@@ -25,7 +24,7 @@ export async function createOfferingVideoService(video: CreateOfferingVideo) {
 
     const existingOffering = await getSingleOfferingModel(video.offering_id);
 
-    if (!existingOffering) {
+    if (existingOffering.length === 0) {
       throw new Error("Offering not found.");
     }
 
@@ -38,19 +37,23 @@ export async function createOfferingVideoService(video: CreateOfferingVideo) {
   }
 }
 
-export async function updateOfferingVideoService( id: number, video: UpdateOfferingVideo,) {
+export async function updateOfferingVideoService(
+  id: number,
+  video: UpdateOfferingVideo,
+) {
   try {
     if (
-      !video.youtube_url?.trim() ||
+      !video.offering_id ||
       video.display_order === undefined ||
-      !video.status
+      !video.status ||
+      !video.updated_by
     ) {
       throw new Error("All fields are required.");
     }
 
     const existingVideo = await getSingleOfferingVideoModel(id);
 
-    if (!existingVideo) {
+    if (existingVideo.length === 0) {
       throw new Error("Offering video not found.");
     }
 
