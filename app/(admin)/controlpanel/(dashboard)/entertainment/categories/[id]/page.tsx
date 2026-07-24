@@ -14,7 +14,11 @@ interface Category {
   description: string;
   long_description: string;
   status: "ACTIVE" | "INACTIVE";
+
+  created_by: string | null;
   created_at: string;
+
+  updated_by: string | null;
   updated_at: string;
 }
 
@@ -36,6 +40,7 @@ const Page = () => {
       if (!response.ok) {
         throw new Error(result.message);
       }
+      console.log(result.category, "category");
 
       setCategory(result.category);
     } catch (error) {
@@ -139,16 +144,24 @@ const Page = () => {
           </div>
 
           <div>
-            <p className="mb-2 text-sm text-gray-400">Created At</p>
+            <p className="mb-2 text-sm text-gray-400">Created By</p>
+            <p className="text-white">{category.created_by ?? "-"}</p>
+          </div>
 
+          <div>
+            <p className="mb-2 text-sm text-gray-400">Created At</p>
             <p className="text-white">
               {new Date(category.created_at).toLocaleString()}
             </p>
           </div>
 
           <div>
-            <p className="mb-2 text-sm text-gray-400">Updated At</p>
+            <p className="mb-2 text-sm text-gray-400">Updated By</p>
+            <p className="text-white">{category.updated_by ?? "-"}</p>
+          </div>
 
+          <div>
+            <p className="mb-2 text-sm text-gray-400">Updated At</p>
             <p className="text-white">
               {new Date(category.updated_at).toLocaleString()}
             </p>

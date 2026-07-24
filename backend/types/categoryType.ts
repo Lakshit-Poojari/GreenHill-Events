@@ -14,8 +14,9 @@ export interface Category {
   description: string;
   long_description: string;
   status: CategoryStatus;
-  created_by: number;
+  created_by: number | null;
   created_at: Date;
+  updated_by: number | null;
   updated_at: Date;
 }
 

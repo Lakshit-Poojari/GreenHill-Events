@@ -32,7 +32,24 @@ export async function createCategoryModel(category: CreateCategoryType) {
 type CategoryRow = Category & RowDataPacket;
 export async function getAllCategoryModel() {
   try {
-    const [result] = await db.query<CategoryRow[]>(`SELECT * FROM categories`);
+    const [result] = await db.query<CategoryRow[]>(`
+            SELECT
+        c.id,
+        c.category_name,
+        c.menu_name,
+        c.slug,
+        c.image,
+        c.description,
+        c.long_description,
+        c.status,
+        cu.full_name AS created_by,
+        c.created_at,
+        uu.full_name AS updated_by,
+        c.updated_at
+      FROM categories c
+      LEFT JOIN users cu ON c.created_by = cu.id
+      LEFT JOIN users uu ON c.updated_by = uu.id
+      `);
 
     return result;
   } catch (error) {
@@ -44,7 +61,24 @@ export async function getAllCategoryModel() {
 export async function getSingleCategoryModel(id: number) {
   try {
     const [row] = await db.query<RowDataPacket[]>(
-      `SELECT * FROM categories WHERE id= ?`,
+      `SELECT
+        c.id,
+        c.category_name,
+        c.menu_name,
+        c.slug,
+        c.image,
+        c.description,
+        c.long_description,
+        c.status,
+        cu.full_name AS created_by,
+        c.created_at,
+        uu.full_name AS updated_by,
+        c.updated_at
+      FROM categories c
+      LEFT JOIN users cu ON c.created_by = cu.id
+      LEFT JOIN users uu ON c.updated_by = uu.id
+      WHERE c.id = ?
+      `,
       [id],
     );
     return row;
@@ -54,7 +88,12 @@ export async function getSingleCategoryModel(id: number) {
   }
 }
 
-export async function updateCategoryModel( id: number, category: UpdateCategoryType, slug: string,) {
+export async function updateCategoryModel(
+  id: number,
+  category: UpdateCategoryType,
+  slug: string,
+  updatedBy: number,
+) {
   try {
     let row: ResultSetHeader;
 
@@ -68,7 +107,8 @@ export async function updateCategoryModel( id: number, category: UpdateCategoryT
              image = ?,
              description = ?,
              long_description = ?,
-             status = ?
+             status = ?,
+             updated_by = ?
          WHERE id = ?`,
         [
           category.category_name,
@@ -78,6 +118,7 @@ export async function updateCategoryModel( id: number, category: UpdateCategoryT
           category.description,
           category.long_description,
           category.status,
+          updatedBy,
           id,
         ],
       );
@@ -92,7 +133,8 @@ export async function updateCategoryModel( id: number, category: UpdateCategoryT
              slug = ?,
              description = ?,
              long_description = ?,
-             status = ?
+             status = ?,
+             updated_by = ?
          WHERE id = ?`,
         [
           category.category_name,
@@ -101,6 +143,7 @@ export async function updateCategoryModel( id: number, category: UpdateCategoryT
           category.description,
           category.long_description,
           category.status,
+          updatedBy,
           id,
         ],
       );

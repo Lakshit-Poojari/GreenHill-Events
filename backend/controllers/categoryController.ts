@@ -23,9 +23,13 @@ export async function createCategoryController(category: CreateCategoryType) {
   }
 }
 
-export async function updateCategoryController(id: number, category: UpdateCategoryType,) {
+export async function updateCategoryController(
+  id: number,
+  category: UpdateCategoryType,
+  updatedBy: number,
+) {
   try {
-    const result = await updateCategoryService(id, category);
+    const result = await updateCategoryService(id, category, updatedBy);
 
     return result;
   } catch (error) {
@@ -67,7 +71,10 @@ export async function deleteCategoryController(id: number) {
   }
 }
 
-export async function updateCategoryStatusController(id: number, status: CategoryStatus,) {
+export async function updateCategoryStatusController(
+  id: number,
+  status: CategoryStatus,
+) {
   try {
     return await updateCategoryStatusService(id, status);
   } catch (error) {

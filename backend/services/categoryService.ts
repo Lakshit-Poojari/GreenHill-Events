@@ -55,7 +55,11 @@ export async function createCategoryService(category: CreateCategoryType) {
   }
 }
 
-export async function updateCategoryService( id: number, category: UpdateCategoryType,) {
+export async function updateCategoryService(
+  id: number,
+  category: UpdateCategoryType,
+  updatedBy: number,
+) {
   try {
     const slug = category.category_name
       .toLowerCase()
@@ -85,7 +89,7 @@ export async function updateCategoryService( id: number, category: UpdateCategor
       throw new Error("Category already exists.");
     }
 
-    const result = await updateCategoryModel(id, category, slug);
+    const result = await updateCategoryModel(id, category, slug, updatedBy);
 
     return result;
   } catch (error) {
@@ -125,7 +129,10 @@ export async function deleteCategoryService(id: number) {
   }
 }
 
-export async function updateCategoryStatusService( id: number, status: CategoryStatus,) {
+export async function updateCategoryStatusService(
+  id: number,
+  status: CategoryStatus,
+) {
   try {
     if (!id || !status) {
       throw new Error("Category ID and status are required");

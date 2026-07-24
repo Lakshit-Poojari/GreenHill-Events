@@ -4,10 +4,14 @@ import {
   updateCategoryController,
   updateCategoryStatusController,
 } from "@/backend/controllers/categoryController";
+import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { CategoryStatus } from "@/backend/types/categoryType";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     const category = await getSingleCategoryController(Number(id));
@@ -29,8 +33,26 @@ export async function GET( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function PUT( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
+    const token = request.cookies.get("token")?.value;
+
+    if (!token) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unauthorized",
+        },
+        {
+          status: 401,
+        },
+      );
+    }
+
+    const user = verifyToken(token);
     const { id } = await params;
     const formData = await request.formData();
 
@@ -43,17 +65,7 @@ export async function PUT( request: NextRequest, { params }: { params: Promise<{
       image: formData.get("image") as File | null,
     };
 
-    console.log({
-      id,
-      category_name: formData.get("category_name"),
-      menu_name: formData.get("menu_name"),
-      description: formData.get("description"),
-      long_description: formData.get("long_description"),
-      status: formData.get("status"),
-      image: formData.get("image"),
-    });
-
-    await updateCategoryController(Number(id), body);
+    await updateCategoryController(Number(id), body, user.id);
     return NextResponse.json(
       {
         success: true,
@@ -77,7 +89,10 @@ export async function PUT( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function PATCH( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
 
@@ -106,7 +121,10 @@ export async function PATCH( request: NextRequest, { params }: { params: Promise
   }
 }
 
-export async function DELETE( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     await deleteCategoryController(Number(id));
