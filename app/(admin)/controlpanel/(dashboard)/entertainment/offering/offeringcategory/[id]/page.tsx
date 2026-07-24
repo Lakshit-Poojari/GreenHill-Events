@@ -8,11 +8,17 @@ import { useParams } from "next/navigation";
 interface OfferingCategory {
   id: number;
   category_id: number;
+  category_name: string;
+
   name: string;
   slug: string;
   display_order: number;
   status: "ACTIVE" | "INACTIVE";
-  updated_by: number;
+
+  created_by: string | null;
+  created_at: string;
+
+  updated_by: string | null;
   updated_at: string;
 }
 
@@ -61,8 +67,10 @@ const Page = () => {
       </Link>
 
       {/* Header */}
-      <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
-        md:items-center md:justify-between">
+      <div
+        className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
+        md:items-center md:justify-between"
+      >
         <div>
           <h1 className="text-3xl font-bold text-white">
             Offering Category Details
@@ -96,7 +104,7 @@ const Page = () => {
           <div>
             <p className="text-sm text-gray-400">Entertainment Category</p>
             <p className="mt-1 text-lg font-medium text-white">
-              {offeringcategory.category_id}
+              {offeringcategory.category_name}
             </p>
           </div>
 
@@ -128,15 +136,29 @@ const Page = () => {
             </span>
           </div>
 
-          {/* <div>
+          <div>
+            <p className="text-sm text-gray-400">Created By</p>
+            <p className="mt-1 text-lg font-medium text-white">
+              {offeringcategory.created_by ?? "-"}
+            </p>
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-400">Created At</p>
+            <p className="mt-1 text-lg font-medium text-white">
+              {new Date(offeringcategory.created_at).toLocaleString()}
+            </p>
+          </div>
+
+          <div>
             <p className="text-sm text-gray-400">Updated By</p>
             <p className="mt-1 text-lg font-medium text-white">
-              {offeringCategories.}
+              {offeringcategory.updated_by ?? "-"}
             </p>
-          </div> */}
+          </div>
 
-          <div className="md:col-span-2">
-            <p className="text-sm text-gray-400">Last Updated</p>
+          <div>
+            <p className="text-sm text-gray-400">Updated At</p>
             <p className="mt-1 text-lg font-medium text-white">
               {new Date(offeringcategory.updated_at).toLocaleString()}
             </p>

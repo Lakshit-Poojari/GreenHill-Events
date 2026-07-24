@@ -6,10 +6,13 @@ import {
   updateOfferingCategory,
 } from "../types/offeringCategoryType";
 
-export async function createOfferingCategoryModel( category: createOfferingCategory,) {
+export async function createOfferingCategoryModel(
+  category: createOfferingCategory,
+  createdby: number,
+) {
   try {
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO offering_categories (category_id, name, slug, display_order, status, updated_by) 
+      `INSERT INTO offering_categories (category_id, name, slug, display_order, status, created_by) 
             VALUES ( ?, ?, ?, ?, ?, ?)`,
       [
         category.category_id,
@@ -17,7 +20,7 @@ export async function createOfferingCategoryModel( category: createOfferingCateg
         category.slug,
         category.display_order,
         category.status,
-        category.updated_by,
+        createdby,
       ],
     );
     return result;
@@ -31,7 +34,24 @@ type OfferingCategoryRow = OfferingCategory & RowDataPacket;
 export async function getAllOfferingCategoryModel() {
   try {
     const [result] = await db.query<OfferingCategoryRow[]>(
-      "SELECT * FROM offering_categories",
+      `
+        SELECT
+          oc.id,
+          oc.category_id,
+          c.category_name,
+          oc.name,
+          oc.slug,
+          oc.display_order,
+          oc.status,
+          cu.full_name AS created_by,
+          oc.created_at,
+          uu.full_name AS updated_by,
+          oc.updated_at
+      FROM offering_categories oc
+      LEFT JOIN categories c ON oc.category_id = c.id
+      LEFT JOIN users cu ON oc.created_by = cu.id
+      LEFT JOIN users uu ON oc.updated_by = uu.id;
+    `,
     );
     return result;
   } catch (error) {
@@ -43,7 +63,25 @@ export async function getAllOfferingCategoryModel() {
 export async function getSIngleOfferingCategoryModel(id: number) {
   try {
     const [result] = await db.query<RowDataPacket[]>(
-      "SELECT * FROM offering_categories WHERE id=?",
+      `
+        SELECT
+            oc.id,
+            oc.category_id,
+            c.category_name,
+            oc.name,
+            oc.slug,
+            oc.display_order,
+            oc.status,
+            cu.full_name AS created_by,
+            oc.created_at,
+            uu.full_name AS updated_by,
+            oc.updated_at
+        FROM offering_categories oc
+        LEFT JOIN categories c ON oc.category_id = c.id
+        LEFT JOIN users cu ON oc.created_by = cu.id
+        LEFT JOIN users uu ON oc.updated_by = uu.id
+        WHERE oc.id = ?
+      `,
       [id],
     );
     return result;
@@ -53,7 +91,11 @@ export async function getSIngleOfferingCategoryModel(id: number) {
   }
 }
 
-export async function UpdateOfferingCategoryModel( id: number, category: updateOfferingCategory,) {
+export async function UpdateOfferingCategoryModel(
+  id: number,
+  category: updateOfferingCategory,
+  updatedBy: number,
+) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       `UPDATE offering_categories SET category_id = ?, name = ?, slug = ?, display_order = ?, status = ?, updated_by = ?
@@ -64,7 +106,7 @@ export async function UpdateOfferingCategoryModel( id: number, category: updateO
         category.slug,
         category.display_order,
         category.status,
-        category.updated_by,
+        updatedBy,
         id,
       ],
     );
@@ -88,7 +130,9 @@ export async function deleteOfferingCategoryModel(id: number) {
   }
 }
 
-export async function getOfferingCategoryBySlugModel( slug: string,): Promise<OfferingCategory | null> {
+export async function getOfferingCategoryBySlugModel(
+  slug: string,
+): Promise<OfferingCategory | null> {
   try {
     const [rows] = await db.query<(OfferingCategory & RowDataPacket)[]>(
       `SELECT *
@@ -105,7 +149,10 @@ export async function getOfferingCategoryBySlugModel( slug: string,): Promise<Of
   }
 }
 
-export async function updateOfferingCategoryStatusModel( id: number, status: string,) {
+export async function updateOfferingCategoryStatusModel(
+  id: number,
+  status: string,
+) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       "UPDATE offering_categories SET status = ? WHERE id = ?",

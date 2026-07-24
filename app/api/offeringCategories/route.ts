@@ -2,6 +2,7 @@ import {
   createofferingCategoryController,
   getAllofferingCategoryController,
 } from "@/backend/controllers/offeringCategoryController";
+import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -33,9 +34,23 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    const token = request.cookies.get("token")?.value;
+    
+        if (!token) {
+          return NextResponse.json(
+            {
+              success: false,
+              message: "Unauthorized",
+            },
+            {
+              status: 401,
+            },
+          );
+        }
+        const user = verifyToken(token);
     const body = await request.json();
 
-    await createofferingCategoryController(body);
+    await createofferingCategoryController(body, user.id);
 
     return NextResponse.json(
       {

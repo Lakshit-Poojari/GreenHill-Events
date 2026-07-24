@@ -13,7 +13,10 @@ import {
   updateOfferingCategory,
 } from "../types/offeringCategoryType";
 
-export async function createOfferingCategoryService( category: createOfferingCategory,) {
+export async function createOfferingCategoryService(
+  category: createOfferingCategory,
+  createdby: number,
+) {
   try {
     const slug = category.name
       .toLowerCase()
@@ -36,7 +39,7 @@ export async function createOfferingCategoryService( category: createOfferingCat
       throw new Error("Category already exists.");
     }
     category.slug = slug;
-    const result = await createOfferingCategoryModel(category);
+    const result = await createOfferingCategoryModel(category, createdby);
 
     return result;
   } catch (error) {
@@ -45,7 +48,11 @@ export async function createOfferingCategoryService( category: createOfferingCat
   }
 }
 
-export async function updateOfferingCategoryService( id: number, category: updateOfferingCategory,) {
+export async function updateOfferingCategoryService(
+  id: number,
+  category: updateOfferingCategory,
+  updatedBy: number,
+) {
   try {
     if (!id) {
       throw new Error("Offering category ID is required.");
@@ -90,7 +97,7 @@ export async function updateOfferingCategoryService( id: number, category: updat
     if (duplicateCategory && duplicateCategory.id !== id) {
       throw new Error("Category already exists.");
     }
-    const result = await UpdateOfferingCategoryModel(id, category);
+    const result = await UpdateOfferingCategoryModel(id, category, updatedBy);
 
     return result;
   } catch (error) {
@@ -129,7 +136,10 @@ export async function deleteOfferingCategoryService(id: number) {
   }
 }
 
-export async function updateOfferingCategoryStatusService( id: number, status: offeringCategoryStatus,) {
+export async function updateOfferingCategoryStatusService(
+  id: number,
+  status: offeringCategoryStatus,
+) {
   try {
     if (!id || !status) {
       throw new Error("Offering Category ID and status are required");

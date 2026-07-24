@@ -12,9 +12,12 @@ import {
   updateOfferingCategory,
 } from "../types/offeringCategoryType";
 
-export async function createofferingCategoryController( category: createOfferingCategory,) {
+export async function createofferingCategoryController(
+  category: createOfferingCategory,
+  createdby: number,
+) {
   try {
-    const result = await createOfferingCategoryService(category);
+    const result = await createOfferingCategoryService(category, createdby);
     return result;
   } catch (error) {
     console.error("Create offering Category Controller Error:", error);
@@ -22,9 +25,13 @@ export async function createofferingCategoryController( category: createOffering
   }
 }
 
-export async function updateofferingCategoryController( id: number, category: updateOfferingCategory,) {
+export async function updateofferingCategoryController(
+  id: number,
+  category: updateOfferingCategory,
+  updatedBy: number,
+) {
   try {
-    const result = await updateOfferingCategoryService(id, category);
+    const result = await updateOfferingCategoryService(id, category, updatedBy);
     return result;
   } catch (error) {
     console.error("Update offering Category  Controller Error:", error);
@@ -62,7 +69,10 @@ export async function deleteofferingCategoryController(id: number) {
   }
 }
 
-export async function updateofferingCategoryStatusController( id: number, status: offeringCategoryStatus,) {
+export async function updateofferingCategoryStatusController(
+  id: number,
+  status: offeringCategoryStatus,
+) {
   try {
     return await updateOfferingCategoryStatusService(id, status);
   } catch (error) {

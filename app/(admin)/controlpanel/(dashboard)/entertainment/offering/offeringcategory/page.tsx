@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 interface OfferingCategories {
   id: number;
   category_id: number;
+  category_name: string;
   name: string;
   slug: string;
   status: "ACTIVE" | "INACTIVE";
@@ -87,8 +88,10 @@ const Page = () => {
       </Link>
 
       {/* Header */}
-      <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
-        md:items-center md:justify-between">
+      <div
+        className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
+        md:items-center md:justify-between"
+      >
         <div>
           <h1 className="text-3xl font-bold text-white">Offering Categories</h1>
 
@@ -160,7 +163,7 @@ const Page = () => {
                     <td className="px-6 py-4 text-white">{category.name}</td>
 
                     <td className="px-6 py-4 text-gray-300">
-                      {category.category_id}
+                      {category.category_name}
                     </td>
 
                     <td className="px-6 py-4 text-center">

@@ -13,6 +13,7 @@ export interface OfferingCategory {
   created_at: Date;
   updated_at: Date;
   updated_by: number | null;
+  created_by: number | null;
 }
 
 export interface createOfferingCategory {
@@ -21,7 +22,7 @@ export interface createOfferingCategory {
   slug: string;
   display_order: number;
   status: offeringCategoryStatus;
-  updated_by?: number;
+  created_by: number;
 }
 
 export interface updateOfferingCategory {
