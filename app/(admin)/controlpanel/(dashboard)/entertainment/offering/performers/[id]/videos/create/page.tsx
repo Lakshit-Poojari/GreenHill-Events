@@ -13,6 +13,7 @@ const Page = () => {
   const performerId = Number(params.id);
   const [formData, setFormData] = useState({
     youtube_url: "",
+    soundcloud_link: "",
     display_order: 1,
   });
 
@@ -60,11 +61,6 @@ const Page = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.youtube_url.trim()) {
-      alert("Please enter a YouTube URL.");
-      return;
-    }
-
     setSaving(true);
 
     try {
@@ -77,6 +73,7 @@ const Page = () => {
         body: JSON.stringify({
           offering_id: performerId,
           youtube_url: formData.youtube_url,
+          soundcloud_link: formData.soundcloud_link,
           display_order: formData.display_order,
         }),
       });
@@ -128,7 +125,7 @@ const Page = () => {
         <h1 className="text-3xl font-bold text-white">Add Offering Video</h1>
 
         <p className="mt-2 text-gray-400">
-          Add a YouTube video for{" "}
+          Add media links for{" "}
           <span className="font-semibold text-white">
             {performer?.performer_name}
           </span>
@@ -155,7 +152,28 @@ const Page = () => {
             />
 
             <p className="mt-2 text-xs text-gray-500">
-              Paste the YouTube embed URL.
+              Optional. Paste the YouTube embed URL if available.
+            </p>
+          </div>
+
+          {/* SoundCloud Link */}
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              SoundCloud Link
+            </label>
+
+            <input
+              type="url"
+              name="soundcloud_link"
+              value={formData.soundcloud_link}
+              onChange={handleChange}
+              placeholder="https://soundcloud.com/..."
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none
+      focus:border-[#C9AC8C]"
+            />
+
+            <p className="mt-2 text-xs text-gray-500">
+              Optional. Paste the SoundCloud URL if available.
             </p>
           </div>
 
@@ -193,7 +211,7 @@ const Page = () => {
                 hover:bg-[#b89470] disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Save size={18} />
-              {saving ? "Saving..." : "Save Video"}
+              {saving ? "Saving..." : "Save"}
             </button>
           </div>
         </form>

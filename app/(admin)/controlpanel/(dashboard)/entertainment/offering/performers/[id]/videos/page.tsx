@@ -49,7 +49,8 @@ const Page = () => {
       const videoData = await videoRes.json();
 
       if (performerData.success) {
-        setPerformer(performerData.data);
+        setPerformer(performerData.offering);
+        console.log("performer", performerData.offering);
       }
       console.log("Video API Response:", videoData);
       if (videoData.success) {

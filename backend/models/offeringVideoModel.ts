@@ -51,7 +51,6 @@ export async function updateOfferingVideoModel(
         display_order = ?,
         status = ?,
         updated_by = ?
-        soundcloud_link = ?
       WHERE id = ?
       `,
       [

@@ -14,13 +14,14 @@ interface OfferingVideo {
   id: number;
   offering_id: number;
   performer_name: string;
-  youtube_url: string;
+  youtube_url: string | null;
+  soundcloud_link: string | null;
   display_order: number;
   status: "ACTIVE" | "INACTIVE";
   created_by_name: string;
   created_at: string;
   updated_by_name: string | null;
-  updated_at: string;
+  updated_at: string | null;
 }
 
 const Page = () => {
@@ -81,8 +82,10 @@ const Page = () => {
       </Link>
 
       {/* Header */}
-      <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
-        md:items-center md:justify-between">
+      <div
+        className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg md:flex-row 
+        md:items-center md:justify-between"
+      >
         <div>
           <h1 className="text-3xl font-bold text-white">View Offering Video</h1>
 
@@ -116,28 +119,55 @@ const Page = () => {
             Video Preview
           </h3>
 
-          <div className="overflow-hidden rounded-lg border border-gray-700">
-            <iframe
-              src={video?.youtube_url}
-              title="YouTube Video"
-              className="aspect-video w-full"
-              allowFullScreen
-            />
-          </div>
+          {video?.youtube_url ? (
+            <div className="overflow-hidden rounded-lg border border-gray-700">
+              <iframe
+                src={video.youtube_url}
+                title="YouTube Video"
+                className="aspect-video w-full"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <div className="rounded-lg border border-dashed border-gray-700 bg-[#222] p-8 text-center text-gray-400">
+              No YouTube video available.
+            </div>
+          )}
         </div>
 
         {/* YouTube Link */}
         <div>
           <p className="text-sm text-gray-400">YouTube Embed Link</p>
 
-          <a
-            href={video?.youtube_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-1 block break-all text-[#C9AC8C] hover:underline"
-          >
-            {video?.youtube_url}
-          </a>
+          {video?.youtube_url ? (
+            <a
+              href={video.youtube_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 block break-all text-[#C9AC8C] hover:underline"
+            >
+              {video.youtube_url}
+            </a>
+          ) : (
+            <p className="mt-1 text-gray-500">-</p>
+          )}
+        </div>
+
+        <div>
+          <p className="text-sm text-gray-400">SoundCloud Link</p>
+
+          {video?.soundcloud_link ? (
+            <a
+              href={video.soundcloud_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 block break-all text-[#C9AC8C] hover:underline"
+            >
+              {video.soundcloud_link}
+            </a>
+          ) : (
+            <p className="mt-1 text-gray-500">-</p>
+          )}
         </div>
 
         {/* Display Order */}
@@ -188,7 +218,7 @@ const Page = () => {
             <div>
               <p className="text-sm text-gray-400">Updated By</p>
 
-              <p className="mt-1 text-white">{video?.updated_by_name}</p>
+              <p className="mt-1 text-white">{video?.updated_by_name ?? "-"}</p>
             </div>
 
             <div>

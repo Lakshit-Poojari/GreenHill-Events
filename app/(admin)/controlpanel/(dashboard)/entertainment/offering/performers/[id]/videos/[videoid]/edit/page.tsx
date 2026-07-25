@@ -6,11 +6,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-const performer = {
-  id: 1,
-  performer_name: "West End Waiters",
-};
-
 const Page = () => {
   const params = useParams();
   const router = useRouter();
@@ -26,6 +21,7 @@ const Page = () => {
   const [formData, setFormData] = useState({
     offering_id: 0,
     youtube_url: "",
+    soundcloud_link: "",
     display_order: 1,
     status: "ACTIVE",
   });
@@ -47,7 +43,8 @@ const Page = () => {
 
         setFormData({
           offering_id: data.data.offering_id,
-          youtube_url: data.data.youtube_url,
+          youtube_url: data.data.youtube_url ?? "",
+          soundcloud_link: data.data.soundcloud_link ?? "",
           display_order: data.data.display_order,
           status: data.data.status,
         });
@@ -92,7 +89,9 @@ const Page = () => {
     }
   };
 
-  const handleChange = ( e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({
@@ -112,7 +111,7 @@ const Page = () => {
     <div className="space-y-6">
       {/* Back */}
       <Link
-        href={`/controlpanel/entertainment/offering/performers/${performer.id}/videos`}
+        href={`/controlpanel/entertainment/offering/performers/${performerId}/videos`}
         className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
           text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
@@ -155,14 +154,20 @@ const Page = () => {
               Video Preview
             </label>
 
-            <div className="overflow-hidden rounded-lg border border-gray-700">
-              <iframe
-                src={formData.youtube_url}
-                title="YouTube Preview"
-                className="aspect-video w-full"
-                allowFullScreen
-              />
-            </div>
+            {formData.youtube_url ? (
+              <div className="overflow-hidden rounded-lg border border-gray-700">
+                <iframe
+                  src={formData.youtube_url}
+                  title="YouTube Preview"
+                  className="aspect-video w-full"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <div className="rounded-lg border border-dashed border-gray-700 bg-[#222] p-8 text-center text-gray-400">
+                No YouTube preview available.
+              </div>
+            )}
           </div>
 
           {/* YouTube Link */}
@@ -179,6 +184,22 @@ const Page = () => {
               placeholder="Paste YouTube link"
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              SoundCloud Link
+            </label>
+
+            <input
+              type="url"
+              name="soundcloud_link"
+              value={formData.soundcloud_link}
+              onChange={handleChange}
+              placeholder="Paste SoundCloud link (Optional)"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none
+      focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -240,7 +261,9 @@ const Page = () => {
 
               <div>
                 <p className="text-sm text-gray-400">Updated By</p>
-                <p className="mt-1 text-white">{video?.updated_by_name}</p>
+                <p className="mt-1 text-white">
+                  {video?.updated_by_name ?? "-"}
+                </p>
               </div>
 
               <div>
