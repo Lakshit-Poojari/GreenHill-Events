@@ -13,6 +13,7 @@ interface User {
   status: "ACTIVE" | "INACTIVE";
   created_at: string;
   updated_at: string;
+  last_login_at: string;
 }
 
 const Page = () => {
@@ -181,6 +182,15 @@ const Page = () => {
           </label>
           <div className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white">
             {new Date(user.updated_at).toLocaleString()}
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-gray-400">
+            Last Login
+          </label>
+          <div className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white">
+            {new Date(user.last_login_at).toLocaleString()}
           </div>
         </div>
       </div>
