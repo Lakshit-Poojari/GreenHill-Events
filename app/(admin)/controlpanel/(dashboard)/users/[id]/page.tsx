@@ -140,8 +140,8 @@ const Page = () => {
             <span
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
                 user.role === "SUPER_ADMIN"
-                  ? "bg-[#C9AC8C]/20 text-[#C9AC8C]"
-                  : "bg-blue-500/20 text-blue-400"
+                  ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
+                  : "border border-[#00BFFF] bg-[#00BFFF]/10 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] hover:bg-[#00BFFF]/20"
               }`}
             >
               {user.role === "SUPER_ADMIN" ? "Super Admin" : "Admin"}
@@ -158,8 +158,8 @@ const Page = () => {
             <span
               className={`rounded-full px-3 py-1 text-xs font-medium ${
                 user.status === "ACTIVE"
-                  ? "bg-green-500/20 text-green-400"
-                  : "bg-red-500/20 text-red-400"
+                  ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
+                  : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
               }`}
             >
               {user.status === "ACTIVE" ? "Active" : "Inactive"}
@@ -189,9 +189,12 @@ const Page = () => {
           <label className="mb-2 block text-sm font-medium text-gray-400">
             Last Login
           </label>
-          <div className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white">
-            {new Date(user.last_login_at).toLocaleString()}
-          </div>
+
+          <p className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white">
+            {user.last_login_at
+              ? new Date(user.last_login_at).toLocaleString()
+              : "-"}
+          </p>
         </div>
       </div>
     </div>
