@@ -6,10 +6,16 @@ import {
   CreateCommentType,
   UpdateCommentType,
 } from "../types/commentsType";
+import { PoolConnection } from "mysql2/promise";
 
-export async function createCommentModel(comment: CreateCommentType) {
+export async function createCommentModel(
+  comment: CreateCommentType,
+  connection?: PoolConnection,
+) {
   try {
-    const [result] = await db.query<ResultSetHeader>(
+    const executor = connection ?? db;
+
+    const [result] = await executor.query<ResultSetHeader>(
       `
       INSERT INTO comments (
         case_study_id,
@@ -34,6 +40,7 @@ export async function createCommentModel(comment: CreateCommentType) {
         comment.created_by,
       ],
     );
+
     return result;
   } catch (error) {
     console.error("Create Comment Model Error:", error);
@@ -65,9 +72,12 @@ export async function updateCommentStatusModel(
   id: number,
   status: CommentStatus,
   approved_by: number,
+  connection?: PoolConnection,
 ) {
   try {
-    const [result] = await db.query<ResultSetHeader>(
+    const executor = connection ?? db;
+
+    const [result] = await executor.query<ResultSetHeader>(
       `
       UPDATE comments
       SET
