@@ -30,19 +30,15 @@ export interface CreateCommentType {
   email: string;
   website?: string;
   comment: string;
+
+  status: CommentStatus;
+  created_by?: number | null;
 }
 
 export interface UpdateCommentType {
-  parent_comment_id?: number | null;
-
-  name?: string;
-  email?: string;
-  website?: string;
-  comment?: string;
-
-  status?: CommentStatus;
-
-  updated_by?: number;
+  id: number;
+  comment: string;
+  updated_by: number;
 }
 
 export interface UpdateCommentStatusType {
