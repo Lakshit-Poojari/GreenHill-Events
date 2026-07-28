@@ -1,21 +1,25 @@
 import { getCommentsByCaseStudyController } from "@/backend/controllers/commentsController";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request:NextRequest, {params}:{params:Promise<{id:string}>}) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ caseStudyId: string }> },
+) {
   try {
-    const {id} = await params
-    const caseStudyComment = await getCommentsByCaseStudyController(Number(id))
+    const { caseStudyId } = await params;
+    
+    const caseStudyComment = await getCommentsByCaseStudyController(Number(caseStudyId));
 
     return NextResponse.json(
-        {
-            success:true,
-            message:"Fetched case study comments successfully",
-            caseStudyComment
-        },
-        {
-            status:200
-        }
-    )
+      {
+        success: true,
+        message: "Fetched case study comments successfully",
+        caseStudyComment,
+      },
+      {
+        status: 200,
+      },
+    );
   } catch (error) {
     return NextResponse.json(
       {
