@@ -38,11 +38,10 @@ export async function POST(request: NextRequest) {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const { id } = await params;
-    const comments = await getCommentsByCaseStudyController(Number(id));
+    
+    const comments = await getAllCommentController();
 
     return NextResponse.json(
       {

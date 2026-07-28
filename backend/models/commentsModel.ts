@@ -103,8 +103,22 @@ export async function getAllCommentModel() {
   try {
     const [result] = await db.query<commentsRow[]>(
       `
-        SELECT * FROM comments
-        ORDER BY created_at DESC;
+        SELECT
+        c.*,
+        cs.title AS case_study_title,
+        creator.full_name  AS created_by_name,
+        updater.full_name  AS updated_by_name,
+        approver.full_name  AS approved_by_name
+      FROM comments c
+      INNER JOIN case_study cs
+        ON c.case_study_id = cs.id
+      LEFT JOIN users creator
+        ON c.created_by = creator.id
+      LEFT JOIN users updater
+        ON c.updated_by = updater.id
+      LEFT JOIN users approver
+        ON c.approved_by = approver.id
+      ORDER BY c.created_at ASC
         `,
     );
     return result;
@@ -118,7 +132,22 @@ export async function getSingleCommentModel(id: number) {
   try {
     const [result] = await db.query<commentsRow[]>(
       `
-            SELECT * FROM comments WHERE id=?
+            SELECT
+        c.*,
+        cs.title AS case_study_title,
+        creator.full_name  AS created_by_name,
+        updater.full_name  AS updated_by_name,
+        approver.full_name  AS approved_by_name
+      FROM comments c
+      INNER JOIN case_study cs
+        ON c.case_study_id = cs.id
+      LEFT JOIN users creator
+        ON c.created_by = creator.id
+      LEFT JOIN users updater
+        ON c.updated_by = updater.id
+      LEFT JOIN users approver
+        ON c.approved_by = approver.id
+      WHERE c.id = ?
         `,
       [id],
     );
@@ -133,10 +162,15 @@ export async function getCommentsByCaseStudyModel(case_study_id: number) {
   try {
     const [result] = await db.query<commentsRow[]>(
       `
-        SELECT * FROM comments
-        WHERE case_study_id = ?
-            AND status = 'APPROVED'
-        ORDER BY created_at ASC
+        SELECT
+        c.*,
+        creator.full_name  AS created_by_name
+      FROM comments c
+      LEFT JOIN users creator
+        ON c.created_by = creator.id
+      WHERE c.case_study_id = ?
+        AND c.status = 'APPROVED'
+      ORDER BY c.created_at ASC
         `,
       [case_study_id],
     );
