@@ -25,10 +25,20 @@ export async function PATCH(
     const { id } = await params;
     const body = await request.json();
 
-    await updateCommentStatusController(Number(id), {
+    const result = await updateCommentStatusController(Number(id), {
       ...body,
       approved_by: user.id,
     });
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Comment status updated successfully.",
+        data: result,
+      },
+      {
+        status: 200,
+      },
+    );
   } catch (error) {
     return NextResponse.json(
       {
