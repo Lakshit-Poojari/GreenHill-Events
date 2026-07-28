@@ -8,6 +8,7 @@ import {
 
 export async function createCaseStudyModel(caseStudies: CreateCaseStudy) {
   try {
+    console.log(caseStudies);
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO case_study (title, image, description, youtube_url, created_by, status, slug)
             VALUES(?,?,?,?,?,?,?)`,

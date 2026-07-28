@@ -30,17 +30,18 @@ export async function createCaseStudiesService(caseStudies: CreateCaseStudy) {
       throw new Error("Created by is required.");
     }
     const slug = caseStudies.title
-      .toLowerCase()
       .trim()
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
       .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "");
+      .replace(/-+/g, "-");
 
     const CaseStudyExist = await getCaseStudiesBySlug(slug);
 
     if (CaseStudyExist.length > 0) {
       throw new Error("Case study already exist.");
     }
-
+    console.log("Generated slug:", slug);
     const result = await createCaseStudyModel({ ...caseStudies, slug });
 
     return result;
@@ -50,7 +51,10 @@ export async function createCaseStudiesService(caseStudies: CreateCaseStudy) {
   }
 }
 
-export async function updateCaseStudiesService( id: number, caseStudies: UpdateCaseStudy,) {
+export async function updateCaseStudiesService(
+  id: number,
+  caseStudies: UpdateCaseStudy,
+) {
   try {
     if (!id) {
       throw new Error("Case study ID is required");
@@ -77,10 +81,11 @@ export async function updateCaseStudiesService( id: number, caseStudies: UpdateC
     }
 
     const slug = caseStudies
-      .title!.toLowerCase()
-      .trim()
+      .title! .trim()
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
       .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "");
+      .replace(/-+/g, "-");
 
     const duplicateCaseStudy = await getCaseStudiesBySlug(slug);
 
@@ -88,7 +93,10 @@ export async function updateCaseStudiesService( id: number, caseStudies: UpdateC
       throw new Error("Duplicate case study exist");
     }
 
-    const result = await updateCaseStudyModel(id, caseStudies);
+    const result = await updateCaseStudyModel(id, {
+      ...caseStudies,
+      slug,
+    });
     return result;
   } catch (error) {
     console.error("Update case Study service error", error);
