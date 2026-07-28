@@ -1,42 +1,82 @@
-import React from "react";
+"use client";
 
-const comments = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    post: "Top Wedding Entertainment Ideas",
-    comment: "Amazing article! We booked a live band after reading this.",
-    status: "Approved",
-    date: "01 Jul 2026",
-  },
-  {
-    id: 2,
-    name: "Sarah Smith",
-    email: "sarah@example.com",
-    post: "Corporate Event Planning",
-    comment: "Could you recommend entertainers for product launches?",
-    status: "Pending",
-    date: "30 Jun 2026",
-  },
-  {
-    id: 3,
-    name: "Michael Brown",
-    email: "michael@example.com",
-    post: "Luxury Wedding Trends",
-    comment: "This was really helpful. Looking forward to more blogs!",
-    status: "Rejected",
-    date: "29 Jun 2026",
-  },
-];
+import React, { useEffect, useState } from "react";
+
+interface Comment {
+  id: number;
+  case_study_id: number;
+  parent_comment_id: number | null;
+  name: string | null;
+  email: string | null;
+  website: string | null;
+  comment: string;
+  status: "PENDING" | "APPROVED" | "REJECTED";
+  created_at: string;
+  updated_at: string;
+  created_by: number | null;
+  updated_by: number | null;
+  approved_by: number | null;
+  approved_at: string | null;
+  case_study_title: string;
+  created_by_name: string | null;
+  updated_by_name: string | null;
+  approved_by_name: string | null;
+}
 
 const statusColor = {
-  Approved: "bg-green-500/20 text-green-400",
-  Pending: "bg-yellow-500/20 text-yellow-400",
-  Rejected: "bg-red-500/20 text-red-400",
+  APPROVED:
+    "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]",
+  PENDING:
+    "border border-[#FFD60A] bg-[#FFD60A]/10 text-[#FFD60A] shadow-[0_0_8px_#FFD60A]",
+  REJECTED:
+    "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]",
 };
 
 export default function CommentsPage() {
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [statusFilter, setStatusFilter] = useState<
+    "ALL" | "APPROVED" | "PENDING" | "REJECTED"
+  >("ALL");
+
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
+  const filteredComments =
+    statusFilter === "ALL"
+      ? comments
+      : comments.filter((comment) => comment.status === statusFilter);
+
+  const fetchComments = async () => {
+    try {
+      setLoading(true);
+
+      const response = await fetch("/api/comment", {
+        credentials: "include",
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setComments(data.comments);
+      } else {
+        setComments([]);
+      }
+    } catch (error) {
+      console.error("Fetch Comments Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-20 text-white">
+        Loading comments...
+      </div>
+    );
+  }
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -44,6 +84,23 @@ export default function CommentsPage() {
         <h1 className="text-3xl font-bold text-white">Comments</h1>
 
         <p className="mt-2 text-gray-400">Manage and moderate blog comments.</p>
+      </div>
+
+      <div className="mb-6 flex justify-end">
+        <select
+          value={statusFilter}
+          onChange={(e) =>
+            setStatusFilter(
+              e.target.value as "ALL" | "APPROVED" | "PENDING" | "REJECTED",
+            )
+          }
+          className="rounded-lg border border-gray-700 bg-[#202020] px-4 py-2 text-white outline-none focus:border-[#C9AC8C]"
+        >
+          <option value="ALL">All Status</option>
+          <option value="APPROVED">Approved</option>
+          <option value="PENDING">Pending</option>
+          <option value="REJECTED">Rejected</option>
+        </select>
       </div>
 
       {/* Table */}
@@ -62,17 +119,24 @@ export default function CommentsPage() {
             </thead>
 
             <tbody>
-              {comments.map((comment) => (
+              {filteredComments.map((comment) => (
                 <tr
                   key={comment.id}
                   className="border-b border-gray-700 hover:bg-[#202020]"
                 >
                   <td className="px-6 py-5">
-                    <div className="font-medium text-white">{comment.name}</div>
-                    <div className="text-sm text-gray-400">{comment.email}</div>
+                    <div className="font-medium text-white">
+                      {comment.name ?? comment.created_by_name ?? "Admin"}
+                    </div>
+
+                    <div className="text-sm text-gray-400">
+                      {comment.email ?? "-"}
+                    </div>
                   </td>
 
-                  <td className="px-6 py-5 text-gray-300">{comment.post}</td>
+                  <td className="px-6 py-5 text-gray-300">
+                    {comment.case_study_title}
+                  </td>
 
                   <td className="max-w-sm px-6 py-5 text-gray-300">
                     {comment.comment}
@@ -80,31 +144,63 @@ export default function CommentsPage() {
 
                   <td className="px-6 py-5">
                     <span
-                      className={`rounded-full px-3 py-1 text-sm font-medium ${
-                        statusColor[comment.status as keyof typeof statusColor]
-                      }`}
+                      className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold tracking-wide uppercase ${statusColor[comment.status]}`}
                     >
                       {comment.status}
                     </span>
                   </td>
 
-                  <td className="px-6 py-5 text-gray-400">{comment.date}</td>
+                  <td className="px-6 py-5 text-gray-400">
+                    {new Date(comment.created_at).toLocaleDateString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </td>
 
                   <td className="px-6 py-5">
                     <div className="flex justify-center gap-2">
-                      <button className="rounded-md bg-green-600 px-3 py-2 text-sm text-white transition hover:bg-green-700">
-                        Approve
-                      </button>
+                      {comment.status === "PENDING" && (
+                        <>
+                          <button className="rounded-md border border-[#39FF14] bg-[#39FF14]/10 px-3 py-2 text-sm font-medium text-[#39FF14] shadow-[0_0_8px_#39FF14] transition hover:bg-[#39FF14] hover:text-black">
+                            Approve
+                          </button>
 
-                      <button className="rounded-md bg-red-600 px-3 py-2 text-sm text-white transition hover:bg-red-700">
-                        Delete
-                      </button>
+                          <button className="rounded-md border border-[#FF3131] bg-[#FF3131]/10 px-3 py-2 text-sm font-medium text-[#FF3131] shadow-[0_0_8px_#FF3131] transition hover:bg-[#FF3131] hover:text-white">
+                            Reject
+                          </button>
+                        </>
+                      )}
+
+                      {comment.status === "APPROVED" && (
+                        <>
+                          <button className="rounded-md border border-[#FFD60A] bg-[#FFD60A]/10 px-3 py-2 text-sm font-medium text-[#FFD60A] shadow-[0_0_8px_#FFD60A] transition hover:bg-[#FFD60A] hover:text-black">
+                            Mark Pending
+                          </button>
+
+                          <button className="rounded-md border border-[#FF3131] bg-[#FF3131]/10 px-3 py-2 text-sm font-medium text-[#FF3131] shadow-[0_0_8px_#FF3131] transition hover:bg-[#FF3131] hover:text-white">
+                            Reject
+                          </button>
+                        </>
+                      )}
+
+                      {comment.status === "REJECTED" && (
+                        <>
+                          <button className="rounded-md border border-[#39FF14] bg-[#39FF14]/10 px-3 py-2 text-sm font-medium text-[#39FF14] shadow-[0_0_8px_#39FF14] transition hover:bg-[#39FF14] hover:text-black">
+                            Approve
+                          </button>
+
+                          <button className="rounded-md border border-[#FFD60A] bg-[#FFD60A]/10 px-3 py-2 text-sm font-medium text-[#FFD60A] shadow-[0_0_8px_#FFD60A] transition hover:bg-[#FFD60A] hover:text-black">
+                            Mark Pending
+                          </button>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>
               ))}
 
-              {comments.length === 0 && (
+              {filteredComments.length === 0 && (
                 <tr>
                   <td colSpan={6} className="py-10 text-center text-gray-400">
                     No comments found.
