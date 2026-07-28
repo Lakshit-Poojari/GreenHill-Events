@@ -1,4 +1,8 @@
-import { createCommentController } from "@/backend/controllers/commentsController";
+import {
+  createCommentController,
+  getAllCommentController,
+  getCommentsByCaseStudyController,
+} from "@/backend/controllers/commentsController";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -32,8 +36,24 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
+    const { id } = await params;
+    const comments = await getCommentsByCaseStudyController(Number(id));
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Comments fetched successfully.",
+        comments,
+      },
+      {
+        status: 200,
+      },
+    );
   } catch (error) {
     return NextResponse.json(
       {
