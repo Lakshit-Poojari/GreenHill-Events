@@ -22,6 +22,15 @@ interface Comment {
   created_by_name: string | null;
 }
 
+const statusColor = {
+  APPROVED:
+    "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]",
+  PENDING:
+    "border border-[#FFD60A] bg-[#FFD60A]/10 text-[#FFD60A] shadow-[0_0_8px_#FFD60A]",
+  REJECTED:
+    "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]",
+};
+
 const page = () => {
   const { id } = useParams();
 
@@ -142,9 +151,10 @@ const page = () => {
 
           <div>
             <p className="mb-1 text-sm text-gray-400">Status</p>
-
-            <span className="inline-flex rounded-full border border-[#39FF14] bg-[#39FF14]/10 px-3 py-1 text-sm font-semibold text-[#39FF14] shadow-[0_0_8px_#39FF14]">
-              APPROVED
+            <span
+              className={`inline-flex rounded-full px-3 py-1 text-sm font-semibold ${statusColor[comment.status]}`}
+            >
+              {comment.status}
             </span>
           </div>
 

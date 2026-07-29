@@ -40,16 +40,35 @@ export default function CommentsPage() {
   const [statusFilter, setStatusFilter] = useState<
     "ALL" | "APPROVED" | "PENDING" | "REJECTED"
   >("ALL");
+  const [typeFilter, setTypeFilter] = useState<
+    "ALL" | "VISITOR_COMMENT" | "VISITOR_REPLY" | "ADMIN_REPLY"
+  >("ALL");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchComments();
   }, []);
 
-  const filteredComments =
-    statusFilter === "ALL"
-      ? comments
-      : comments.filter((comment) => comment.status === statusFilter);
+  const filteredComments = comments.filter((comment) => {
+    const statusMatch =
+      statusFilter === "ALL" || comment.status === statusFilter;
 
+    const typeMatch =
+      typeFilter === "ALL" ||
+      (typeFilter === "VISITOR_COMMENT" &&
+        comment.created_by === null &&
+        comment.parent_comment_id === null) ||
+      (typeFilter === "VISITOR_REPLY" &&
+        comment.created_by === null &&
+        comment.parent_comment_id !== null) ||
+      (typeFilter === "ADMIN_REPLY" && comment.created_by !== null);
+
+    const searchMatch = comment.case_study_title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    return statusMatch && typeMatch && searchMatch;
+  });
   const fetchComments = async () => {
     try {
       setLoading(true);
@@ -88,7 +107,33 @@ export default function CommentsPage() {
         <p className="mt-2 text-gray-400">Manage and moderate blog comments.</p>
       </div>
 
-      <div className="mb-6 flex justify-end">
+      <div className="mb-6 flex flex-wrap justify-end gap-4">
+        <input
+          type="text"
+          placeholder="Search by post title..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full rounded-lg border border-gray-700 bg-[#202020] px-4 py-2 text-white placeholder-gray-500 outline-none focus:border-[#C9AC8C] md:w-80"
+        />
+        <select
+          value={typeFilter}
+          onChange={(e) =>
+            setTypeFilter(
+              e.target.value as
+                | "ALL"
+                | "VISITOR_COMMENT"
+                | "VISITOR_REPLY"
+                | "ADMIN_REPLY",
+            )
+          }
+          className="rounded-lg border border-gray-700 bg-[#202020] px-4 py-2 text-white outline-none focus:border-[#C9AC8C]"
+        >
+          <option value="ALL">All Types</option>
+          <option value="VISITOR_COMMENT">Visitor Comments</option>
+          <option value="VISITOR_REPLY">Visitor Replies</option>
+          <option value="ADMIN_REPLY">Admin Replies</option>
+        </select>
+
         <select
           value={statusFilter}
           onChange={(e) =>
