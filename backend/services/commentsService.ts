@@ -201,10 +201,6 @@ export async function updateCommentStatusService(
       throw new Error("comment does not Exist");
     }
 
-    if (existComment.created_by !== null) {
-      throw new Error("Admin replies cannot be moderated.");
-    }
-
     if (existComment.status === status.status) {
       throw new Error(`Comment is already ${status.status}.`);
     }
