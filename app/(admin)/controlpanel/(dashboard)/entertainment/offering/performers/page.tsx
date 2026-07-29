@@ -183,7 +183,6 @@ const Page = () => {
                           className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] 
                             shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:scale-105 hover:bg-[#A855F7]/20 
                             hover:shadow-[0_0_12px_#A855F7]"
-                          title="View"
                         >
                           <Eye size={18} />
                         </Link>
@@ -193,7 +192,6 @@ const Page = () => {
                           className="rounded-lg border border-[#00BFFF] bg-[#00E5FF]/10 p-2 text-[#00BFFF] 
                             shadow-[0_0_8px_#00BFFF] transition-all duration-300 hover:bg-[#00BFFF]/20 
                             hover:shadow-[0_0_12px_#00BFFF]"
-                          title="Edit"
                         >
                           <Edit size={18} />
                         </Link>
@@ -204,7 +202,6 @@ const Page = () => {
                           className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] 
                             shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 
                             hover:shadow-[0_0_12px_#FF3131]"
-                          title="Delete"
                         >
                           <Trash2 size={18} />
                         </button>

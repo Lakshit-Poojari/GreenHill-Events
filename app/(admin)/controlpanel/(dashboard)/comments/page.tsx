@@ -209,14 +209,18 @@ export default function CommentsPage() {
                     <div className="flex justify-center gap-2">
                       <Link
                         href={`/controlpanel/comments/${comment.id}`}
-                        className="rounded-md border border-[#A855F7] bg-[#A855F7]/10 px-3 py-2 text-sm font-medium text-[#A855F7] shadow-[0_0_8px_#A855F7] transition hover:bg-[#A855F7] hover:text-white"
+                        className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] 
+                            shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:scale-105 hover:bg-[#A855F7]/20 
+                            hover:shadow-[0_0_12px_#A855F7]"
                       >
                         <Eye size={18} />
                       </Link>
 
                       <Link
                         href={`/controlpanel/comments/${comment.id}/edit`}
-                        className="rounded-md border border-[#00BFFF] bg-[#00BFFF]/10 px-3 py-2 text-sm font-medium text-[#00BFFF] shadow-[0_0_8px_#00BFFF] transition hover:bg-[#00BFFF] hover:text-black"
+                        className="rounded-lg border border-[#00BFFF] bg-[#00BFFF]/10 p-2 text-[#00BFFF] 
+                            shadow-[0_0_8px_#00BFFF] transition-all duration-300 hover:bg-[#00BFFF]/20 
+                            hover:shadow-[0_0_12px_#00BFFF]"
                       >
                         <Edit size={18} />
                       </Link>
