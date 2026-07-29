@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Pencil } from "lucide-react";
+import { ArrowLeft, MessageSquareReply, Pencil } from "lucide-react";
 
 interface Comment {
   id: number;
@@ -21,15 +21,6 @@ interface Comment {
   approved_by_name: string | null;
   created_by_name: string | null;
 }
-
-const statusColor = {
-  APPROVED:
-    "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]",
-  PENDING:
-    "border border-[#FFD60A] bg-[#FFD60A]/10 text-[#FFD60A] shadow-[0_0_8px_#FFD60A]",
-  REJECTED:
-    "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]",
-};
 
 const page = () => {
   const { id } = useParams();
@@ -167,6 +158,26 @@ const page = () => {
 
             <div className="rounded-lg border border-gray-700 bg-[#202020] p-4 text-gray-200">
               {comment.comment}
+            </div>
+
+            <div className="mt-4 flex justify-end">
+              {isVisitorComment ? (
+                <Link
+                  href={`/controlpanel/comments/${comment.id}/reply`}
+                  className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-4 py-2 font-medium text-black transition-all duration-300 hover:scale-105 hover:opacity-90"
+                >
+                  <MessageSquareReply size={18} />
+                  Reply
+                </Link>
+              ) : (
+                <Link
+                  href={`/controlpanel/comments/${comment.id}/edit`}
+                  className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-4 py-2 font-medium text-black transition-all duration-300 hover:scale-105 hover:opacity-90"
+                >
+                  <Pencil size={18} />
+                  Edit Reply
+                </Link>
+              )}
             </div>
           </div>
 
