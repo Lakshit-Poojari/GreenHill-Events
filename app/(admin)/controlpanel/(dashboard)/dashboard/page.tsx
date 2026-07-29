@@ -74,7 +74,7 @@ const page = () => {
           className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
             duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
         >
-          <p className="text-sm text-gray-400">Posts</p>
+          <p className="text-sm text-gray-400">Case Study</p>
           <h2 className="mt-2 text-3xl font-bold text-white">
             {loading ? "..." : stats.posts}
           </h2>
@@ -84,7 +84,7 @@ const page = () => {
           className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
             duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
         >
-          <p className="text-sm text-gray-400">Comments</p>
+          <p className="text-sm text-gray-400">Pending Comments</p>
           <h2 className="mt-2 text-3xl font-bold text-white">
             {loading ? "..." : stats.comments}
           </h2>
