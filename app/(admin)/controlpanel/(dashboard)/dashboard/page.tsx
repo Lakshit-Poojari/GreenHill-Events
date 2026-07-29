@@ -12,9 +12,12 @@ interface User {
 
 const page = () => {
   const [stats, setStats] = useState({
-    posts: 0,
-    comments: 0,
+    caseStudy: 0,
+    pendingComments: 0,
     users: 0,
+    categories: 0,
+    Performers: 0,
+    PerformersCategories: 0,
   });
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
@@ -74,9 +77,9 @@ const page = () => {
           className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
             duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
         >
-          <p className="text-sm text-gray-400">Case Study</p>
-          <h2 className="mt-2 text-3xl font-bold text-white">
-            {loading ? "..." : stats.posts}
+          <p className="text-sm text-center text-gray-400">Case Study</p>
+          <h2 className="mt-2 text-3xl text-center font-bold text-white">
+            {loading ? "..." : stats.caseStudy}
           </h2>
         </div>
 
@@ -84,9 +87,9 @@ const page = () => {
           className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
             duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
         >
-          <p className="text-sm text-gray-400">Pending Comments</p>
-          <h2 className="mt-2 text-3xl font-bold text-white">
-            {loading ? "..." : stats.comments}
+          <p className="text-sm text-center text-gray-400">Pending Comments</p>
+          <h2 className="mt-2 text-3xl text-center font-bold text-white">
+            {loading ? "..." : stats.pendingComments}
           </h2>
         </div>
 
@@ -94,9 +97,38 @@ const page = () => {
           className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
             duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
         >
-          <p className="text-sm text-gray-400">Users</p>
-          <h2 className="mt-2 text-3xl font-bold text-white">
+          <p className="text-sm text-center text-gray-400">Users</p>
+          <h2 className="mt-2 text-3xl text-center font-bold text-white">
             {loading ? "..." : stats.users}
+          </h2>
+        </div>
+        <div
+          className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
+            duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
+        >
+          <p className="text-sm text-center text-gray-400">Categories</p>
+          <h2 className="mt-2 text-3xl text-center font-bold text-white">
+            {loading ? "..." : stats.categories}
+          </h2>
+        </div>
+
+        <div
+          className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
+            duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
+        >
+          <p className="text-sm text-center text-gray-400">Performers</p>
+          <h2 className="mt-2 text-3xl text-center font-bold text-white">
+            {loading ? "..." : stats.Performers}
+          </h2>
+        </div>
+
+        <div
+          className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
+            duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
+        >
+          <p className="text-sm text-center text-gray-400">Performers Categories</p>
+          <h2 className="mt-2 text-3xl text-center font-bold text-white">
+            {loading ? "..." : stats.PerformersCategories}
           </h2>
         </div>
       </div>
