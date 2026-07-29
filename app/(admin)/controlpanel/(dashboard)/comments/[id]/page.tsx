@@ -201,9 +201,17 @@ const page = () => {
 
           <div>
             <p className="mb-1 text-sm text-gray-400">Parent Comment</p>
-            <p className="text-white">
-              {comment.parent_comment_id ? "Yes" : "No"}
-            </p>
+
+            {comment.parent_comment_id ? (
+              <Link
+                href={`/controlpanel/comments/${comment.parent_comment_id}`}
+                className="inline-flex items-center rounded-md border border-[#C9AC8C] bg-[#C9AC8C]/10 px-3 py-1 text-sm font-medium text-[#C9AC8C] transition hover:bg-[#C9AC8C]/20"
+              >
+                View Parent Comment #{comment.parent_comment_id}
+              </Link>
+            ) : (
+              <p className="text-gray-500">No Parent Comment</p>
+            )}
           </div>
         </div>
       </div>
