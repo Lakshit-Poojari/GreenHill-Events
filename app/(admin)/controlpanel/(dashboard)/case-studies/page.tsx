@@ -80,13 +80,13 @@ const Page = () => {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-white">Case Studies</h1>
-            <p className="mt-2 text-gray-400">Manage all case studies.</p>
+            <p className="mt-2 text-[#C9AC8C]">Manage all case studies.</p>
           </div>
 
           <Link
             href="/controlpanel/case-studies/create"
             className="inline-flex items-center gap-2 rounded-lg bg-[rgba(201,172,140,1)] px-5 py-3 font-semibold text-black
-              transition hover:opacity-90"
+              transition hover:bg-[#b89470]"
           >
             <Plus size={18} />
             Create Case Study
@@ -171,16 +171,16 @@ const Page = () => {
                     <div className="flex justify-center gap-2">
                       <Link
                         href={`/controlpanel/case-studies/${caseStudy.id}`}
-                        className="rounded-lg border border-[#39FF14] bg-[#39FF14]/10 p-2 text-[#39FF14] shadow-[0_0_8px_#39FF14] 
-                          transition-all duration-300 hover:scale-105 hover:bg-[#39FF14]/20 hover:shadow-[0_0_12px_#39FF14]"
+                        className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] shadow-[0_0_8px_#A855F7] 
+                          transition-all duration-300 hover:scale-105 hover:bg-[#A855F7]/20 hover:shadow-[0_0_12px_#A855F7]"
                       >
                         <Eye size={18} />
                       </Link>
 
                       <Link
                         href={`/controlpanel/case-studies/${caseStudy.id}/edit`}
-                        className="rounded-lg border border-[#00E5FF] bg-[#00E5FF]/10 p-2 text-[#00E5FF] shadow-[0_0_8px_#00E5FF] 
-                          transition-all duration-300 hover:bg-[#00E5FF]/20 hover:shadow-[0_0_12px_#00E5FF]"
+                        className="rounded-lg border border-[#00BFFF] bg-[#00BFFF]/10 p-2 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] 
+                          transition-all duration-300 hover:bg-[#00BFFF]/20 hover:shadow-[0_0_12px_#00BFFF]"
                       >
                         <Edit size={18} />
                       </Link>

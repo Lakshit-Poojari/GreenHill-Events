@@ -66,7 +66,7 @@ const Page = () => {
       <Link
         href="/controlpanel/entertainment"
         className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium 
-          text-white transition hover:border-amber-500 hover:text-amber-400"
+          text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
         Back
@@ -78,15 +78,15 @@ const Page = () => {
           <h1 className="text-3xl font-bold text-white">
             Entertainment Categories
           </h1>
-          <p className="mt-2 text-gray-400">
+          <p className="mt-2 text-[#C9AC8C]">
             Manage all entertainment categories available on the website.
           </p>
         </div>
 
         <Link
           href="/controlpanel/entertainment/categories/create"
-          className="flex items-center gap-2 rounded-lg bg-amber-500 px-5 py-3 font-medium text-black transition 
-            hover:bg-amber-400"
+          className="flex items-center gap-2 rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-black transition 
+            hover:bg-[#b89470]"
         >
           <Plus size={18} />
           Add Category
@@ -174,9 +174,9 @@ const Page = () => {
                       <div className="flex justify-center gap-3">
                         <Link
                           href={`/controlpanel/entertainment/categories/${category.id}`}
-                          className="rounded-lg border border-[#39FF14] bg-[#39FF14]/10 p-2 text-[#39FF14] 
-                            shadow-[0_0_8px_#39FF14] transition-all duration-300 hover:scale-105 hover:bg-[#39FF14]/20 
-                            hover:shadow-[0_0_12px_#39FF14]"
+                          className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] 
+                            shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:scale-105 hover:bg-[#A855F7]/20 
+                            hover:shadow-[0_0_12px_#A855F7]"
                           title="View"
                         >
                           <Eye size={18} />
@@ -184,9 +184,9 @@ const Page = () => {
 
                         <Link
                           href={`/controlpanel/entertainment/categories/${category.id}/edit`}
-                          className="rounded-lg border border-[#00E5FF] bg-[#00E5FF]/10 p-2 text-[#00E5FF] 
-                            shadow-[0_0_8px_#00E5FF] transition-all duration-300 hover:bg-[#00E5FF]/20 
-                            hover:shadow-[0_0_12px_#00E5FF]"
+                          className="rounded-lg border border-[#00BFFF] bg-[#00BFFF]/10 p-2 text-[#00BFFF] 
+                            shadow-[0_0_8px_#00BFFF] transition-all duration-300 hover:bg-[#00BFFF]/20 
+                            hover:shadow-[0_0_12px_#00BFFF]"
                           title="Edit"
                         >
                           <Pencil size={18} />

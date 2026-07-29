@@ -165,7 +165,7 @@ export default function UserManagementPage() {
         {me?.role === "SUPER_ADMIN" && (
           <Link
             href="/controlpanel/users/create"
-            className="rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-white transition hover:opacity-90"
+            className="rounded-lg bg-[#C9AC8C] px-5 py-3 font-medium text-white transition hover:bg-[#b89470]"
           >
             Add Admin
           </Link>

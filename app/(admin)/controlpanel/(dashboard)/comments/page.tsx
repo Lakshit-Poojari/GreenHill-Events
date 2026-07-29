@@ -104,7 +104,7 @@ export default function CommentsPage() {
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg">
         <h1 className="text-3xl font-bold text-white">Comments</h1>
 
-        <p className="mt-2 text-gray-400">Manage and moderate blog comments.</p>
+        <p className="mt-2 text-[#C9AC8C]">Manage and moderate blog comments.</p>
       </div>
 
       <div className="mb-6 flex flex-wrap justify-end gap-4">
@@ -209,14 +209,14 @@ export default function CommentsPage() {
                     <div className="flex justify-center gap-2">
                       <Link
                         href={`/controlpanel/comments/${comment.id}`}
-                        className="rounded-md border border-[#3B82F6] bg-[#3B82F6]/10 px-3 py-2 text-sm font-medium text-[#3B82F6] shadow-[0_0_8px_#3B82F6] transition hover:bg-[#3B82F6] hover:text-white"
+                        className="rounded-md border border-[#A855F7] bg-[#A855F7]/10 px-3 py-2 text-sm font-medium text-[#A855F7] shadow-[0_0_8px_#A855F7] transition hover:bg-[#A855F7] hover:text-white"
                       >
                         <Eye size={18} />
                       </Link>
 
                       <Link
                         href={`/controlpanel/comments/${comment.id}/edit`}
-                        className="rounded-md border border-[#C9AC8C] bg-[#C9AC8C]/10 px-3 py-2 text-sm font-medium text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] transition hover:bg-[#C9AC8C] hover:text-black"
+                        className="rounded-md border border-[#00BFFF] bg-[#00BFFF]/10 px-3 py-2 text-sm font-medium text-[#00BFFF] shadow-[0_0_8px_#00BFFF] transition hover:bg-[#00BFFF] hover:text-black"
                       >
                         <Edit size={18} />
                       </Link>

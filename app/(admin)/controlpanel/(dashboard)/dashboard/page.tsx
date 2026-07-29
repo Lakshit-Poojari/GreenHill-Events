@@ -63,7 +63,7 @@ const page = () => {
       >
         <h1 className="text-3xl font-bold text-white">Dashboard</h1>
 
-        <p className="mt-2 text-gray-400">
+        <p className="mt-2 text-[#C9AC8C]">
           Welcome to the Green Hill Admin Panel.
         </p>
       </div>
