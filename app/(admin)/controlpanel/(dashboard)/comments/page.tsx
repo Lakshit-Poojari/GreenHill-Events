@@ -1,5 +1,7 @@
 "use client";
 
+import { Edit, Eye } from "lucide-react";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 interface Comment {
@@ -139,7 +141,7 @@ export default function CommentsPage() {
                   </td>
 
                   <td className="max-w-sm px-6 py-5 text-gray-300">
-                    {comment.comment}
+                    <p className="line-clamp-2">{comment.comment}</p>
                   </td>
 
                   <td className="px-6 py-5">
@@ -160,41 +162,19 @@ export default function CommentsPage() {
 
                   <td className="px-6 py-5">
                     <div className="flex justify-center gap-2">
-                      {comment.status === "PENDING" && (
-                        <>
-                          <button className="rounded-md border border-[#39FF14] bg-[#39FF14]/10 px-3 py-2 text-sm font-medium text-[#39FF14] shadow-[0_0_8px_#39FF14] transition hover:bg-[#39FF14] hover:text-black">
-                            Approve
-                          </button>
+                      <Link
+                        href={`/controlpanel/comments/${comment.id}`}
+                        className="rounded-md border border-[#3B82F6] bg-[#3B82F6]/10 px-3 py-2 text-sm font-medium text-[#3B82F6] shadow-[0_0_8px_#3B82F6] transition hover:bg-[#3B82F6] hover:text-white"
+                      >
+                        <Eye size={18} />
+                      </Link>
 
-                          <button className="rounded-md border border-[#FF3131] bg-[#FF3131]/10 px-3 py-2 text-sm font-medium text-[#FF3131] shadow-[0_0_8px_#FF3131] transition hover:bg-[#FF3131] hover:text-white">
-                            Reject
-                          </button>
-                        </>
-                      )}
-
-                      {comment.status === "APPROVED" && (
-                        <>
-                          <button className="rounded-md border border-[#FFD60A] bg-[#FFD60A]/10 px-3 py-2 text-sm font-medium text-[#FFD60A] shadow-[0_0_8px_#FFD60A] transition hover:bg-[#FFD60A] hover:text-black">
-                            Mark Pending
-                          </button>
-
-                          <button className="rounded-md border border-[#FF3131] bg-[#FF3131]/10 px-3 py-2 text-sm font-medium text-[#FF3131] shadow-[0_0_8px_#FF3131] transition hover:bg-[#FF3131] hover:text-white">
-                            Reject
-                          </button>
-                        </>
-                      )}
-
-                      {comment.status === "REJECTED" && (
-                        <>
-                          <button className="rounded-md border border-[#39FF14] bg-[#39FF14]/10 px-3 py-2 text-sm font-medium text-[#39FF14] shadow-[0_0_8px_#39FF14] transition hover:bg-[#39FF14] hover:text-black">
-                            Approve
-                          </button>
-
-                          <button className="rounded-md border border-[#FFD60A] bg-[#FFD60A]/10 px-3 py-2 text-sm font-medium text-[#FFD60A] shadow-[0_0_8px_#FFD60A] transition hover:bg-[#FFD60A] hover:text-black">
-                            Mark Pending
-                          </button>
-                        </>
-                      )}
+                      <Link
+                        href={`/controlpanel/comments/${comment.id}/edit`}
+                        className="rounded-md border border-[#C9AC8C] bg-[#C9AC8C]/10 px-3 py-2 text-sm font-medium text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] transition hover:bg-[#C9AC8C] hover:text-black"
+                      >
+                        <Edit size={18} />
+                      </Link>
                     </div>
                   </td>
                 </tr>
