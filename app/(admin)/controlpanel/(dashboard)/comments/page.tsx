@@ -132,7 +132,7 @@ export default function CommentsPage() {
                     </div>
 
                     <div className="text-sm text-gray-400">
-                      {comment.email ?? "-"}
+                      {comment.email ?? "🛡️ Admin"}
                     </div>
                   </td>
 
