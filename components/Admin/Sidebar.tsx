@@ -8,6 +8,7 @@ import {
   FileText,
   MessageSquare,
   Users,
+  Mail,
 } from "lucide-react";
 
 const links = [
@@ -30,6 +31,11 @@ const links = [
     name: "Comments",
     href: "/controlpanel/comments",
     icon: MessageSquare,
+  },
+  {
+    name: "Emails",
+    href: "/controlpanel/mails",
+    icon: Mail,
   },
   {
     name: "Users",
