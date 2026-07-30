@@ -130,14 +130,7 @@ const Page = () => {
                   </td>
 
                   <td className="px-6 py-5 text-gray-400">
-                    {new Date(contact.created_at).toLocaleDateString(
-                      "en-GB",
-                      {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      }
-                    )}
+                    {new Date(contact.created_at).toLocaleString()}
                   </td>
 
                   <td className="px-6 py-5">

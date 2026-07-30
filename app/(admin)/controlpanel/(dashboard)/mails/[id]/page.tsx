@@ -67,7 +67,7 @@ const Page = () => {
     <div className="space-y-8">
       {/* Back Button */}
       <Link
-        href="/controlpanel/contactEmail"
+        href="/controlpanel/mails"
         className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-[#181616] px-4 py-2 text-sm font-medium text-white transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
       >
         <ArrowLeft size={18} />
@@ -125,14 +125,7 @@ const Page = () => {
             </p>
 
             <p className="text-white">
-              {new Date(contact.created_at).toLocaleDateString(
-                "en-GB",
-                {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                }
-              )}
+              {new Date(contact.created_at).toLocaleString()}
             </p>
           </div>
 
