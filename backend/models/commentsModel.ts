@@ -180,3 +180,19 @@ export async function getCommentsByCaseStudyModel(case_study_id: number) {
     throw error;
   }
 }
+
+export async function getContactCountModel() {
+  try {
+    const [[result]] = await db.query<RowDataPacket[]>(
+      `
+      SELECT COUNT(*) AS total
+      FROM contacts
+      `
+    );
+
+    return result.total;
+  } catch (error) {
+    console.error("Get Contact Count Model Error:", error);
+    throw error;
+  }
+}
