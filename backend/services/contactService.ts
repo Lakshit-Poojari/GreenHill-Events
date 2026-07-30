@@ -1,5 +1,6 @@
 import { createContactModel } from "../models/contactModel";
 import { CreateContactType } from "../types/contactType";
+import { sendContactEmail } from "../utils/contactEmail";
 
 export async function createContactService(data: CreateContactType) {
   try {
@@ -20,6 +21,8 @@ export async function createContactService(data: CreateContactType) {
         message: "Failed to submit contact enquiry.",
       };
     }
+
+    await sendContactEmail(data)
 
     return {
       success: true,
