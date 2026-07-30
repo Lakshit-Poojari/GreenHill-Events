@@ -1,9 +1,9 @@
 import { createContactService } from "../services/contactService";
 import { CreateContactType } from "../types/contactType";
 
-export async function createContactcontroller(data: CreateContactType) {
+export async function createContactcontroller(contactEmail: CreateContactType) {
   try {
-    const result = await createContactService(data);
+    const result = await createContactService(contactEmail);
 
     return result;
   } catch (error) {

@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function sendContactEmail(data: CreateContactType) {
+export async function sendContactEmail(contactEmail: CreateContactType) {
   try {
     await transporter.sendMail({
       from: `"Green Hill Events" <${process.env.SMTP_USER}>`,
@@ -23,19 +23,19 @@ export async function sendContactEmail(data: CreateContactType) {
         <table cellpadding="8" cellspacing="0" border="1" style="border-collapse: collapse;">
           <tr>
             <td><strong>Name</strong></td>
-            <td>${data.name}</td>
+            <td>${contactEmail.name}</td>
           </tr>
           <tr>
             <td><strong>Email</strong></td>
-            <td>${data.email}</td>
+            <td>${contactEmail.email}</td>
           </tr>
           <tr>
             <td><strong>Phone</strong></td>
-            <td>${data.phone || "Not Provided"}</td>
+            <td>${contactEmail.phone || "Not Provided"}</td>
           </tr>
           <tr>
             <td><strong>Message</strong></td>
-            <td>${data.message}</td>
+            <td>${contactEmail.message}</td>
           </tr>
         </table>
       `,

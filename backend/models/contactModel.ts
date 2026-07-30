@@ -2,7 +2,7 @@ import { ResultSetHeader } from "mysql2";
 import db from "../lib/db";
 import { CreateContactType } from "../types/contactType";
 
-export async function createContactModel(data: CreateContactType) {
+export async function createContactModel(contactEmail: CreateContactType) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       `
@@ -14,10 +14,10 @@ export async function createContactModel(data: CreateContactType) {
       ) VALUES (?, ?, ?, ?)
       `,
       [
-        data.name,
-        data.email,
-        data.phone || null,
-        data.message,
+        contactEmail.name,
+        contactEmail.email,
+        contactEmail.phone || null,
+        contactEmail.message,
       ]
     );
 

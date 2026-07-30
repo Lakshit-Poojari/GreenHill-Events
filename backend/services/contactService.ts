@@ -2,9 +2,9 @@ import { createContactModel } from "../models/contactModel";
 import { CreateContactType } from "../types/contactType";
 import { sendContactEmail } from "../utils/contactEmail";
 
-export async function createContactService(data: CreateContactType) {
+export async function createContactService(contactEmail: CreateContactType) {
   try {
-    const { name, email, message } = data;
+    const { name, email, message } = contactEmail;
 
     if (!name || !email || !message) {
       return {
@@ -13,7 +13,7 @@ export async function createContactService(data: CreateContactType) {
       };
     }
 
-    const result = await createContactModel(data);
+    const result = await createContactModel(contactEmail);
 
     if (result.affectedRows === 0) {
       return {
@@ -22,12 +22,12 @@ export async function createContactService(data: CreateContactType) {
       };
     }
 
-    await sendContactEmail(data)
+    await sendContactEmail(contactEmail)
 
     return {
       success: true,
       message: "Contact enquiry submitted successfully.",
-      data: {
+      contactEmail: {
         id: result.insertId,
       },
     };
