@@ -40,3 +40,21 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 generateHash.ts
+
+# uploads
+# Ignore everything inside uploads
+uploads/**
+
+# Keep the uploads folder
+!uploads/
+!uploads/.gitkeep
+
+# Keep subfolders
+!uploads/categories/
+!uploads/offerings/
+!uploads/caseStudies/
+
+# Keep placeholder files
+!uploads/categories/.gitkeep
+!uploads/offerings/.gitkeep
+!uploads/caseStudies/.gitkeep
