@@ -13,7 +13,6 @@ export async function createOfferingVideoModel(video: CreateOfferingVideo) {
             (
                 offering_id,
                 youtube_url,
-                soundcloud_link,
                 display_order,
                 status,
                 created_by
@@ -22,7 +21,6 @@ export async function createOfferingVideoModel(video: CreateOfferingVideo) {
       [
         video.offering_id,
         video.youtube_url,
-        video.soundcloud_link ?? null,
         video.display_order,
         video.status,
         video.created_by,
@@ -47,7 +45,6 @@ export async function updateOfferingVideoModel(
       SET
         offering_id = ?,
         youtube_url = ?,
-        soundcloud_link = ?,
         display_order = ?,
         status = ?,
         updated_by = ?
@@ -56,7 +53,6 @@ export async function updateOfferingVideoModel(
       [
         video.offering_id,
         video.youtube_url,
-        video.soundcloud_link ?? null,
         video.display_order,
         video.status,
         video.updated_by,
@@ -81,7 +77,6 @@ export async function getAllOfferingVideoModel() {
         ov.offering_id,
         o.performer_name,
         ov.youtube_url,
-        ov.soundcloud_link,
         ov.display_order,
         ov.status,
         ov.created_at,
@@ -117,7 +112,6 @@ export async function getSingleOfferingVideoModel(id: number) {
         ov.offering_id,
         o.performer_name,
         ov.youtube_url,
-        ov.soundcloud_link,
         ov.display_order,
         ov.status,
         ov.created_at,

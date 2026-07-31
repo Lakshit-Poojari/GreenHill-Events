@@ -21,7 +21,6 @@ const Page = () => {
   const [formData, setFormData] = useState({
     offering_id: 0,
     youtube_url: "",
-    soundcloud_link: "",
     display_order: 1,
     status: "ACTIVE",
   });
@@ -44,7 +43,6 @@ const Page = () => {
         setFormData({
           offering_id: data.data.offering_id,
           youtube_url: data.data.youtube_url ?? "",
-          soundcloud_link: data.data.soundcloud_link ?? "",
           display_order: data.data.display_order,
           status: data.data.status,
         });
@@ -124,7 +122,7 @@ const Page = () => {
         <h1 className="text-3xl font-bold text-white">Edit Offering Video</h1>
 
         <p className="mt-2 text-gray-400">
-          Update video details for{" "}
+          Update YouTube video for{" "}
           <span className="font-semibold text-white">
             {video?.performer_name}
           </span>
@@ -173,7 +171,7 @@ const Page = () => {
           {/* YouTube Link */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-300">
-              YouTube Link
+              YouTube Embed URL
             </label>
 
             <input
@@ -181,27 +179,12 @@ const Page = () => {
               name="youtube_url"
               value={formData.youtube_url}
               onChange={handleChange}
-              placeholder="Paste YouTube link"
+              placeholder="https://www.youtube.com/embed/VIDEO_ID"
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
             />
           </div>
 
-          <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
-              SoundCloud Link
-            </label>
-
-            <input
-              type="url"
-              name="soundcloud_link"
-              value={formData.soundcloud_link}
-              onChange={handleChange}
-              placeholder="Paste SoundCloud link (Optional)"
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none
-      focus:border-[#C9AC8C]"
-            />
-          </div>
 
           {/* Display Order */}
           <div>

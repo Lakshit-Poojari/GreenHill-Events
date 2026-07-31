@@ -9,7 +9,6 @@ export interface OfferingVideo {
   updated_at: Date;
   created_by_name?: string;
   updated_by_name?: string | null;
-  soundcloud_link?: string | null;
 }
 export interface CreateOfferingVideo {
   offering_id: number;
@@ -18,7 +17,6 @@ export interface CreateOfferingVideo {
   status: "ACTIVE" | "INACTIVE";
   created_by: number;
   updated_by?: number;
-  soundcloud_link?: string | null;
 }
 
 export interface UpdateOfferingVideo {
@@ -27,5 +25,4 @@ export interface UpdateOfferingVideo {
   display_order?: number;
   status?: "ACTIVE" | "INACTIVE";
   updated_by?: number;
-  soundcloud_link?: string | null;
 }

@@ -13,7 +13,6 @@ const Page = () => {
   const performerId = Number(params.id);
   const [formData, setFormData] = useState({
     youtube_url: "",
-    soundcloud_link: "",
     display_order: 1,
   });
 
@@ -73,7 +72,6 @@ const Page = () => {
         body: JSON.stringify({
           offering_id: performerId,
           youtube_url: formData.youtube_url,
-          soundcloud_link: formData.soundcloud_link,
           display_order: formData.display_order,
         }),
       });
@@ -125,7 +123,7 @@ const Page = () => {
         <h1 className="text-3xl font-bold text-white">Add Offering Video</h1>
 
         <p className="mt-2 text-gray-400">
-          Add media links for{" "}
+          Add YouTube videos for{" "}
           <span className="font-semibold text-white">
             {performer?.performer_name}
           </span>
@@ -138,7 +136,7 @@ const Page = () => {
           {/* YouTube Embed Link */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-300">
-              YouTube Embed Link
+              YouTube Embed URL
             </label>
 
             <input
@@ -152,28 +150,7 @@ const Page = () => {
             />
 
             <p className="mt-2 text-xs text-gray-500">
-              Optional. Paste the YouTube embed URL if available.
-            </p>
-          </div>
-
-          {/* SoundCloud Link */}
-          <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
-              SoundCloud Link
-            </label>
-
-            <input
-              type="url"
-              name="soundcloud_link"
-              value={formData.soundcloud_link}
-              onChange={handleChange}
-              placeholder="https://soundcloud.com/..."
-              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none
-      focus:border-[#C9AC8C]"
-            />
-
-            <p className="mt-2 text-xs text-gray-500">
-              Optional. Paste the SoundCloud URL if available.
+              Paste the YouTube embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID).
             </p>
           </div>
 

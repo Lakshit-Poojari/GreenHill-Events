@@ -15,7 +15,6 @@ interface OfferingVideo {
   offering_id: number;
   performer_name: string;
   youtube_url: string | null;
-  soundcloud_link: string | null;
   display_order: number;
   status: "ACTIVE" | "INACTIVE";
   created_by_name: string;
@@ -153,22 +152,6 @@ const Page = () => {
           )}
         </div>
 
-        <div>
-          <p className="text-sm text-gray-400">SoundCloud Link</p>
-
-          {video?.soundcloud_link ? (
-            <a
-              href={video.soundcloud_link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-1 block break-all text-[#C9AC8C] hover:underline"
-            >
-              {video.soundcloud_link}
-            </a>
-          ) : (
-            <p className="mt-1 text-gray-500">-</p>
-          )}
-        </div>
 
         {/* Display Order */}
         <div>

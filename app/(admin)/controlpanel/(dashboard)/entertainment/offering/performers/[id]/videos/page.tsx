@@ -14,7 +14,6 @@ interface OfferingVideo {
   id: number;
   offering_id: number;
   youtube_url: string | null;
-  soundcloud_link: string | null;
   display_order: number;
   status: "ACTIVE" | "INACTIVE";
 }
@@ -144,10 +143,6 @@ const Page = () => {
                   YouTube Embed Link
                 </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">
-                  SoundCloud Link
-                </th>
-
                 <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">
                   Status
                 </th>
@@ -184,21 +179,6 @@ const Page = () => {
                           className="text-[#C9AC8C] hover:underline"
                         >
                           View YouTube
-                        </a>
-                      ) : (
-                        <span className="text-gray-500">-</span>
-                      )}
-                    </td>
-
-                    <td className="px-6 py-4">
-                      {video.soundcloud_link ? (
-                        <a
-                          href={video.soundcloud_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#C9AC8C] hover:underline"
-                        >
-                          View SoundCloud
                         </a>
                       ) : (
                         <span className="text-gray-500">-</span>
