@@ -225,8 +225,9 @@ const Page = () => {
                       <div className="flex justify-center gap-3">
                         <Link
                           href={`/controlpanel/entertainment/offering/performers/${performerId}/videos/${video.id}`}
-                          className="rounded-lg border border-[#39FF14] bg-[#39FF14]/10 p-2 text-[#39FF14] 
-                            shadow-[0_0_8px_#39FF14] transition hover:bg-[#39FF14]/20"
+                          className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] 
+                            shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:scale-105 hover:bg-[#A855F7]/20 
+                            hover:shadow-[0_0_12px_#A855F7]"
                         >
                           <Eye size={18} />
                         </Link>

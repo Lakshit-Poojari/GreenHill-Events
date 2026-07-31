@@ -10,6 +10,7 @@ interface OfferingCategories {
   category_name: string;
   name: string;
   slug: string;
+  display_order: number;
   status: "ACTIVE" | "INACTIVE";
 }
 
@@ -18,6 +19,24 @@ const Page = () => {
     OfferingCategories[]
   >([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("ALL");
+
+  const entertainmentCategories = [
+    "ALL",
+    ...new Set(offeringCategories.map((item) => item.category_name)),
+  ];
+
+  const filteredOfferingCategories = offeringCategories.filter((category) => {
+    const matchesSearch = category.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesCategory =
+      selectedCategory === "ALL" || category.category_name === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
 
   useEffect(() => {
     getAllOfferingCategories();
@@ -112,14 +131,30 @@ const Page = () => {
 
       {/* Search */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-4">
-        <div className="flex items-center rounded-lg border border-gray-600 px-3 py-2">
-          <Search size={18} className="mr-2 text-gray-400" />
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="flex items-center rounded-lg border border-gray-600 px-3 py-2">
+            <Search size={18} className="mr-2 text-gray-400" />
 
-          <input
-            type="text"
-            placeholder="Search category..."
-            className="w-full bg-transparent text-white placeholder:text-gray-500 focus:outline-none"
-          />
+            <input
+              type="text"
+              placeholder="Search by name..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-transparent text-white placeholder:text-gray-500 focus:outline-none"
+            />
+          </div>
+
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="rounded-lg border border-gray-600 bg-[#232121] px-4 py-2 text-white outline-none focus:border-[#C9AC8C]"
+          >
+            {entertainmentCategories.map((category) => (
+              <option key={category} value={category}>
+                {category === "ALL" ? "All Entertainment Categories" : category}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -138,6 +173,10 @@ const Page = () => {
                 </th>
 
                 <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">
+                  Display Order
+                </th>
+
+                <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">
                   Status
                 </th>
 
@@ -148,14 +187,14 @@ const Page = () => {
             </thead>
 
             <tbody>
-              {offeringCategories.length === 0 ? (
+              {filteredOfferingCategories.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="py-8 text-center text-gray-400">
+                  <td colSpan={5} className="py-8 text-center text-gray-400">
                     No offering categories found.
                   </td>
                 </tr>
               ) : (
-                offeringCategories.map((category) => (
+                filteredOfferingCategories.map((category) => (
                   <tr
                     key={category.id}
                     className="border-t border-gray-700 hover:bg-[#222020]"
@@ -164,6 +203,10 @@ const Page = () => {
 
                     <td className="px-6 py-4 text-gray-300">
                       {category.category_name}
+                    </td>
+
+                    <td className="px-6 py-4 text-center text-gray-300">
+                      {category.display_order}
                     </td>
 
                     <td className="px-6 py-4 text-center">
