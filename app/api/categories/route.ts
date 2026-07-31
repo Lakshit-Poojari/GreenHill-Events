@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
       menu_name: formData.get("menu_name") as string,
       description: formData.get("description") as string,
       long_description: formData.get("long_description") as string,
+      has_details: formData.get("has_details") === "true",
       status: formData.get("status") as CategoryStatus,
       created_by: user.id,
       image,

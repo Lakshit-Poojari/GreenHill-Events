@@ -1,3 +1,6 @@
+import { uploadImage } from "../lib/uploadImage";
+import fs from "fs/promises";
+import path from "path";
 import {
   createCategoryModel,
   deleteCategoryModel,
@@ -23,21 +26,26 @@ export async function createCategoryService(category: CreateCategoryType) {
 
     if (
       !category.category_name ||
-      !category.menu_name ||
       !category.image ||
       !category.description ||
-      !category.long_description ||
       !category.status ||
       !category.created_by
     ) {
       if (!category.category_name) throw new Error("Category Name Required");
-      if (!category.menu_name) throw new Error("Menu Name Required");
       if (!category.image) throw new Error("Image Required");
       if (!category.description) throw new Error("Description Required");
-      if (!category.long_description)
-        throw new Error("Long Description Required");
       if (!category.status) throw new Error("Status Required");
       if (!category.created_by) throw new Error("Created By Required");
+    }
+
+    if (category.has_details) {
+      if (!category.menu_name) {
+        throw new Error("Menu Name Required");
+      }
+
+      if (!category.long_description) {
+        throw new Error("Long Description Required");
+      }
     }
 
     const existingCategory = await getCategoryBySlug(slug);
@@ -46,7 +54,13 @@ export async function createCategoryService(category: CreateCategoryType) {
       throw new Error("Category already exists.");
     }
 
-    const result = await createCategoryModel({ ...category, slug });
+    const imagePath = await uploadImage(category.image, "categories");
+
+    const result = await createCategoryModel({
+      ...category,
+      slug,
+      image: imagePath as any,
+    });
 
     return result;
   } catch (error) {
@@ -67,16 +81,21 @@ export async function updateCategoryService(
       .replace(/\s+/g, "-")
       .replace(/[^\w-]+/g, "");
 
-    if (
-      !category.category_name ||
-      !category.menu_name ||
-      !category.description ||
-      !category.long_description ||
-      !category.status
-    ) {
-      throw new Error("All Field Required");
+    if (!category.category_name || !category.description || !category.status) {
+      throw new Error("Category Name, Description and Status are required.");
     }
 
+    if (category.has_details) {
+      if (!category.menu_name) {
+        throw new Error("Menu Name is required.");
+      }
+
+      if (!category.long_description) {
+        throw new Error("Long Description is required.");
+      }
+    }
+
+    // Rest of your code...
     const existingCategory = await getSingleCategoryModel(id);
 
     if (existingCategory.length === 0) {
@@ -89,7 +108,38 @@ export async function updateCategoryService(
       throw new Error("Category already exists.");
     }
 
-    const result = await updateCategoryModel(id, category, slug, updatedBy);
+    // Keep existing image by default
+    let imagePath = existingCategory[0].image;
+
+    // Upload new image if provided
+    if (category.image instanceof File && category.image.size > 0) {
+      imagePath = await uploadImage(category.image, "categories");
+
+      // Delete old image
+      if (existingCategory[0].image) {
+        const oldImagePath = path.join(
+          process.cwd(),
+          "uploads",
+          existingCategory[0].image,
+        );
+
+        try {
+          await fs.unlink(oldImagePath);
+        } catch (error) {
+          console.warn("Old image not found:", error);
+        }
+      }
+    }
+
+    const result = await updateCategoryModel(
+      id,
+      {
+        ...category,
+        image: imagePath,
+      },
+      slug,
+      updatedBy,
+    );
 
     return result;
   } catch (error) {

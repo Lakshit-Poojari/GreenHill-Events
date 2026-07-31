@@ -4,22 +4,24 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { ArrowLeft, Pencil } from "lucide-react";
+import Image from "next/image";
 
 interface Category {
   id: number;
   category_name: string;
-  menu_name: string;
+  menu_name: string | null;
   slug: string;
   image: string;
   description: string;
-  long_description: string;
+  long_description: string | null;
+  has_details: boolean;
   status: "ACTIVE" | "INACTIVE";
 
   created_by: string | null;
   created_at: string;
 
   updated_by: string | null;
-  updated_at: string;
+  updated_at: string | null;
 }
 
 const Page = () => {
@@ -105,10 +107,12 @@ const Page = () => {
             <p className="text-white">{category.category_name}</p>
           </div>
 
-          <div>
-            <p className="mb-2 text-sm text-gray-400">Menu Name</p>
-            <p className="text-white">{category.menu_name}</p>
-          </div>
+          {category.has_details && (
+            <div>
+              <p className="mb-2 text-sm text-gray-400">Menu Name</p>
+              <p className="text-white">{category.menu_name}</p>
+            </div>
+          )}
 
           <div>
             <p className="mb-2 text-sm text-gray-400">Slug</p>
@@ -128,6 +132,38 @@ const Page = () => {
               {category.status}
             </span>
           </div>
+          <div>
+            <p className="mb-2 text-sm text-gray-400">Has Details Page</p>
+
+            <span
+              className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                category.has_details
+                  ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
+                  : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
+              }`}
+            >
+              {category.has_details ? "Yes" : "No"}
+            </span>
+          </div>
+
+          <div className="md:col-span-2">
+            <p className="mb-2 text-sm text-gray-400">Image</p>
+
+            {category.image ? (
+              <div className="relative h-64 w-full max-w-md">
+                <Image
+                  src={`/api/uploads/${category.image}`}
+                  alt={category.category_name}
+                  fill
+                  className="rounded-lg border border-gray-700 object-cover"
+                />
+              </div>
+            ) : (
+              <div className="flex h-64 w-full max-w-md items-center justify-center rounded-lg border border-dashed border-gray-700 text-gray-500">
+                No Image Available
+              </div>
+            )}
+          </div>
 
           <div className="md:col-span-2">
             <p className="mb-2 text-sm text-gray-400">Description</p>
@@ -135,13 +171,15 @@ const Page = () => {
             <p className="text-white">{category.description}</p>
           </div>
 
-          <div className="md:col-span-2">
-            <p className="mb-2 text-sm text-gray-400">Long Description</p>
+          {category.has_details && (
+            <div className="md:col-span-2">
+              <p className="mb-2 text-sm text-gray-400">Long Description</p>
 
-            <p className="whitespace-pre-line text-white">
-              {category.long_description}
-            </p>
-          </div>
+              <p className="whitespace-pre-line text-white">
+                {category.long_description}
+              </p>
+            </div>
+          )}
 
           <div>
             <p className="mb-2 text-sm text-gray-400">Created By</p>
@@ -163,7 +201,9 @@ const Page = () => {
           <div>
             <p className="mb-2 text-sm text-gray-400">Updated At</p>
             <p className="text-white">
-              {new Date(category.updated_at).toLocaleString()}
+              {category.updated_at
+                ? new Date(category.updated_at).toLocaleString()
+                : "-"}
             </p>
           </div>
         </div>

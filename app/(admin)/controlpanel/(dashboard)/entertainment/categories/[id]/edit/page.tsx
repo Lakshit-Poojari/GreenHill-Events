@@ -17,6 +17,7 @@ const Page = () => {
     menu_name: "",
     description: "",
     long_description: "",
+    has_details: true,
     status: "ACTIVE",
   });
 
@@ -41,6 +42,7 @@ const Page = () => {
         menu_name: category.menu_name,
         description: category.description,
         long_description: category.long_description,
+        has_details: category.has_details,
         status: category.status,
       });
     } catch (error: any) {
@@ -51,7 +53,11 @@ const Page = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent< HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -76,6 +82,7 @@ const Page = () => {
       data.append("menu_name", formData.menu_name);
       data.append("description", formData.description);
       data.append("long_description", formData.long_description);
+      data.append("has_details", String(formData.has_details));
       data.append("status", formData.status);
 
       if (image) {
@@ -145,6 +152,22 @@ const Page = () => {
         <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Category Name & Menu Name */}
           <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-lg border border-gray-700 bg-[#232121] p-4">
+              <label className="flex items-center gap-3 text-sm font-medium text-gray-300">
+                <input
+                  type="checkbox"
+                  checked={formData.has_details}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      has_details: e.target.checked,
+                    })
+                  }
+                  className="h-4 w-4 accent-[#C9AC8C]"
+                />
+                Has Details Page
+              </label>
+            </div>
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-300">
                 Category Name *
@@ -156,27 +179,29 @@ const Page = () => {
                 value={formData.category_name}
                 onChange={handleChange}
                 placeholder="e.g. Musicians"
-                required
                 className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
                   focus:border-[#C9AC8C]"
               />
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-300">
-                Menu Name *
-              </label>
+              {formData.has_details && (
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-gray-300">
+                    Menu Name *
+                  </label>
 
-              <input
-                type="text"
-                name="menu_name"
-                value={formData.menu_name}
-                onChange={handleChange}
-                placeholder="e.g. Live Music"
-                required
-                className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
-                  focus:border-[#C9AC8C]"
-              />
+                  <input
+                    type="text"
+                    name="menu_name"
+                    value={formData.menu_name}
+                    onChange={handleChange}
+                    placeholder="e.g. Live Music"
+                    required={formData.has_details}
+                    className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -214,19 +239,22 @@ const Page = () => {
 
           {/* Long Description */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
-              Long Description
-            </label>
+            {formData.has_details && (
+              <div>
+                <label className="mb-2 block text-sm font-medium text-gray-300">
+                  Long Description
+                </label>
 
-            <textarea
-              rows={8}
-              name="long_description"
-              value={formData.long_description}
-              onChange={handleChange}
-              placeholder="Enter detailed description..."
-              className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition 
-                focus:border-[#C9AC8C]"
-            />
+                <textarea
+                  rows={8}
+                  name="long_description"
+                  value={formData.long_description}
+                  onChange={handleChange}
+                  placeholder="Enter detailed description..."
+                  className="w-full rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white outline-none transition focus:border-[#C9AC8C]"
+                />
+              </div>
+            )}
           </div>
 
           {/* Status */}
@@ -264,7 +292,7 @@ const Page = () => {
                 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               <Save size={18} />
-              {loading ? "Updating..." : "Update Category"}
+              {saving ? "Updating..." : "Update Category"}
             </button>
           </div>
         </form>

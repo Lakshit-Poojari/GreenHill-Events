@@ -8,38 +8,37 @@ export enum CategoryStatus {
 export interface Category {
   id: number;
   category_name: string;
-  menu_name: string;
+  menu_name?: string;
   slug?: string;
   image: File;
   description: string;
-  long_description: string;
+  long_description?: string;
+  has_details: boolean;
   status: CategoryStatus;
   created_by: number | null;
   created_at: Date;
   updated_by: number | null;
-  updated_at: Date;
+  updated_at: Date | null;
 }
 
 export interface CreateCategoryType {
   category_name: string;
-  menu_name: string;
+  menu_name?: string;
   image: File;
   slug?: string;
   description: string;
-  long_description: string;
+  long_description?: string;
+  has_details: boolean;
   status: CategoryStatus;
   created_by: number;
 }
 
 export interface UpdateCategoryType {
   category_name: string;
-  menu_name: string;
+  menu_name?: string;
   image?: File | null;
   description: string;
-  long_description: string;
-  status: CategoryStatus;
-}
-
-export interface UpdateCategoryStatusType {
+  long_description?: string;
+  has_details: boolean;
   status: CategoryStatus;
 }

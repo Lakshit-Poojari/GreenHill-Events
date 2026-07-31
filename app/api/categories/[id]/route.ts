@@ -61,6 +61,7 @@ export async function PUT(
       menu_name: formData.get("menu_name") as string,
       description: formData.get("description") as string,
       long_description: formData.get("long_description") as string,
+      has_details: formData.get("has_details") === "true",
       status: formData.get("status") as CategoryStatus,
       image: formData.get("image") as File | null,
     };

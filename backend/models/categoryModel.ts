@@ -9,8 +9,8 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 export async function createCategoryModel(category: CreateCategoryType) {
   try {
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO categories (category_name, menu_name, slug, image, description, long_description, status, created_by)
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO categories (category_name, menu_name, slug, image, description, long_description, has_details, status, created_by)
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         category.category_name,
         category.menu_name,
@@ -18,6 +18,7 @@ export async function createCategoryModel(category: CreateCategoryType) {
         category.image,
         category.description,
         category.long_description,
+        category.has_details,
         category.status,
         category.created_by,
       ],
@@ -41,6 +42,7 @@ export async function getAllCategoryModel() {
         c.image,
         c.description,
         c.long_description,
+        c.has_details,
         c.status,
         cu.full_name AS created_by,
         c.created_at,
@@ -69,6 +71,7 @@ export async function getSingleCategoryModel(id: number) {
         c.image,
         c.description,
         c.long_description,
+        c.has_details,
         c.status,
         cu.full_name AS created_by,
         c.created_at,
@@ -107,6 +110,7 @@ export async function updateCategoryModel(
              image = ?,
              description = ?,
              long_description = ?,
+             has_details = ?,
              status = ?,
              updated_by = ?
          WHERE id = ?`,
@@ -117,6 +121,7 @@ export async function updateCategoryModel(
           category.image,
           category.description,
           category.long_description,
+          category.has_details,
           category.status,
           updatedBy,
           id,
@@ -133,6 +138,7 @@ export async function updateCategoryModel(
              slug = ?,
              description = ?,
              long_description = ?,
+             has_details = ?,
              status = ?,
              updated_by = ?
          WHERE id = ?`,
@@ -142,6 +148,7 @@ export async function updateCategoryModel(
           slug,
           category.description,
           category.long_description,
+          category.has_details ,
           category.status,
           updatedBy,
           id,
