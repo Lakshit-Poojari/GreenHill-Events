@@ -31,7 +31,6 @@ export async function createOfferingService(
       !offering.small_description ||
       !offering.large_description ||
       !offering.page_url ||
-      !offering.soundcloud_link ||
       !offering.status ||
       !offering.offering_category_id ||
       !offering.image_path

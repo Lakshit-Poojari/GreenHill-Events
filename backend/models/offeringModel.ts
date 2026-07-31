@@ -11,7 +11,7 @@ export async function createOfferingModel(offering: CreateOfferingDB) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO offerings (
-                offering_category_id, performer_name, slug, image_path, small_description, large_description, status, created_by, page_url
+                offering_category_id, performer_name, slug, image_path, small_description, large_description, status, created_by, page_url,
 soundcloud_link
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
