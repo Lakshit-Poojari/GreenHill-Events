@@ -73,7 +73,6 @@ export async function updateOfferingService(
       !offering.small_description ||
       !offering.large_description ||
       !offering.page_url ||
-      !offering.soundcloud_link ||
       !offering.status
     ) {
       throw new Error("All fields are required.");

@@ -18,6 +18,9 @@ interface Performer {
 const Page = () => {
   const [performers, setPerformers] = useState<Performer[]>([]);
   const [loading, setLoading] = useState(true);
+ const [search, setSearch] = useState("");
+const [selectedCategory, setSelectedCategory] = useState("ALL");
+const [selectedStatus, setSelectedStatus] = useState("ALL");
 
   useEffect(() => {
     fetchOffering();
@@ -37,6 +40,22 @@ const Page = () => {
       setLoading(false);
     }
   };
+
+const filteredPerformers = performers.filter((performer) => {
+  const matchesSearch = performer.performer_name
+    .toLowerCase()
+    .includes(search.toLowerCase());
+
+  const matchesCategory =
+    selectedCategory === "ALL" ||
+    performer.offering_category_name === selectedCategory;
+
+  const matchesStatus =
+    selectedStatus === "ALL" ||
+    performer.status === selectedStatus;
+
+  return matchesSearch && matchesCategory && matchesStatus;
+});
 
   const handleDelete = async (id: number) => {
     const confirmDelete = confirm(
@@ -64,6 +83,12 @@ const Page = () => {
       console.error(error);
     }
   };
+  const categories = [
+  "ALL",
+  ...new Set(performers.map((item) => item.offering_category_name)),
+];
+
+
 
   if (loading) {
     return (
@@ -109,17 +134,46 @@ const Page = () => {
       </div>
 
       {/* Search */}
-      <div className="rounded-xl border border-gray-700 bg-[#181616] p-4">
-        <div className="flex items-center rounded-lg border border-gray-600 px-3 py-2">
-          <Search size={18} className="mr-2 text-gray-400" />
+<div className="rounded-xl border border-gray-700 bg-[#181616] p-4">
+  <div className="flex items-center gap-4">
+    {/* Search */}
+    <div className="flex flex-1 items-center rounded-lg border border-gray-600 px-3 py-2">
+      <Search size={18} className="mr-2 text-gray-400" />
 
-          <input
-            type="text"
-            placeholder="Search performer..."
-            className="w-full bg-transparent text-white placeholder:text-gray-500 focus:outline-none"
-          />
-        </div>
-      </div>
+      <input
+        type="text"
+        placeholder="Search performer..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="w-full bg-transparent text-white placeholder:text-gray-500 focus:outline-none"
+      />
+    </div>
+
+    {/* Category */}
+    <select
+      value={selectedCategory}
+      onChange={(e) => setSelectedCategory(e.target.value)}
+      className="w-56 rounded-lg border border-gray-600 bg-[#181616] px-3 py-2 text-white focus:outline-none"
+    >
+      {categories.map((category) => (
+        <option key={category} value={category}>
+          {category}
+        </option>
+      ))}
+    </select>
+
+    {/* Status */}
+    <select
+      value={selectedStatus}
+      onChange={(e) => setSelectedStatus(e.target.value)}
+      className="w-44 rounded-lg border border-gray-600 bg-[#181616] px-3 py-2 text-white focus:outline-none"
+    >
+      <option value="ALL">All Status</option>
+      <option value="ACTIVE">ACTIVE</option>
+      <option value="INACTIVE">INACTIVE</option>
+    </select>
+  </div>
+</div>
 
       {/* Table */}
       <div className="overflow-hidden rounded-xl border border-gray-700 bg-[#181616] shadow-lg">
@@ -146,14 +200,14 @@ const Page = () => {
             </thead>
 
             <tbody>
-              {performers.length === 0 ? (
+              {filteredPerformers.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="py-8 text-center text-gray-400">
                     No performers found.
                   </td>
                 </tr>
               ) : (
-                performers.map((performer) => (
+                filteredPerformers.map((performer) => (
                   <tr
                     key={performer.id}
                     className="border-t border-gray-700 hover:bg-[#222020]"
