@@ -59,9 +59,22 @@ export async function PUT(
 
     const user = verifyToken(token);
     const { id } = await params;
-    const body = await request.json();
+    const formData = await request.formData();
 
-    await updateOfferingController(Number(id), body, user.id);
+    const image = formData.get("image") as File | null;
+
+    const offering = {
+      offering_category_id: Number(formData.get("offering_category_id")),
+      performer_name: String(formData.get("performer_name")),
+      small_description: String(formData.get("small_description")),
+      large_description: String(formData.get("large_description")),
+      page_url: String(formData.get("page_url")),
+      soundcloud_link: String(formData.get("soundcloud_link")),
+      status: String(formData.get("status")) as "ACTIVE" | "INACTIVE",
+      image_path: image, // Pass the File object
+    };
+
+    await updateOfferingController(Number(id), offering, user.id);
     return NextResponse.json(
       {
         success: true,

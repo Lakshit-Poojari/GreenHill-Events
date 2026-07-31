@@ -13,9 +13,11 @@ import {
   UpdateOffering,
 } from "../types/offeringType";
 
+import { uploadImage } from "../lib/uploadImage";
+
 export async function createOfferingService(
   offering: CreateOffering,
-  createdby: number,
+  createdBy: number,
 ) {
   try {
     const slug = offering.performer_name
@@ -27,13 +29,14 @@ export async function createOfferingService(
     if (
       !offering.performer_name ||
       !offering.small_description ||
-      !offering.image_path ||
       !offering.large_description ||
+      !offering.page_url ||
+      !offering.soundcloud_link ||
       !offering.status ||
       !offering.offering_category_id ||
-      !offering.created_by
+      !offering.image_path
     ) {
-      throw new Error("All Field Required");
+      throw new Error("All fields are required.");
     }
 
     const existingOffering = await getOfferingBySlugModel(slug);
@@ -41,13 +44,15 @@ export async function createOfferingService(
     if (existingOffering) {
       throw new Error("Offering already exists.");
     }
-    const result = await createOfferingModel({
+
+    const imagePath = await uploadImage(offering.image_path, "offerings");
+
+    return await createOfferingModel({
       ...offering,
       slug,
-      created_by: createdby,
+      created_by: createdBy,
+      image_path: imagePath,
     });
-
-    return result;
   } catch (error) {
     console.error("Error in Create Offering Service", error);
     throw error;
@@ -68,6 +73,8 @@ export async function updateOfferingService(
       image_path: offering.image_path,
       small_description: offering.small_description,
       large_description: offering.large_description,
+      page_url: offering.page_url,
+      soundcloud_link: offering.soundcloud_link,
       status: offering.status,
     });
 
@@ -78,6 +85,8 @@ export async function updateOfferingService(
       !offering.image_path ||
       !offering.small_description ||
       !offering.large_description ||
+      !offering.page_url ||
+      !offering.soundcloud_link ||
       !offering.status
     ) {
       throw new Error("All Field Required");

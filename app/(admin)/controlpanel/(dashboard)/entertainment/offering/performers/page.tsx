@@ -10,11 +10,13 @@ interface Performer {
   offering_category_id: string;
   offering_category_name: string;
   image: string;
+  page_url: string | null;
+  soundcloud_link: string | null;
   status: "ACTIVE" | "INACTIVE";
 }
 
 const Page = () => {
-  const [offering, setoffering] = useState<Performer[]>([]);
+  const [performers, setPerformers] = useState<Performer[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Page = () => {
       const result = await response.json();
       console.log(result.offering);
       if (result.success) {
-        setoffering(result.offering);
+        setPerformers(result.offering);
       }
     } catch (error) {
       console.error(error);
@@ -38,7 +40,7 @@ const Page = () => {
 
   const handleDelete = async (id: number) => {
     const confirmDelete = confirm(
-      "Are you sure you want to delete this categories?",
+      "Are you sure you want to delete this performer?",
     );
 
     if (!confirmDelete) return;
@@ -144,14 +146,14 @@ const Page = () => {
             </thead>
 
             <tbody>
-              {offering.length === 0 ? (
+              {performers.length === 0 ? (
                 <tr>
                   <td colSpan={4} className="py-8 text-center text-gray-400">
                     No performers found.
                   </td>
                 </tr>
               ) : (
-                offering.map((performer) => (
+                performers.map((performer) => (
                   <tr
                     key={performer.id}
                     className="border-t border-gray-700 hover:bg-[#222020]"

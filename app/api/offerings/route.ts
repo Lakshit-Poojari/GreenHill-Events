@@ -44,20 +44,29 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData();
 
-    const image = formData.get("image") as File | null;
-
     const user = verifyToken(token);
 
-    // TODO: Upload image and get its path
-    const imagePath = image ? image.name : "";
+    const image = formData.get("image") as File | null;
+
+    if (!image) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Image is required",
+        },
+        { status: 400 },
+      );
+    }
 
     const offering = {
       offering_category_id: Number(formData.get("offering_category_id")),
       performer_name: String(formData.get("performer_name")),
       small_description: String(formData.get("small_description")),
       large_description: String(formData.get("large_description")),
+      page_url: String(formData.get("page_url")),
+      soundcloud_link: String(formData.get("soundcloud_link")),
       status: String(formData.get("status")) as "ACTIVE" | "INACTIVE",
-      image_path: imagePath,
+      image_path: image, // Pass the File object
       created_by: user.id,
     };
 

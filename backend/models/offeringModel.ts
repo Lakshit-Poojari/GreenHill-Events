@@ -2,17 +2,19 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 import db from "../lib/db";
 import {
   CreateOffering,
+  CreateOfferingDB,
   Offering,
   UpdateOffering,
 } from "../types/offeringType";
 
-export async function createOfferingModel(offering: CreateOffering) {
+export async function createOfferingModel(offering: CreateOfferingDB) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       `INSERT INTO offerings (
-                offering_category_id, performer_name, slug, image_path, small_description, large_description, status, created_by
+                offering_category_id, performer_name, slug, image_path, small_description, large_description, status, created_by, page_url
+soundcloud_link
             )
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         offering.offering_category_id,
         offering.performer_name,
@@ -22,6 +24,8 @@ export async function createOfferingModel(offering: CreateOffering) {
         offering.large_description,
         offering.status,
         offering.created_by,
+        offering.page_url,
+        offering.soundcloud_link,
       ],
     );
     return result;
@@ -39,8 +43,8 @@ export async function updateOfferingModel(
   try {
     const [result] = await db.query<ResultSetHeader>(
       `UPDATE offerings SET 
-                offering_category_id = ?, performer_name = ?, slug = ?, image_path = ?,
-                small_description = ?,large_description = ?, status = ?, updated_by = ?
+                offering_category_id = ?, performer_name = ?, slug = ?, image_path = ?, small_description = ?,
+                large_description = ?, status = ?, updated_by = ?, page_url = ?, soundcloud_link = ?
             WHERE id = ?`,
       [
         offering.offering_category_id,
@@ -51,6 +55,8 @@ export async function updateOfferingModel(
         offering.large_description,
         offering.status,
         updatedBy,
+        offering.page_url,
+        offering.soundcloud_link,
         id,
       ],
     );
@@ -78,7 +84,9 @@ export async function getAllOfferingModel() {
         cu.full_name AS created_by,
         o.created_at,
         uu.full_name AS updated_by,
-        o.updated_at
+        o.updated_at,
+        o.page_url,
+        o.soundcloud_link
       FROM offerings o
       LEFT JOIN offering_categories oc
         ON o.offering_category_id = oc.id
@@ -111,7 +119,9 @@ export async function getSingleOfferingModel(id: number) {
           cu.full_name AS created_by,
           o.created_at,
           uu.full_name AS updated_by,
-          o.updated_at
+          o.updated_at,
+          o.page_url,
+          o.soundcloud_link
         FROM offerings o
         LEFT JOIN offering_categories oc
           ON o.offering_category_id = oc.id

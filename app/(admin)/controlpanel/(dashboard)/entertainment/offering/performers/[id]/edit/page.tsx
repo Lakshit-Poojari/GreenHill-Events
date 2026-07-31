@@ -24,6 +24,8 @@ const Page = () => {
     image_path: "",
     small_description: "",
     large_description: "",
+    page_url: "",
+    soundcloud_link: "",
     status: "ACTIVE" as "ACTIVE" | "INACTIVE",
   });
 
@@ -45,8 +47,10 @@ const Page = () => {
           offering_category_id: performer.offering_category_id,
           performer_name: performer.performer_name,
           image_path: performer.image_path,
-          small_description: performer.short_description,
-          large_description: performer.long_description,
+          small_description: performer.small_description,
+          large_description: performer.large_description,
+          page_url: performer.page_url,
+          soundcloud_link: performer.soundcloud_link,
           status: performer.status,
         });
       }
@@ -71,7 +75,11 @@ const Page = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent< HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement >,) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({
@@ -92,20 +100,30 @@ const Page = () => {
     try {
       setSaving(true);
 
+      const data = new FormData();
+
+      data.append(
+        "offering_category_id",
+        formData.offering_category_id.toString(),
+      );
+      data.append("performer_name", formData.performer_name);
+      data.append("small_description", formData.small_description);
+      data.append("large_description", formData.large_description);
+      data.append("page_url", formData.page_url);
+      data.append("soundcloud_link", formData.soundcloud_link);
+      data.append("status", formData.status);
+
+      // Existing image path
+      data.append("image_path", formData.image_path);
+
+      // Only send image if user selected a new one
+      if (image) {
+        data.append("image", image);
+      }
+
       const response = await fetch(`/api/offerings/${id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          offering_category_id: formData.offering_category_id,
-          performer_name: formData.performer_name,
-          image_path: formData.image_path,
-          small_description: formData.small_description,
-          large_description: formData.large_description,
-          status: formData.status,
-          updated_by: 1,
-        }),
+        body: data,
       });
 
       const result = await response.json();
@@ -193,6 +211,34 @@ const Page = () => {
             />
           </div>
 
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              Page URL
+            </label>
+
+            <input
+              type="url"
+              name="page_url"
+              value={formData.page_url}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              SoundCloud Link
+            </label>
+
+            <input
+              type="url"
+              name="soundcloud_link"
+              value={formData.soundcloud_link}
+              onChange={handleChange}
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+            />
+          </div>
+
           {/* Current Image */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-300">
@@ -200,7 +246,11 @@ const Page = () => {
             </label>
 
             <img
-              src={image ? URL.createObjectURL(image) : formData.image_path}
+              src={
+                image
+                  ? URL.createObjectURL(image)
+                  : `/api/uploads/${formData.image_path}`
+              }
               alt="Performer"
               className="h-48 w-48 rounded-lg border border-gray-700 object-cover"
             />
@@ -212,8 +262,10 @@ const Page = () => {
               Upload New Image
             </label>
 
-            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed 
-              border-gray-600 bg-[#222] px-4 py-8 text-gray-400 transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]">
+            <label
+              className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed 
+              border-gray-600 bg-[#222] px-4 py-8 text-gray-400 transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+            >
               <Upload size={20} />
               <span>Choose Image</span>
               <input

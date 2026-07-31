@@ -10,6 +10,8 @@ const Page = () => {
     performer_name: "",
     small_description: "",
     large_description: "",
+    page_url: "",
+    soundcloud_link: "",
     status: "ACTIVE",
   });
 
@@ -39,7 +41,11 @@ const Page = () => {
     }
   };
 
-  const handleChange = ( e: React.ChangeEvent< HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -58,6 +64,8 @@ const Page = () => {
       data.append("performer_name", formData.performer_name);
       data.append("small_description", formData.small_description);
       data.append("large_description", formData.large_description);
+      data.append("page_url", formData.page_url);
+      data.append("soundcloud_link", formData.soundcloud_link);
       data.append("status", formData.status);
 
       if (image) {
@@ -84,6 +92,8 @@ const Page = () => {
         performer_name: "",
         small_description: "",
         large_description: "",
+        page_url: "",
+        soundcloud_link: "",
         status: "ACTIVE",
       });
 
@@ -128,6 +138,7 @@ const Page = () => {
               name="offering_category_id"
               value={formData.offering_category_id}
               onChange={handleChange}
+              required
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
             >
@@ -152,9 +163,42 @@ const Page = () => {
               name="performer_name"
               value={formData.performer_name}
               onChange={handleChange}
+              required
               placeholder="Enter performer name"
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              Page URL
+            </label>
+
+            <input
+              type="url"
+              name="page_url"
+              value={formData.page_url}
+              onChange={handleChange}
+              required
+              placeholder="https://greenhill-events.com/performer-name"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block text-sm font-medium text-gray-300">
+              SoundCloud Link
+            </label>
+
+            <input
+              type="url"
+              name="soundcloud_link"
+              value={formData.soundcloud_link}
+              onChange={handleChange}
+              required
+              placeholder="https://soundcloud.com/artist-name"
+              className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
             />
           </div>
 
@@ -164,8 +208,10 @@ const Page = () => {
               Performer Image
             </label>
 
-            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed 
-              border-gray-600 bg-[#222] px-4 py-8 text-gray-400 transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]">
+            <label
+              className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed 
+              border-gray-600 bg-[#222] px-4 py-8 text-gray-400 transition hover:border-[#C9AC8C] hover:text-[#C9AC8C]"
+            >
               <Upload size={20} />
               <span>Choose Image</span>
 
@@ -173,6 +219,7 @@ const Page = () => {
                 type="file"
                 accept="image/*"
                 className="hidden"
+                required
                 onChange={(e) => {
                   if (e.target.files?.[0]) {
                     setImage(e.target.files[0]);
@@ -198,6 +245,7 @@ const Page = () => {
               rows={3}
               value={formData.small_description}
               onChange={handleChange}
+              required
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
             />
@@ -214,6 +262,7 @@ const Page = () => {
               rows={8}
               value={formData.large_description}
               onChange={handleChange}
+              required
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
             />
@@ -229,6 +278,7 @@ const Page = () => {
               name="status"
               value={formData.status}
               onChange={handleChange}
+              required
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
             >

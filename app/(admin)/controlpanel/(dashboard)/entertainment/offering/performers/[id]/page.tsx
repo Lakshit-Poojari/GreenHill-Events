@@ -14,6 +14,8 @@ export interface Offering {
   image_path: string;
   small_description: string;
   large_description: string;
+  page_url: string | null;
+  soundcloud_link: string | null;
   status: "ACTIVE" | "INACTIVE";
   created_at: string;
   updated_at: string | null;
@@ -24,7 +26,7 @@ export interface Offering {
 const Page = () => {
   const { id } = useParams();
 
-  const [offering, setoffring] = useState<Offering | null>(null);
+  const [offering, setOffering] = useState<Offering | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,7 +43,7 @@ const Page = () => {
         throw new Error(result.message);
       }
 
-      setoffring(result.offering[0]);
+      setOffering(result.offering[0]);
     } catch (error) {
       console.error(error);
     } finally {
@@ -109,7 +111,7 @@ const Page = () => {
             </h3>
 
             <img
-              src={offering.image_path}
+              src={`/api/uploads/${offering.image_path}`}
               alt={offering.performer_name}
               className="h-72 w-full rounded-lg border border-gray-700 object-cover"
             />
@@ -131,6 +133,40 @@ const Page = () => {
               <p className="mt-1 text-white">
                 {offering.offering_category_name}
               </p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-400">Page URL</p>
+
+              {offering.page_url ? (
+                <a
+                  href={offering.page_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 inline-block break-all text-[#C9AC8C] hover:underline"
+                >
+                  {offering.page_url}
+                </a>
+              ) : (
+                <p className="mt-1 text-white">-</p>
+              )}
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-400">SoundCloud</p>
+
+              {offering.soundcloud_link ? (
+                <a
+                  href={offering.soundcloud_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 inline-block break-all text-[#C9AC8C] hover:underline"
+                >
+                  Open SoundCloud
+                </a>
+              ) : (
+                <p className="mt-1 text-white">-</p>
+              )}
             </div>
 
             <div>
