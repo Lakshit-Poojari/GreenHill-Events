@@ -14,6 +14,13 @@ interface Category {
 const Page = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+
+  const filteredCategories = categories.filter(
+    (category) =>
+      category.category_name.toLowerCase().includes(search.toLowerCase()) ||
+      category.slug.toLowerCase().includes(search.toLowerCase()),
+  );
 
   useEffect(() => {
     getAllCategory();
@@ -99,6 +106,8 @@ const Page = () => {
         <input
           type="text"
           placeholder="Search category..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
           className="w-full bg-transparent text-white placeholder:text-gray-500 focus:outline-none"
         />
       </div>
@@ -137,17 +146,19 @@ const Page = () => {
                     Loading...
                   </td>
                 </tr>
-              ) : categories.length === 0 ? (
+              ) : filteredCategories.length === 0 ? (
                 <tr>
                   <td
                     colSpan={4}
                     className="px-6 py-8 text-center text-gray-400"
                   >
-                    No categories found.
+                    {search
+                      ? "No matching categories found."
+                      : "No categories found."}
                   </td>
                 </tr>
               ) : (
-                categories.map((category) => (
+                filteredCategories.map((category) => (
                   <tr
                     key={category.id}
                     className="border-t border-gray-700 hover:bg-[#222020]"
