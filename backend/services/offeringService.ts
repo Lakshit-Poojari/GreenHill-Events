@@ -12,6 +12,8 @@ import {
   OfferingStatus,
   UpdateOffering,
 } from "../types/offeringType";
+import fs from "fs/promises";
+import path from "path";
 
 import { uploadImage } from "../lib/uploadImage";
 
@@ -64,51 +66,69 @@ export async function updateOfferingService(
   updatedBy: number,
 ) {
   try {
-    console.log("Offering received:", offering);
-
-    console.log({
-      offering_category_id: offering.offering_category_id,
-      performer_name: offering.performer_name,
-      image_path: offering.image_path,
-      small_description: offering.small_description,
-      large_description: offering.large_description,
-      page_url: offering.page_url,
-      soundcloud_link: offering.soundcloud_link,
-      status: offering.status,
-    });
-
     if (
       !id ||
       !offering.offering_category_id ||
       !offering.performer_name ||
-      !offering.image_path ||
       !offering.small_description ||
       !offering.large_description ||
       !offering.page_url ||
       !offering.soundcloud_link ||
       !offering.status
     ) {
-      throw new Error("All Field Required");
+      throw new Error("All fields are required.");
     }
 
-    offering.slug = offering.performer_name
+    const slug = offering.performer_name
       .toLowerCase()
       .trim()
       .replace(/\s+/g, "-")
       .replace(/[^\w-]+/g, "");
+
     const existingOffering = await getSingleOfferingModel(id);
 
-    if (!existingOffering) {
+    if (existingOffering.length === 0) {
       throw new Error("Offering not found.");
     }
 
-    const duplicateOffering = await getOfferingBySlugModel(offering.slug);
+    const duplicateOffering = await getOfferingBySlugModel(slug);
 
-    if (duplicateOffering && duplicateOffering.id !== id) {
+    if (duplicateOffering?.length && duplicateOffering[0].id !== id) {
       throw new Error("Offering already exists.");
     }
 
-    return await updateOfferingModel(id, offering, updatedBy);
+    // Keep existing image by default
+    let imagePath = existingOffering[0].image_path;
+
+    // Upload new image if provided
+    if (offering.image_path instanceof File && offering.image_path.size > 0) {
+      imagePath = await uploadImage(offering.image_path, "offerings");
+
+      // Delete old image
+      if (existingOffering[0].image_path) {
+        const oldImagePath = path.join(
+          process.cwd(),
+          "uploads",
+          existingOffering[0].image_path,
+        );
+
+        try {
+          await fs.unlink(oldImagePath);
+        } catch (error) {
+          console.warn("Old image not found:", error);
+        }
+      }
+    }
+
+    return await updateOfferingModel(
+      id,
+      {
+        ...offering,
+        slug,
+        image_path: imagePath,
+      },
+      updatedBy,
+    );
   } catch (error) {
     console.error("Error in Update Offering Service", error);
     throw error;
