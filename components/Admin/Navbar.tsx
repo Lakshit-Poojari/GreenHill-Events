@@ -50,11 +50,6 @@ export default function Navbar() {
 
         {/* Right */}
         <div className="flex items-center gap-4">
-          <div className="text-right">
-            <p className="text-sm text-white font-medium">{profile?.email}</p>
-
-            <p className="text-xs text-gray-400">{profile?.role}</p>
-          </div>
 
           <button
             onClick={logout}
