@@ -23,27 +23,27 @@ const Page = () => {
         const offeringResult = await offeringRes.json();
 
         console.log("Category Result:", categoryResult);
-console.log("Offering Result:", offeringResult);
+        console.log("Offering Result:", offeringResult);
 
-if (
-  categoryResult.success &&
-  categoryResult.category &&
-  categoryResult.category.length > 0
-) {
-  const category = categoryResult.category[0];
+        if (
+          categoryResult.success &&
+          categoryResult.category &&
+          categoryResult.category.length > 0
+        ) {
+          const category = categoryResult.category[0];
 
-  setData({
-    heading: category.category_name.toUpperCase(),
-    description: category.description,
-    cards: (offeringResult.offerings ?? []).map((item: any) => ({
-      title: item.performer_name,
-      title1: "",
-      image: item.image_path,
-      text: item.small_description,
-      link: `/entertainment/${slug}/${item.slug}`,
-    })),
-  });
-}
+          setData({
+            heading: category.category_name.toUpperCase(),
+            description: category.description,
+            cards: (offeringResult.offerings ?? []).map((item: any) => ({
+              title: item.performer_name,
+              title1: "",
+              image: item.image_path,
+              text: item.small_description,
+              link: `/entertainment/${slug}/${item.slug}`,
+            })),
+          });
+        }
       } catch (error) {
         console.error(error);
       }

@@ -84,7 +84,6 @@ export async function updateCategoryStatusController(
   }
 }
 
-
 export async function getCategoryBySlugController(slug: string) {
   try {
     return await getCategoryBySlugService(slug);

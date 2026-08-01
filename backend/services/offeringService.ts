@@ -187,8 +187,6 @@ export async function updateOfferingStatusService(
   }
 }
 
-
-
 export async function getOfferingsByCategorySlugService(slug: string) {
   try {
     const offerings = await getOfferingsByCategorySlugModel(slug);

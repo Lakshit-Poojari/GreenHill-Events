@@ -207,7 +207,7 @@ export async function getOfferingsByCategorySlugModel(slug: string) {
         AND o.status = 'ACTIVE'
       ORDER BY o.id ASC
       `,
-      [slug]
+      [slug],
     );
 
     return rows;

@@ -203,7 +203,6 @@ export async function updateCategoryStatusService(
   }
 }
 
-
 export async function getCategoryBySlugService(slug: string) {
   try {
     const category = await getCategoryBySlug(slug);
@@ -214,7 +213,6 @@ export async function getCategoryBySlugService(slug: string) {
         message: "Category not found.",
       };
     }
-    
 
     return {
       success: true,

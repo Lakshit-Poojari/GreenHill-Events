@@ -21,14 +21,11 @@ export default function PerformerPage() {
   useEffect(() => {
     const fetchPerformer = async () => {
       try {
-        const res = await fetch(
-          `/api/offerings/slug/${performerSlug}`
-        );
+        const res = await fetch(`/api/offerings/slug/${performerSlug}`);
 
         const result = await res.json();
         console.log("last", result);
         console.log(`/api/uploads/${result.offering.image_path}`);
-        
 
         if (result.success) {
           setPerformer(result.offering);
@@ -50,21 +47,18 @@ export default function PerformerPage() {
       <SectionHeading title={performer.performer_name} />
 
       <div className="mx-4 md:mx-8 lg:mx-16.25 px-4 md:px-6.75 py-10">
-
         <div className="grid lg:grid-cols-3 gap-10">
-
           <div>
-<Image
-  src={`/api/uploads/${performer.image_path}`}
-  width={500}
-  height={700}
-  alt={performer.performer_name}
-  className="w-full h-auto object-cover"
-/>
+            <Image
+              src={`/api/uploads/${performer.image_path}`}
+              width={500}
+              height={700}
+              alt={performer.performer_name}
+              className="w-full h-auto object-cover"
+            />
           </div>
 
           <div className="lg:col-span-2">
-
             <div
               className="text-[#C9AC8C] leading-9 italic font-['Old_Standard_TT']"
               dangerouslySetInnerHTML={{
@@ -72,13 +66,9 @@ export default function PerformerPage() {
               }}
             />
 
-
-          <PerformerVideos videos={performer.youtubeVideos ?? []} />
-
+            <PerformerVideos videos={performer.youtubeVideos ?? []} />
           </div>
-
         </div>
-
       </div>
     </div>
   );

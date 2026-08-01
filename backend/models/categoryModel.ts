@@ -148,7 +148,7 @@ export async function updateCategoryModel(
           slug,
           category.description,
           category.long_description,
-          category.has_details ,
+          category.has_details,
           category.status,
           updatedBy,
           id,
