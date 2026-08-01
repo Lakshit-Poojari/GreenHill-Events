@@ -21,8 +21,9 @@ export async function createCategoryService(category: CreateCategoryType) {
     const slug = category.category_name
       .toLowerCase()
       .trim()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "");
+      .replace(/&/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
     if (
       !category.category_name ||
@@ -78,8 +79,9 @@ export async function updateCategoryService(
     const slug = category.category_name
       .toLowerCase()
       .trim()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "");
+      .replace(/&/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
     if (!category.category_name || !category.description || !category.status) {
       throw new Error("Category Name, Description and Status are required.");
