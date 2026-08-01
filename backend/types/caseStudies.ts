@@ -22,7 +22,7 @@ export interface CaseStudy {
 export interface CreateCaseStudy {
   title: string;
   slug?: string;
-  image: File | string;
+  image: File;
   description: string;
   youtube_url?: string;
   status: CaseStudyStatus;
@@ -32,9 +32,29 @@ export interface CreateCaseStudy {
 export interface UpdateCaseStudy {
   title?: string;
   slug?: string;
-  image?: File | string;
+  image?: File | null;
   description?: string;
   youtube_url?: string;
   status?: CaseStudyStatus;
   updated_by?: number;
+}
+
+export interface CreateCaseStudyDB {
+  title: string;
+  slug: string;
+  image: string;
+  description: string;
+  youtube_url?: string;
+  status: CaseStudyStatus;
+  created_by: number;
+}
+
+export interface UpdateCaseStudyDB {
+  title: string;
+  slug: string;
+  image: string;
+  description: string;
+  youtube_url?: string;
+  status: CaseStudyStatus;
+  updated_by: number;
 }

@@ -23,7 +23,11 @@ const Page = () => {
     status: "ACTIVE",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({
@@ -43,8 +47,10 @@ const Page = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
       setLoading(true);
+
       const data = new FormData();
 
       data.append("title", formData.title);
@@ -78,6 +84,11 @@ const Page = () => {
         youtube_url: "",
         status: "ACTIVE",
       });
+
+      // Clear selected file
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } catch (error) {
       console.error(error);
       alert("Something went wrong.");

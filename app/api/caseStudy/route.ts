@@ -50,9 +50,23 @@ export async function POST(request: NextRequest) {
     const user = verifyToken(token);
     const formData = await request.formData();
 
+    const image = formData.get("image") as File | null;
+
+    if (!image) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Image is required",
+        },
+        {
+          status: 400,
+        },
+      );
+    }
+
     const body = {
       title: formData.get("title") as string,
-      image: formData.get("image") as File,
+      image,
       description: formData.get("description") as string,
       youtube_url: (formData.get("youtube_url") as string) || undefined,
       status: formData.get("status") as CaseStudyStatus,

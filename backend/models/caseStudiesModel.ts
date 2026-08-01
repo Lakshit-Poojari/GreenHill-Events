@@ -3,10 +3,12 @@ import db from "../lib/db";
 import {
   CaseStudy,
   CreateCaseStudy,
+  CreateCaseStudyDB,
   UpdateCaseStudy,
+  UpdateCaseStudyDB,
 } from "../types/caseStudies";
 
-export async function createCaseStudyModel(caseStudies: CreateCaseStudy) {
+export async function createCaseStudyModel(caseStudies: CreateCaseStudyDB) {
   try {
     console.log(caseStudies);
     const [result] = await db.query<ResultSetHeader>(
@@ -30,19 +32,22 @@ export async function createCaseStudyModel(caseStudies: CreateCaseStudy) {
   }
 }
 
-export async function updateCaseStudyModel( id: number, caseStudies: UpdateCaseStudy,) {
+export async function updateCaseStudyModel(
+  id: number,
+  caseStudies: UpdateCaseStudyDB,
+) {
   try {
     const [result] = await db.query<ResultSetHeader>(
       ` UPDATE case_study
-    SET
-        title = ?,
-        image = ?,
-        description = ?,
-        youtube_url = ?,
-        status = ?,
-        slug = ?,
-        updated_by = ?
-    WHERE id = ?`,
+          SET
+              title = ?,
+              image = ?,
+              description = ?,
+              youtube_url = ?,
+              status = ?,
+              slug = ?,
+              updated_by = ?
+          WHERE id = ?`,
       [
         caseStudies.title,
         caseStudies.image,

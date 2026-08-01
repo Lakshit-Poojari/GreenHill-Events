@@ -1,3 +1,4 @@
+import { uploadImage } from "../lib/uploadImage";
 import {
   createCaseStudyModel,
   deleteCaseStudyModel,
@@ -6,7 +7,13 @@ import {
   getSingleCaseStudyModel,
   updateCaseStudyModel,
 } from "../models/caseStudiesModel";
-import { CreateCaseStudy, UpdateCaseStudy } from "../types/caseStudies";
+import {
+  CreateCaseStudy,
+  UpdateCaseStudy,
+  UpdateCaseStudyDB,
+} from "../types/caseStudies";
+import fs from "fs/promises";
+import path from "path";
 
 export async function createCaseStudiesService(caseStudies: CreateCaseStudy) {
   try {
@@ -41,8 +48,13 @@ export async function createCaseStudiesService(caseStudies: CreateCaseStudy) {
     if (CaseStudyExist.length > 0) {
       throw new Error("Case study already exist.");
     }
-    console.log("Generated slug:", slug);
-    const result = await createCaseStudyModel({ ...caseStudies, slug });
+    const imagePath = await uploadImage(caseStudies.image, "caseStudies");
+
+    const result = await createCaseStudyModel({
+      ...caseStudies,
+      slug,
+      image: imagePath,
+    });
 
     return result;
   } catch (error) {
@@ -57,31 +69,33 @@ export async function updateCaseStudiesService(
 ) {
   try {
     if (!id) {
-      throw new Error("Case study ID is required");
+      throw new Error("Case study ID is required.");
     }
-    const fields = [
-      ["Title", caseStudies.title],
-      ["Image", caseStudies.image],
-      ["Description", caseStudies.description],
-      ["Status", caseStudies.status],
-    ];
 
-    for (const [name, value] of fields) {
-      if (!value) throw new Error(`${name} is required.`);
+    if (!caseStudies.title) {
+      throw new Error("Title is required.");
+    }
+
+    if (!caseStudies.description) {
+      throw new Error("Description is required.");
+    }
+
+    if (!caseStudies.status) {
+      throw new Error("Status is required.");
     }
 
     if (caseStudies.updated_by == null) {
       throw new Error("Updated by is required.");
     }
 
-    const existCaseStudy = await getSingleCaseStudyModel(id);
+    const existingCaseStudy = await getSingleCaseStudyModel(id);
 
-    if (existCaseStudy.length === 0) {
-      throw new Error(`Case Study does not exist`);
+    if (existingCaseStudy.length === 0) {
+      throw new Error("Case study not found.");
     }
 
-    const slug = caseStudies
-      .title! .trim()
+    const slug = caseStudies.title
+      .trim()
       .toLowerCase()
       .replace(/[^\w\s-]/g, "")
       .replace(/\s+/g, "-")
@@ -90,16 +104,47 @@ export async function updateCaseStudiesService(
     const duplicateCaseStudy = await getCaseStudiesBySlug(slug);
 
     if (duplicateCaseStudy.length > 0 && duplicateCaseStudy[0].id !== id) {
-      throw new Error("Duplicate case study exist");
+      throw new Error("Case study already exists.");
     }
 
-    const result = await updateCaseStudyModel(id, {
-      ...caseStudies,
+    // Keep existing image
+    let imagePath = existingCaseStudy[0].image;
+
+    // Upload new image if provided
+    if (caseStudies.image instanceof File && caseStudies.image.size > 0) {
+      imagePath = await uploadImage(caseStudies.image, "caseStudies");
+
+      // Delete old image
+      if (existingCaseStudy[0].image) {
+        const oldImagePath = path.join(
+          process.cwd(),
+          "uploads",
+          existingCaseStudy[0].image,
+        );
+
+        try {
+          await fs.unlink(oldImagePath);
+        } catch (error) {
+          console.warn("Old image not found:", error);
+        }
+      }
+    }
+
+    const data: UpdateCaseStudyDB = {
+      title: caseStudies.title,
       slug,
-    });
+      image: imagePath,
+      description: caseStudies.description,
+      youtube_url: caseStudies.youtube_url,
+      status: caseStudies.status,
+      updated_by: caseStudies.updated_by,
+    };
+
+    const result = await updateCaseStudyModel(id, data);
+
     return result;
   } catch (error) {
-    console.error("Update case Study service error", error);
+    console.error("Update Case Study Service Error", error);
     throw error;
   }
 }

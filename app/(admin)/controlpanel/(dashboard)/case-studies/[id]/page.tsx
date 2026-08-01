@@ -119,14 +119,19 @@ const Page = () => {
 
           <div>
             <h2 className="text-sm text-gray-400">Featured Image</h2>
-            {/* 
-            <Image
-              src={caseStudy.image}
-              alt={caseStudy.title}
-              width={900}
-              height={500}
-              className="mt-3 rounded-lg"
-            /> */}
+            {caseStudy.image ? (
+              <Image
+                src={`/api/uploads/${caseStudy.image}`}
+                alt={caseStudy.title}
+                width={900}
+                height={500}
+                className="mt-3 h-auto w-full max-w-3xl rounded-lg border border-gray-700 object-cover"
+              />
+            ) : (
+              <div className="mt-3 flex h-64 w-full max-w-3xl items-center justify-center rounded-lg border border-dashed border-gray-700 text-gray-500">
+                No Image Available
+              </div>
+            )}
           </div>
 
           <div>

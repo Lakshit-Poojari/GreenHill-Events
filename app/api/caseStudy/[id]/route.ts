@@ -7,7 +7,10 @@ import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { CaseStudyStatus } from "@/backend/types/caseStudies";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
 
@@ -35,7 +38,10 @@ export async function GET( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function PUT( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     const formData = await request.formData();
@@ -54,9 +60,11 @@ export async function PUT( request: NextRequest, { params }: { params: Promise<{
 
     const user = verifyToken(token);
 
+    const image = formData.get("image") as File | null;
+
     const body = {
       title: formData.get("title") as string,
-      image: formData.get("image") as File,
+      image,
       description: formData.get("description") as string,
       youtube_url: (formData.get("youtube_url") as string) || undefined,
       status: formData.get("status") as CaseStudyStatus,
@@ -87,7 +95,10 @@ export async function PUT( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function DELETE( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     await deleteCaseStudiesController(Number(id));

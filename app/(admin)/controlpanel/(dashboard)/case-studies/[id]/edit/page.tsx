@@ -20,7 +20,9 @@ const Page = () => {
     status: "ACTIVE",
   });
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
 
     if (name === "image") {
@@ -57,6 +59,8 @@ const Page = () => {
         data.append("image", formData.image);
       }
 
+      data.append("currentImage", formData.currentImage);
+
       const response = await fetch(`/api/caseStudy/${id}`, {
         method: "PUT",
         credentials: "include",
@@ -79,6 +83,40 @@ const Page = () => {
       alert(error instanceof Error ? error.message : "Something went wrong.");
     } finally {
       setSaving(false);
+    }
+  };
+  useEffect(() => {
+    fetchCaseStudy();
+  }, []);
+
+  const fetchCaseStudy = async () => {
+    try {
+      const response = await fetch(`/api/caseStudy/${id}`, {
+        credentials: "include",
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message);
+      }
+
+      console.log(result);
+      const caseStudy = result.caseStudy[0];
+
+      setFormData({
+        title: caseStudy.title ?? "",
+        image: null,
+        currentImage: caseStudy.image ?? "",
+        description: caseStudy.description ?? "",
+        youtube_url: caseStudy.youtube_url ?? "",
+        status: caseStudy.status ?? "ACTIVE",
+      });
+    } catch (error) {
+      console.error(error);
+      alert(
+        error instanceof Error ? error.message : "Failed to fetch case study.",
+      );
     }
   };
 
@@ -125,6 +163,18 @@ const Page = () => {
             <label className="mb-2 block text-sm font-medium text-gray-300">
               Case Study Image
             </label>
+
+            {formData.currentImage && (
+              <div className="mt-4">
+                <p className="mb-2 text-sm text-gray-400">Current Image</p>
+
+                <img
+                  src={`/api/uploads/${formData.currentImage}`}
+                  alt={formData.title}
+                  className="h-48 w-72 rounded-lg border border-gray-700 object-cover"
+                />
+              </div>
+            )}
 
             <input
               type="file"
