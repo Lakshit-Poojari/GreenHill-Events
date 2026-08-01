@@ -15,12 +15,18 @@ const Page = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("ALL");
 
-  const filteredCategories = categories.filter(
-    (category) =>
+  const filteredCategories = categories.filter((category) => {
+    const matchesSearch =
       category.category_name.toLowerCase().includes(search.toLowerCase()) ||
-      category.slug.toLowerCase().includes(search.toLowerCase()),
-  );
+      category.slug.toLowerCase().includes(search.toLowerCase());
+
+    const matchesStatus =
+      selectedStatus === "ALL" || category.status === selectedStatus;
+
+    return matchesSearch && matchesStatus;
+  });
 
   useEffect(() => {
     getAllCategory();
@@ -101,15 +107,33 @@ const Page = () => {
       </div>
 
       {/* Search */}
-      <div className="flex items-center rounded-xl border border-gray-700 bg-[#181616] px-4 py-3">
-        <Search className="mr-3 text-gray-400" size={20} />
-        <input
-          type="text"
-          placeholder="Search category..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full bg-transparent text-white placeholder:text-gray-500 focus:outline-none"
-        />
+      {/* Search & Filter */}
+      <div className="rounded-xl border border-gray-700 bg-[#181616] p-4">
+        <div className="flex items-center gap-4">
+          {/* Search */}
+          <div className="flex flex-1 items-center rounded-lg border border-gray-600 px-3 py-2">
+            <Search className="mr-3 text-gray-400" size={20} />
+
+            <input
+              type="text"
+              placeholder="Search category..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-transparent text-white placeholder:text-gray-500 focus:outline-none"
+            />
+          </div>
+
+          {/* Status Filter */}
+          <select
+            value={selectedStatus}
+            onChange={(e) => setSelectedStatus(e.target.value)}
+            className="w-48 rounded-lg border border-gray-600 bg-[#181616] px-4 py-2 text-white focus:outline-none"
+          >
+            <option value="ALL">All Status</option>
+            <option value="ACTIVE">Active</option>
+            <option value="INACTIVE">Inactive</option>
+          </select>
+        </div>
       </div>
 
       {/* Categories Table */}

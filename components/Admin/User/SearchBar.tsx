@@ -6,12 +6,23 @@ interface SearchBarProps {
   setSearch: (value: string) => void;
   role: string;
   setRole: (value: string) => void;
+  status: string;
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar = ({ search, setSearch, role, setRole }: SearchBarProps) => {
+const SearchBar = ({
+  search,
+  setSearch,
+  role,
+  setRole,
+  status,
+  setStatus,
+}: SearchBarProps) => {
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-5 shadow-lg md:flex-row 
-      md:items-center md:justify-between">
+    <div
+      className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-5 shadow-lg md:flex-row 
+      md:items-center md:justify-between"
+    >
       {/* Search */}
       <div className="relative w-full md:max-w-md">
         <Search
@@ -28,6 +39,16 @@ const SearchBar = ({ search, setSearch, role, setRole }: SearchBarProps) => {
           placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[#C9AC8C]"
         />
       </div>
+
+      <select
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+        className="rounded-lg border border-gray-600 bg-[#181616] px-4 py-2 text-white"
+      >
+        <option value="ALL">All Status</option>
+        <option value="ACTIVE">Active</option>
+        <option value="INACTIVE">Inactive</option>
+      </select>
 
       {/* Filter */}
       <select

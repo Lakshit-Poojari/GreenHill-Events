@@ -21,6 +21,7 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("ALL");
+  const [selectedStatus, setSelectedStatus] = useState("ALL");
 
   const entertainmentCategories = [
     "ALL",
@@ -28,14 +29,17 @@ const Page = () => {
   ];
 
   const filteredOfferingCategories = offeringCategories.filter((category) => {
-    const matchesSearch = category.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
+    const matchesSearch =
+      category.name.toLowerCase().includes(search.toLowerCase()) ||
+      category.slug.toLowerCase().includes(search.toLowerCase());
 
     const matchesCategory =
       selectedCategory === "ALL" || category.category_name === selectedCategory;
 
-    return matchesSearch && matchesCategory;
+    const matchesStatus =
+      selectedStatus === "ALL" || category.status === selectedStatus;
+
+    return matchesSearch && matchesCategory && matchesStatus;
   });
 
   useEffect(() => {
@@ -130,30 +134,44 @@ const Page = () => {
       </div>
 
       {/* Search */}
+      {/* Search & Filters */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-4">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="flex items-center rounded-lg border border-gray-600 px-3 py-2">
+        <div className="flex items-center gap-4">
+          {/* Search */}
+          <div className="flex flex-1 items-center rounded-lg border border-gray-600 px-3 py-2">
             <Search size={18} className="mr-2 text-gray-400" />
 
             <input
               type="text"
-              placeholder="Search by name..."
+              placeholder="Search by name or slug..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full bg-transparent text-white placeholder:text-gray-500 focus:outline-none"
             />
           </div>
 
+          {/* Entertainment Category */}
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="rounded-lg border border-gray-600 bg-[#232121] px-4 py-2 text-white outline-none focus:border-[#C9AC8C]"
+            className="w-64 rounded-lg border border-gray-600 bg-[#232121] px-4 py-2 text-white outline-none focus:border-[#C9AC8C]"
           >
             {entertainmentCategories.map((category) => (
               <option key={category} value={category}>
                 {category === "ALL" ? "All Entertainment Categories" : category}
               </option>
             ))}
+          </select>
+
+          {/* Status */}
+          <select
+            value={selectedStatus}
+            onChange={(e) => setSelectedStatus(e.target.value)}
+            className="w-44 rounded-lg border border-gray-600 bg-[#232121] px-4 py-2 text-white outline-none focus:border-[#C9AC8C]"
+          >
+            <option value="ALL">All Status</option>
+            <option value="ACTIVE">Active</option>
+            <option value="INACTIVE">Inactive</option>
           </select>
         </div>
       </div>

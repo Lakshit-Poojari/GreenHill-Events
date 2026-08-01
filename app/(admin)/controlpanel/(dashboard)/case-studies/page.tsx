@@ -15,6 +15,7 @@ const Page = () => {
   const [caseStudies, setcaseStudies] = useState<CaseStudy[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("ALL");
 
   useEffect(() => {
     fetchAllCaseStudies();
@@ -34,9 +35,16 @@ const Page = () => {
     }
   };
 
-  const filteredCaseStudies = caseStudies.filter((caseStudy) =>
-    caseStudy.title.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filteredCaseStudies = caseStudies.filter((caseStudy) => {
+    const matchesSearch = caseStudy.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesStatus =
+      selectedStatus === "ALL" || caseStudy.status === selectedStatus;
+
+    return matchesSearch && matchesStatus;
+  });
 
   const handleDelete = async (id: number) => {
     const confirmDelete = confirm(
@@ -95,21 +103,35 @@ const Page = () => {
       </div>
 
       {/* Search */}
+      {/* Search & Filter */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-lg">
-        <div className="relative max-w-md">
-          <Search
-            size={18}
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-          />
+        <div className="flex items-center gap-4">
+          {/* Search */}
+          <div className="relative flex-1">
+            <Search
+              size={18}
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            />
 
-          <input
-            type="text"
-            placeholder="Search case studies..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-lg border border-gray-700 bg-[#111] py-3 pl-10 pr-4 text-white outline-none 
-              focus:border-[rgba(201,172,140,1)]"
-          />
+            <input
+              type="text"
+              placeholder="Search case studies..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full rounded-lg border border-gray-700 bg-[#111] py-3 pl-10 pr-4 text-white outline-none focus:border-[rgba(201,172,140,1)]"
+            />
+          </div>
+
+          {/* Status Filter */}
+          <select
+            value={selectedStatus}
+            onChange={(e) => setSelectedStatus(e.target.value)}
+            className="w-48 rounded-lg border border-gray-700 bg-[#111] px-4 py-3 text-white outline-none focus:border-[rgba(201,172,140,1)]"
+          >
+            <option value="ALL">All Status</option>
+            <option value="ACTIVE">Active</option>
+            <option value="INACTIVE">Inactive</option>
+          </select>
         </div>
       </div>
 

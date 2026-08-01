@@ -13,7 +13,7 @@ export default function UserManagementPage() {
 
   const [search, setSearch] = useState("");
   const [role, setRole] = useState("ALL");
-
+const [status, setStatus] = useState("ALL");
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<number | null>(null);
   const [users, setUsers] = useState<User[]>([]);
@@ -134,15 +134,19 @@ export default function UserManagementPage() {
     }
   };
 
-  const filteredUsers = users.filter((user) => {
-    const matchesSearch =
-      user.full_name.toLowerCase().includes(search.toLowerCase()) ||
-      user.email.toLowerCase().includes(search.toLowerCase());
+const filteredUsers = users.filter((user) => {
+  const matchesSearch =
+    user.full_name.toLowerCase().includes(search.toLowerCase()) ||
+    user.email.toLowerCase().includes(search.toLowerCase());
 
-    const matchesRole = role === "ALL" || user.role === role;
+  const matchesRole =
+    role === "ALL" || user.role === role;
 
-    return matchesSearch && matchesRole;
-  });
+  const matchesStatus =
+    status === "ALL" || user.status === status;
+
+  return matchesSearch && matchesRole && matchesStatus;
+});
 
   if (loading) {
     return (
@@ -172,12 +176,14 @@ export default function UserManagementPage() {
         )}
       </div>
 
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-        role={role}
-        setRole={setRole}
-      />
+<SearchBar
+  search={search}
+  setSearch={setSearch}
+  role={role}
+  setRole={setRole}
+  status={status}
+  setStatus={setStatus}
+/>
 
       <UserTable
         users={filteredUsers}
