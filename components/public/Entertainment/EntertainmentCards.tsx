@@ -8,6 +8,7 @@ interface Card {
   image: string;
   text: string;
   link?: string;
+  slug?: string;
 }
 
 interface Props {
@@ -49,12 +50,12 @@ const EntertainmentCards = ({
 
                   {/* Front */}
                   <div className="absolute shadow-lg rounded-lg shadow-[#454545] inset-0 backface-hidden">
-                    <Image
-                      src={card.image}
-                      fill
-                      alt={card.title1}
-                      className="object-cover object-top rounded-lg brightness-55"
-                    />
+<Image
+  src={`/api/uploads/${card.image}`}
+  fill
+  alt={card.title1}
+  className="object-cover object-top rounded-lg brightness-55"
+/>
                   </div>
 
                   <div className="absolute backface-hidden w-3xl top-40 left-1/2 -translate-x-1/2">
@@ -75,11 +76,14 @@ const EntertainmentCards = ({
                       {card.text}
                     </p>
 
-                    <Link href={card.link || "#"} className="self-center">
-                      <button className="px-6 py-3 border border-[#C9AC8C] rounded-full text-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black">
-                        FIND OUT MORE
-                      </button>
-                    </Link>
+<Link
+  href={card.link || `/entertainment/${card.slug}`}
+  className="self-center"
+>
+  <button className="px-6 py-3 border border-[#C9AC8C] rounded-full text-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black">
+    FIND OUT MORE
+  </button>
+</Link>
                   </div>
 
                 </div>

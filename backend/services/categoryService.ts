@@ -202,3 +202,30 @@ export async function updateCategoryStatusService(
     throw error;
   }
 }
+
+
+export async function getCategoryBySlugService(slug: string) {
+  try {
+    const category = await getCategoryBySlug(slug);
+
+    if (!category) {
+      return {
+        success: false,
+        message: "Category not found.",
+      };
+    }
+    
+
+    return {
+      success: true,
+      category,
+    };
+  } catch (error) {
+    console.error("Get Category By Slug Service Error:", error);
+
+    return {
+      success: false,
+      message: "Failed to fetch category.",
+    };
+  }
+}

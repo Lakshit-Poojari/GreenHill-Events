@@ -2,6 +2,8 @@ import {
   createOfferingService,
   deleteOfferingService,
   getAllOfferingService,
+  getOfferingBySlugService,
+  getOfferingsByCategorySlugService,
   getSingleOfferingService,
   updateOfferingService,
   updateOfferingStatusService,
@@ -79,5 +81,31 @@ export async function updateOfferingStatusController(
   } catch (error) {
     console.error("Update Category Status Controller Error:", error);
     throw error;
+  }
+}
+
+export async function getOfferingsByCategorySlugController(slug: string) {
+  try {
+    return await getOfferingsByCategorySlugService(slug);
+  } catch (error) {
+    console.error("Get Offerings By Category Slug Controller Error:", error);
+
+    return {
+      success: false,
+      message: "Internal server error.",
+    };
+  }
+}
+
+export async function getOfferingBySlugController(slug: string) {
+  try {
+    return await getOfferingBySlugService(slug);
+  } catch (error) {
+    console.error("Get Offering By Slug Controller Error:", error);
+
+    return {
+      success: false,
+      message: "Internal server error.",
+    };
   }
 }

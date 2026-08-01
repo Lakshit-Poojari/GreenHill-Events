@@ -3,6 +3,7 @@ import {
   deleteOfferingModel,
   getAllOfferingModel,
   getOfferingBySlugModel,
+  getOfferingsByCategorySlugModel,
   getSingleOfferingModel,
   updateOfferingModel,
   updateOfferingStatusModel,
@@ -183,5 +184,50 @@ export async function updateOfferingStatusService(
   } catch (error) {
     console.error("Update Offering Status Service Error:", error);
     throw error;
+  }
+}
+
+
+
+export async function getOfferingsByCategorySlugService(slug: string) {
+  try {
+    const offerings = await getOfferingsByCategorySlugModel(slug);
+    console.log(offerings);
+    return {
+      success: true,
+      offerings,
+    };
+  } catch (error) {
+    console.error("Get Offerings By Category Slug Service Error:", error);
+
+    return {
+      success: false,
+      message: "Failed to fetch offerings.",
+    };
+  }
+}
+
+export async function getOfferingBySlugService(slug: string) {
+  try {
+    const offering = await getOfferingBySlugModel(slug);
+
+    if (!offering) {
+      return {
+        success: false,
+        message: "Offering not found.",
+      };
+    }
+
+    return {
+      success: true,
+      offering,
+    };
+  } catch (error) {
+    console.error("Get Offering By Slug Service Error:", error);
+
+    return {
+      success: false,
+      message: "Failed to fetch offering.",
+    };
   }
 }

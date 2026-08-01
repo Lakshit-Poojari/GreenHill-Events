@@ -2,6 +2,7 @@ import {
   createCategoryService,
   deleteCategoryService,
   getAllCategoryService,
+  getCategoryBySlugService,
   getSingleCategoryService,
   updateCategoryService,
   updateCategoryStatusService,
@@ -80,5 +81,19 @@ export async function updateCategoryStatusController(
   } catch (error) {
     console.error("Update Category Status Controller Error:", error);
     throw error;
+  }
+}
+
+
+export async function getCategoryBySlugController(slug: string) {
+  try {
+    return await getCategoryBySlugService(slug);
+  } catch (error) {
+    console.error("Get Category By Slug Controller Error:", error);
+
+    return {
+      success: false,
+      message: "Internal server error.",
+    };
   }
 }

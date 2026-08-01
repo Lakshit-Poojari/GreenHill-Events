@@ -183,3 +183,35 @@ export async function updateOfferingStatusModel(id: number, status: string) {
     throw error;
   }
 }
+
+export async function getOfferingsByCategorySlugModel(slug: string) {
+  try {
+    const [rows] = await db.query<RowDataPacket[]>(
+      `
+      SELECT
+        o.id,
+        o.performer_name,
+        o.slug,
+        o.image_path,
+        o.small_description,
+        o.large_description,
+        o.page_url,
+        o.soundcloud_link
+      FROM offerings o
+      INNER JOIN offering_categories oc
+        ON o.offering_category_id = oc.id
+      INNER JOIN categories c
+        ON oc.category_id = c.id
+      WHERE
+        c.slug = ?
+        AND o.status = 'ACTIVE'
+      ORDER BY o.id ASC
+      `,
+      [slug]
+    );
+
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
