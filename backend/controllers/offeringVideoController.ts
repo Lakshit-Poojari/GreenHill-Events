@@ -2,6 +2,7 @@ import {
   createOfferingVideoService,
   deleteOfferingVideoService,
   getAllOfferingVideoService,
+  getOfferingVideosByOfferingIdService,
   getSingleOfferingVideoService,
   updateOfferingVideoService,
 } from "../services/offeringVideoService";
@@ -10,7 +11,9 @@ import {
   UpdateOfferingVideo,
 } from "../types/offeringVideoType";
 
-export async function createOfferingVideoController( video: CreateOfferingVideo,) {
+export async function createOfferingVideoController(
+  video: CreateOfferingVideo,
+) {
   try {
     const result = await createOfferingVideoService(video);
     return result;
@@ -20,7 +23,10 @@ export async function createOfferingVideoController( video: CreateOfferingVideo,
   }
 }
 
-export async function updateOfferingVideoController( video: UpdateOfferingVideo, id: number,) {
+export async function updateOfferingVideoController(
+  video: UpdateOfferingVideo,
+  id: number,
+) {
   try {
     const result = await updateOfferingVideoService(id, video);
     return result;
@@ -56,6 +62,18 @@ export async function deleteOfferingVideoController(id: number) {
     return result;
   } catch (error) {
     console.error("Delete Offering Video Controller", error);
+    throw error;
+  }
+}
+
+export async function getOfferingVideosByOfferingIdController(
+  offeringId: number,
+) {
+  try {
+    const result = await getOfferingVideosByOfferingIdService(offeringId);
+    return result;
+  } catch (error) {
+    console.error("Get Offering Video by offering id controller Error", error);
     throw error;
   }
 }

@@ -3,6 +3,7 @@ import {
   createOfferingVideoModel,
   deleteOfferingVideoModel,
   getAllOfferingVideoModel,
+  getOfferingVideosByOfferingIdModel,
   getSingleOfferingVideoModel,
   updateOfferingVideoModel,
 } from "../models/offeringVideoModel";
@@ -91,6 +92,16 @@ export async function deleteOfferingVideoService(id: number) {
     return result;
   } catch (error) {
     console.error("Delete Offering Video Service Error", error);
+    throw error;
+  }
+}
+
+export async function getOfferingVideosByOfferingIdService(offeringId: number) {
+  try {
+    const videos = await getOfferingVideosByOfferingIdModel(offeringId);
+    return videos;
+  } catch (error) {
+    console.error("Get Offering Video by offering id Service Error", error);
     throw error;
   }
 }

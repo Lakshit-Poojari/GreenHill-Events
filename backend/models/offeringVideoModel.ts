@@ -149,3 +149,22 @@ export async function deleteOfferingVideoModel(id: number) {
     throw error;
   }
 }
+
+export async function getOfferingVideosByOfferingIdModel(offeringId: number) {
+  const [rows] = await db.query<RowDataPacket[]>(
+    `
+    SELECT
+      id,
+      youtube_url,
+      display_order
+    FROM offering_videos
+    WHERE
+      offering_id = ?
+      AND status = 'ACTIVE'
+    ORDER BY display_order ASC
+    `,
+    [offeringId],
+  );
+
+  return rows;
+}
