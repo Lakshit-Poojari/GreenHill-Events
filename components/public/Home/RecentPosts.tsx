@@ -5,52 +5,48 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FaClock, FaUser } from "react-icons/fa";
 
-const posts = [
-  {
-    id: 1,
-    slug: "costa-smeralda-event-entertainment",
-    image: "/Home/RecentPost/costa.webp",
-    category: "CASE STUDIES",
-    title: "COSTA SMERALDA EVENT ENTERTAINMENT",
-    author: "theatrewp",
-    date: "February 22, 2022",
-    youtube: "https://www.youtube.com/embed/ZXvUbVxW1Ag",
-  },
-  {
-    id: 2,
-    slug: "ica-bespoke-entertainment",
-    image: "/Home/RecentPost/ica.webp",
-    category: "CASE STUDIES",
-    title: "ICA - BESPOKE ENTERTAINMENT",
-    author: "theatrewp",
-    date: "February 22, 2022",
-    description: `The International Cotton Association would like suggestions for entertainment for their gala dinner to celebrate their 175th anniversary. It should reference the present and future work of the organisation, and their international presence, ethical approach and global success. Taking our inspiration from the phenomenal opening ceremony of London's 2012 Olympic Games, we would incorporate international acts from India, China, Pakistan, America, Brazil and the U.K. This would involve dance, music, drama and audio and visual effects to communicate the strong ethical message of the association and its future success. The Performance An International Celebration!`,
-  },
-  {
-    id: 3,
-    slug: "kia-oval-bar-entertainment",
-    image: "/Home/RecentPost/kia.webp",
-    category: "CASE STUDIES",
-    title: "KIA OVAL BAR/ENTERTAINMENT",
-    author: "theatrewp",
-    date: "February 22, 2022",
-    youtube: "https://www.youtube.com/embed/Yt8l7Ah6TMk?si=46MIMgDLLczeXtGa",
-  },
-  {
-    id: 4,
-    slug: "surprise-birthday-event-management",
-    image: "/Home/RecentPost/surprise.webp",
-    category: "CASE STUDIES",
-    title: "SURPRISE BIRTHDAY - EVENT MANAGEMENT",
-    author: "theatrewp",
-    date: "February 22, 2022",
-    youtube: "https://www.youtube.com/embed/4o4JMfvb5k8?si=2PxVVD9Oqa6adPXC",
-  },
-];
+interface CaseStudy {
+  id: number;
+  slug: string;
+  title: string;
+  image: string;
+  category: string;
+  author: string;
+  created_at: string;
+  
+youtube_url?: string;
+  description?: string;
+}
 
 const RecentPosts = () => {
   // Responsive cards-per-view: 1 = mobile, 2 = tablet, 3 = desktop
   const [cardsPerView, setCardsPerView] = useState(3);
+  const [posts, setPosts] = useState<CaseStudy[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCaseStudies = async () => {
+      try {
+        const res = await fetch("/api/caseStudy");
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch case studies");
+        }
+
+        const result = await res.json();
+        console.log(result);
+
+        // If your API returns { success: true, data: [...] }
+        setPosts(result.caseStudy || []);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCaseStudies();
+  }, []);
 
   useEffect(() => {
     const getCardsPerView = () => {
@@ -67,11 +63,27 @@ const RecentPosts = () => {
   }, []);
 
   // Start at index = posts.length (first item of the second/original set)
-  const [currentIndex, setCurrentIndex] = useState(posts.length);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
+  useEffect(() => {
+    if (posts.length > 0) {
+      setCurrentIndex(posts.length);
+    }
+  }, [posts]);
+
   // Clone posts to create a seamless infinite loop: [cloned] + [original] + [cloned]
-  const extendedPosts = [...posts, ...posts, ...posts];
+  const extendedPosts = posts.length > 0 ? [...posts, ...posts, ...posts] : [];
+
+  useEffect(() => {
+    if (posts.length === 0) return;
+
+    const interval = setInterval(() => {
+      nextPost();
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [posts]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -107,6 +119,10 @@ const RecentPosts = () => {
   // Width of a single card as a % of the track, and how far to translate
   const cardWidthPercent = 100 / cardsPerView;
   const translatePercent = currentIndex * cardWidthPercent;
+
+  if (loading) {
+    return <div className="py-20 text-center text-white">Loading...</div>;
+  }
 
   return (
     <div className="mx-4 px-2 py-10 sm:mx-8 sm:px-4 sm:py-14 lg:mx-16.25 lg:px-6.75 lg:py-17">
@@ -149,7 +165,7 @@ const RecentPosts = () => {
                   <div className="m-2 overflow-hidden rounded-xl">
                     <Link href={`/${post.slug}`}>
                       <Image
-                        src={post.image}
+                        src={`/api/uploads/${post.image}`}
                         alt={post.title}
                         width={1000}
                         height={500}
@@ -160,11 +176,11 @@ const RecentPosts = () => {
 
                   <div className="flex flex-1 flex-col p-4 sm:p-5">
                     <span className="mb-4 w-fit rounded-full bg-[#C9AC8C] px-3 py-1 text-xs text-black">
-                      {post.category}
+                      CASE STUDIES
                     </span>
 
                     <h2 className="text-lg sm:text-xl font-semibold text-white">
-                      {post.title}
+                      {post.title.toUpperCase()}
                     </h2>
 
                     <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-300">
@@ -173,31 +189,34 @@ const RecentPosts = () => {
                         {post.author}
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <FaClock className="text-[#C9AC8C]" />
-                        {post.date}
-                      </div>
+                      {new Date(post.created_at).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
                     </div>
 
-                    {post.youtube && (
-                      <div className="mt-5 overflow-hidden rounded-xl">
-                        <iframe
-                          width="100%"
-                          height="250"
-                          src={post.youtube}
-                          title={post.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
-                      </div>
-                    )}
-
-                    {post.description && (
-                      <p className="mt-5 text-sm leading-7 text-gray-300 line-clamp-10">
-                        {post.description}
-                      </p>
-                    )}
+{post.
+youtube_url ? (
+  <div className="mt-5 overflow-hidden rounded-xl">
+    <iframe
+      width="100%"
+      height="250"
+      src={post.
+youtube_url}
+      title={post.title}
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    />
+  </div>
+) : (
+  post.description && (
+    <p className="mt-5 text-sm leading-7 text-gray-300 line-clamp-10">
+      {post.description}
+    </p>
+  )
+)}
                   </div>
                 </div>
               </div>
