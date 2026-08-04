@@ -179,3 +179,14 @@ export async function deleteCaseStudiesService(id: number) {
     throw error;
   }
 }
+
+
+export async function getCaseStudyBySlugService(slug: string) {
+  const result = await getCaseStudiesBySlug(slug);
+
+  if (!result || result.length === 0) {
+    return null;
+  }
+
+  return result[0];
+}

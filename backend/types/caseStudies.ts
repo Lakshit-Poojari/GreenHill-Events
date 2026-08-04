@@ -6,17 +6,24 @@ export enum CaseStudyStatus {
 export interface CaseStudy {
   id: number;
   title: string;
-  slug: string;
-  image: string;
-  description: string;
-  youtube_url: string | null;
-  status: CaseStudyStatus;
-
-  created_by: number | null;
-  created_at: string;
-
-  updated_by: number | null;
-  updated_at: string;
+  featuredImage: string;
+  date: string;
+  category: string;
+  description: string[];
+  navigation: {
+    previous: {
+      title: string;
+      slug: string;
+    };
+    next: {
+      title: string;
+      slug: string;
+    };
+  };
+  recentPosts: {
+    title: string;
+    href: string;
+  }[];
 }
 
 export interface CreateCaseStudy {
@@ -57,4 +64,16 @@ export interface UpdateCaseStudyDB {
   youtube_url?: string;
   status: CaseStudyStatus;
   updated_by: number;
+}
+
+export interface CaseStudyDB {
+  id: number;
+  title: string;
+  slug: string;
+  image: string;
+  description: string;
+  youtube_url?: string;
+  status: CaseStudyStatus;
+  created_at: string;
+  updated_at: string;
 }

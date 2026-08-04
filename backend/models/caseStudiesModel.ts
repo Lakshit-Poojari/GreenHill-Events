@@ -2,6 +2,7 @@ import { ResultSetHeader, RowDataPacket } from "mysql2";
 import db from "../lib/db";
 import {
   CaseStudy,
+  CaseStudyDB,
   CreateCaseStudy,
   CreateCaseStudyDB,
   UpdateCaseStudy,
@@ -144,14 +145,15 @@ export async function deleteCaseStudyModel(id: number) {
   }
 }
 
+type CaseStudydb = CaseStudyDB & RowDataPacket;
 export async function getCaseStudiesBySlug(slug: string) {
   try {
-    const [result] = await db.query<RowDataPacket[]>(
-      `SELECT * FROM case_study WHERE slug=?`,
+    const [rows] = await db.query<CaseStudydb[]>(
+      "SELECT * FROM case_study WHERE slug=?",
       [slug],
     );
 
-    return result;
+    return rows;
   } catch (error) {
     console.error("get case study by slug model error", error);
     throw error;

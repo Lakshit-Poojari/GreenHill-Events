@@ -2,6 +2,7 @@ import {
   createCaseStudiesService,
   deleteCaseStudiesService,
   getAllCaseStudiesService,
+  getCaseStudyBySlugService,
   getSingleCaseStudiesService,
   updateCaseStudiesService,
 } from "../services/caseStudiesService";
@@ -22,7 +23,7 @@ export async function updateCaseStudiesController( id: number, caseStudies: Upda
     const result = await updateCaseStudiesService(id, caseStudies);
     return result;
   } catch (error) {
-    console.error("Create case study controller", error);
+    console.error("Update case study controller", error);
     throw new Error();
   }
 }
@@ -32,7 +33,7 @@ export async function getAllCaseStudiesController() {
     const result = await getAllCaseStudiesService();
     return result;
   } catch (error) {
-    console.error("Create case study controller", error);
+    console.error("Get all case study controller", error);
     throw new Error();
   }
 }
@@ -42,7 +43,7 @@ export async function getSingleCaseStudiesController(id: number) {
     const result = await getSingleCaseStudiesService(id);
     return result;
   } catch (error) {
-    console.error("Create case study controller", error);
+    console.error("Get single case study controller", error);
     throw new Error();
   }
 }
@@ -52,7 +53,17 @@ export async function deleteCaseStudiesController(id: number) {
     const result = await deleteCaseStudiesService(id);
     return result;
   } catch (error) {
-    console.error("Create case study controller", error);
+    console.error("Delete case study controller", error);
+    throw new Error();
+  }
+}
+
+export async function getCaseStudiesbySlugController(slug: string) {
+  try {
+    const result = await getCaseStudyBySlugService(slug);
+    return result;
+  } catch (error) {
+    console.error("Delete case study controller", error);
     throw new Error();
   }
 }

@@ -1,10 +1,17 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
-import { CaseStudy } from "./types";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 
+
+import CommentForm from "@/components/public/CommentForm";
+
+
+import { CaseStudyDB } from "@/backend/types/caseStudies";
+
 interface Props {
-  data: CaseStudy;
+  data: CaseStudyDB;
 }
 
 export default function CaseStudyTemplate({ data }: Props) {
@@ -22,33 +29,27 @@ export default function CaseStudyTemplate({ data }: Props) {
           </h1>
 
           <div className="flex gap-6 mt-4 text-sm text-[#C9AC8C]">
-            <span>{data.date}</span>
-            <span>{data.category}</span>
+            <span>{new Date(data.created_at).toLocaleString()}</span>
           </div>
 
-          <Image src={data.featuredImage} alt={data.title} width={900} height={600} className="mt-8 w-full"/>
+          <Image
+  src={`/api/uploads/${data.image}`}
+  alt={data.title}
+  width={900}
+  height={600}
+  className="mt-8 w-full"
+/>
 
           <div className="space-y-5 mt-8">
 
-            {data.description.map((text, index) => (
-              <p key={index}>{text}</p>
-            ))}
+<p className="whitespace-pre-line">
+  {data.description}
+</p>
 
           </div>
 
-          {/* Previous Next */}
 
-          <div className="grid grid-cols-2 border-y mt-24">
 
-            <Link href={`/${data.navigation.previous.slug}`} className="py-8 border-r">
-              ← {data.navigation.previous.title}
-            </Link>
-
-            <Link href={`/${data.navigation.next.slug}`} className="text-right py-8">
-              {data.navigation.next.title} →
-            </Link>
-
-          </div>
 
         </div>
 
@@ -66,26 +67,7 @@ export default function CaseStudyTemplate({ data }: Props) {
 
           {/* Recent Posts */}
 
-          <div className="mt-14">
-
-            <h2 className="text-5xl font-playfair mb-8">
-              Recent Posts
-            </h2>
-
-            <div className="space-y-4">
-
-              {data.recentPosts.map((post) => (
-
-                <Link key={post.title} href={post.href} className="block hover:text-[#C9AC8C]">
-                  {post.title}
-                </Link>
-
-              ))}
-
-            </div>
-
-          </div>
-
+ 
         </aside>
 
         <section className="mt-20">
@@ -139,58 +121,8 @@ export default function CaseStudyTemplate({ data }: Props) {
 
           {/* Form */}
 
-          <div className="mt-16 bg-[#2A2626] p-16">
-
-            <h2 className="text-[52px] font-['Playfair_Display'] text-[#C9AC8C]">
-              Leave Comment
-            </h2>
-
-            <form className="mt-10 space-y-6">
-
-              {/* Comment */}
-
-              <textarea rows={7} placeholder="Comment"
-                className="w-full bg-transparent border border-[#57514C] p-4 outline-none placeholder:text-gray-400 resize-none"/>
-
-              {/* Name + Email */}
-
-              <div className="grid md:grid-cols-2 gap-8">
-
-                <input type="text" placeholder="Name"
-                  className="bg-transparent border border-[#57514C] p-4 outline-none placeholder:text-gray-400"/>
-
-                <input type="email" placeholder="Email"
-                  className="bg-transparent border border-[#57514C] p-4 outline-none placeholder:text-gray-400"/>
-
-              </div>
-
-              {/* Website */}
-
-              <input type="text" placeholder="Website"
-                className="w-full bg-transparent border border-[#57514C] p-4 outline-none placeholder:text-gray-400"/>
-
-              {/* Checkbox */}
-
-              <label className="flex items-center gap-3 text-lg cursor-pointer">
-
-                <input type="checkbox" className="accent-[#C9AC8C] w-4 h-4"/>
-
-                <span>
-                  Save my name, email, and website in this browser for the next
-                  time I comment.
-                </span>
-
-              </label>
-
-              {/* Button */}
-
-              <button type="submit" className="bg-[#C9AC8C] text-black px-10 py-3 rounded-full text-2xl transition hover:opacity-90">
-                Submit Comment
-              </button>
-
-            </form>
-
-          </div>
+          {/* <  /> */}
+          <CommentForm caseStudyId={data.id}/>
 
         </section>
 

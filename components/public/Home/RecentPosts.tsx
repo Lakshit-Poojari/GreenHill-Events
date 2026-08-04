@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { FaClock, FaUser } from "react-icons/fa";
 
 interface CaseStudy {
@@ -13,8 +13,8 @@ interface CaseStudy {
   category: string;
   author: string;
   created_at: string;
-  
-youtube_url?: string;
+
+  youtube_url?: string;
   description?: string;
 }
 
@@ -85,22 +85,15 @@ const RecentPosts = () => {
     return () => clearInterval(interval);
   }, [posts]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextPost();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextPost = () => {
+  const nextPost = useCallback(() => {
     setIsTransitioning(true);
     setCurrentIndex((prev) => prev + 1);
-  };
+  }, []);
 
-  const prevPost = () => {
+  const prevPost = useCallback(() => {
     setIsTransitioning(true);
     setCurrentIndex((prev) => prev - 1);
-  };
+  }, []);
 
   // This fires instantly when the CSS sliding animation finishes
   const handleTransitionEnd = () => {
@@ -196,27 +189,25 @@ const RecentPosts = () => {
                       })}
                     </div>
 
-{post.
-youtube_url ? (
-  <div className="mt-5 overflow-hidden rounded-xl">
-    <iframe
-      width="100%"
-      height="250"
-      src={post.
-youtube_url}
-      title={post.title}
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    />
-  </div>
-) : (
-  post.description && (
-    <p className="mt-5 text-sm leading-7 text-gray-300 line-clamp-10">
-      {post.description}
-    </p>
-  )
-)}
+                    {post.youtube_url ? (
+                      <div className="mt-5 overflow-hidden rounded-xl">
+                        <iframe
+                          width="100%"
+                          height="250"
+                          src={post.youtube_url}
+                          title={post.title}
+                          frameBorder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                        />
+                      </div>
+                    ) : (
+                      post.description && (
+                        <p className="mt-5 text-sm leading-7 text-gray-300 line-clamp-10">
+                          {post.description}
+                        </p>
+                      )
+                    )}
                   </div>
                 </div>
               </div>

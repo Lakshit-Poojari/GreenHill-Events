@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { caseStudies } from "@/components/public/Home/RecntPostCaseStudy/data";
 import CaseStudyTemplate from "@/components/public/Home/RecntPostCaseStudy/CaseStudyTemplate";
+import { getCaseStudyBySlugService } from "@/backend/services/caseStudiesService";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -9,11 +9,11 @@ interface Props {
 export default async function Page({ params }: Props) {
   const { slug } = await params;
 
-  const data = caseStudies[slug];
+  const result = await getCaseStudyBySlugService(slug);
 
-  if (!data) {
+  if (!result) {
     notFound();
   }
 
-  return <CaseStudyTemplate data={data} />;
+  return <CaseStudyTemplate data={result} />;
 }
