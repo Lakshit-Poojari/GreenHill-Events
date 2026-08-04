@@ -4,8 +4,14 @@ import { useState } from "react";
 
 interface CommentFormProps {
   caseStudyId: number;
+  parentCommentId?: number | null;
+  onSuccess?: () => void;
 }
-export default function CommentForm({ caseStudyId }: CommentFormProps) {
+export default function CommentForm({
+  caseStudyId,
+  parentCommentId = null,
+  onSuccess,
+}: CommentFormProps) {
   const [formData, setFormData] = useState({
     comment: "",
     name: "",
@@ -40,7 +46,7 @@ export default function CommentForm({ caseStudyId }: CommentFormProps) {
         },
         body: JSON.stringify({
           case_study_id: caseStudyId,
-          parent_comment_id: null,
+          parent_comment_id: parentCommentId,
           name: formData.name,
           email: formData.email,
           website: formData.website,
@@ -56,6 +62,7 @@ export default function CommentForm({ caseStudyId }: CommentFormProps) {
       }
 
       alert("Comment submitted successfully!");
+      onSuccess?.();
 
       setFormData({
         comment: "",
