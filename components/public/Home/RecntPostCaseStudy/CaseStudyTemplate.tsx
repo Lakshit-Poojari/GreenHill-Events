@@ -29,16 +29,16 @@ export default function CaseStudyTemplate({ data }: Props) {
 
           <div className="flex gap-6 mt-4 text-sm text-[#C9AC8C]">
             <span>
-  {new Intl.DateTimeFormat("en-IN", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-    timeZone: "Asia/Kolkata",
-  }).format(new Date(data.created_at))}
-</span>
+              {new Intl.DateTimeFormat("en-IN", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "Asia/Kolkata",
+              }).format(new Date(data.created_at))}
+            </span>
           </div>
 
           <Image
@@ -106,8 +106,7 @@ export default function CaseStudyTemplate({ data }: Props) {
 
           {/* Comments */}
 
-<Comments caseStudyId={data.id} />
-
+          <Comments caseStudyId={data.id} />
 
           <CommentForm caseStudyId={data.id} />
         </section>
