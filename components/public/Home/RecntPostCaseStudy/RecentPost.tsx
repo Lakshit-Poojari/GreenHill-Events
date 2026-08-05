@@ -13,20 +13,24 @@ interface RecentPostProps {
 export default function RecentPost({ recentPosts }: RecentPostProps) {
   return (
     <div className="mt-16">
-      <h2 className="font-playfair text-5xl lg:text-6xl">
+      <h2 className="font-playfair text-4xl text-[#C9AC8C] lg:text-5xl">
         Recent Posts
       </h2>
 
-      <ul className="mt-8 space-y-5">
+      <ul className="mt-10 space-y-5">
         {recentPosts.map((post) => (
-          <li key={post.id} className="flex gap-4">
-            <span className="text-[#7C7670]">—</span>
+          <li
+            key={post.id}
+            className="group rounded-2xl border border-[#3D3935] bg-[#2A2626] p-5 transition-all duration-300 hover:border-[#C9AC8C]/40 hover:bg-[#302B2B]"
+          >
+            <Link href={`/${post.slug}`} className="flex items-center gap-4">
+              <span className="text-lg text-[#C9AC8C] transition-transform duration-300 group-hover:translate-x-1">
+                ✦
+              </span>
 
-            <Link
-              href={`/${post.slug}`}
-              className="transition hover:text-[#C9AC8C]"
-            >
-              {post.title}
+              <span className="leading-7 text-white transition-colors duration-300 group-hover:text-[#C9AC8C]">
+                {post.title}
+              </span>
             </Link>
           </li>
         ))}

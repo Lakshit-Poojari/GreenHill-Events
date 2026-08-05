@@ -96,7 +96,7 @@ export default function Comments({ caseStudyId }: Props) {
 
   return (
     <div className="mt-12">
-      <h2 className="mb-8 text-4xl font-playfair">
+      <h2 className="mb-10 font-playfair text-4xl md:text-5xl text-[#C9AC8C] tracking-wide">
         {total} Comment{total !== 1 ? "s" : ""}
       </h2>
 
@@ -131,11 +131,11 @@ function CommentItem({
 
   return (
     <div style={{ marginLeft: indent }}>
-      <div className="border-b border-[#3D3935] py-8">
-        <div className="flex justify-between items-start">
-          <div className="flex gap-5 flex-1">
+      <div className="border-b border-[#C9AC8C] border-opacity-30 py-8">
+        <div className="flex items-start justify-between gap-6">
+          <div className="flex flex-1 gap-5">
             <div
-              className={`${avatarSize} shrink-0 rounded-full bg-white flex items-center justify-center overflow-hidden`}
+              className={`${avatarSize} shrink-0 overflow-hidden rounded-full border border-[#57514C] bg-linear-to-br shadow-md flex items-center justify-center`}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -148,15 +148,15 @@ function CommentItem({
             </div>
 
             <div className="flex-1">
-              <h3 className="flex items-center gap-2 uppercase tracking-[4px] text-[#C9AC8C] text-lg">
-                {comment.name?.trim() || "ADMIN"}
+              <h3 className="flex items-center gap-2 text-lg font-medium uppercase tracking-[3px] text-[#C9AC8C]">
+                {comment.name?.trim() || "GreenHill"}
 
                 {!comment.name?.trim() && (
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
                     className="h-4 w-4 text-[#C9AC8C]"
-                    aria-label="Admin"
+                    aria-label="GreenHill"
                   >
                     <path
                       d="M12 2 4 5v6c0 5 3.4 8.7 8 11 4.6-2.3 8-6 8-11V5l-8-3Z"
@@ -173,7 +173,7 @@ function CommentItem({
                 )}
               </h3>
 
-              <p className="mt-1 text-xs uppercase tracking-[2px] text-[#8A8179]">
+              <p className="mt-2 text-xs uppercase tracking-[2px] text-[#8A8179]">
                 {new Date(comment.created_at).toLocaleDateString("en-US", {
                   month: "long",
                   day: "numeric",
@@ -181,7 +181,7 @@ function CommentItem({
                 })}
               </p>
 
-              <div className="mt-4 whitespace-pre-line text-white leading-7 text-base">
+              <div className="mt-5 leading-8 text-gray-200">
                 {comment.comment}
               </div>
             </div>
@@ -191,7 +191,7 @@ function CommentItem({
             onClick={() =>
               setReplyingTo(replyingTo === comment.id ? null : comment.id)
             }
-            className="ml-8 shrink-0 flex items-center gap-2 rounded-full border border-[#C9AC8C] px-6 py-2.5 uppercase tracking-[3px] text-[#C9AC8C] text-sm transition hover:bg-[#C9AC8C] hover:text-black"
+            className="ml-6 shrink-0 flex items-center gap-2 rounded-full border border-[#C9AC8C] bg-transparent px-6 py-2.5 text-sm font-medium uppercase tracking-[2px] text-[#C9AC8C] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20 active:scale-95"
           >
             Reply
             <svg
@@ -207,7 +207,7 @@ function CommentItem({
         </div>
 
         {replyingTo === comment.id && (
-          <div className="mt-6">
+          <div className="mt-8 rounded-2xl border border-[#3D3935] bg-[#242020] p-6">
             <CommentForm
               caseStudyId={caseStudyId}
               parentCommentId={comment.id}
@@ -221,7 +221,7 @@ function CommentItem({
       </div>
 
       {comment.replies && comment.replies.length > 0 && (
-        <div>
+        <div className="mt-2">
           {comment.replies.map((reply) => (
             <CommentItem
               key={reply.id}

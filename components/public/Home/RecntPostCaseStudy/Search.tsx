@@ -14,7 +14,7 @@ export default function Search({ recentPosts }: Props) {
 
   const handleSearch = () => {
     const post = recentPosts.find((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase().trim())
+      item.title.toLowerCase().includes(search.toLowerCase().trim()),
     );
 
     if (post) {
@@ -25,7 +25,7 @@ export default function Search({ recentPosts }: Props) {
   };
 
   return (
-    <div>
+    <div className="relative">
       <input
         type="text"
         placeholder="Search case study..."
@@ -36,8 +36,9 @@ export default function Search({ recentPosts }: Props) {
             handleSearch();
           }
         }}
-        className="w-full border p-2"
+        className="w-full rounded-full border border-[#57514C] bg-[#2A2626] px-5 py-3 text-white placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
       />
+
     </div>
   );
 }

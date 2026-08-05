@@ -78,12 +78,12 @@ export default function CommentForm({
     }
   };
   return (
-    <div className="mt-16 bg-[#2A2626] p-16">
-      <h2 className="text-[52px] font-['Playfair_Display'] text-[#C9AC8C]">
+    <div className="mt-12 rounded-3xl border border-[#57514C] bg-[#2A2626] p-6 shadow-xl md:p-10">
+      <h2 className="font-['Playfair_Display'] text-4xl text-[#C9AC8C] md:text-[52px]">
         Leave Comment
       </h2>
 
-      <form onSubmit={handleSubmit} className="mt-10 space-y-6">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-6">
         <textarea
           name="comment"
           rows={7}
@@ -91,10 +91,10 @@ export default function CommentForm({
           value={formData.comment}
           onChange={handleChange}
           required
-          className="w-full resize-none border border-[#57514C] bg-transparent p-4 outline-none placeholder:text-gray-400"
+          className="w-full resize-none rounded-2xl border border-[#57514C] bg-transparent px-5 py-4 text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
         />
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           <input
             type="text"
             name="name"
@@ -102,7 +102,7 @@ export default function CommentForm({
             value={formData.name}
             onChange={handleChange}
             required
-            className="border border-[#57514C] bg-transparent p-4 outline-none placeholder:text-gray-400"
+            className="rounded-2xl border border-[#57514C] bg-transparent px-5 py-4 text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
           />
 
           <input
@@ -112,7 +112,7 @@ export default function CommentForm({
             value={formData.email}
             onChange={handleChange}
             required
-            className="border border-[#57514C] bg-transparent p-4 outline-none placeholder:text-gray-400"
+            className="rounded-2xl border border-[#57514C] bg-transparent px-5 py-4 text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
           />
         </div>
 
@@ -122,13 +122,13 @@ export default function CommentForm({
           placeholder="Website"
           value={formData.website}
           onChange={handleChange}
-          className="w-full border border-[#57514C] bg-transparent p-4 outline-none placeholder:text-gray-400"
+          className="w-full rounded-2xl border border-[#57514C] bg-transparent px-5 py-4 text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
         />
 
         <button
           type="submit"
           disabled={loading}
-          className="rounded-full bg-[#C9AC8C] px-10 py-3 text-2xl text-black transition hover:opacity-90 disabled:opacity-50"
+          className="rounded-full bg-[#C9AC8C] px-10 py-4 text-lg font-medium text-[#1E1E1E] shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[#C9AC8C]/25 hover:opacity-95 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? "Submitting..." : "Submit Comment"}
         </button>

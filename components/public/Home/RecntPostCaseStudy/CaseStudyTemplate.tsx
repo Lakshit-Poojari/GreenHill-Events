@@ -63,18 +63,21 @@ export default function CaseStudyTemplate({
               }).format(new Date(data.created_at))}
             </span>
           </div>
+<div className="mt-10 overflow-hidden rounded-3xl border border-[#C9AC8C]/20 bg-[#2A2626] shadow-xl">
+  <Image
+    src={`/api/uploads/${data.image}`}
+    alt={data.title}
+    width={900}
+    height={600}
+    className="h-auto w-full object-cover transition-transform duration-700 hover:scale-105 shadow-[0_20px_50px_rgba(201,172,140,0.18)]"
+  />
+</div>
 
-          <Image
-            src={`/api/uploads/${data.image}`}
-            alt={data.title}
-            width={900}
-            height={600}
-            className="mt-8 w-full"
-          />
-
-          <div className="space-y-5 mt-8">
-            <p className="whitespace-pre-line">{data.description}</p>
-          </div>
+  <div className="mt-10">
+  <p className="whitespace-pre-line text-lg leading-9 text-gray-200 tracking-wide">
+    {data.description}
+  </p>
+</div>
 
           {/* SIDEBAR */}
 

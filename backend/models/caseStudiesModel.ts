@@ -68,7 +68,7 @@ export async function updateCaseStudyModel(
   }
 }
 
-type CaseStudyRow = CaseStudy & RowDataPacket;
+type CaseStudyRow = CaseStudyDB  & RowDataPacket;
 export async function getAllCaseStudyModel() {
   try {
     const [row] = await db.query<CaseStudyRow[]>(
