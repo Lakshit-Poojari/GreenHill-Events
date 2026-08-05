@@ -77,7 +77,7 @@ export const Companys = () => {
         </button>
 
         {/* Slider */}
-        <div className="overflow-hidden w-full mx-16">
+        <div className="overflow-hidden w-full mx-26">
           <div
             className={`flex ${
               isTransitioning
@@ -98,8 +98,8 @@ export const Companys = () => {
                   src={img}
                   alt={`logo-${index}`}
                   fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                  className="object-contain pl-4"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw "
+                  className="object-contain mx-38"
                 />
               </div>
             ))}

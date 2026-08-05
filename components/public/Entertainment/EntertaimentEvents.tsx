@@ -49,7 +49,7 @@ const EntertaimentEvents = () => {
                       : ""
                   }`}
                 >
-                  <div className=" relative h-full w-full transition-transform duration-700 transform-3d group-hover:transform-[rotateY(180deg)] ">
+                  <div className=" relative h-full w-full transform-3d group-hover:transform-[rotateY(180deg)] rounded-lg shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(201,172,140,0.18)]">
                     {/* Front */}
                     <div className="absolute inset-0 backface-hidden">
                       <Image
