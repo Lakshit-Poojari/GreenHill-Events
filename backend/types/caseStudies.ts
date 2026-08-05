@@ -89,6 +89,7 @@ export interface CaseStudyDB {
   show_home: boolean;
   show_blog: boolean;
   show_case_study: boolean;
+  comment_count: number;
   created_at: string;
   updated_at: string;
 }

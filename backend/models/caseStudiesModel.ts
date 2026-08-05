@@ -197,13 +197,26 @@ export async function getHomeCaseStudiesModel() {
           cs.description,
           cs.youtube_url,
           cs.created_at,
-          creator.full_name AS author
+          creator.full_name AS author,
+          COUNT(c.id) AS comment_count
       FROM case_study cs
       LEFT JOIN users creator
-        ON cs.created_by = creator.id
+          ON cs.created_by = creator.id
+      LEFT JOIN comments c
+          ON c.case_study_id = cs.id
+          AND c.status = 'APPROVED'
       WHERE cs.status = 'ACTIVE'
         AND cs.show_home = TRUE
-      ORDER BY cs.created_at DESC`,
+      GROUP BY
+          cs.id,
+          cs.title,
+          cs.slug,
+          cs.image,
+          cs.description,
+          cs.youtube_url,
+          cs.created_at,
+          creator.full_name
+      ORDER BY cs.created_at DESC;`,
     );
 
     return rows;
@@ -224,13 +237,26 @@ export async function getCaseStudyPageModel() {
           cs.description,
           cs.youtube_url,
           cs.created_at,
-          creator.full_name AS author
+          creator.full_name AS author,
+          COUNT(c.id) AS comment_count
       FROM case_study cs
       LEFT JOIN users creator
-        ON cs.created_by = creator.id
+          ON cs.created_by = creator.id
+      LEFT JOIN comments c
+          ON c.case_study_id = cs.id
+          AND c.status = 'APPROVED'
       WHERE cs.status = 'ACTIVE'
         AND cs.show_case_study = TRUE
-      ORDER BY cs.created_at DESC`,
+      GROUP BY
+          cs.id,
+          cs.title,
+          cs.slug,
+          cs.image,
+          cs.description,
+          cs.youtube_url,
+          cs.created_at,
+          creator.full_name
+      ORDER BY cs.created_at DESC;`,
     );
 
     return rows;
@@ -251,13 +277,26 @@ export async function getBlogCaseStudiesModel() {
           cs.description,
           cs.youtube_url,
           cs.created_at,
-          creator.full_name AS author
+          creator.full_name AS author,
+          COUNT(c.id) AS comment_count
       FROM case_study cs
       LEFT JOIN users creator
-        ON cs.created_by = creator.id
-        WHERE cs.status = 'ACTIVE'
-          AND cs.show_blog = TRUE
-      ORDER BY cs.created_at DESC`,
+          ON cs.created_by = creator.id
+      LEFT JOIN comments c
+          ON c.case_study_id = cs.id
+          AND c.status = 'APPROVED'
+      WHERE cs.status = 'ACTIVE'
+        AND cs.show_blog = TRUE
+      GROUP BY
+          cs.id,
+          cs.title,
+          cs.slug,
+          cs.image,
+          cs.description,
+          cs.youtube_url,
+          cs.created_at,
+          creator.full_name
+      ORDER BY cs.created_at DESC;`,
     );
 
     return rows;
