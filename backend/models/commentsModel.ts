@@ -1,7 +1,7 @@
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 import db from "../lib/db";
 import {
-  Comment,
+  CommentType ,
   CommentStatus,
   CreateCommentType,
   UpdateCommentType,
@@ -98,7 +98,7 @@ export async function updateCommentStatusModel(
   }
 }
 
-type commentsRow = Comment & RowDataPacket;
+type commentsRow = CommentType  & RowDataPacket;
 export async function getAllCommentModel() {
   try {
     const [result] = await db.query<commentsRow[]>(
@@ -106,6 +106,7 @@ export async function getAllCommentModel() {
         SELECT
         c.*,
         cs.title AS case_study_title,
+        cs.slug AS case_study_slug,
         creator.full_name  AS created_by_name,
         updater.full_name  AS updated_by_name,
         approver.full_name  AS approved_by_name
@@ -118,7 +119,7 @@ export async function getAllCommentModel() {
         ON c.updated_by = updater.id
       LEFT JOIN users approver
         ON c.approved_by = approver.id
-      ORDER BY c.created_at ASC
+      ORDER BY c.created_at DESC
         `,
     );
     return result;
@@ -135,6 +136,7 @@ export async function getSingleCommentModel(id: number) {
             SELECT
         c.*,
         cs.title AS case_study_title,
+        cs.slug AS case_study_slug,
         creator.full_name  AS created_by_name,
         updater.full_name  AS updated_by_name,
         approver.full_name  AS approved_by_name
@@ -170,7 +172,7 @@ export async function getCommentsByCaseStudyModel(case_study_id: number) {
         ON c.created_by = creator.id
       WHERE c.case_study_id = ?
         AND c.status = 'APPROVED'
-      ORDER BY c.created_at ASC
+      ORDER BY c.created_at DESC
         `,
       [case_study_id],
     );
