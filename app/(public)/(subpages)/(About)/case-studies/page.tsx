@@ -86,7 +86,7 @@ export default function Page() {
                 {blog.description}
               </p>
 
-              <div className="p-3 flex items-center justify-between text-gray-700">
+              <div className="p-3 mt-3 flex items-center justify-between text-gray-700">
                 <div className="flex items-center gap-2 text-sm font-medium">
                   <FaUser className="text-[#C9AC8C]"/>
                   <span className="ml-3.5">GreenHill</span>

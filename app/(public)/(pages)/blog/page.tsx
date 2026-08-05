@@ -1,93 +1,106 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import SectionHeading from "@/components/public/SectionHeading";
 import { Metadata } from "next";
 import Image from "next/image";
-import React from "react";
-import { FaUser } from "react-icons/fa";
+import Link from "next/link";
+import { FaComment, FaUser } from "react-icons/fa";
 
-export const metadata: Metadata = {
-  title: "Blog - GreenHillEvent",
-  // description: "",     ###############################################################
-  icons: {
-    icon: "/faviconV2.png",
-    shortcut: "/faviconV2.png",
-    apple: "/faviconV2.png",
-  },
-};
+interface Blog {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+  slug: string;
+  comment_count: number;
+}
 
-const blogs = [
-  {
-    image: "/Blog/birthdayparty.jpg",
-    title: "An exclusive Birthday Celebration",
-    description:
-      "As guests entered Summer Place they were greeted by our Stilt Walkers and beautiful sounds of a harpist. The journey th ...",
-  },
-  {
-    image: "/Blog/vodafoneevent.webp",
-    title: "Vodacom 4 U & Chatz Connect Year End Event",
-    description:
-      "After our client had previously experienced our surprise entertainment, they brought us on board again to create an ‘ ...",
-  },
-  {
-    image: "/Blog/largeplayer.webp",
-    title: "Function for a large player in the Gold Market",
-    description:
-      "After experiencing our surprise Singing Waiter act Arias Anonymous as well as our surprise dance act Strictly Anonymous ...",
-  },
-  {
-    image: "/Blog/cricketfunction.webp",
-    title: "South Africa vs England Johannesburg",
-    description:
-      "Following Simon’s varied experience in the field of rugby (no pun intended!) he successfully delivered a slick and kn ...",
-  },
-];
+export default function Page() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
 
-const page = () => {
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const fetchBlogs = async () => {
+    try {
+      const res = await fetch("/api/caseStudy/blogcasestudy");
+
+      const result = await res.json();
+
+      if (res.ok) {
+        setBlogs(result.caseStudies);
+      }
+    } catch (error) {
+      console.error("Failed to fetch blogs:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="py-20 text-center text-white">Loading blogs...</div>;
+  }
+
   return (
-    <>
-      <div className="mx-16.25 px-6.75 pt-26  text-center">
-        <SectionHeading title="Blog" />
+    <div className="mx-16.25 px-6.75 pt-26 text-center">
+      <SectionHeading title="Blog" />
 
-        <div>
-          <p className="text-center font-['Old Standard T'] italic text-[rgba(201,172,140,1)]  mt-10 text-[1.2rem]">
-            Explore some of the lovely events that we have organised and find
-            out about some of our clients’ experiences with us:
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-15">
-          {blogs.map((blog, index) => (
-            <div className="relative" key={index}>
-              {/* Image */}
-              <div className="overflow-hidden relative w-full h-56 md:h-72 lg:h-81">
+      <p className="mt-10 text-center font-['Old_Standard_TT'] text-[1.2rem] italic text-[#C9AC8C]">
+        Explore some of the lovely events that we have organised and find out
+        about some of our clients’ experiences with us:
+      </p>
+
+      <div className="grid grid-cols-1 gap-10 py-15 md:grid-cols-2">
+        {blogs.map((blog) => (
+          <div
+            key={blog.id}
+            className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <Link href={`/${blog.slug}`}>
+              <div className="relative h-56 w-full overflow-hidden rounded-t-2xl md:h-72 lg:h-81">
                 <Image
-                  src={blog.image}
-                  alt="birthday"
+                  src={`/api/uploads/${blog.image}`}
+                  alt={blog.title}
                   width={700}
                   height={450}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
               </div>
+            </Link>
 
-              {/* Content Box */}
-              <div className="bg-white w-[90%] mx-auto -mt-8 relative z-10 px-5 pb-5 justify-items-stretch shadow-lg">
-                <h2 className="text-[22px] md:text-[26px] lg:text-[30px] tracking-[4px] uppercase text-black">
-                  {blog.title}
-                </h2>
+            <div className="relative z-10 mx-auto -mt-8 w-[92%] rounded-2xl border border-[#C9AC8C] bg-[#2A2626] px-6 pb-6 pt-5 shadow-xl transition-all duration-300 group-hover:shadow-2xl">
+              <h2 className="mt-3 text-center text-[18px] font-semibold uppercase tracking-[3px] text-[#1E1E1E] transition-colors duration-300 group-hover:text-[#C9AC8C] md:text-[22px] lg:text-[18px]">
+                {blog.title}
+              </h2>
 
-                <p className="text-[#C9AC8C] mt-2.5 text-[15px] md:text-[16px] lg:text-[17px] leading-8">
-                  {blog.description}
-                </p>
+              <p className="mt-4 line-clamp-2 text-center text-[14px] leading-7 text-gray-600">
+                {blog.description}
+              </p>
 
-                <div className="flex items-center gap-3 text-[#C9AC8C]">
+              <div className="p-3 mt-3 flex items-center justify-between text-gray-700">
+                <div className="flex items-center gap-2">
                   <FaUser className="text-[#C9AC8C]" />
-                  <span className="ml-3.5">theatrewp</span>
+                  <span>GreenHill</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <FaComment className="text-[#C9AC8C]" />
+                  <span>{blog.comment_count}</span>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </>
-  );
-};
+          </div>
+        ))}
 
-export default page;
+        {!loading && blogs.length === 0 && (
+          <div className="col-span-full py-10 text-center text-gray-400">
+            No blogs found.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
