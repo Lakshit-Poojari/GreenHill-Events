@@ -191,18 +191,35 @@ function CommentItem({
             onClick={() =>
               setReplyingTo(replyingTo === comment.id ? null : comment.id)
             }
-            className="ml-6 shrink-0 flex items-center gap-2 rounded-full border border-[#C9AC8C] bg-transparent px-6 py-2.5 text-sm font-medium uppercase tracking-[2px] text-[#C9AC8C] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20 active:scale-95"
+            className={`ml-6 shrink-0 flex items-center gap-2 rounded-full border px-6 py-2.5 text-sm font-medium uppercase tracking-[2px] transition-all duration-300 active:scale-95 ${
+              replyingTo === comment.id
+                ? "border-red-400 text-red-400 hover:bg-red-400 hover:text-white"
+                : "border-[#C9AC8C] text-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
+            }`}
           >
-            Reply
-            <svg
-              className="h-3.5 w-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-            </svg>
+            {replyingTo === comment.id ? "Cancel" : "Reply"}
+
+            {replyingTo === comment.id ? (
+              <svg
+                className="h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg
+                className="h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              </svg>
+            )}
           </button>
         </div>
 

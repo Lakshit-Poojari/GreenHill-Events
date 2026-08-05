@@ -80,7 +80,7 @@ export default function CommentForm({
   return (
     <div className="mt-12 rounded-3xl border border-[#57514C] bg-[#2A2626] p-6 shadow-xl md:p-10">
       <h2 className="font-['Playfair_Display'] text-4xl text-[#C9AC8C] md:text-[52px]">
-        Leave Comment
+        {parentCommentId ? "Reply" : "Leave Comment"}
       </h2>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -128,9 +128,13 @@ export default function CommentForm({
         <button
           type="submit"
           disabled={loading}
-          className="rounded-full bg-[#C9AC8C] px-10 py-4 text-lg font-medium text-[#1E1E1E] shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[#C9AC8C]/25 hover:opacity-95 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+          className="rounded-full border border-[#C9AC8C] bg-[#C9AC8C] px-10 py-4 text-lg font-semibold tracking-wide text-[#1E1E1E] transition-all duration-300 ease-out hover:bg-transparent hover:text-black hover:shadow-[0_0_30px_rgba(201,172,140,0.2)] active:scale-95 disabled:pointer-events-none disabled:opacity-50"
         >
-          {loading ? "Submitting..." : "Submit Comment"}
+          {loading
+            ? "Submitting..."
+            : parentCommentId
+              ? "Post Reply"
+              : "Submit Comment"}
         </button>
       </form>
     </div>
