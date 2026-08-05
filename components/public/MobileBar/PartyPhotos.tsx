@@ -18,6 +18,7 @@ const initialPhotos = [
 export default function PartyPhotos() {
   const [photos, setPhotos] = useState(initialPhotos);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   const next = () => {
     if (isAnimating) return;
@@ -44,22 +45,32 @@ export default function PartyPhotos() {
 
   return (
     <div className="relative overflow-hidden w-full">
-
       <div
         className={`flex ${
-          isAnimating ? "-translate-x-1/3 transition-transform duration-700 ease-in-out" : ""
+          isAnimating
+            ? "-translate-x-1/3 transition-transform duration-700 ease-in-out"
+            : ""
         }`}
+        onMouseLeave={() => setHovered(null)}
       >
         {photos.map((src, index) => (
           <div
             key={index}
-            className="relative basis-1/3 shrink-0 h-80 md:h-105 lg:h-125"
+            onMouseEnter={() => setHovered(index)}
+            className="relative basis-1/3 shrink-0 h-80 md:h-105 lg:h-125 overflow-hidden"
           >
             <Image
               src={src}
               alt={`slide-${index}`}
               fill
-              className="object-contain"
+              className="object-contain transition-all duration-500"
+              style={{
+                transform: hovered === index ? "scale(1.08)" : "scale(1)",
+                filter:
+                  hovered !== null && hovered !== index
+                    ? "brightness(0.55)"
+                    : "brightness(1)",
+              }}
             />
           </div>
         ))}
@@ -80,7 +91,6 @@ export default function PartyPhotos() {
       >
         &#10095;
       </button>
-
     </div>
   );
 }

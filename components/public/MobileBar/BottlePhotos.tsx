@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -15,6 +14,7 @@ const photos = [
 
 const BottlePhotos = () => {
   const [current, setCurrent] = useState(0);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   const next = () => {
     setCurrent((prev) => (prev + 1) % photos.length);
@@ -26,11 +26,11 @@ const BottlePhotos = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-        setCurrent((prev) => (prev + 1) % photos.length);
+      setCurrent((prev) => (prev + 1) % photos.length);
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
-    }, []);
+  }, []);
 
   return (
     <div className="relative overflow-hidden w-full">
@@ -39,17 +39,26 @@ const BottlePhotos = () => {
         style={{
           transform: `translateX(-${current * 33.3333}%)`,
         }}
+        onMouseLeave={() => setHovered(null)}
       >
         {photos.concat(photos.slice(0, 3)).map((src, index) => (
           <div
             key={index}
-            className="basis-1/3 shrink-0 relative h-80 md:h-105 lg:h-125"
+            onMouseEnter={() => setHovered(index)}
+            className="basis-1/3 shrink-0 relative h-80 md:h-105 lg:h-125 overflow-hidden"
           >
             <Image
               src={src}
               alt={`slide-${index}`}
               fill
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain transition-all duration-500"
+              style={{
+                transform: hovered === index ? "scale(1.08)" : "scale(1)",
+                filter:
+                  hovered !== null && hovered !== index
+                    ? "brightness(0.55)"
+                    : "brightness(1)",
+              }}
             />
           </div>
         ))}
@@ -58,7 +67,7 @@ const BottlePhotos = () => {
       {/* Previous */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2  text-[#C9A227]/70 hover:text-[#C9A227]  text-5xl z-10"
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-[#C9A227]/70 hover:text-[#C9A227] text-5xl z-10"
       >
         &#10094;
       </button>
@@ -66,7 +75,7 @@ const BottlePhotos = () => {
       {/* Next */}
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2  text-[#C9A227]/70 hover:text-[#C9A227] text-5xl z-10"
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#C9A227]/70 hover:text-[#C9A227] text-5xl z-10"
       >
         &#10095;
       </button>
@@ -75,4 +84,3 @@ const BottlePhotos = () => {
 };
 
 export default BottlePhotos;
-
