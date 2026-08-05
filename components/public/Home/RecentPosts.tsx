@@ -27,7 +27,7 @@ const RecentPosts = () => {
   useEffect(() => {
     const fetchCaseStudies = async () => {
       try {
-        const res = await fetch("/api/caseStudy");
+        const res = await fetch("/api/caseStudy/homecasestudy");
 
         if (!res.ok) {
           throw new Error("Failed to fetch case studies");
@@ -37,7 +37,7 @@ const RecentPosts = () => {
         console.log(result);
 
         // If your API returns { success: true, data: [...] }
-        setPosts(result.caseStudy || []);
+        setPosts(result.caseStudies || []);
       } catch (error) {
         console.error(error);
       } finally {

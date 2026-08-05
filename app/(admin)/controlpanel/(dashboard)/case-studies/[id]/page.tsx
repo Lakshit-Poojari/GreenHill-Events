@@ -14,6 +14,9 @@ interface CaseStudy {
   youtube_url?: string;
   slug: string;
   status: "ACTIVE" | "INACTIVE";
+  show_home: boolean;
+  show_blog: boolean;
+  show_case_study: boolean;
   created_by_name: string;
   created_at: string;
   updated_by_name?: string;
@@ -110,6 +113,38 @@ const Page = () => {
             >
               {caseStudy.status}
             </span>
+          </div>
+
+          <div>
+            <h2 className="text-sm text-gray-400">Display On</h2>
+
+            <div className="mt-2 flex flex-wrap gap-2">
+              {caseStudy.show_home && (
+                <span className="rounded-full bg-blue-500/20 px-3 py-1 text-sm font-medium text-blue-400">
+                  Home
+                </span>
+              )}
+
+              {caseStudy.show_blog && (
+                <span className="rounded-full bg-purple-500/20 px-3 py-1 text-sm font-medium text-purple-400">
+                  Blog
+                </span>
+              )}
+
+              {caseStudy.show_case_study && (
+                <span className="rounded-full bg-green-500/20 px-3 py-1 text-sm font-medium text-green-400">
+                  Case Study
+                </span>
+              )}
+
+              {!caseStudy.show_home &&
+                !caseStudy.show_blog &&
+                !caseStudy.show_case_study && (
+                  <span className="rounded-full bg-gray-500/20 px-3 py-1 text-sm font-medium text-gray-400">
+                    Not Displayed Anywhere
+                  </span>
+                )}
+            </div>
           </div>
 
           <div>

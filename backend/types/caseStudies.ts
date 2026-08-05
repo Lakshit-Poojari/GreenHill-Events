@@ -34,6 +34,9 @@ export interface CreateCaseStudy {
   youtube_url?: string;
   status: CaseStudyStatus;
   created_by: number;
+  show_home: boolean;
+  show_blog: boolean;
+  show_case_study: boolean;
 }
 
 export interface UpdateCaseStudy {
@@ -44,6 +47,9 @@ export interface UpdateCaseStudy {
   youtube_url?: string;
   status?: CaseStudyStatus;
   updated_by?: number;
+  show_home?: boolean;
+  show_blog?: boolean;
+  show_case_study?: boolean;
 }
 
 export interface CreateCaseStudyDB {
@@ -54,6 +60,9 @@ export interface CreateCaseStudyDB {
   youtube_url?: string;
   status: CaseStudyStatus;
   created_by: number;
+  show_home: boolean;
+  show_blog: boolean;
+  show_case_study: boolean;
 }
 
 export interface UpdateCaseStudyDB {
@@ -64,6 +73,9 @@ export interface UpdateCaseStudyDB {
   youtube_url?: string;
   status: CaseStudyStatus;
   updated_by: number;
+  show_home: boolean;
+  show_blog: boolean;
+  show_case_study: boolean;
 }
 
 export interface CaseStudyDB {
@@ -74,6 +86,9 @@ export interface CaseStudyDB {
   description: string;
   youtube_url?: string;
   status: CaseStudyStatus;
+  show_home: boolean;
+  show_blog: boolean;
+  show_case_study: boolean;
   created_at: string;
   updated_at: string;
 }

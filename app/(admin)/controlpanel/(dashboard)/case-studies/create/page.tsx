@@ -10,6 +10,9 @@ type FormData = {
   description: string;
   youtube_url: string;
   status: "ACTIVE" | "INACTIVE";
+  show_home: boolean;
+  show_blog: boolean;
+  show_case_study: boolean;
 };
 
 const Page = () => {
@@ -21,6 +24,9 @@ const Page = () => {
     description: "",
     youtube_url: "",
     status: "ACTIVE",
+    show_home: false,
+    show_blog: false,
+    show_case_study: false,
   });
 
   const handleChange = (
@@ -28,11 +34,12 @@ const Page = () => {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
 
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]:
+        type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
   };
 
@@ -57,6 +64,9 @@ const Page = () => {
       data.append("description", formData.description);
       data.append("youtube_url", formData.youtube_url);
       data.append("status", formData.status);
+      data.append("show_home", String(formData.show_home));
+      data.append("show_blog", String(formData.show_blog));
+      data.append("show_case_study", String(formData.show_case_study));
 
       if (formData.image) {
         data.append("image", formData.image);
@@ -83,6 +93,9 @@ const Page = () => {
         description: "",
         youtube_url: "",
         status: "ACTIVE",
+        show_home: false,
+        show_blog: false,
+        show_case_study: false,
       });
 
       // Clear selected file
@@ -210,6 +223,47 @@ const Page = () => {
             <option value="ACTIVE">Active</option>
             <option value="INACTIVE">Inactive</option>
           </select>
+        </div>
+
+        <div>
+          <label className="mb-3 block text-sm font-medium text-gray-300">
+            Display On
+          </label>
+
+          <div className="space-y-3 rounded-lg border border-gray-700 bg-[#111] p-4">
+            <label className="flex items-center gap-3 text-white">
+              <input
+                type="checkbox"
+                name="show_home"
+                checked={formData.show_home}
+                onChange={handleChange}
+                className="h-4 w-4 accent-[rgba(201,172,140,1)]"
+              />
+              Home
+            </label>
+
+            <label className="flex items-center gap-3 text-white">
+              <input
+                type="checkbox"
+                name="show_blog"
+                checked={formData.show_blog}
+                onChange={handleChange}
+                className="h-4 w-4 accent-[rgba(201,172,140,1)]"
+              />
+              Blog
+            </label>
+
+            <label className="flex items-center gap-3 text-white">
+              <input
+                type="checkbox"
+                name="show_case_study"
+                checked={formData.show_case_study}
+                onChange={handleChange}
+                className="h-4 w-4 accent-[rgba(201,172,140,1)]"
+              />
+              Case Study
+            </label>
+          </div>
         </div>
 
         {/* Buttons */}

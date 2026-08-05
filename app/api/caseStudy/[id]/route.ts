@@ -68,6 +68,9 @@ export async function PUT(
       description: formData.get("description") as string,
       youtube_url: (formData.get("youtube_url") as string) || undefined,
       status: formData.get("status") as CaseStudyStatus,
+      show_home: formData.get("show_home") === "true",
+      show_blog: formData.get("show_blog") === "true",
+      show_case_study: formData.get("show_case_study") === "true",
       updated_by: user.id,
     };
     console.log(body);

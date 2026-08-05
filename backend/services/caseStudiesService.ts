@@ -3,7 +3,10 @@ import {
   createCaseStudyModel,
   deleteCaseStudyModel,
   getAllCaseStudyModel,
+  getBlogCaseStudiesModel,
   getCaseStudiesBySlug,
+  getCaseStudyPageModel,
+  getHomeCaseStudiesModel,
   getSingleCaseStudyModel,
   updateCaseStudyModel,
 } from "../models/caseStudiesModel";
@@ -137,6 +140,9 @@ export async function updateCaseStudiesService(
       description: caseStudies.description,
       youtube_url: caseStudies.youtube_url,
       status: caseStudies.status,
+      show_home: caseStudies.show_home ?? false,
+      show_blog: caseStudies.show_blog ?? false,
+      show_case_study: caseStudies.show_case_study ?? false,
       updated_by: caseStudies.updated_by,
     };
 
@@ -180,7 +186,6 @@ export async function deleteCaseStudiesService(id: number) {
   }
 }
 
-
 export async function getCaseStudyBySlugService(slug: string) {
   const result = await getCaseStudiesBySlug(slug);
 
@@ -189,4 +194,39 @@ export async function getCaseStudyBySlugService(slug: string) {
   }
 
   return result[0];
+}
+
+
+export async function getHomeCaseStudiesService() {
+  try {
+    const caseStudies = await getHomeCaseStudiesModel();
+
+    return caseStudies;
+  } catch (error) {
+    console.error("Get home case studies service error", error);
+    throw error;
+  }
+}
+
+
+export async function getBlogCaseStudiesService() {
+  try {
+    const caseStudies = await getBlogCaseStudiesModel();
+
+    return caseStudies;
+  } catch (error) {
+    console.error("Get home case studies service error", error);
+    throw error;
+  }
+}
+
+export async function getCaseStudyService() {
+  try {
+    const caseStudies = await getCaseStudyPageModel();
+
+    return caseStudies;
+  } catch (error) {
+    console.error("Get home case studies service error", error);
+    throw error;
+  }
 }

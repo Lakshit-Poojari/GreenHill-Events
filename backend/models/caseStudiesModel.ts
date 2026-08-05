@@ -13,8 +13,19 @@ export async function createCaseStudyModel(caseStudies: CreateCaseStudyDB) {
   try {
     console.log(caseStudies);
     const [result] = await db.query<ResultSetHeader>(
-      `INSERT INTO case_study (title, image, description, youtube_url, created_by, status, slug)
-            VALUES(?,?,?,?,?,?,?)`,
+      `INSERT INTO case_study (
+          title,
+          image,
+          description,
+          youtube_url,
+          created_by,
+          status,
+          slug,
+          show_home,
+          show_blog,
+          show_case_study
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         caseStudies.title,
         caseStudies.image,
@@ -23,6 +34,9 @@ export async function createCaseStudyModel(caseStudies: CreateCaseStudyDB) {
         caseStudies.created_by,
         caseStudies.status,
         caseStudies.slug,
+        caseStudies.show_home,
+        caseStudies.show_blog,
+        caseStudies.show_case_study,
       ],
     );
 
@@ -39,16 +53,19 @@ export async function updateCaseStudyModel(
 ) {
   try {
     const [result] = await db.query<ResultSetHeader>(
-      ` UPDATE case_study
-          SET
-              title = ?,
-              image = ?,
-              description = ?,
-              youtube_url = ?,
-              status = ?,
-              slug = ?,
-              updated_by = ?
-          WHERE id = ?`,
+      `UPDATE case_study
+        SET
+            title = ?,
+            image = ?,
+            description = ?,
+            youtube_url = ?,
+            status = ?,
+            slug = ?,
+            show_home = ?,
+            show_blog = ?,
+            show_case_study = ?,
+            updated_by = ?
+        WHERE id = ?`,
       [
         caseStudies.title,
         caseStudies.image,
@@ -56,6 +73,9 @@ export async function updateCaseStudyModel(
         caseStudies.youtube_url,
         caseStudies.status,
         caseStudies.slug,
+        caseStudies.show_home,
+        caseStudies.show_blog,
+        caseStudies.show_case_study,
         caseStudies.updated_by,
         id,
       ],
@@ -68,7 +88,7 @@ export async function updateCaseStudyModel(
   }
 }
 
-type CaseStudyRow = CaseStudyDB  & RowDataPacket;
+type CaseStudyRow = CaseStudyDB & RowDataPacket;
 export async function getAllCaseStudyModel() {
   try {
     const [row] = await db.query<CaseStudyRow[]>(
@@ -78,6 +98,9 @@ export async function getAllCaseStudyModel() {
                 cs.image,
                 cs.description,
                 cs.youtube_url,
+                cs.show_home,
+                cs.show_blog,
+                cs.show_case_study,
                 cs.status,
                 cs.slug,
                 cs.created_at,
@@ -109,6 +132,9 @@ export async function getSingleCaseStudyModel(id: number) {
                 cs.image,
                 cs.description,
                 cs.youtube_url,
+                cs.show_home,
+                cs.show_blog,
+                cs.show_case_study,
                 cs.status,
                 cs.slug,
                 cs.created_at,
@@ -156,6 +182,87 @@ export async function getCaseStudiesBySlug(slug: string) {
     return rows;
   } catch (error) {
     console.error("get case study by slug model error", error);
+    throw error;
+  }
+}
+
+export async function getHomeCaseStudiesModel() {
+  try {
+    const [rows] = await db.query<CaseStudyRow[]>(
+      `SELECT
+          cs.id,
+          cs.title,
+          cs.slug,
+          cs.image,
+          cs.description,
+          cs.youtube_url,
+          cs.created_at,
+          creator.full_name AS author
+      FROM case_study cs
+      LEFT JOIN users creator
+        ON cs.created_by = creator.id
+      WHERE cs.status = 'ACTIVE'
+        AND cs.show_home = TRUE
+      ORDER BY cs.created_at DESC`,
+    );
+
+    return rows;
+  } catch (error) {
+    console.error("Get home case studies model error", error);
+    throw error;
+  }
+}
+
+export async function getCaseStudyPageModel() {
+  try {
+    const [rows] = await db.query<CaseStudyRow[]>(
+      `SELECT
+          cs.id,
+          cs.title,
+          cs.slug,
+          cs.image,
+          cs.description,
+          cs.youtube_url,
+          cs.created_at,
+          creator.full_name AS author
+      FROM case_study cs
+      LEFT JOIN users creator
+        ON cs.created_by = creator.id
+      WHERE cs.status = 'ACTIVE'
+        AND cs.show_case_study = TRUE
+      ORDER BY cs.created_at DESC`,
+    );
+
+    return rows;
+  } catch (error) {
+    console.error("Get home case studies model error", error);
+    throw error;
+  }
+}
+
+export async function getBlogCaseStudiesModel() {
+  try {
+    const [rows] = await db.query<CaseStudyRow[]>(
+      `SELECT
+          cs.id,
+          cs.title,
+          cs.slug,
+          cs.image,
+          cs.description,
+          cs.youtube_url,
+          cs.created_at,
+          creator.full_name AS author
+      FROM case_study cs
+      LEFT JOIN users creator
+        ON cs.created_by = creator.id
+        WHERE cs.status = 'ACTIVE'
+          AND cs.show_blog = TRUE
+      ORDER BY cs.created_at DESC`,
+    );
+
+    return rows;
+  } catch (error) {
+    console.error("Get home case studies model error", error);
     throw error;
   }
 }
