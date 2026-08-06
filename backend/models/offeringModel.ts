@@ -196,7 +196,8 @@ export async function getOfferingsByCategorySlugModel(slug: string) {
         o.small_description,
         o.large_description,
         o.page_url,
-        o.soundcloud_link
+        o.soundcloud_link,
+        oc.name AS offering_category_name
       FROM offerings o
       INNER JOIN offering_categories oc
         ON o.offering_category_id = oc.id

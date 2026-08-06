@@ -36,8 +36,8 @@ const Page = () => {
             heading: category.menu_name.toUpperCase(),
             description: category.description,
             cards: (offeringResult.offerings ?? []).map((item: any) => ({
-              title: item.performer_name,
-              title1: "",
+              title: item.offering_category_name,
+              title1: item.performer_name,
               image: item.image_path,
               text: item.small_description,
               link: `/entertainment/${slug}/${item.slug}`,

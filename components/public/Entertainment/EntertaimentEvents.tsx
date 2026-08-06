@@ -56,7 +56,7 @@ const EntertaimentEvents = () => {
                         src={`/api/uploads/${card.image.replace(/^\/?categories\//, "categories/")}`}
                         fill
                         alt={`Event ${index + 1}`}
-                        className="object-cover object-left rounded-lg brightness-35 "
+                        className="object-cover object-left rounded-lg brightness-35"
                       />
                     </div>
                     <div className="absolute backface-hidden w-3xl top-40 left-1/2 -translate-x-1/2 z-10">
