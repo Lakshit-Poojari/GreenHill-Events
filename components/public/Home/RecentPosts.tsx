@@ -130,7 +130,7 @@ const RecentPosts = () => {
         {/* Left Button */}
         <button
           onClick={prevPost}
-          className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl sm:text-4xl lg:text-5xl text-white z-20 bg-black/20 hover:bg-black/50 rounded-full w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center"
+          className="absolute left-0 top-1/2 -translate-y-1/2 text-3xl sm:text-4xl lg:text-5xl text-[#C9AC8C] z-20 bg-black/20 hover:bg-black/50 rounded-full w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center"
         >
           &#10094;
         </button>
@@ -179,7 +179,7 @@ const RecentPosts = () => {
                     <div className="mt-4 flex flex-wrap gap-4 text-sm text-gray-300">
                       <div className="flex items-center gap-2">
                         <FaUser className="text-[#C9AC8C]" />
-                        {post.author}
+                        GreenHill
                       </div>
 
                       {new Date(post.created_at).toLocaleDateString("en-US", {
@@ -218,7 +218,7 @@ const RecentPosts = () => {
         {/* Right Button */}
         <button
           onClick={nextPost}
-          className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl sm:text-4xl lg:text-5xl text-white z-20 bg-black/20 hover:bg-black/50 rounded-full w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center"
+          className="absolute right-0 top-1/2 -translate-y-1/2 text-3xl sm:text-4xl lg:text-5xl text-[#C9AC8C] z-20 bg-black/20 hover:bg-black/50 rounded-full w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center"
         >
           &#10095;
         </button>

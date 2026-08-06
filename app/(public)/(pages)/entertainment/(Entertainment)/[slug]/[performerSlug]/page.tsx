@@ -82,7 +82,7 @@ export default function PerformerPage() {
             />
 
             {performer.soundcloud_link?.trim() && (
-              <div className="mt-8 flex justify-center lg:justify-start">
+              <div className="mt-8 text-center lg:justify-start">
                 <Link
                   href={performer.soundcloud_link}
                   target="_blank"
@@ -107,7 +107,7 @@ export default function PerformerPage() {
                   )}&text=${encodeURIComponent(performer.performer_name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-[#C9AC8C]/60 p-3 text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
+                  className="rounded-full border border-white/60 p-3 text-white transition-all duration-300 hover:-translate-y-1 hover:border-black hover:bg-black hover:text-white hover:shadow-lg hover:shadow-black/20"
                 >
                   <FaXTwitter size={20} />
                 </Link>
@@ -119,7 +119,7 @@ export default function PerformerPage() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-[#C9AC8C]/60 p-3 text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
+                  className="rounded-full border border-[#1877F2]/60 p-3 text-[#1877F2] transition-all duration-300 hover:-translate-y-1 hover:border-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:shadow-lg hover:shadow-[#1877F2]/20"
                 >
                   <FaFacebookF size={20} />
                 </Link>
@@ -131,7 +131,7 @@ export default function PerformerPage() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-[#C9AC8C]/60 p-3 text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
+                  className="rounded-full border border-[#0A66C2]/60 p-3 text-[#0A66C2] transition-all duration-300 hover:-translate-y-1 hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white hover:shadow-lg hover:shadow-[#0A66C2]/20"
                 >
                   <FaLinkedinIn size={20} />
                 </Link>
@@ -141,7 +141,7 @@ export default function PerformerPage() {
                   href={`mailto:?subject=${encodeURIComponent(
                     performer.performer_name,
                   )}&body=${encodeURIComponent(`${performer.performer_name}\n\n${performer.page_url}`)}`}
-                  className="rounded-full border border-[#C9AC8C]/60 p-3 text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
+                  className="rounded-full border border-[#EA4335]/60 p-3 text-[#EA4335] transition-all duration-300 hover:-translate-y-1 hover:border-[#EA4335] hover:bg-[#EA4335] hover:text-white hover:shadow-lg hover:shadow-[#EA4335]/20"
                 >
                   <MdEmail size={20} />
                 </Link>

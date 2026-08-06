@@ -4,10 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   FaFacebookF,
-  FaTwitter,
   FaLinkedinIn,
-  FaEnvelope,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
 
 import CommentForm from "@/components/public/CommentForm";
 
@@ -42,6 +42,7 @@ export default function CaseStudyTemplate({
   recentPosts,
   recentComments,
 }: Props) {
+  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/case-studies/${data.slug}`;
   return (
     <section className="mx-auto max-w-7xl pt-36  px-6.75 py-30">
       <div className="grid lg:grid-cols-[2fr_1fr] gap-20">
@@ -83,39 +84,57 @@ export default function CaseStudyTemplate({
 
           <section className="mt-20">
             {/* Share */}
+            <div className="mt-8">
+              <p className="mb-5 font-playfair text-xl font-semibold uppercase tracking-[0.2em] text-[#C9AC8C]">
+                DID YOU LIKE THIS? SHARE IT!
+              </p>
 
-            <div>
-              <h3 className="uppercase tracking-[4px] text-[#5B524B] text-[28px] font-light">
-                Did You Like This? Share It!
-              </h3>
+              <div className="flex items-center gap-4">
+                {/* X */}
+                <Link
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                    pageUrl,
+                  )}&text=${encodeURIComponent(data.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-white/60 p-3 text-white transition-all duration-300 hover:-translate-y-1 hover:border-black hover:bg-black hover:text-white hover:shadow-lg hover:shadow-black/20"
+                >
+                  <FaXTwitter size={20} />
+                </Link>
 
-              <div className="flex gap-4 mt-6">
-                {[
-                  {
-                    icon: <FaFacebookF />,
-                    bg: "#D3B28B",
-                  },
-                  {
-                    icon: <FaTwitter />,
-                    bg: "#3B82F6",
-                  },
-                  {
-                    icon: <FaLinkedinIn />,
-                    bg: "#2D8CDB",
-                  },
-                  {
-                    icon: <FaEnvelope />,
-                    bg: "#D3B28B",
-                  },
-                ].map((item, index) => (
-                  <button
-                    key={index}
-                    className="w-15 h-15 rounded-full text-black text-xl flex items-center justify-center transition-transform duration-300 hover:scale-110"
-                    style={{ backgroundColor: item.bg }}
-                  >
-                    {item.icon}
-                  </button>
-                ))}
+                {/* Facebook */}
+                <Link
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                    pageUrl,
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-[#1877F2]/60 p-3 text-[#1877F2] transition-all duration-300 hover:-translate-y-1 hover:border-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:shadow-lg hover:shadow-[#1877F2]/20"
+                >
+                  <FaFacebookF size={20} />
+                </Link>
+
+                {/* LinkedIn */}
+                <Link
+                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                    pageUrl,
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-[#0A66C2]/60 p-3 text-[#0A66C2] transition-all duration-300 hover:-translate-y-1 hover:border-[#0A66C2] hover:bg-[#0A66C2] hover:text-white hover:shadow-lg hover:shadow-[#0A66C2]/20"
+                >
+                  <FaLinkedinIn size={20} />
+                </Link>
+
+                {/* Email */}
+                <Link
+                  href={`mailto:?subject=${encodeURIComponent(
+                    data.title,
+                  )}&body=${encodeURIComponent(`${data.title}\n\n${pageUrl}`)}`}
+                  className="rounded-full border border-[#EA4335]/60 p-3 text-[#EA4335] transition-all duration-300 hover:-translate-y-1 hover:border-[#EA4335] hover:bg-[#EA4335] hover:text-white hover:shadow-lg hover:shadow-[#EA4335]/20"
+                >
+                  <MdEmail size={20} />
+                </Link>
               </div>
             </div>
 
