@@ -150,7 +150,7 @@ export default function PerformerPage() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="text-[#C9AC8C] leading-9 italic font-['Old_Standard_TT'] space-y-1">
+            <div className="text-[#C9AC8C] leading-9 text-justify italic text-[1.2rem] font-['Old_Standard_TT'] space-y-6">
               {performer.large_description
                 .split("%")
                 .map((paragraph, index) => (

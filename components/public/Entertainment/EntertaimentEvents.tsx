@@ -60,10 +60,10 @@ const EntertaimentEvents = () => {
                       />
                     </div>
                     <div className="absolute backface-hidden w-3xl top-40 left-1/2 -translate-x-1/2 z-10">
-                      <h3 className="text-white text-2xl  md:text-3xl font-bold text-center">
+                      <h3 className="text-white text-4xl font-['Playfair_Display'] md:text-4xl font-bold text-center">
                         {card.title}
                       </h3>
-                      <hr className="w-[102] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
+                      <hr className="w-[102] mx-auto mt-6 border-2 rounded-full border-[#C9AC8C]" />
                     </div>
 
                     {/* Back */}

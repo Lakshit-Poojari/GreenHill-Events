@@ -304,6 +304,12 @@ const Page = () => {
               name="large_description"
               value={formData.large_description}
               onChange={handleChange}
+              placeholder={`Use % to separate paragraphs.
+
+                  Example:
+                  First paragraph.%
+                  Second paragraph.%
+                  Third paragraph.`}
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
             />

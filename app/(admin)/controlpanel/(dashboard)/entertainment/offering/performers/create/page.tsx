@@ -262,6 +262,14 @@ const Page = () => {
               value={formData.large_description}
               onChange={handleChange}
               required
+              placeholder={`Enter the long description...
+
+                Use % to create a new paragraph.
+
+                Example:
+                This is the first paragraph.%
+                This is the second paragraph.%
+                This is the third paragraph.`}
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none 
                 focus:border-[#C9AC8C]"
             />

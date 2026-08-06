@@ -7,11 +7,11 @@ interface SectionHeadingProps {
 const SectionHeading = ({title}: SectionHeadingProps) => {
   return (
     <div>
-      <p className="font-['Poppins'] pt-5 font-light text-center text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem]">
+      <p className="font-['Poppins'] py-5 font-light text-center  text-white text-[102px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem]">
         {title}
       </p>
 
-      <hr className="w-[12%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
+      <hr className="w-[12%] mx-auto py-24 border-2 rounded-full border-[#C9AC8C]" />
     </div>
   )
 }
