@@ -16,7 +16,7 @@ export async function sendContactEmail(contactEmail: CreateContactType) {
     await transporter.sendMail({
       from: `"Green Hill Events" <${process.env.SMTP_USER}>`,
       to: process.env.CONTACT_RECEIVER,
-      subject: "New Contact Form Submission",
+      subject: "New Enquiry Form Submission",
       html: `
         <h2>New Contact Enquiry</h2>
 
@@ -39,7 +39,6 @@ export async function sendContactEmail(contactEmail: CreateContactType) {
           </tr>
         </table>
       `,
-      
     });
     return true;
   } catch (error) {
