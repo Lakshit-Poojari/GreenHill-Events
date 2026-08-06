@@ -72,7 +72,7 @@ const EntertainmentCards = ({ heading, description, cards }: Props) => {
                       href={card.link || `/entertainment/${card.slug}`}
                       className="self-center"
                     >
-                      <button className="px-6 py-3 border border-[#C9AC8C] rounded-full text-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black">
+                      <button className="px-6 py-3 border border-[#C9AC8C] animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both] rounded-full text-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black">
                         FIND OUT MORE
                       </button>
                     </Link>

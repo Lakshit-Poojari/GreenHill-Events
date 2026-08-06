@@ -65,7 +65,9 @@ const Page = () => {
 
             <button
               onClick={() => setOpen(true)}
-              className="mt-12 mb-5 rounded-4xl border border-[#C9AC8C] px-10 py-3 text-[1.25rem] text-[#C9AC8C] transition duration-300 hover:bg-[#C9AC8C] hover:text-black"
+              className="mt-12 mb-5 text-[1.25rem] border border-[#C9AC8C] rounded-4xl px-10 py-3 text-[#C9AC8C]
+              animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]
+              hover:bg-[#C9AC8C] hover:text-black transition duration-300"
             >
               CONTACT US NOW
             </button>

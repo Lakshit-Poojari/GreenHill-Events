@@ -37,7 +37,7 @@ const page = () => {
 
       <MobileBarCompany />
 
-      <div className="mx-16.25 px-6.75">
+      <div className="mx-16.25 px-6.75 flex  flex-col items-center justify-center">
         <p className="font-['Poppins'] text-[4.5rem] py-20 sm:py-24 md:py-32 lg:py-40 xl:py-50 font-light text-center text-white">
           We're more than just refreshments...
         </p>
@@ -51,8 +51,8 @@ const page = () => {
         <div>
           <Link href="/">
             <button
-              className="mt-12 mb-5 text-[1.25rem] border-3 border-white rounded-4xl px-10 py-3 text-[#C9AC8C]
-                animate-[bounce-x_0.49s_ease-in-out_infinite] hover:bg-[#C9AC8C] hover:text-black transition duration-300"
+              className="mt-12 mb-5 text-[1.25rem] border-3  border-white rounded-4xl px-10 py-3 text-[#C9AC8C]
+                animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both] hover:bg-[#C9AC8C] hover:text-black transition duration-300"
             >
               VISIT SIMONGREENHILL.COM
             </button>

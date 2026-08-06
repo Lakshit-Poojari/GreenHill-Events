@@ -49,9 +49,9 @@ const EntertaimentEvents = () => {
                       : ""
                   }`}
                 >
-                  <div className=" relative h-full w-full transform-3d group-hover:transform-[rotateY(180deg)] rounded-lg shadow-[0_2px_40px_rgba(0,0,0,0.35)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(201,172,140,0.18)]">
+                  <div className="relative min-h-89 w-full transition-transform  duration-700 transform-3d group-hover:transform-[rotateY(180deg)]">
                     {/* Front */}
-                    <div className="absolute shadow-xlg rounded-lg shadow-[#454545] inset-0 backface-hidden">
+                    <div className="absolute shadow-lg rounded-lg shadow-[#454545] inset-0 backface-hidden">
                       <Image
                         src={`/api/uploads/${card.image.replace(/^\/?categories\//, "categories/")}`}
                         fill
@@ -68,7 +68,7 @@ const EntertaimentEvents = () => {
 
                     {/* Back */}
                     <div
-                      className=" absolute inset-0 flex  flex-col justify-between bg-black text-white p-6 rounded-lg 
+                      className=" absolute inset-0 shadow-lg rounded-lg shadow-[#454545] flex  flex-col justify-between bg-black text-white p-6 rounded-lg 
                           transform-[rotateY(180deg)] backface-hidden "
                     >
                       <p className="md:text-lg pt-5 mt-5 text-[1.2rem] italic font-['Old_Standard_TT'] text-[#C9AC8C] leading-relaxed">
@@ -82,7 +82,7 @@ const EntertaimentEvents = () => {
                         >
                           <button
                             className="px-6 py-3 border mb-6 border-[#C9AC8C] rounded-full text-[#C9AC8C]  hover:bg-[#C9AC8C]
-                                    hover:text-black"
+                                    hover:text-black animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]"
                           >
                             FIND OUT MORE
                           </button>

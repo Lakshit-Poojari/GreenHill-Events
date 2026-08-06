@@ -52,7 +52,7 @@ const page = () => {
           <Link href="/contact-us">
             <button
               className="mb-5 text-[1.25rem] border border-[#C9AC8C] rounded-4xl px-10 py-3
-                            text-[#C9AC8C] animate-[bounce-x_0.49s_ease-in-out_infinite]
+                            text-[#C9AC8C] animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]
                             hover:bg-[#C9AC8C] hover:text-black transition duration-300"
             >
               ENQUIRE TODAY

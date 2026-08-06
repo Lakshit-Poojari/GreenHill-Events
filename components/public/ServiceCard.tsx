@@ -55,7 +55,7 @@ const ServiceCard = () => {
 
           {/* Button */}
           <Link href={service.href}>
-            <button className="rounded-full border border-white px-6 py-3 text-sm font-medium tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-lg">
+            <button className="rounded-full border border-white px-6 animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both] py-3 text-sm font-medium tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-lg">
               SEE MORE
             </button>
           </Link>
