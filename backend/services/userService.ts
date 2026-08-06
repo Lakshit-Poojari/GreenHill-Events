@@ -202,7 +202,10 @@ export async function updateUserStatusService(id: number, status: UserStatus) {
   }
 }
 
-export async function updateUserRoleService( id: number, role: "SUPER_ADMIN" | "ADMIN",) {
+export async function updateUserRoleService(
+  id: number,
+  role: "SUPER_ADMIN" | "ADMIN",
+) {
   if (!role) {
     throw new Error("Role is required");
   }

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 interface SectionHeadingProps {
-    title: string,
+  title: string;
 }
 
-const SectionHeading = ({title}: SectionHeadingProps) => {
+const SectionHeading = ({ title }: SectionHeadingProps) => {
   return (
     <div>
       <p className="font-['Playfair_Display'] py-5 font-light text-center  text-white text-[102px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem]">
@@ -13,7 +13,7 @@ const SectionHeading = ({title}: SectionHeadingProps) => {
 
       <hr className="w-[12%] mx-auto  border-[#C9AC8C]" />
     </div>
-  )
-}
+  );
+};
 
-export default SectionHeading
+export default SectionHeading;

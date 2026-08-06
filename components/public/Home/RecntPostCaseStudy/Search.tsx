@@ -38,7 +38,6 @@ export default function Search({ recentPosts }: Props) {
         }}
         className="w-full rounded-full border border-[#57514C] bg-[#2A2626] px-5 py-3 text-white placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
       />
-
     </div>
   );
 }

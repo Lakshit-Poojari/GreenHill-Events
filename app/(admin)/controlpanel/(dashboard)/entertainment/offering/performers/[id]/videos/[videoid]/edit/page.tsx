@@ -185,7 +185,6 @@ const Page = () => {
             />
           </div>
 
-
           {/* Display Order */}
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-300">

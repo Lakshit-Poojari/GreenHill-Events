@@ -66,7 +66,9 @@ const EntertainmentCards = ({ heading, description, cards }: Props) => {
 
                   {/* Back */}
                   <div className="absolute inset-0 bg-black shadow-lg rounded-lg shadow-[#454545]  p-6 flex flex-col justify-between transform-[rotateY(180deg)] backface-hidden">
-                    <p className="text-[#C9AC8C] text-xl italic font-['Playfair_Display']">{card.text}</p>
+                    <p className="text-[#C9AC8C] text-xl italic font-['Playfair_Display']">
+                      {card.text}
+                    </p>
 
                     <Link
                       href={card.link || `/entertainment/${card.slug}`}

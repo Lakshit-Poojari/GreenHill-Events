@@ -9,7 +9,7 @@ interface Comment {
   id: number;
   case_study_id: number;
   name: string | null;
-  email: string |null;
+  email: string | null;
   comment: string;
 }
 
@@ -86,7 +86,9 @@ const Page = () => {
   }
 
   if (!comment) {
-    return <div className="py-20 text-center text-red-500">Comment not found.</div>;
+    return (
+      <div className="py-20 text-center text-red-500">Comment not found.</div>
+    );
   }
 
   return (
@@ -94,9 +96,7 @@ const Page = () => {
       <div className="flex items-center justify-between rounded-xl border border-gray-700 bg-[#181616] p-8">
         <div>
           <h1 className="text-3xl font-bold text-white">Reply to Comment</h1>
-          <p className="mt-2 text-gray-400">
-            Write an official admin reply.
-          </p>
+          <p className="mt-2 text-gray-400">Write an official admin reply.</p>
         </div>
 
         <Link

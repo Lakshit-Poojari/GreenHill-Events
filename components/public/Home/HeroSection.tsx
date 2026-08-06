@@ -39,7 +39,6 @@ const HeroSection = () => {
 
   return (
     <section className="relative flex items-center pb-10 h-150 justify-center py-17">
-
       {/* Left Button */}
       <button
         onClick={prevText}
@@ -61,13 +60,12 @@ const HeroSection = () => {
         &#10095;
       </button>
       <button
-      onClick={scrollToNext}
-      className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex h-19 w-14 items-center justify-center rounded-full border-2 border-white bg-transparent text-white transition-all duration-300 hover:border-[#C8AD8C] hover:bg-[#C8AD8C] hover:text-black"
-      aria-label="Scroll Down"
-    >
-      <ChevronsDown className="h-10 pt-2  w-6 animate-bounce" />
-    </button>
-
+        onClick={scrollToNext}
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex h-19 w-14 items-center justify-center rounded-full border-2 border-white bg-transparent text-white transition-all duration-300 hover:border-[#C8AD8C] hover:bg-[#C8AD8C] hover:text-black"
+        aria-label="Scroll Down"
+      >
+        <ChevronsDown className="h-10 pt-2  w-6 animate-bounce" />
+      </button>
     </section>
   );
 };

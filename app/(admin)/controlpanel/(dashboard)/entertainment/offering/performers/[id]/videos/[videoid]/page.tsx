@@ -152,7 +152,6 @@ const Page = () => {
           )}
         </div>
 
-
         {/* Display Order */}
         <div>
           <p className="text-sm text-gray-400">Display Order</p>

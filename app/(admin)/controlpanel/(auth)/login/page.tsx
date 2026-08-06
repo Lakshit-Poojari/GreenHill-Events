@@ -12,7 +12,9 @@ const page = () => {
   const [message, setmessage] = useState("");
   const [success, setsuccess] = useState("false");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     setform({
       ...form,
       [e.target.name]: e.target.value,

@@ -90,16 +90,15 @@ export default function Page() {
   }
 
   if (!comment) {
-    return <div className="py-20 text-center text-red-500">Comment not found.</div>;
+    return (
+      <div className="py-20 text-center text-red-500">Comment not found.</div>
+    );
   }
 
   const isVisitorComment = comment.created_by === null;
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-8"
-    >
+    <form onSubmit={handleSubmit} className="space-y-8">
       <div className="flex items-center justify-between rounded-xl border border-gray-700 bg-[#181616] p-8">
         <div>
           <h1 className="text-3xl font-bold text-white">
@@ -140,9 +139,7 @@ export default function Page() {
         />
 
         <div className="mt-6">
-          <label className="mb-2 block text-sm text-gray-400">
-            Status
-          </label>
+          <label className="mb-2 block text-sm text-gray-400">Status</label>
 
           <select
             value={status}
@@ -150,10 +147,7 @@ export default function Page() {
             className="w-full rounded-lg border border-gray-700 bg-[#202020] px-4 py-3 text-white"
           >
             {statusOptions.map((item) => (
-              <option
-                key={item}
-                value={item}
-              >
+              <option key={item} value={item}>
                 {item}
               </option>
             ))}

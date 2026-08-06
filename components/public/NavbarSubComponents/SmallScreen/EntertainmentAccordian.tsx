@@ -24,7 +24,7 @@ const EntertainmentAccordian = () => {
             ...data.category
               .filter(
                 (item: any) =>
-                  item.status === "ACTIVE" && item.has_details !== 0
+                  item.status === "ACTIVE" && item.has_details !== 0,
               )
               .map((item: any) => ({
                 id: item.id,

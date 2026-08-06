@@ -7,8 +7,10 @@ export async function GET(
 ) {
   try {
     const { caseStudyId } = await params;
-    
-    const caseStudyComment = await getCommentsByCaseStudyController(Number(caseStudyId));
+
+    const caseStudyComment = await getCommentsByCaseStudyController(
+      Number(caseStudyId),
+    );
 
     return NextResponse.json(
       {

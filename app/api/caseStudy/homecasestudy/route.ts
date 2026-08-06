@@ -15,7 +15,7 @@ export async function GET() {
             ? error.message
             : "Failed to fetch home case studies.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

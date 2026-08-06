@@ -196,7 +196,6 @@ export async function getCaseStudyBySlugService(slug: string) {
   return result[0];
 }
 
-
 export async function getHomeCaseStudiesService() {
   try {
     const caseStudies = await getHomeCaseStudiesModel();
@@ -207,7 +206,6 @@ export async function getHomeCaseStudiesService() {
     throw error;
   }
 }
-
 
 export async function getBlogCaseStudiesService() {
   try {

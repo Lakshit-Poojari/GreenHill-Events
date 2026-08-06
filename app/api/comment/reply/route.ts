@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
     const user = verifyToken(token);
     const body = await request.json();
-    await createAdminReplyController({...body, created_by:user.id});
+    await createAdminReplyController({ ...body, created_by: user.id });
 
     return NextResponse.json(
       {

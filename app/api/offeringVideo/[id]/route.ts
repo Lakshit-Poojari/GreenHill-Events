@@ -6,7 +6,10 @@ import {
 } from "@/backend/controllers/offeringVideoController";
 import { verifyToken } from "@/backend/middleware/authMiddleware";
 
-export async function GET( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
 
@@ -47,7 +50,10 @@ export async function GET( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function PATCH( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const token = request.cookies.get("token")?.value;
 
@@ -96,7 +102,10 @@ export async function PATCH( request: NextRequest, { params }: { params: Promise
   }
 }
 
-export async function DELETE( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
 

@@ -1,6 +1,13 @@
 "use client";
 
-import { ArrowLeft, Mail, Phone, User, Calendar, MessageSquare } from "lucide-react";
+import {
+  ArrowLeft,
+  Mail,
+  Phone,
+  User,
+  Calendar,
+  MessageSquare,
+} from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -76,19 +83,14 @@ const Page = () => {
 
       {/* Header */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg">
-        <h1 className="text-3xl font-bold text-white">
-          Contact Enquiry
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Contact Enquiry</h1>
 
-        <p className="mt-2 text-[#C9AC8C]">
-          View complete enquiry details.
-        </p>
+        <p className="mt-2 text-[#C9AC8C]">View complete enquiry details.</p>
       </div>
 
       {/* Details */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg">
         <div className="grid gap-6 md:grid-cols-2">
-
           <div>
             <p className="mb-2 flex items-center gap-2 text-[#C9AC8C]">
               <User size={18} />
@@ -113,9 +115,7 @@ const Page = () => {
               Phone
             </p>
 
-            <p className="text-white">
-              {contact.phone || "-"}
-            </p>
+            <p className="text-white">{contact.phone || "-"}</p>
           </div>
 
           <div>
@@ -128,7 +128,6 @@ const Page = () => {
               {new Date(contact.created_at).toLocaleString()}
             </p>
           </div>
-
         </div>
 
         <div className="mt-8">

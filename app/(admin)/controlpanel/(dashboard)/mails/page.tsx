@@ -56,7 +56,7 @@ const Page = () => {
       [contact.name, contact.email, contact.phone ?? "", contact.message]
         .join(" ")
         .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        .includes(searchTerm.toLowerCase()),
     );
   }, [contacts, searchTerm]);
 
@@ -72,9 +72,7 @@ const Page = () => {
     <div className="space-y-8">
       {/* Header */}
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg">
-        <h1 className="text-3xl font-bold text-white">
-          Contact Enquiries
-        </h1>
+        <h1 className="text-3xl font-bold text-white">Contact Enquiries</h1>
 
         <p className="mt-2 text-[#C9AC8C]">
           View and manage contact form enquiries.
@@ -117,9 +115,7 @@ const Page = () => {
                     {contact.name}
                   </td>
 
-                  <td className="px-6 py-5 text-gray-300">
-                    {contact.email}
-                  </td>
+                  <td className="px-6 py-5 text-gray-300">{contact.email}</td>
 
                   <td className="px-6 py-5 text-gray-300">
                     {contact.phone || "-"}
@@ -141,7 +137,6 @@ const Page = () => {
                       >
                         <Eye size={18} />
                       </Link>
-
                     </div>
                   </td>
                 </tr>
@@ -149,10 +144,7 @@ const Page = () => {
 
               {filteredContacts.length === 0 && (
                 <tr>
-                  <td
-                    colSpan={6}
-                    className="py-10 text-center text-gray-400"
-                  >
+                  <td colSpan={6} className="py-10 text-center text-gray-400">
                     No contact enquiries found.
                   </td>
                 </tr>

@@ -76,7 +76,9 @@ export default function Page() {
             </Link>
 
             <div className="relative z-10 mx-auto -mt-8 w-full rounded-2xl border border-[#C9AC8C] bg-[#2A2626] px-6 pb-6 pt-5 shadow-xl transition-all duration-300 group-hover:shadow-2xl">
-              <p className="text-center text-xs font-semibold uppercase tracking-[5px] text-[#C9AC8C]">—— Case Studies ——</p>
+              <p className="text-center text-xs font-semibold uppercase tracking-[5px] text-[#C9AC8C]">
+                —— Case Studies ——
+              </p>
 
               <h2 className="mt-3 text-center text-[18px] font-semibold uppercase tracking-[3px] text-white transition-colors duration-300 group-hover:text-[#C9AC8C] md:text-[22px] lg:text-[18px]">
                 {blog.title}
@@ -88,7 +90,7 @@ export default function Page() {
 
               <div className="p-3 mt-3 flex items-center justify-between text-white">
                 <div className="flex items-center gap-2 text-sm font-medium">
-                  <FaUser className="text-[#C9AC8C]"/>
+                  <FaUser className="text-[#C9AC8C]" />
                   <span className="ml-3.5">GreenHill</span>
                 </div>
 

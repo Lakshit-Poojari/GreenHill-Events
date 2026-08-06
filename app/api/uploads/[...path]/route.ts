@@ -3,7 +3,7 @@ import path from "path";
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ path: string[] }> }
+  { params }: { params: Promise<{ path: string[] }> },
 ) {
   try {
     const { path: filePath } = await params;
@@ -28,8 +28,7 @@ export async function GET(
 
     return new Response(file, {
       headers: {
-        "Content-Type":
-          mimeTypes[ext] ?? "application/octet-stream",
+        "Content-Type": mimeTypes[ext] ?? "application/octet-stream",
       },
     });
   } catch (error) {

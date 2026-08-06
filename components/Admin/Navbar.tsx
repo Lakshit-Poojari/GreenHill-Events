@@ -50,7 +50,6 @@ export default function Navbar() {
 
         {/* Right */}
         <div className="flex items-center gap-4">
-
           <button
             onClick={logout}
             className="flex items-center gap-2 rounded-lg bg-red-500 px-4 py-2 text-sm text-white hover:bg-red-600"

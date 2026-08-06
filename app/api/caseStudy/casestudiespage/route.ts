@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getCaseStudyController, } from "@/backend/controllers/caseStudyController";
+import { getCaseStudyController } from "@/backend/controllers/caseStudyController";
 
 export async function GET() {
   try {
@@ -15,7 +15,7 @@ export async function GET() {
             ? error.message
             : "Failed to fetch home case studies.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -14,37 +14,42 @@ const EntertainmentDropDown = () => {
   const pathname = usePathname();
   const [categories, setCategories] = useState<Category[]>([]);
 
-useEffect(() => {
-  const fetchCategories = async () => {
-    try {
-      const res = await fetch("/api/categories");
-      const data = await res.json();
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/categories");
+        const data = await res.json();
 
-      if (data.success) {
-       setCategories([
-  ...data.category
-    .filter((item: any) => item.status === "ACTIVE" && item.has_details !== 0 )
-    .map((item: any) => ({
-      id: item.id,
-      category_name: item.category_name,
-      slug: item.slug,
-    })),
-  {
-    id: "bespoke",
-    category_name: "BESPOKE",
-    slug: "bespoke",
-  },
-]);
+        if (data.success) {
+          setCategories([
+            ...data.category
+              .filter(
+                (item: any) =>
+                  item.status === "ACTIVE" && item.has_details !== 0,
+              )
+              .map((item: any) => ({
+                id: item.id,
+                category_name: item.category_name,
+                slug: item.slug,
+              })),
+            {
+              id: "bespoke",
+              category_name: "BESPOKE",
+              slug: "bespoke",
+            },
+          ]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
       }
-    } catch (error) {
-      console.error("Failed to fetch categories:", error);
-    }
-  };
+    };
 
-  fetchCategories();
-}, []);
+    fetchCategories();
+  }, []);
   const navClass = (path: string) =>
-    pathname === path ? "text-[rgba(201,172,140,1)]" : "hover:text-gray-400 transition";
+    pathname === path
+      ? "text-[rgba(201,172,140,1)]"
+      : "hover:text-gray-400 transition";
 
   return (
     <>

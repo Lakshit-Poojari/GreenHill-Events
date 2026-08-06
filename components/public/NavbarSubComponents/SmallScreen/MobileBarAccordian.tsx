@@ -38,14 +38,14 @@ const MobileBarAccordian = () => {
 
   return (
     <>
-        <Link href="/mobile-bar">
-      <button
-        onClick={() => setMobileBarsOpen(!mobileBarsOpen)}
-        className="w-full flex justify-between px-6 py-4"
-      >
-        MOBILE BARS
-        <span className="text-2xl">{mobileBarsOpen ? "̭" : "̬"}</span>
-      </button>
+      <Link href="/mobile-bar">
+        <button
+          onClick={() => setMobileBarsOpen(!mobileBarsOpen)}
+          className="w-full flex justify-between px-6 py-4"
+        >
+          MOBILE BARS
+          <span className="text-2xl">{mobileBarsOpen ? "̭" : "̬"}</span>
+        </button>
       </Link>
 
       {mobileBarsOpen && (
@@ -64,10 +64,7 @@ const MobileBarAccordian = () => {
                 <ul className="pl-12 bg-[#1a1a1a]">
                   {item.children.map((child) => (
                     <li key={child.href}>
-                      <Link
-                        href={child.href}
-                        className="block py-3"
-                      >
+                      <Link href={child.href} className="block py-3">
                         {child.name}
                       </Link>
                     </li>
@@ -82,4 +79,4 @@ const MobileBarAccordian = () => {
   );
 };
 
-export default MobileBarAccordian
+export default MobileBarAccordian;

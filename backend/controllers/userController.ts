@@ -75,7 +75,10 @@ export async function deleteUserController(id: number) {
   }
 }
 
-export async function updateUserStatusController( id: number, status: UserStatus,) {
+export async function updateUserStatusController(
+  id: number,
+  status: UserStatus,
+) {
   try {
     const result = await updateUserStatusService(id, status);
     return result;
@@ -85,6 +88,9 @@ export async function updateUserStatusController( id: number, status: UserStatus
   }
 }
 
-export async function updateUserRoleController( id: number, role: "SUPER_ADMIN" | "ADMIN",) {
+export async function updateUserRoleController(
+  id: number,
+  role: "SUPER_ADMIN" | "ADMIN",
+) {
   return await updateUserRoleService(id, role);
 }

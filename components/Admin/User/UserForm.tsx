@@ -40,7 +40,9 @@ export default function UserForm({
     },
   );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
 
     let formattedValue = value;

@@ -150,7 +150,8 @@ const Page = () => {
             />
 
             <p className="mt-2 text-xs text-gray-500">
-              Paste the YouTube embed URL (e.g. https://www.youtube.com/embed/VIDEO_ID).
+              Paste the YouTube embed URL (e.g.
+              https://www.youtube.com/embed/VIDEO_ID).
             </p>
           </div>
 

@@ -6,7 +6,10 @@ import {
 } from "@/backend/controllers/userController";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     const result = await getUserByIdController(Number(id));
@@ -27,7 +30,10 @@ export async function GET( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function PUT( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     const body = await request.json();
@@ -56,7 +62,10 @@ export async function PUT( request: NextRequest, { params }: { params: Promise<{
   }
 }
 
-export async function PATCH( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     const body = await request.json();
@@ -85,7 +94,10 @@ export async function PATCH( request: NextRequest, { params }: { params: Promise
   }
 }
 
-export async function DELETE( request: NextRequest, { params }: { params: Promise<{ id: string }> },) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     await deleteUserController(Number(id));

@@ -5,8 +5,10 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <div className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C] text-lg items-start italic text-justify space-y-1.5 my-6 py-3 
-        font-['Old Standard TT']">
+      <div
+        className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C] text-lg items-start italic text-justify space-y-1.5 my-6 py-3 
+        font-['Old Standard TT']"
+      >
         <SectionHeading title="Complimentary Bar" />
         <div>
           <p>Treat your guests to a free bar. We can do this in 4 ways:</p>

@@ -1,7 +1,7 @@
 import { ResultSetHeader, RowDataPacket } from "mysql2";
 import db from "../lib/db";
 import {
-  CommentType ,
+  CommentType,
   CommentStatus,
   CreateCommentType,
   UpdateCommentType,
@@ -98,7 +98,7 @@ export async function updateCommentStatusModel(
   }
 }
 
-type commentsRow = CommentType  & RowDataPacket;
+type commentsRow = CommentType & RowDataPacket;
 export async function getAllCommentModel() {
   try {
     const [result] = await db.query<commentsRow[]>(
@@ -189,7 +189,7 @@ export async function getContactCountModel() {
       `
       SELECT COUNT(*) AS total
       FROM contacts
-      `
+      `,
     );
 
     return result.total;

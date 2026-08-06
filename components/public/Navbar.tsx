@@ -35,12 +35,18 @@ const Navbar = () => {
   return (
     <header
       className={`fixed border-b border-[#88868466] font-['Poppins'] top-0 left-0 w-full  z-50 transition-all duration-300 
-      ${ scrolled ? "bg-black/95 shadow-md  h-17" : "bg-transparent py-7" }`}>
+      ${scrolled ? "bg-black/95 shadow-md  h-17" : "bg-transparent py-7"}`}
+    >
       <nav className="flex items-center justify-between mx-16.25 px-6.75">
         {/* Logo */}
         <div className="shrink-0">
-          <Image src="/greenhill.jpg" alt="logo" width={400} height={400}
-            className="h-12 sm:h-14 md:h-16 lg:h-17 lg:w-60 xl:w-85 w-auto transition-all duration-300" />
+          <Image
+            src="/greenhill.jpg"
+            alt="logo"
+            width={400}
+            height={400}
+            className="h-12 sm:h-14 md:h-16 lg:h-17 lg:w-60 xl:w-85 w-auto transition-all duration-300"
+          />
         </div>
 
         {/* Desktop Menu */}
@@ -53,15 +59,15 @@ const Navbar = () => {
             </li>
 
             <li className="relative group">
-              <AboutDropDown/>
+              <AboutDropDown />
             </li>
 
             <li className="relative group">
-              <EntertainmentDropDown/>
+              <EntertainmentDropDown />
             </li>
 
             <li className="relative group">
-              <MobileBarDropDown/>
+              <MobileBarDropDown />
             </li>
 
             <li>
@@ -85,7 +91,10 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Button */}
-        <button className="lg:hidden flex items-center gap-2" onClick={() => setOpen(!open)} >
+        <button
+          className="lg:hidden flex items-center gap-2"
+          onClick={() => setOpen(!open)}
+        >
           <span className="font-semibold tracking-widest">MENU</span>
 
           {open ? <X size={32} /> : <Menu size={32} strokeWidth={2.5} />}
@@ -97,41 +106,53 @@ const Navbar = () => {
         <div className="lg:hidden bg-black text-white border-t border-gray-800">
           <ul className="flex flex-col">
             <li>
-              <Link href="/" onClick={() => setOpen(false)}
-                className={`block px-6 py-4 ${navClass("/")}`}>
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${navClass("/")}`}
+              >
                 HOME
               </Link>
             </li>
 
             <li>
-              <AboutAccordion/>
+              <AboutAccordion />
             </li>
 
             <li>
-              <EntertainmentAccordian/>
+              <EntertainmentAccordian />
             </li>
 
             <li>
-              <MobileBarAccordian/>
+              <MobileBarAccordian />
             </li>
 
             <li>
-              <Link href="/events" onClick={() => setOpen(false)} 
-                className={`block px-6 py-4 ${navClass("/events")}`}>
+              <Link
+                href="/events"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${navClass("/events")}`}
+              >
                 EVENTS
               </Link>
             </li>
 
             <li>
-              <Link href="/blog" onClick={() => setOpen(false)}
-                className={`block px-6 py-4 ${navClass("/blog")}`}>
+              <Link
+                href="/blog"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${navClass("/blog")}`}
+              >
                 BLOG
               </Link>
             </li>
 
             <li>
-              <Link href="/contact-us" onClick={() => setOpen(false)}
-                className={`block px-6 py-4 ${navClass("/contact-us")}`}>
+              <Link
+                href="/contact-us"
+                onClick={() => setOpen(false)}
+                className={`block px-6 py-4 ${navClass("/contact-us")}`}
+              >
                 CONTACT US
               </Link>
             </li>

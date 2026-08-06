@@ -3,7 +3,7 @@ import { getOfferingBySlugController } from "@/backend/controllers/offeringContr
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ slug: string }> },
 ) {
   try {
     const { slug } = await params;
@@ -19,7 +19,7 @@ export async function GET(
         success: false,
         message: "Internal server error.",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -1,6 +1,6 @@
 export type CommentStatus = "PENDING" | "APPROVED" | "REJECTED";
 
-export interface CommentType  {
+export interface CommentType {
   id: number;
   case_study_id: number;
   parent_comment_id: number | null;
@@ -54,6 +54,6 @@ export interface UpdateCommentStatusType {
   approved_by: number;
 }
 
-export interface CommentWithReplies extends CommentType  {
+export interface CommentWithReplies extends CommentType {
   replies: CommentWithReplies[];
 }

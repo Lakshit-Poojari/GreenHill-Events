@@ -104,7 +104,9 @@ export default function CommentsPage() {
       <div className="rounded-xl border border-gray-700 bg-[#181616] p-8 shadow-lg">
         <h1 className="text-3xl font-bold text-white">Comments</h1>
 
-        <p className="mt-2 text-[#C9AC8C]">Manage and moderate blog comments.</p>
+        <p className="mt-2 text-[#C9AC8C]">
+          Manage and moderate blog comments.
+        </p>
       </div>
 
       <div className="mb-6 flex flex-wrap justify-end gap-4">

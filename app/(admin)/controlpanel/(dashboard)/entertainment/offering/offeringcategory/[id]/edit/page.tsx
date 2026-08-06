@@ -48,7 +48,9 @@ const Page = () => {
     fetchEntertainmentCategories();
   }, [id]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({

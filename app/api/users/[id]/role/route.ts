@@ -2,7 +2,10 @@ import { updateUserRoleController } from "@/backend/controllers/userController";
 import { verifyToken } from "@/backend/middleware/authMiddleware";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PATCH( request: NextRequest,{ params }: { params: Promise<{ id: string }> },) {
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const token = request.cookies.get("token")?.value;
 

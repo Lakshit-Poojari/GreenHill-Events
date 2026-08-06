@@ -126,7 +126,9 @@ const page = () => {
           className="rounded-xl border border-gray-700 bg-[#181616] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.5)] transition-all 
             duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:shadow-[0_12px_35px_rgba(201,172,140,0.18)]"
         >
-          <p className="text-sm text-center text-gray-400">Performers Categories</p>
+          <p className="text-sm text-center text-gray-400">
+            Performers Categories
+          </p>
           <h2 className="mt-2 text-3xl text-center font-bold text-white">
             {loading ? "..." : stats.PerformersCategories}
           </h2>

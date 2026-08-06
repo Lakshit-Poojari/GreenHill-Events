@@ -67,7 +67,6 @@ export const Companys = () => {
   return (
     <section className=" pb-12 mx-16.25">
       <div className="container mx-auto relative flex items-center">
-
         {/* Left Button */}
         <button
           onClick={prevSlide}
@@ -113,7 +112,6 @@ export const Companys = () => {
         >
           &#10095;
         </button>
-
       </div>
     </section>
   );
