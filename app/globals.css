@@ -14,14 +14,39 @@ body {
   color: var(--foreground);
 }
 
-@keyframes bounce-x {
-  0%, 100% {
+
+
+/* Button left right animation */
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
     transform: translateX(0);
   }
-  50% {
-    transform: translateX(20px);
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-6px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(6px);
+  }
+
+  90% {
+    transform: translateX(-3px);
   }
 }
+
+
+
+
+/* loading screen */
 
 @keyframes ripple {
   0% {
