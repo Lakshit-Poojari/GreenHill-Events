@@ -18,7 +18,7 @@ import {
 
 export async function createCategoryService(category: CreateCategoryType) {
   try {
-    const slug = category.category_name
+    const slug = category.menu_name
       .toLowerCase()
       .trim()
       .replace(/&/g, "")
@@ -44,9 +44,9 @@ export async function createCategoryService(category: CreateCategoryType) {
         throw new Error("Menu Name Required");
       }
 
-      if (!category.long_description) {
-        throw new Error("Long Description Required");
-      }
+      // if (!category.long_description) {
+      //   throw new Error("Long Description Required");
+      // }
     }
 
     const existingCategory = await getCategoryBySlug(slug);
@@ -76,7 +76,7 @@ export async function updateCategoryService(
   updatedBy: number,
 ) {
   try {
-    const slug = category.category_name
+    const slug = category.menu_name
       .toLowerCase()
       .trim()
       .replace(/&/g, "")

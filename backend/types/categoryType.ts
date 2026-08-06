@@ -8,7 +8,7 @@ export enum CategoryStatus {
 export interface Category {
   id: number;
   category_name: string;
-  menu_name?: string;
+  menu_name: string;
   slug?: string;
   image: File;
   description: string;
@@ -23,7 +23,7 @@ export interface Category {
 
 export interface CreateCategoryType {
   category_name: string;
-  menu_name?: string;
+  menu_name: string;
   image: File;
   slug?: string;
   description: string;
@@ -35,7 +35,7 @@ export interface CreateCategoryType {
 
 export interface UpdateCategoryType {
   category_name: string;
-  menu_name?: string;
+  menu_name: string;
   image?: File | null;
   description: string;
   long_description?: string;

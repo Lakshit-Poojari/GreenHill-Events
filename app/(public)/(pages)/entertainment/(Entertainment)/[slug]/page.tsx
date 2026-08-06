@@ -33,7 +33,7 @@ const Page = () => {
           const category = categoryResult.category[0];
 
           setData({
-            heading: category.category_name.toUpperCase(),
+            heading: category.menu_name.toUpperCase(),
             description: category.description,
             cards: (offeringResult.offerings ?? []).map((item: any) => ({
               title: item.performer_name,

@@ -49,9 +49,9 @@ const EntertaimentEvents = () => {
                       : ""
                   }`}
                 >
-                  <div className=" relative h-full w-full transform-3d group-hover:transform-[rotateY(180deg)] rounded-lg shadow-[0_15px_40px_rgba(0,0,0,0.35)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(201,172,140,0.18)]">
+                  <div className=" relative h-full w-full transform-3d group-hover:transform-[rotateY(180deg)] rounded-lg shadow-[0_2px_40px_rgba(0,0,0,0.35)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(201,172,140,0.18)]">
                     {/* Front */}
-                    <div className="absolute inset-0 backface-hidden">
+                    <div className="absolute shadow-xlg rounded-lg shadow-[#454545] inset-0 backface-hidden">
                       <Image
                         src={`/api/uploads/${card.image.replace(/^\/?categories\//, "categories/")}`}
                         fill
@@ -71,7 +71,7 @@ const EntertaimentEvents = () => {
                       className=" absolute inset-0 flex flex-col justify-between bg-black text-white p-6 rounded-lg 
                           transform-[rotateY(180deg)] backface-hidden "
                     >
-                      <p className="md:text-lg text-[#C9AC8C] leading-relaxed">
+                      <p className="md:text-lg pt-5 mt-5 text-[#C9AC8C] leading-relaxed">
                         {card.text}
                       </p>
 
@@ -81,7 +81,7 @@ const EntertaimentEvents = () => {
                           className="self-center"
                         >
                           <button
-                            className="px-6 py-3 border border-[#C9AC8C] rounded-full text-[#C9AC8C]  hover:bg-[#C9AC8C]
+                            className="px-6 py-3 border mb-6 border-[#C9AC8C] rounded-full text-[#C9AC8C]  hover:bg-[#C9AC8C]
                                     hover:text-black"
                           >
                             FIND OUT MORE
