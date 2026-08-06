@@ -78,7 +78,7 @@ export default function PerformerPage() {
               width={500}
               height={700}
               alt={performer.performer_name}
-              className="w-full h-auto object-cover"
+              className="h-auto w-full rounded-3xl border border-[#C9AC8C]/15 object-cover shadow-[0_15px_40px_rgba(0,0,0,0.45)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_25px_60px_rgba(201,172,140,0.18)]"
             />
 
             {performer.soundcloud_link?.trim() && (
@@ -94,12 +94,12 @@ export default function PerformerPage() {
               </div>
             )}
 
-            <div className="mt-8">
+            <div className="mt-8 text-center">
               <p className="mb-5 font-playfair text-xl font-semibold uppercase tracking-[0.2em] text-[#C9AC8C]">
                 DID YOU LIKE THIS? SHARE IT!
               </p>
 
-              <div className="flex items-center gap-4">
+              <div className="flex justify-center items-center gap-4">
                 {/* X */}
                 <Link
                   href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
@@ -107,7 +107,7 @@ export default function PerformerPage() {
                   )}&text=${encodeURIComponent(performer.performer_name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-[#C9AC8C] p-3 text-[#C9AC8C] transition hover:bg-[#C9AC8C] hover:text-black"
+                  className="rounded-full border border-[#C9AC8C]/60 p-3 text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
                 >
                   <FaXTwitter size={20} />
                 </Link>
@@ -119,7 +119,7 @@ export default function PerformerPage() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-[#C9AC8C] p-3 text-[#C9AC8C] transition hover:bg-[#C9AC8C] hover:text-black"
+                  className="rounded-full border border-[#C9AC8C]/60 p-3 text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
                 >
                   <FaFacebookF size={20} />
                 </Link>
@@ -131,7 +131,7 @@ export default function PerformerPage() {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border border-[#C9AC8C] p-3 text-[#C9AC8C] transition hover:bg-[#C9AC8C] hover:text-black"
+                  className="rounded-full border border-[#C9AC8C]/60 p-3 text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
                 >
                   <FaLinkedinIn size={20} />
                 </Link>
@@ -141,7 +141,7 @@ export default function PerformerPage() {
                   href={`mailto:?subject=${encodeURIComponent(
                     performer.performer_name,
                   )}&body=${encodeURIComponent(`${performer.performer_name}\n\n${performer.page_url}`)}`}
-                  className="rounded-full border border-[#C9AC8C] p-3 text-[#C9AC8C] transition hover:bg-[#C9AC8C] hover:text-black"
+                  className="rounded-full border border-[#C9AC8C]/60 p-3 text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:border-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20"
                 >
                   <MdEmail size={20} />
                 </Link>
@@ -150,11 +150,13 @@ export default function PerformerPage() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="text-[#C9AC8C] leading-9 text-justify italic text-[1.2rem] font-['Old_Standard_TT'] space-y-6">
+            <div className="space-y-8 font-['Old_Standard_TT'] text-[1.2rem] italic leading-10 text-[#C9AC8C] text-justify">
               {performer.large_description
                 .split("%")
                 .map((paragraph, index) => (
-                  <p key={index}>{paragraph.trim()}</p>
+                  <p key={index} className="transition-colors duration-300">
+                    {paragraph.trim()}
+                  </p>
                 ))}
             </div>
 
