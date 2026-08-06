@@ -68,7 +68,7 @@ const EntertaimentEvents = () => {
 
                     {/* Back */}
                     <div
-                      className=" absolute inset-0 shadow-lg rounded-lg shadow-[#454545] flex  flex-col justify-between bg-black text-white p-6 rounded-lg 
+                      className=" absolute inset-0 shadow-lg shadow-[#454545] flex  flex-col justify-between bg-black text-white p-6 rounded-lg 
                           transform-[rotateY(180deg)] backface-hidden "
                     >
                       <p className="md:text-lg pt-5 mt-5 text-[1.2rem] italic font-['Old_Standard_TT'] text-[#C9AC8C] leading-relaxed">
