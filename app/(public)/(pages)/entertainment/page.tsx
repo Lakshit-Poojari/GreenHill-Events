@@ -36,10 +36,10 @@ const page = () => {
           <SectionHeading title="Entertainment" />
           <Text />
           <div className="py-6 text-center">
-            <p className="text-3xl font-['Playfair_Display']">
+            <p className="text-3xl mt-3 font-['Playfair_Display']">
               We can arrange entertainment for a wide range of events:
             </p>
-            <hr className="w-[12%] mt-2 border-2 mx-auto rounded-full border-[#C9AC8C]" />
+            <hr className="w-[12%] mt-6 border-2 mx-auto rounded-full border-[#C9AC8C]" />
           </div>
           <EntertaimentEvents />
           <ContactForm />

@@ -56,7 +56,10 @@ const Page = () => {
 
   return (
     <EntertainmentCards
-      heading={data.heading}
+      heading={
+        data.heading.charAt(0).toUpperCase() +
+        data.heading.slice(1).toLowerCase()
+      }
       description={data.description}
       cards={data.cards}
     />

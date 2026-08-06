@@ -24,7 +24,7 @@ const EntertainmentCards = ({ heading, description, cards }: Props) => {
         <SectionHeading title={heading} />
       </div>
 
-      <div className="text-[#C9AC8C] mx-16.25 px-6.75 text-lg italic text-center space-y-1.5 py-4 font-['Old_Standard_TT']">
+      <div className="text-[#C9AC8C] mx-16.25 px-6.75 text-xl my-8 italic text-center space-y-1.5 py-4 font-['Old_Standard_TT']">
         <p>{description}</p>
       </div>
 
@@ -52,12 +52,12 @@ const EntertainmentCards = ({ heading, description, cards }: Props) => {
                     />
                   </div>
 
-                  <div className="absolute backface-hidden w-3xl top-40 left-1/2 -translate-x-1/2">
-                    <h3 className="text-white text-3xl font-bold text-center">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center backface-hidden font-['Playfair_Display'] px-6 text-center">
+                    <h3 className="text-white mb-6 text-5xl font-bold text-center">
                       {card.title}
                     </h3>
 
-                    <p className="text-white text-2xl font-bold text-center my-2">
+                    <p className="text-white text-3xl font-bold text-center my-2">
                       {card.title1}
                     </p>
 
@@ -66,7 +66,7 @@ const EntertainmentCards = ({ heading, description, cards }: Props) => {
 
                   {/* Back */}
                   <div className="absolute inset-0 bg-black shadow-lg rounded-lg shadow-[#454545]  p-6 flex flex-col justify-between transform-[rotateY(180deg)] backface-hidden">
-                    <p className="text-[#C9AC8C]">{card.text}</p>
+                    <p className="text-[#C9AC8C] text-xl italic font-['Playfair_Display']">{card.text}</p>
 
                     <Link
                       href={card.link || `/entertainment/${card.slug}`}

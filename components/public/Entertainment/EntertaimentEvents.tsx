@@ -68,10 +68,10 @@ const EntertaimentEvents = () => {
 
                     {/* Back */}
                     <div
-                      className=" absolute inset-0 flex flex-col justify-between bg-black text-white p-6 rounded-lg 
+                      className=" absolute inset-0 flex  flex-col justify-between bg-black text-white p-6 rounded-lg 
                           transform-[rotateY(180deg)] backface-hidden "
                     >
-                      <p className="md:text-lg pt-5 mt-5 text-[#C9AC8C] leading-relaxed">
+                      <p className="md:text-lg pt-5 mt-5 text-[1.2rem] italic font-['Old_Standard_TT'] text-[#C9AC8C] leading-relaxed">
                         {card.text}
                       </p>
 
@@ -95,7 +95,7 @@ const EntertaimentEvents = () => {
             </div>
           </div>
 
-          <div className="mx-16.25 px-6.75">
+          <div className="mx-16.25 px-6.75 text-2xl italic font-['Old_Standard_TT']">
             <p className="text-[#C9AC8C]">
               As well as providing entertainment solutions we can also provide
               refreshments.

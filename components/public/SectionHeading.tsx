@@ -7,7 +7,7 @@ interface SectionHeadingProps {
 const SectionHeading = ({title}: SectionHeadingProps) => {
   return (
     <div>
-      <p className="font-['Poppins'] py-5 font-light text-center  text-white text-[102px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem]">
+      <p className="font-['Playfair_Display'] py-5 font-light text-center text-white text-[102px] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem]">
         {title}
       </p>
 
