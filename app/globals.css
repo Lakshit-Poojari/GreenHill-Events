@@ -96,3 +96,46 @@ body {
 .delay-2 {
   animation-delay: 1.6s;
 }
+
+
+
+
+/* Distinct upward slide */
+
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-bottom {
+  animation: slide-in-bottom 0.5s cubic-bezier(.25,.46,.45,.94) both;
+}
+
+
+
+
+/* Disting image slide*/
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left 1s cubic-bezier(.25,.46,.45,.94) both;
+}
+
