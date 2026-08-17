@@ -58,12 +58,12 @@ const DistinctOffering = () => {
 
   return (
     <>
-      <div className="bg-[#1a1919] mx-16.25 px-6.75 py-17 text-center">
-        <p className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[4.125rem]">
+      <div className="bg-[#1a1919] mx-12.25 px-4.75 py-17 text-center">
+        <p className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[4.5rem]">
           DISTINCT OFFERINGS
         </p>
 
-        <hr className="w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
+        <hr className="w-20 sm:w-[18%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
 
         {/* Navigation Buttons */}
         <div className="mt-6 mb-5 flex flex-wrap  justify-center gap-2 sm:gap-3">
@@ -71,7 +71,7 @@ const DistinctOffering = () => {
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={`rounded-sm px-3 py-2 text-sm transition-all  duration-300 sm:px-5 sm:py-3 sm:text-base ${
+              className={`rounded-sm px-2 py-2 text-sm transition-all  duration-300 sm:px-5 sm:py-3 sm:text-base ${
                 activeTab === index
                   ? "bg-white text-black"
                   : "bg-[#f79468] text-white hover:bg-[#f47e4c]"
@@ -85,60 +85,60 @@ const DistinctOffering = () => {
         {/* Content */}
         <div
           className="
-    h-auto
-    min-h-[500px]
-    sm:min-h-[550px]
-    md:min-h-[600px]
-    lg:h-[680px]
-    overflow-hidden
-    border-2
-    border-white
-    bg-black
-    px-4
-    sm:px-5
-    md:px-6
-    py-5
-    sm:py-6
-  "
+            h-auto
+            min-h-125
+            sm:min-h-137.5
+            md:min-h-150
+            lg:h-170
+            overflow-hidden
+            border-2
+            border-white
+            bg-black
+            px-4
+            sm:px-3
+            md:px-4
+            py-5
+            sm:py-6
+          "
         >
           <div key={activeTab} className="slide-in-bottom">
             <p
               className="
-        font-['Old_Standard_TT']
-        text-xl
-        sm:text-2xl
-        md:text-3xl
-        font-normal
-        italic
-        text-[#C9AC8C]
-        leading-relaxed
-      "
+                font-['Old_Standard_TT']
+                text-xl
+                sm:text-2xl
+                md:text-3xl
+                font-normal
+                italic
+                text-[#C9AC8C]
+                leading-relaxed
+              "
             >
               {offerings[activeTab].description}
             </p>
 
             <div
               className="
-        image-gallery
-        mt-6
-        sm:mt-8
-        flex
-        flex-col
-        sm:flex-row
-        justify-center
-        gap-3
-        sm:gap-1
-      "
+                image-gallery
+                mt-6
+                sm:mt-8
+                flex
+                flex-col
+                sm:flex-row
+                justify-center
+                gap-3
+                sm:gap-1
+              "
             >
               {offerings[activeTab].images.map((image, index) => (
                 <div
                   key={`${activeTab}-${index}`}
                   className="
-            gallery-item
-            slide-in-left
-            w-full
-            sm:w-1/3
-          "
+                    gallery-item
+                    slide-in-left
+                    w-full
+                    sm:w-1/3
+                  "
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -148,25 +148,25 @@ const DistinctOffering = () => {
                     width={150}
                     height={120}
                     className={`
-              gallery-image
-              h-[220px]
-              sm:h-[300px]
-              md:h-[380px]
-              lg:h-[440px]
-              w-full
-              rounded-2xl
-              object-contain
-              transition-all
-              duration-300
-              hover:scale-105
-              hover:shadow-lg
-              hover:shadow-[#C9AC8C]/20
-              ${
-                hoveredIndex !== null && hoveredIndex !== index
-                  ? "brightness-[0.45]"
-                  : ""
-              }
-            `}
+                      gallery-image
+                      h-55
+                      sm:h-75
+                      md:h-95
+                      lg:h-110
+                      w-full
+                      rounded-2xl
+                      object-contain
+                      transition-all
+                      duration-300
+                      hover:scale-105
+                      hover:shadow-lg
+                      hover:shadow-[#C9AC8C]/20
+                      ${
+                        hoveredIndex !== null && hoveredIndex !== index
+                          ? "brightness-[0.45]"
+                          : ""
+                      }
+                    `}
                   />
                 </div>
               ))}

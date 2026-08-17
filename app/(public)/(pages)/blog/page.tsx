@@ -45,7 +45,7 @@ export default function Page() {
   }
 
   return (
-    <div className="mx-16.25 px-6.75 pt-26 text-center">
+    <div className="mx-12.25 px-4.75 pt-26 text-center">
       <SectionHeading title="Blog" />
 
       <p className="mt-10 text-center font-['Old_Standard_TT'] text-[1.2rem] italic text-[#C9AC8C]">
@@ -71,7 +71,7 @@ export default function Page() {
               </div>
             </Link>
 
-            <div className="relative z-10 mx-auto -mt-8 w-full rounded-2xl border border-[#C9AC8C] bg-[#2A2626] px-6 pb-6 pt-5 shadow-xl transition-all duration-300 group-hover:shadow-2xl">
+            <div className="relative z-10 mx-auto -mt-8 w-full rounded-2xl border border-[#C9AC8C] bg-[#2A2626] px-4 pb-6 pt-5 shadow-xl transition-all duration-300 group-hover:shadow-2xl">
               <h2 className="mt-3 text-center text-[18px] font-semibold uppercase tracking-[3px] text-white transition-colors duration-300 group-hover:text-[#C9AC8C] md:text-[22px] lg:text-[18px]">
                 {blog.title}
               </h2>

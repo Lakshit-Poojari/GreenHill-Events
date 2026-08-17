@@ -37,7 +37,7 @@ const Navbar = () => {
       className={`fixed border-b border-[#88868466] font-['Poppins'] top-0 left-0 w-full  z-50 transition-all duration-300 
       ${scrolled ? "bg-black/95 shadow-md  h-17" : "bg-transparent py-7"}`}
     >
-      <nav className="flex items-center justify-between mx-16.25 px-6.75">
+      <nav className="flex items-center justify-between mx-4 sm:mx-6 md:mx-10 lg:mx-12 xl:mx-16 px-1 sm:px-5 md:px-6 lg:px-6.5">
         {/* Logo */}
         <div className="shrink-0">
           <Image

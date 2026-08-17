@@ -78,7 +78,7 @@ export default function PerformerPage() {
               width={500}
               height={700}
               alt={performer.performer_name}
-              className="h-auto w-full rounded-3xl border border-[#C9AC8C]/15 object-cover shadow-[0_15px_40px_rgba(0,0,0,0.45)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_25px_60px_rgba(201,172,140,0.18)]"
+              className="h-auto w-full rounded-3xl border border-[#C9AC8C]/15 object-cover shadow-[0_20px_60px_rgba(0,0,0,0.65)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_25px_60px_rgba(201,172,140,0.18)]"
             />
 
             {performer.soundcloud_link?.trim() && (

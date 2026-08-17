@@ -63,7 +63,7 @@ const Testimonials = () => {
       Testimonials
     </p>
 
-    <hr className="w-20 sm:w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
+    <hr className="w-20 sm:w-[18%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
   </div>
 
   <div>

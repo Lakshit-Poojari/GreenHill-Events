@@ -123,7 +123,7 @@ const RecentPosts = () => {
         <p className="text-4xl sm:text-5xl lg:text-[4.125rem] font-['Playfair_Display']">
           Recent Posts
         </p>
-        <hr className="w-[15%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
+        <hr className="w-20 sm:w-[18%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
       </div>
 
       <section className="relative flex items-center justify-center h-180 mt-12 overflow-hidden">
