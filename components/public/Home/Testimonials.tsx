@@ -76,10 +76,10 @@ const Testimonials = () => {
 
             {/* Text */}
             <div className="max-w-5xl mx-auto px-20 text-center">
-              <p className="font-['Playfair_Display'] text-[22px]  font-normal tracking-[-0.88px] text-white">
+              <p className="font-['Playfair_Display'] text-[25px] font-normal tracking-[-0.88px] text-white">
                 {testimonials[currentTestimonial].name}
               </p>
-              <p className="font-['Poppins'] p-13 text-[17px]  font-light tracking-normal text-white">
+              <p className="font-['Poppins'] italic p-13 text-[20px] font-light tracking-normal text-white">
                 {testimonials[currentTestimonial].review}
               </p>
             </div>

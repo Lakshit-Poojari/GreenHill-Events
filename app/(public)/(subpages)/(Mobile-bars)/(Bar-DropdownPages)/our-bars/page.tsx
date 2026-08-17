@@ -7,7 +7,7 @@ const page = () => {
     <>
       <div className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C]">
         <SectionHeading title="Our Bars" />
-        <div className="text-lg items-start italic text-justify space-y-1.5 my-6 py-3 font-['Old Standard TT']">
+        <div className="text-[20.4px] items-start italic text-justify space-y-1.5 my-6 py-3 font-['Old_Standard_TT']">
           <p>
             After deciding that horse box bars would be the right fit in 2018
             Simon went on a mission to find the first of many. The fleet started

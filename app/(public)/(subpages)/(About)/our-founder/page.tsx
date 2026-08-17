@@ -9,7 +9,7 @@ const page = () => {
         <SectionHeading title="Our Founder" />
         <SectionHeading title="About – Simon Greenhill" />
         <div className="grid grid-cols-2 gap-4 mt-6 py-3 ">
-          <div className="text-[#C9AC8C] text-lg items-start italic text-justify space-y-1.5 font-['Old Standard TT']">
+          <div className="text-[#C9AC8C] text-[20.4px] items-start italic text-justify space-y-1.5 font-['Old_Standard_TT']">
             <p>
               Simon is an Actor, Singer and an Entrepreneur. He won the
               prestigious scholarship of The Stage Newspaper and received

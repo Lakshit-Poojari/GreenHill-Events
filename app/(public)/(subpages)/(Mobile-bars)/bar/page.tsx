@@ -55,7 +55,7 @@ const page = () => {
     <>
       <div className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C]">
         <SectionHeading title="Bar" />
-        <div className=" text-lg items-start italic text-justify space-y-1.5 my-6 py-3 font-['Old Standard TT']">
+        <div className=" text-[20.4px] items-start italic text-justify space-y-1.5 my-6 py-3 font-['Old_Standard_TT']">
           <div>
             <p>
               WE ASPIRE TO DELIVER A TRULY UNIQUE AND MEMORABLE EXPERIENCE FROM
@@ -123,11 +123,11 @@ const page = () => {
               />
 
               <div className="p-6 flex flex-col flex-1">
-                <h3 className="text-2xl font-semibold mb-3 text-center">
+                <h3 className="text-[20.4px] italic font-semibold font-['Old_Standard_TT'] mb-3 text-center">
                   {service.title}
                 </h3>
 
-                <p className="text-justify flex-1">{service.description}</p>
+                <p className="text-justify font-['Poppins'] flex-1">{service.description}</p>
 
                 <Link href={service.link} className="mt-auto self-center">
                   <button

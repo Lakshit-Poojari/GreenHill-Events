@@ -3,7 +3,7 @@ import React from "react";
 const Text = () => {
   return (
     <>
-      <div className="text-center text-[20.4px] mx-16.25 px-6.75 pt-5 font-['Old_Standard_TT'] italic text-[#C9AC8C]">
+      <div className="text-center text-[22.4px] mx-16.25 px-6.75 pt-5 font-['Old_Standard_TT'] italic text-[#C9AC8C]">
         <p className="my-2">
           Simon has spent the last 20 years in the world of entertainment. This
           means he has a fantastic network of talented people to call upon when

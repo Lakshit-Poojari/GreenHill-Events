@@ -8,7 +8,7 @@ const page = () => {
       <div className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C]">
         <SectionHeading title="Dry Hire" />
         <div className="py-6">
-          <div className="text-lg items-start italic text-justify space-y-1.5 my-6 py-3 font-['Old Standard TT']">
+          <div className="text-[20.4px] items-start italic text-justify space-y-1.5 my-6 py-3 font-['Old_Standard_TT']">
             <p>
               Simply hire just the horsebox, fully equipped ready for service.
               We will deliver, set-up and collect. This is ideal for venues that

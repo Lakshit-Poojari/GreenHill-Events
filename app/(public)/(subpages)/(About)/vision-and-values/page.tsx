@@ -46,14 +46,14 @@ const page = () => {
           </div>
 
           <div>
-            <div className="space-y-8 text-center my-6 py-3">
+            <div className="space-y-8 text-center my-10 py-5 ">
               {values.map((value) => (
                 <div key={value.title}>
-                  <h3 className="text-[#C9AC8C] font-['Old Standard TT'] italic text-2xl font-semibold mb-2">
+                  <h3 className="text-[#C9AC8C] font-['Old_Standard_TT'] italic text-3xl font-semibold ">
                     {value.title}
                   </h3>
 
-                  <p className="text-[#C9AC8C] text-xl font-['Poppins'] italic leading-relaxed">
+                  <p className="text-[#C9AC8C] text-2xl font-['Old_Standard_TT'] italic leading-0.4 ">
                     {value.description}
                   </p>
                 </div>

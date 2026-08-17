@@ -172,7 +172,7 @@ const RecentPosts = () => {
                       CASE STUDIES
                     </span>
 
-                    <h2 className="text-lg sm:text-xl font-semibold text-white">
+                    <h2 className="text-lg sm:text-xl font-['Poppins'] font-semibold text-white">
                       {post.title.toUpperCase()}
                     </h2>
 
@@ -203,7 +203,7 @@ const RecentPosts = () => {
                       </div>
                     ) : (
                       post.description && (
-                        <p className="mt-5 text-sm leading-7 text-gray-300 line-clamp-10">
+                        <p className="mt-5 text-sm font-['Poppins'] leading-7 text-gray-300 line-clamp-10">
                           {post.description}
                         </p>
                       )

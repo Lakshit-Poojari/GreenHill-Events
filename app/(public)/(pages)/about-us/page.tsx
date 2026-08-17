@@ -19,7 +19,7 @@ const page = () => {
       <div className="pt-26 mx-16.25 px-6.75">
         <SectionHeading title="About Us" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
-          <div className="text-[#C9AC8C] text-lg italic text-justify space-y-1.5  font-['Old Standard TT']">
+          <div className="text-[#C9AC8C] text-xl italic text-justify space-y-1.5 font-['Old_Standard_TT']">
             <p>
               Since 2007, Greenhill Events have been forging a reputation as a
               pioneer in the event entertainment industry. With our unique

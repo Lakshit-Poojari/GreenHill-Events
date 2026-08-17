@@ -4,7 +4,7 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <div className="mx-16.25 px-6.75 pt-26 text-[#C9AC8C] text-xl space-y-1.5  italic font-['Old_Standard_TT']">
+      <div className="mx-16.25 px-6.75 pt-26 text-[#C9AC8C] text-[20.4px] space-y-1.5  italic font-['Old_Standard_TT']">
         <SectionHeading title="Bespoke" />
         <div className="py-6">
           <p>

@@ -60,7 +60,7 @@ const EntertaimentEvents = () => {
                       />
                     </div>
                     <div className="absolute backface-hidden w-3xl top-40 left-1/2 -translate-x-1/2 z-10">
-                      <h3 className="text-white text-4xl font-['Playfair_Display'] md:text-4xl font-bold text-center">
+                      <h3 className="text-white text-5xl font-['Playfair_Display'] md:text-4xl font-bold text-center">
                         {card.title}
                       </h3>
                       <hr className="w-[102] mx-auto mt-6 border-2 rounded-full border-[#C9AC8C]" />
@@ -71,7 +71,7 @@ const EntertaimentEvents = () => {
                       className=" absolute inset-0 shadow-lg shadow-[#454545] flex  flex-col justify-between bg-black text-white p-6 rounded-lg 
                           transform-[rotateY(180deg)] backface-hidden "
                     >
-                      <p className="md:text-lg pt-5 mt-5 text-[1.2rem] italic font-['Old_Standard_TT'] text-[#C9AC8C] leading-relaxed">
+                      <p className="md:text-xl pt-5 mt-5 text-[20.4px] italic font-['Poppins'] text-[#C9AC8C] leading-relaxed">
                         {card.text}
                       </p>
 

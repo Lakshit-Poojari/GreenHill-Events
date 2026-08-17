@@ -8,7 +8,7 @@ const page = () => {
       <div className="pt-26 mx-16.25 px-6.75">
         <SectionHeading title="Careers" />
         <div className="grid grid-cols-2 gap-4 my-6 py-6 ">
-          <div className="text-[#C9AC8C] text-lg items-start italic text-justify space-y-1.5 font-['Old Standard TT']">
+          <div className="text-[#C9AC8C] text-[20.4px] items-start italic text-justify space-y-1.5 font-['Old_Standard_TT']">
             <p>
               As a rapidly growing business we are constantly in search of new
               talent: not only when it comes to acts and artists, but also when

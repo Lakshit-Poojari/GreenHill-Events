@@ -11,7 +11,7 @@ const WellcomeToGrennHill = () => {
           <hr className="w-[15%] mx-auto mt-2 border-2 rounded-2xl border-[rgba(201,172,140,1)] " />
         </div>
 
-        <div className="text-center text-[rgba(201,172,140,1)] italic mt-10 text-[1.2rem]">
+        <div className="text-center font-['Old_Standard_TT'] text-[rgba(201,172,140,1)] italic mt-10 text-[1.5rem]">
           Greenhill events started life in 2007. We offer an all-inclusive event
           service. From weddings to birthday parties, Corporate Events to
           Christmas parties,
