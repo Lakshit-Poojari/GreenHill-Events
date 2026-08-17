@@ -59,7 +59,7 @@ const DistinctOffering = () => {
   return (
     <>
       <div className="bg-[#1a1919] mx-16.25 px-6.75 py-17 text-center">
-        <p className="text-[4.125rem] font-['Playfair_Display']">
+        <p className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[4.125rem]">
           DISTINCT OFFERINGS
         </p>
 
@@ -83,16 +83,62 @@ const DistinctOffering = () => {
         </div>
 
         {/* Content */}
-        <div className="h-170 overflow-hidden border-2 border-white bg-black px-5 py-6">
+        <div
+          className="
+    h-auto
+    min-h-[500px]
+    sm:min-h-[550px]
+    md:min-h-[600px]
+    lg:h-[680px]
+    overflow-hidden
+    border-2
+    border-white
+    bg-black
+    px-4
+    sm:px-5
+    md:px-6
+    py-5
+    sm:py-6
+  "
+        >
           <div key={activeTab} className="slide-in-bottom">
-            <p className="font-['Old_Standard_TT'] text-3xl font-normal italic text-[#C9AC8C]">
+            <p
+              className="
+        font-['Old_Standard_TT']
+        text-xl
+        sm:text-2xl
+        md:text-3xl
+        font-normal
+        italic
+        text-[#C9AC8C]
+        leading-relaxed
+      "
+            >
               {offerings[activeTab].description}
             </p>
-            <div className="image-gallery mt-8 flex justify-center gap-1">
+
+            <div
+              className="
+        image-gallery
+        mt-6
+        sm:mt-8
+        flex
+        flex-col
+        sm:flex-row
+        justify-center
+        gap-3
+        sm:gap-1
+      "
+            >
               {offerings[activeTab].images.map((image, index) => (
                 <div
                   key={`${activeTab}-${index}`}
-                  className="gallery-item slide-in-left w-1/3"
+                  className="
+            gallery-item
+            slide-in-left
+            w-full
+            sm:w-1/3
+          "
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
@@ -101,25 +147,30 @@ const DistinctOffering = () => {
                     alt={`${offerings[activeTab].title} ${index + 1}`}
                     width={150}
                     height={120}
-                    className={`gallery-image rounded-2xl h-110 w-full  object-contain transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[#C9AC8C]/20 ${
-                      hoveredIndex !== null && hoveredIndex !== index
-                        ? "brightness-[0.45]"
-                        : ""
-                    }`}
+                    className={`
+              gallery-image
+              h-[220px]
+              sm:h-[300px]
+              md:h-[380px]
+              lg:h-[440px]
+              w-full
+              rounded-2xl
+              object-contain
+              transition-all
+              duration-300
+              hover:scale-105
+              hover:shadow-lg
+              hover:shadow-[#C9AC8C]/20
+              ${
+                hoveredIndex !== null && hoveredIndex !== index
+                  ? "brightness-[0.45]"
+                  : ""
+              }
+            `}
                   />
                 </div>
               ))}
             </div>
-
-            <Link href={offerings[activeTab].link}>
-              <button
-                className=" my-5 rounded-4xl border border-[#C9AC8C] px-10 py-3 text-[1.25rem] text-[#C9AC8C]
-        animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]
-        transition duration-300 hover:bg-[#C9AC8C] hover:text-black"
-              >
-                FIND OUT MORE
-              </button>
-            </Link>
           </div>
         </div>
       </div>

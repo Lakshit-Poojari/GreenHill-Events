@@ -25,7 +25,7 @@ export const Companys = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -65,18 +65,18 @@ export const Companys = () => {
   };
 
   return (
-    <section className=" pb-12 mx-16.25">
+    <section className="pb-12 mx-4 sm:mx-8 md:mx-12 lg:mx-16 xl:mx-16.25">
       <div className="container mx-auto relative flex items-center">
         {/* Left Button */}
         <button
           onClick={prevSlide}
-          className="absolute left-5 top-1/2 -translate-y-1/2 z-30 text-[64px] leading-none text-[#C9A227]/70 hover:text-[#C9A227]"
+          className="absolute left-0 sm:left-2 md:left-4 lg:left-5 top-1/2 -translate-y-1/2 z-30 text-4xl sm:text-5xl md:text-6xl leading-none text-[#C9A227]/70 hover:text-[#C9A227]"
         >
           &#10094;
         </button>
 
         {/* Slider */}
-        <div className="overflow-hidden w-full mx-26">
+        <div className="overflow-hidden w-full mx-10 sm:mx-14 md:mx-16 lg:mx-20">
           <div
             className={`flex ${
               isTransitioning
@@ -84,21 +84,43 @@ export const Companys = () => {
                 : ""
             }`}
             style={{
-              transform: `translateX(-${current * 20}%)`,
+              transform: `translateX(-${current * 25}%)`,
             }}
             onTransitionEnd={handleTransitionEnd}
           >
             {sliderImages.map((img, index) => (
               <div
                 key={index}
-                className="relative min-w-full sm:min-w-[50%] md:min-w-[33.333%] lg:min-w-[25%] xl:min-w-[20%] h-20 sm:h-24 md:h-28 lg:h-30 flex items-center justify-center"
+                className="
+              relative
+              min-w-full
+              sm:min-w-[50%]
+              md:min-w-[33.333%]
+              lg:min-w-[25%]
+              h-20
+              sm:h-24
+              md:h-28
+              lg:h-30
+              flex
+              items-center
+              justify-center
+              px-4
+              sm:px-6
+              md:px-8
+              lg:px-10
+            "
               >
                 <Image
                   src={img}
                   alt={`logo-${index}`}
                   fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw "
-                  className="object-contain mx-38"
+                  sizes="
+                (max-width: 640px) 100vw,
+                (max-width: 768px) 50vw,
+                (max-width: 1024px) 33vw,
+                25vw
+              "
+                  className="object-contain"
                 />
               </div>
             ))}
@@ -108,7 +130,7 @@ export const Companys = () => {
         {/* Right Button */}
         <button
           onClick={nextSlide}
-          className="absolute right-5 top-1/2 -translate-y-1/2 z-30 text-[64px] leading-none text-[#C9A227]/70 hover:text-[#C9A227]"
+          className="absolute right-0 sm:right-2 md:right-4 lg:right-5 top-1/2 -translate-y-1/2 z-30 text-4xl sm:text-5xl md:text-6xl leading-none text-[#C9A227]/70 hover:text-[#C9A227]"
         >
           &#10095;
         </button>

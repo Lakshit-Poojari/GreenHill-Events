@@ -128,7 +128,7 @@ export default function CommentForm({
         <button
           type="submit"
           disabled={loading}
-          className="rounded-full border border-[#C9AC8C] bg-[#C9AC8C] px-10 py-4 text-lg font-semibold tracking-wide text-[#1E1E1E] transition-all duration-300 ease-out hover:bg-transparent hover:text-black hover:shadow-[0_0_30px_rgba(201,172,140,0.2)] active:scale-95 disabled:pointer-events-none disabled:opacity-50"
+          className="rounded-full border border-[#C9AC8C] bg-[#C9AC8C] px-10 py-4 text-lg font-semibold tracking-wide text-[#1E1E1E] transition-all duration-300 ease-out hover:bg-transparent hover:text-[#C9AC8C] hover:shadow-[0_0_30px_rgba(201,172,140,0.2)] active:scale-95 disabled:pointer-events-none disabled:opacity-50"
         >
           {loading
             ? "Submitting..."

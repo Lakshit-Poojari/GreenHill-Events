@@ -5,7 +5,7 @@ const WellcomeToGrennHill = () => {
     <>
       <div className="bg-[#1a1919] mx-16.25 px-6.75  pt-40 py-30">
         <div className="text-center  ">
-          <p className="text-[4.125rem] font-['Playfair_Display']">
+          <p className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[4.125rem]">
             Welcome to Simon Greenhill
           </p>
           <hr className="w-[15%] mx-auto mt-2 border-2 rounded-2xl border-[rgba(201,172,140,1)] " />

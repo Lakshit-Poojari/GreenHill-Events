@@ -72,7 +72,7 @@ export default function CaseStudyTemplate({
           </div>
 
           <div className="mt-10">
-            <p className="whitespace-pre-line text-lg leading-9 text-gray-200 tracking-wide">
+            <p className="whitespace-pre-line text-lg leading-5 text-gray-200 tracking-wide">
               {data.description}
             </p>
           </div>
