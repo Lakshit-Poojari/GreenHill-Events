@@ -6,7 +6,7 @@ import EntertainmentCards from "@/components/public/Entertainment/EntertainmentC
 
 const Page = () => {
   const { slug } = useParams();
-
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState({
     heading: "",
     description: "",
@@ -46,6 +46,8 @@ const Page = () => {
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -62,6 +64,7 @@ const Page = () => {
       }
       description={data.description}
       cards={data.cards}
+      loading={loading}
     />
   );
 };

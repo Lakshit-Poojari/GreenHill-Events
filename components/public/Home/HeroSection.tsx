@@ -38,7 +38,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative flex items-center pb-10 h-150 justify-center py-17">
+    <section className="relative flex items-center pb-10 h-150 justify-center">
       {/* Left Button */}
       <button
         onClick={prevText}
@@ -48,7 +48,7 @@ const HeroSection = () => {
       </button>
 
       {/* Text */}
-      <p className="max-w-5xl mx-auto pt-4 sm:pt-5 px-4 sm:px-6 md:px-10 lg:px-20 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-['Playfair_Display'] text-white">
+      <p className="max-w-5xl mx-auto pt-5 px-4 sm:px-6 md:px-10 lg:px-20 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-['Playfair_Display'] text-white">
         {text[currentText]}
       </p>
 

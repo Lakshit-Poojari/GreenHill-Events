@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      <div className="pt-26">
+      <div className="pt-26 sm:pt-10">
         <HeroSection />
         <WellcomeToGrennHill />
         <DistinctOffering />
