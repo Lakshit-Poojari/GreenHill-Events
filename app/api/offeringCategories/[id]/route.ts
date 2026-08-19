@@ -38,7 +38,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string; slug: string }> },
+  { params }: { params: Promise<{ id: string}> },
 ) {
   try {
     const token = request.cookies.get("token")?.value;
@@ -56,7 +56,7 @@ export async function PUT(
     }
 
     const user = verifyToken(token);
-    const { id, slug } = await params;
+    const { id } = await params;
     const body = await request.json();
     console.log(body);
 
