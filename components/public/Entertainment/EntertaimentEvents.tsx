@@ -6,10 +6,12 @@ import React, { useEffect, useState } from "react";
 
 const EntertaimentEvents = () => {
   const [cards, setCards] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        setLoading(true);
         const res = await fetch("/api/categories");
         const data = await res.json();
 
@@ -29,11 +31,26 @@ const EntertaimentEvents = () => {
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchCategories();
   }, []);
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#686868] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 mx-auto mb-5 rounded-full border-4 border-[#C9AC8C]/30 border-t-[#C9AC8C] animate-spin" />
+
+          <p className="text-[#C9AC8C] text-xl italic font-['Old_Standard_TT']">
+            Loading entertainment...
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <div className="text-center ">

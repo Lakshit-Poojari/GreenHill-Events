@@ -114,7 +114,17 @@ const RecentPosts = () => {
   const translatePercent = currentIndex * cardWidthPercent;
 
   if (loading) {
-    return <div className="py-20 text-center text-white">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center ">
+        <div className="text-center">
+          <div className="w-12 h-12 mx-auto mb-5 rounded-full border-4 border-[#C9AC8C]/30 border-t-[#C9AC8C] animate-spin" />
+
+          <p className="text-[#C9AC8C] text-xl italic font-['Old_Standard_TT']">
+            Loading posts...
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (

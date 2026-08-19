@@ -21,13 +21,14 @@ interface Performer {
 
 export default function PerformerPage() {
   const { performerSlug } = useParams();
-
+  const [loading, setLoading] = useState(true);
   const [performer, setPerformer] = useState<Performer | null>(null);
 
   useEffect(() => {
     const fetchPerformer = async () => {
       try {
         // Get performer
+        setLoading(true);
         const performerRes = await fetch(
           `/api/offerings/slug/${performerSlug}`,
         );
@@ -56,6 +57,8 @@ export default function PerformerPage() {
         });
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -65,6 +68,20 @@ export default function PerformerPage() {
   }, [performerSlug]);
 
   if (!performer) return null;
+
+    if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center ">
+        <div className="text-center">
+          <div className="w-12 h-12 mx-auto mb-5 rounded-full border-4 border-[#C9AC8C]/30 border-t-[#C9AC8C] animate-spin" />
+
+          <p className="text-[#C9AC8C] text-xl italic font-['Old_Standard_TT']">
+            Loading performer...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-26 bg-[#1d1a1a] text-white min-h-screen">

@@ -47,8 +47,14 @@ export default function Page() {
 
   if (loading) {
     return (
-      <div className="py-20 text-center text-white">
-        Loading case studies...
+      <div className="min-h-screen flex items-center justify-center ">
+        <div className="text-center">
+          <div className="w-12 h-12 mx-auto mb-5 rounded-full border-4 border-[#C9AC8C]/30 border-t-[#C9AC8C] animate-spin" />
+
+          <p className="text-[#C9AC8C] text-xl italic font-['Old_Standard_TT']">
+            Loading case studies...
+          </p>
+        </div>
       </div>
     );
   }
@@ -77,7 +83,7 @@ export default function Page() {
 
             <div className="relative z-10 mx-auto -mt-8 w-full rounded-2xl border border-[#C9AC8C] bg-[#2A2626] px-4 pb-6 pt-5 shadow-xl transition-all duration-300 group-hover:shadow-2xl">
               <p className="text-center text-xs font-semibold uppercase tracking-[5px] text-[#C9AC8C]">
-              Case Studies
+                Case Studies
               </p>
 
               <h2 className="mt-3 text-center text-[15.5px] font-semibold uppercase tracking-[3px] text-white transition-colors duration-300 group-hover:text-[#C9AC8C] md:text-[22px] lg:text-[18px]">

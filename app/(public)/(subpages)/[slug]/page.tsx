@@ -5,9 +5,29 @@ import {
   getCaseStudyBySlugService,
 } from "@/backend/services/caseStudiesService";
 import { getAllCommentService } from "@/backend/services/commentsService";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const result = await getCaseStudyBySlugService(slug);
+
+  return {
+    title: result?.title
+      ? `${result.title} - GreenHillEvent`
+      : "Case Studies - GreenHillEvent",
+    icons: {
+      icon: "/faviconV2.png",
+      shortcut: "/faviconV2.png",
+      apple: "/faviconV2.png",
+    },
+  };
 }
 
 export default async function Page({ params }: PageProps) {

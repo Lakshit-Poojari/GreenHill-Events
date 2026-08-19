@@ -31,7 +31,7 @@ const EntertainmentCards = ({
           <div className="w-12 h-12 mx-auto mb-5 rounded-full border-4 border-[#C9AC8C]/30 border-t-[#C9AC8C] animate-spin" />
 
           <p className="text-[#C9AC8C] text-xl italic font-['Old_Standard_TT']">
-            Loading entertainment...
+            Loading offering...
           </p>
         </div>
       </div>

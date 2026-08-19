@@ -1,4 +1,5 @@
 import SectionHeading from "@/components/public/SectionHeading";
+import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
 
@@ -29,6 +30,16 @@ const values = [
       "We are naturally curious and we are constantly striving to be ahead of the cultural curve. We are conduits for our clients with an energy and through innovation we excel.",
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Vision and Values - GreenHillEvent",
+  // description: "",     ###############################################################
+  icons: {
+    icon: "/faviconV2.png",
+    shortcut: "/faviconV2.png",
+    apple: "/faviconV2.png",
+  },
+};
 
 const page = () => {
   return (

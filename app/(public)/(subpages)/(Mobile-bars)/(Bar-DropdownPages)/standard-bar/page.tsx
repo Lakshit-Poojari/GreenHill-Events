@@ -1,6 +1,17 @@
 import SectionHeading from "@/components/public/SectionHeading";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Standard Bar - GreenHillEvent",
+  // description: "",     ###############################################################
+  icons: {
+    icon: "/faviconV2.png",
+    shortcut: "/faviconV2.png",
+    apple: "/faviconV2.png",
+  },
+};
 
 const page = () => {
   return (
