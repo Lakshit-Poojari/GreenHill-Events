@@ -136,7 +136,7 @@ const RecentPosts = () => {
         <hr className="w-20 sm:w-[18%] mx-auto mt-2 border-2 rounded-full border-[#C9AC8C]" />
       </div>
 
-      <section className="relative flex items-center justify-center h-180 mt-12 overflow-hidden">
+      <section className="relative flex items-center justify-center min-h-180 mt-12 overflow-hidden">
         {/* Left Button */}
         <button
           onClick={prevPost}
@@ -146,7 +146,8 @@ const RecentPosts = () => {
         </button>
 
         {/* Carousel Window */}
-        <div className="w-full px-4 sm:px-8 lg:px-16">
+        {/* Carousel Window */}
+        <div className="w-full px-4 pt-4 sm:px-8 sm:pt-4 lg:px-16 lg:pt-4">
           <div
             className={`flex ${
               isTransitioning
