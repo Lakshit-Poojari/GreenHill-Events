@@ -129,9 +129,17 @@ export async function getSingleOfferingCategoryService(id: number) {
 export async function deleteOfferingCategoryService(id: number) {
   try {
     const result = await deleteOfferingCategoryModel(id);
+
     return result;
-  } catch (error) {
-    console.error("Error in Delete Offering Category Model", error);
+  } catch (error: any) {
+    console.error("Delete Offering Category Service Error:", error);
+
+    if (error?.code === "ER_ROW_IS_REFERENCED_2") {
+      throw new Error(
+        "This offering category cannot be deleted because it is assigned to one or more performer. Please delete the associated offerings first.",
+      );
+    }
+
     throw error;
   }
 }

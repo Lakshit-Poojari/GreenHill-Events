@@ -63,7 +63,11 @@ export default function CaseStudyTemplate({
           </div>
           <div className="mt-10 overflow-hidden rounded-3xl border border-[#C9AC8C]/20 bg-[#2A2626] shadow-xl">
             <Image
-              src={`/api/uploads/${data.image}`}
+              src={
+                data.image?.startsWith("http")
+                  ? data.image
+                  : `/api/uploads/${data.image}`
+              }
               alt={data.title}
               width={900}
               height={600}

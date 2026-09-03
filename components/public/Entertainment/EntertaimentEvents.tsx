@@ -21,7 +21,7 @@ const EntertaimentEvents = () => {
             .map((item: any) => ({
               id: item.id,
               title: item.category_name,
-              image: `/${item.image}`,
+              image: item.image,
               text: item.description,
               slug: item.slug,
               has_details: item.has_details,
@@ -70,7 +70,11 @@ const EntertaimentEvents = () => {
                     {/* Front */}
                     <div className="absolute shadow-lg rounded-lg shadow-[#454545] inset-0 backface-hidden">
                       <Image
-                        src={`/api/uploads/${card.image.replace(/^\/?categories\//, "categories/")}`}
+                        src={
+                          card.image?.startsWith("http")
+                            ? card.image
+                            : `/api/uploads/${card.image?.replace(/^\/?categories\//, "categories/")}`
+                        }
                         fill
                         alt={`Event ${index + 1}`}
                         className="object-cover object-left rounded-lg brightness-35"

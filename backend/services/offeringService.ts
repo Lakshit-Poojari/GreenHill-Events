@@ -13,9 +13,7 @@ import {
   OfferingStatus,
   UpdateOffering,
 } from "../types/offeringType";
-import fs from "fs/promises";
-import path from "path";
-
+import { deleteImage } from "../lib/deleteImage";
 import { uploadImage } from "../lib/uploadImage";
 
 export async function createOfferingService(
@@ -99,28 +97,14 @@ export async function updateOfferingService(
 
     // Keep existing image by default
     let imagePath = existingOffering[0].image_path;
+    const oldImage = existingOffering[0].image_path;
 
     // Upload new image if provided
     if (offering.image_path instanceof File && offering.image_path.size > 0) {
       imagePath = await uploadImage(offering.image_path, "offerings");
-
-      // Delete old image
-      if (existingOffering[0].image_path) {
-        const oldImagePath = path.join(
-          process.cwd(),
-          "uploads",
-          existingOffering[0].image_path,
-        );
-
-        try {
-          await fs.unlink(oldImagePath);
-        } catch (error) {
-          console.warn("Old image not found:", error);
-        }
-      }
     }
 
-    return await updateOfferingModel(
+    const result = await updateOfferingModel(
       id,
       {
         ...offering,
@@ -129,6 +113,17 @@ export async function updateOfferingService(
       },
       updatedBy,
     );
+
+    // Delete old image after database update succeeds
+    if (
+      offering.image_path instanceof File &&
+      offering.image_path.size > 0 &&
+      oldImage
+    ) {
+      await deleteImage(oldImage);
+    }
+
+    return result;
   } catch (error) {
     console.error("Error in Update Offering Service", error);
     throw error;
@@ -157,10 +152,31 @@ export async function getSingleOfferingService(id: number) {
 
 export async function deleteOfferingService(id: number) {
   try {
+    const existingOffering = await getSingleOfferingModel(id);
+
+    if (existingOffering.length === 0) {
+      throw new Error("Offering not found.");
+    }
+
+    const imagePath = existingOffering[0].image_path;
+
     const result = await deleteOfferingModel(id);
+
+    // Delete image after database record is deleted
+    if (imagePath) {
+      await deleteImage(imagePath);
+    }
+
     return result;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error in Delete Offering Service", error);
+
+    if (error?.code === "ER_ROW_IS_REFERENCED_2") {
+      throw new Error(
+        "This offering cannot be deleted because it has associated videos. Please delete the associated videos first.",
+      );
+    }
+
     throw error;
   }
 }

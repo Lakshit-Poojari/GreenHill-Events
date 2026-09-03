@@ -1,6 +1,5 @@
 import { uploadImage } from "../lib/uploadImage";
-import fs from "fs/promises";
-import path from "path";
+import { deleteImage } from "../lib/deleteImage";
 import {
   createCategoryModel,
   deleteCategoryModel,
@@ -18,7 +17,9 @@ import {
 
 export async function createCategoryService(category: CreateCategoryType) {
   try {
-    const slug = category.menu_name
+    const slugSource = category.menu_name || category.category_name;
+
+    const slug = slugSource
       .toLowerCase()
       .trim()
       .replace(/&/g, "")
@@ -76,7 +77,9 @@ export async function updateCategoryService(
   updatedBy: number,
 ) {
   try {
-    const slug = category.menu_name
+    const slugSource = category.menu_name || category.category_name;
+
+    const slug = slugSource
       .toLowerCase()
       .trim()
       .replace(/&/g, "")
@@ -87,17 +90,10 @@ export async function updateCategoryService(
       throw new Error("Category Name, Description and Status are required.");
     }
 
-    if (category.has_details) {
-      if (!category.menu_name) {
-        throw new Error("Menu Name is required.");
-      }
-
-      if (!category.long_description) {
-        throw new Error("Long Description is required.");
-      }
+    if (category.has_details && !category.menu_name) {
+      throw new Error("Menu Name is required.");
     }
 
-    // Rest of your code...
     const existingCategory = await getSingleCategoryModel(id);
 
     if (existingCategory.length === 0) {
@@ -112,25 +108,11 @@ export async function updateCategoryService(
 
     // Keep existing image by default
     let imagePath = existingCategory[0].image;
+    const oldImage = existingCategory[0].image;
 
     // Upload new image if provided
     if (category.image instanceof File && category.image.size > 0) {
       imagePath = await uploadImage(category.image, "categories");
-
-      // Delete old image
-      if (existingCategory[0].image) {
-        const oldImagePath = path.join(
-          process.cwd(),
-          "uploads",
-          existingCategory[0].image,
-        );
-
-        try {
-          await fs.unlink(oldImagePath);
-        } catch (error) {
-          console.warn("Old image not found:", error);
-        }
-      }
     }
 
     const result = await updateCategoryModel(
@@ -142,6 +124,11 @@ export async function updateCategoryService(
       slug,
       updatedBy,
     );
+
+    // Delete old image only after database update succeeds
+    if (category.image instanceof File && category.image.size > 0 && oldImage) {
+      await deleteImage(oldImage);
+    }
 
     return result;
   } catch (error) {
@@ -172,11 +159,31 @@ export async function getSingleCategoryService(id: number) {
 
 export async function deleteCategoryService(id: number) {
   try {
+    const existingCategory = await getSingleCategoryModel(id);
+
+    if (existingCategory.length === 0) {
+      throw new Error("Category not found.");
+    }
+
+    const imagePath = existingCategory[0].image;
+
     const result = await deleteCategoryModel(id);
 
+    // Delete image after database record is deleted
+    if (imagePath) {
+      await deleteImage(imagePath);
+    }
+
     return result;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Delete Category Service Error", error);
+
+    if (error?.code === "ER_ROW_IS_REFERENCED_2") {
+      throw new Error(
+        "This category cannot be deleted because it is assigned to one or more offering category. Please delete the associated offerings first.",
+      );
+    }
+
     throw error;
   }
 }

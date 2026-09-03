@@ -152,7 +152,11 @@ const Page = () => {
             {category.image ? (
               <div className="relative h-64 w-full max-w-md">
                 <Image
-                  src={`/api/uploads/${category.image}`}
+                  src={
+                    category.image?.startsWith("http")
+                      ? category.image
+                      : `/api/uploads/${category.image}`
+                  }
                   alt={category.category_name}
                   fill
                   className="rounded-lg border border-gray-700 object-cover"

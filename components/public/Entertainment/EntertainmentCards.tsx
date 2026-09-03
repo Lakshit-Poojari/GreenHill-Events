@@ -64,7 +64,11 @@ const EntertainmentCards = ({
                   {/* Front */}
                   <div className="absolute shadow-lg rounded-lg shadow-[#454545] inset-0 backface-hidden">
                     <Image
-                      src={`/api/uploads/${card.image}`}
+                      src={
+                        card.image.startsWith("http")
+                          ? card.image
+                          : `/api/uploads/${card.image}`
+                      }
                       fill
                       alt={card.title1}
                       className="object-cover object-top rounded-lg brightness-55"

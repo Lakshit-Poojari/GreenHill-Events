@@ -156,7 +156,11 @@ const Page = () => {
             <h2 className="text-sm text-gray-400">Featured Image</h2>
             {caseStudy.image ? (
               <Image
-                src={`/api/uploads/${caseStudy.image}`}
+                src={
+                  caseStudy.image?.startsWith("http")
+                    ? caseStudy.image
+                    : `/api/uploads/${caseStudy.image}`
+                }
                 alt={caseStudy.title}
                 width={900}
                 height={500}

@@ -69,7 +69,7 @@ export default function PerformerPage() {
 
   if (!performer) return null;
 
-    if (loading) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center ">
         <div className="text-center">
@@ -91,7 +91,11 @@ export default function PerformerPage() {
         <div className="grid lg:grid-cols-3 gap-10">
           <div>
             <Image
-              src={`/api/uploads/${performer.image_path}`}
+              src={
+                performer.image_path.startsWith("http")
+                  ? performer.image_path
+                  : `/api/uploads/${performer.image_path}`
+              }
               width={500}
               height={700}
               alt={performer.performer_name}

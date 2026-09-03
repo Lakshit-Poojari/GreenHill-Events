@@ -168,7 +168,11 @@ const RecentPosts = () => {
                   <div className="m-2 overflow-hidden rounded-xl">
                     <Link href={`/${post.slug}`}>
                       <Image
-                        src={`/api/uploads/${post.image}`}
+                        src={
+                          post.image?.startsWith("http")
+                            ? post.image
+                            : `/api/uploads/${post.image}`
+                        }
                         alt={post.title}
                         width={1000}
                         height={500}

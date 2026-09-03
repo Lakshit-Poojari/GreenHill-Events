@@ -111,7 +111,11 @@ const Page = () => {
             </h3>
 
             <img
-              src={`/api/uploads/${offering.image_path}`}
+              src={
+                offering.image_path.startsWith("http")
+                  ? offering.image_path
+                  : `/api/uploads/${offering.image_path}`
+              }
               alt={offering.performer_name}
               className="h-72 w-full rounded-lg border border-gray-700 object-cover"
             />

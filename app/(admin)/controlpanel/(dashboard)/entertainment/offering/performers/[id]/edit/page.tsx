@@ -249,7 +249,9 @@ const Page = () => {
               src={
                 image
                   ? URL.createObjectURL(image)
-                  : `/api/uploads/${formData.image_path}`
+                  : formData.image_path?.startsWith("http")
+                    ? formData.image_path
+                    : `/api/uploads/${formData.image_path}`
               }
               alt="Performer"
               className="h-48 w-48 rounded-lg border border-gray-700 object-cover"

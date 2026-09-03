@@ -72,7 +72,11 @@ export default function Page() {
             <Link href={`/${blog.slug}`}>
               <div className="relative h-56 w-full overflow-hidden rounded-t-2xl md:h-72 lg:h-81">
                 <Image
-                  src={`/api/uploads/${blog.image}`}
+                  src={
+                    blog.image?.startsWith("http")
+                      ? blog.image
+                      : `/api/uploads/${blog.image}`
+                  }
                   alt={blog.title}
                   width={700}
                   height={450}

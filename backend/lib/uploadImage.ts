@@ -1,10 +1,12 @@
-import fs from "fs/promises";
-import path from "path";
 import crypto from "crypto";
+import path from "path";
+import { supabase } from "./supabase";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+
+const BUCKET_NAME = "greenhill-images";
 
 export async function uploadImage(file: File, folder: string): Promise<string> {
   if (!file) {
@@ -23,25 +25,33 @@ export async function uploadImage(file: File, folder: string): Promise<string> {
     throw new Error("Image size cannot exceed 5 MB.");
   }
 
-  // Create upload directory if it doesn't exist
-  const uploadDir = path.join(process.cwd(), "uploads", folder);
-
-  await fs.mkdir(uploadDir, {
-    recursive: true,
-  });
-
   // Get file extension
   const extension = path.extname(file.name).toLowerCase();
 
   // Generate unique filename
   const fileName = `${Date.now()}-${crypto.randomUUID()}${extension}`;
 
-  // Convert file to buffer
+  // Storage path
+  const filePath = `${folder}/${fileName}`;
+
+  // Convert File to Buffer
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  // Save image
-  await fs.writeFile(path.join(uploadDir, fileName), buffer);
+  // Upload to Supabase Storage
+  const { error } = await supabase.storage
+    .from(BUCKET_NAME)
+    .upload(filePath, buffer, {
+      contentType: file.type,
+      upsert: false,
+    });
 
-  // Return relative path for DB
-  return `${folder}/${fileName}`;
+  if (error) {
+    console.error("Supabase upload error:", error);
+    throw new Error("Failed to upload image.");
+  }
+
+  // Get public URL
+  const { data } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filePath);
+
+  return data.publicUrl;
 }

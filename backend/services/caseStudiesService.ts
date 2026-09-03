@@ -1,3 +1,4 @@
+import { deleteImage } from "../lib/deleteImage";
 import { uploadImage } from "../lib/uploadImage";
 import {
   createCaseStudyModel,
@@ -15,8 +16,6 @@ import {
   UpdateCaseStudy,
   UpdateCaseStudyDB,
 } from "../types/caseStudies";
-import fs from "fs/promises";
-import path from "path";
 
 export async function createCaseStudiesService(caseStudies: CreateCaseStudy) {
   try {
@@ -112,25 +111,11 @@ export async function updateCaseStudiesService(
 
     // Keep existing image
     let imagePath = existingCaseStudy[0].image;
+    const oldImage = existingCaseStudy[0].image;
 
     // Upload new image if provided
     if (caseStudies.image instanceof File && caseStudies.image.size > 0) {
       imagePath = await uploadImage(caseStudies.image, "caseStudies");
-
-      // Delete old image
-      if (existingCaseStudy[0].image) {
-        const oldImagePath = path.join(
-          process.cwd(),
-          "uploads",
-          existingCaseStudy[0].image,
-        );
-
-        try {
-          await fs.unlink(oldImagePath);
-        } catch (error) {
-          console.warn("Old image not found:", error);
-        }
-      }
     }
 
     const data: UpdateCaseStudyDB = {
@@ -147,6 +132,15 @@ export async function updateCaseStudiesService(
     };
 
     const result = await updateCaseStudyModel(id, data);
+
+    // Delete old image after database update succeeds
+    if (
+      caseStudies.image instanceof File &&
+      caseStudies.image.size > 0 &&
+      oldImage
+    ) {
+      await deleteImage(oldImage);
+    }
 
     return result;
   } catch (error) {
@@ -178,7 +172,21 @@ export async function getSingleCaseStudiesService(id: number) {
 
 export async function deleteCaseStudiesService(id: number) {
   try {
+    const existingCaseStudy = await getSingleCaseStudyModel(id);
+
+    if (existingCaseStudy.length === 0) {
+      throw new Error("Case study not found.");
+    }
+
+    const imagePath = existingCaseStudy[0].image;
+
     const result = await deleteCaseStudyModel(id);
+
+    // Delete image after database record is deleted
+    if (imagePath) {
+      await deleteImage(imagePath);
+    }
+
     return result;
   } catch (error) {
     console.error("Delete case Study service error", error);

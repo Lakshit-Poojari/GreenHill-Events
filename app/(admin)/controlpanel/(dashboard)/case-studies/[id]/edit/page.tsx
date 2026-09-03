@@ -179,7 +179,11 @@ const Page = () => {
                 <p className="mb-2 text-sm text-gray-400">Current Image</p>
 
                 <img
-                  src={`/api/uploads/${formData.currentImage}`}
+                  src={
+                    formData.currentImage?.startsWith("http")
+                      ? formData.currentImage
+                      : `/api/uploads/${formData.currentImage}`
+                  }
                   alt={formData.title}
                   className="h-48 w-72 rounded-lg border border-gray-700 object-cover"
                 />

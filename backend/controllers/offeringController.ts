@@ -24,7 +24,7 @@ export async function createOfferingController(
     return result;
   } catch (error) {
     console.error("Create Offering Controller Error", error);
-    throw new Error();
+    throw error;
   }
 }
 
@@ -38,7 +38,7 @@ export async function updateOfferingController(
     return result;
   } catch (error) {
     console.error("Update Offering Controller Error", error);
-    throw new Error();
+    throw error;
   }
 }
 
@@ -48,7 +48,7 @@ export async function getAllOfferingController() {
     return result;
   } catch (error) {
     console.error("Get All Offering Controller Error", error);
-    throw new Error();
+    throw error;
   }
 }
 
@@ -58,7 +58,7 @@ export async function getSingleOfferingController(id: number) {
     return result;
   } catch (error) {
     console.error("Get Single Offering Controller Error", error);
-    throw new Error();
+    throw error;
   }
 }
 
@@ -68,7 +68,7 @@ export async function deleteOfferingController(id: number) {
     return result;
   } catch (error) {
     console.error("Delete Offering Controller Error", error);
-    throw new Error();
+    throw error;
   }
 }
 
