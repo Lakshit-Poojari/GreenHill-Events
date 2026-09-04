@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     );
 
     const verifyResult = await verifyResponse.json();
-
+    console.log("reCAPTCHA verification result:", verifyResult);
     if (!verifyResult.success) {
       return NextResponse.json(
         {

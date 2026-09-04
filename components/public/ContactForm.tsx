@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface ContactFormProps {
   bgClass?: string;
@@ -8,7 +9,7 @@ interface ContactFormProps {
 
 const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
   const [loading, setLoading] = useState(false);
-
+  const [captchaToken, setCaptchaToken] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,6 +31,10 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!captchaToken) {
+      alert("Please complete the reCAPTCHA.");
+      return;
+    }
     try {
       setLoading(true);
 
@@ -38,7 +43,10 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          captchaToken,
+        }),
       });
 
       const result = await res.json();
@@ -56,6 +64,7 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
         phone: "",
         message: "",
       });
+      setCaptchaToken("");
     } catch (error) {
       console.error(error);
       alert("Something went wrong.");
@@ -138,6 +147,16 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
             onChange={handleChange}
             required
             className="w-full resize-none rounded-xl border border-[#57514C] bg-[#1A1717] p-5 text-white outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
+          />
+        </div>
+
+        {/* Recaptcha */}
+        <div>
+          <h3 className="mb-2 text-lg font-medium text-white">Recaptcha</h3>
+
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+            onChange={(token) => setCaptchaToken(token || "")}
           />
         </div>
 
