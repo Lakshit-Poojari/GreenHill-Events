@@ -31,6 +31,27 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const name = formData.name.trim();
+
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
+
+    if (name.length < 2) {
+      alert("Name must be at least 2 characters long.");
+      return;
+    }
+
+    if (name.length > 50) {
+      alert("Name must not exceed 50 characters.");
+      return;
+    }
+
+    if (!nameRegex.test(name)) {
+      alert(
+        "Please enter a valid name. Only letters, spaces, hyphens, and apostrophes are allowed.",
+      );
+      return;
+    }
+
     // Phone validation
     const phone = formData.phone.trim();
 
@@ -113,6 +134,7 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
             minLength={2}
             maxLength={50}
             pattern="[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*"
+            title="Please enter a valid name. Only letters, spaces, hyphens, and apostrophes are allowed."
             required
             className="h-12 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-5 text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
           />

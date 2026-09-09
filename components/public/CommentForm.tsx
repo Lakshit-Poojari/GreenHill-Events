@@ -36,6 +36,35 @@ export default function CommentForm({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const name = formData.name.trim();
+
+    // Name validation
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
+
+    if (name.length < 2) {
+      alert("Name must be at least 2 characters long.");
+      return;
+    }
+
+    if (name.length > 50) {
+      alert("Name must not exceed 50 characters.");
+      return;
+    }
+
+    if (!nameRegex.test(name)) {
+      alert(
+        "Please enter a valid name. Only letters, spaces, hyphens, and apostrophes are allowed.",
+      );
+      return;
+    }
+
+    // Email validation
+    const email = formData.email.trim();
+
+    if (!email) {
+      alert("Email is required.");
+      return;
+    }
     setLoading(true);
 
     try {
@@ -101,6 +130,7 @@ export default function CommentForm({
             placeholder="Name"
             value={formData.name}
             onChange={handleChange}
+            pattern="[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*"
             minLength={2}
             maxLength={50}
             required

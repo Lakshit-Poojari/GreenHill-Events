@@ -7,7 +7,9 @@ import {
 import { CreateContactType } from "../types/contactType";
 import { sendContactEmail } from "../utils/contactEmail";
 
-export async function createContactService(contactEmail: CreateContactType) {
+export async function createContactService(
+  contactEmail: CreateContactType,
+) {
   try {
     const { name, email, phone, message } = contactEmail;
 
@@ -19,7 +21,9 @@ export async function createContactService(contactEmail: CreateContactType) {
       };
     }
 
+    // -------------------------
     // Name validation
+    // -------------------------
     const trimmedName = name.trim();
 
     if (trimmedName.length < 2) {
@@ -36,7 +40,8 @@ export async function createContactService(contactEmail: CreateContactType) {
       };
     }
 
-    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
+    const nameRegex =
+      /^[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
 
     if (!nameRegex.test(trimmedName)) {
       return {
@@ -46,7 +51,9 @@ export async function createContactService(contactEmail: CreateContactType) {
       };
     }
 
+    // -------------------------
     // Email validation
+    // -------------------------
     const trimmedEmail = email.trim();
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,7 +65,9 @@ export async function createContactService(contactEmail: CreateContactType) {
       };
     }
 
-    // Phone validation (optional)
+    // -------------------------
+    // Phone validation
+    // -------------------------
     const trimmedPhone = phone?.trim() || "";
 
     if (trimmedPhone) {
@@ -72,7 +81,9 @@ export async function createContactService(contactEmail: CreateContactType) {
       }
     }
 
+    // -------------------------
     // Message validation
+    // -------------------------
     const trimmedMessage = message.trim();
 
     if (trimmedMessage.length < 5) {
@@ -89,7 +100,9 @@ export async function createContactService(contactEmail: CreateContactType) {
       };
     }
 
-    // Use validated/trimmed values
+    // -------------------------
+    // Validated data
+    // -------------------------
     const validatedContact = {
       ...contactEmail,
       name: trimmedName,
@@ -98,6 +111,9 @@ export async function createContactService(contactEmail: CreateContactType) {
       message: trimmedMessage,
     };
 
+    // -------------------------
+    // Save to database
+    // -------------------------
     const result = await createContactModel(validatedContact);
 
     if (result.affectedRows === 0) {
@@ -107,6 +123,9 @@ export async function createContactService(contactEmail: CreateContactType) {
       };
     }
 
+    // -------------------------
+    // Send email
+    // -------------------------
     await sendContactEmail(validatedContact);
 
     return {
