@@ -89,8 +89,8 @@ const UserTable = ({
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
                       user.role === "SUPER_ADMIN"
-                        ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
-                        : "border border-[#00BFFF] bg-[#00BFFF]/10 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] hover:bg-[#00BFFF]/20"
+                        ? "border border-[#C9AC8C]/50 bg-[#C9AC8C]/10 text-[#C9AC8C] hover:bg-[#C9AC8C]/20"
+                        : "border border-[#00BFFF]/50 bg-[#00BFFF]/10 text-[#00BFFF] hover:bg-[#00BFFF]/20"
                     }`}
                   >
                     {user.role === "SUPER_ADMIN" ? "Super Admin" : "Admin"}
@@ -102,8 +102,8 @@ const UserTable = ({
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-medium ${
                       user.status === "ACTIVE"
-                        ? "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14] hover:bg-[#39FF14]/20"
-                        : "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131] hover:bg-[#FF3131]/20"
+                        ? "border-green-700/50 bg-green-500/10 text-green-400"
+                        : "border-red-700/50 bg-red-500/10 text-red-400"
                     }`}
                   >
                     {user.status === "ACTIVE" ? "Active" : "Inactive"}
@@ -117,7 +117,9 @@ const UserTable = ({
                     <button
                       title="View User"
                       onClick={() => onView(user.id)}
-                      className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:bg-[#A855F7]/20 hover:shadow-[0_0_12px_#A855F7]"
+                      className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+             hover:border-[#A855F7]/70 hover:bg-[#A855F7]/10 hover:text-[#A855F7]"
                     >
                       <Eye size={18} />
                     </button>
@@ -126,7 +128,9 @@ const UserTable = ({
                       <button
                         title="Edit User"
                         onClick={() => onEdit(user.id)}
-                        className="rounded-lg border border-[#00BFFF] bg-[#00BFFF]/10 p-2 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] transition-all duration-300 hover:bg-[#00BFFF]/20 hover:shadow-[0_0_12px_#00BFFF]"
+                        className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+            hover:border-[#00BFFF]/70 hover:bg-[#00BFFF]/10 hover:text-[#00BFFF]"
                       >
                         <Edit size={18} />
                       </button>
@@ -156,7 +160,9 @@ const UserTable = ({
                       <button
                         title="Delete User"
                         onClick={() => onDelete(user.id)}
-                        className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] shadow-[0_0_8px_#FF3131] transition-all duration-300 hover:bg-[#FF3131]/20 hover:shadow-[0_0_12px_#FF3131]"
+                        className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+             hover:border-red-500/70 hover:bg-red-500/10 hover:text-red-400"
                       >
                         <Trash2 size={18} />
                       </button>

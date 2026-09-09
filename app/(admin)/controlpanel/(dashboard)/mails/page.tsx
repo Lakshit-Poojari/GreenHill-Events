@@ -133,7 +133,9 @@ const Page = () => {
                     <div className="flex justify-center gap-2">
                       <Link
                         href={`/controlpanel/mails/${contact.id}`}
-                        className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:bg-[#A855F7]/20 hover:shadow-[0_0_12px_#A855F7]"
+                        className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+             hover:border-[#A855F7]/70 hover:bg-[#A855F7]/10 hover:text-[#A855F7]"
                       >
                         <Eye size={18} />
                       </Link>

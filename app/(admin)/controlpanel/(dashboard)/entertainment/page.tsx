@@ -8,9 +8,7 @@ const page = () => {
       <div className="space-y-8">
         {/* Header */}
         <div className="rounded-xl border  bg-[#181616] border-gray-700 p-8 shadow-sm">
-          <h1 className="text-3xl font-bold text-white">
-            Entertainment Dashboard
-          </h1>
+          <h1 className="text-3xl font-bold text-white">Entertainment</h1>
 
           <p className="mt-2 text-[#C9AC8C]">
             Manage entertainment offerings, categories, and performers from one
@@ -32,7 +30,7 @@ const page = () => {
 
             <h2 className="text-xl font-semibold text-white ">Categories</h2>
 
-            <p className="mt-2 text-sm text-gray-400">
+            <p className="mt-2 text-sm tracking-wider text-gray-300">
               Organize entertainment into categories and manage category
               details.
             </p>
@@ -57,7 +55,7 @@ const page = () => {
               Offerings
             </h2>
 
-            <p className="mt-2 text-sm text-gray-400">
+            <p className="mt-2 text-sm tracking-wider text-gray-300">
               Manage offering categories and performers displayed on the
               website.
             </p>

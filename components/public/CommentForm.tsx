@@ -101,6 +101,8 @@ export default function CommentForm({
             placeholder="Name"
             value={formData.name}
             onChange={handleChange}
+            minLength={2}
+            maxLength={50}
             required
             className="rounded-2xl border border-[#57514C] bg-transparent px-5 py-4 text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
           />

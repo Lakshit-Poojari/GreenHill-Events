@@ -9,16 +9,96 @@ import { sendContactEmail } from "../utils/contactEmail";
 
 export async function createContactService(contactEmail: CreateContactType) {
   try {
-    const { name, email, message } = contactEmail;
+    const { name, email, phone, message } = contactEmail;
 
-    if (!name || !email || !message) {
+    // Required fields
+    if (!name?.trim() || !email?.trim() || !message?.trim()) {
       return {
         success: false,
         message: "Name, email, and message are required.",
       };
     }
 
-    const result = await createContactModel(contactEmail);
+    // Name validation
+    const trimmedName = name.trim();
+
+    if (trimmedName.length < 2) {
+      return {
+        success: false,
+        message: "Name must be at least 2 characters long.",
+      };
+    }
+
+    if (trimmedName.length > 50) {
+      return {
+        success: false,
+        message: "Name must not exceed 50 characters.",
+      };
+    }
+
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$/;
+
+    if (!nameRegex.test(trimmedName)) {
+      return {
+        success: false,
+        message:
+          "Please enter a valid name. Only letters, spaces, hyphens, and apostrophes are allowed.",
+      };
+    }
+
+    // Email validation
+    const trimmedEmail = email.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(trimmedEmail)) {
+      return {
+        success: false,
+        message: "Please enter a valid email address.",
+      };
+    }
+
+    // Phone validation (optional)
+    const trimmedPhone = phone?.trim() || "";
+
+    if (trimmedPhone) {
+      const normalizedPhone = trimmedPhone.replace(/[\s()-]/g, "");
+
+      if (!/^\+?[1-9]\d{7,14}$/.test(normalizedPhone)) {
+        return {
+          success: false,
+          message: "Please enter a valid international phone number.",
+        };
+      }
+    }
+
+    // Message validation
+    const trimmedMessage = message.trim();
+
+    if (trimmedMessage.length < 5) {
+      return {
+        success: false,
+        message: "Message must be at least 5 characters long.",
+      };
+    }
+
+    if (trimmedMessage.length > 2000) {
+      return {
+        success: false,
+        message: "Message must not exceed 2000 characters.",
+      };
+    }
+
+    // Use validated/trimmed values
+    const validatedContact = {
+      ...contactEmail,
+      name: trimmedName,
+      email: trimmedEmail,
+      phone: trimmedPhone,
+      message: trimmedMessage,
+    };
+
+    const result = await createContactModel(validatedContact);
 
     if (result.affectedRows === 0) {
       return {
@@ -27,7 +107,7 @@ export async function createContactService(contactEmail: CreateContactType) {
       };
     }
 
-    await sendContactEmail(contactEmail);
+    await sendContactEmail(validatedContact);
 
     return {
       success: true,

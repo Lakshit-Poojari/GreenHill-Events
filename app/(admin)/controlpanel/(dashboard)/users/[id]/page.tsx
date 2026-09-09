@@ -140,8 +140,8 @@ const Page = () => {
             <span
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
                 user.role === "SUPER_ADMIN"
-                  ? "border border-[#C9AC8C] bg-[#C9AC8C]/10 text-[#C9AC8C] shadow-[0_0_8px_#C9AC8C] hover:bg-[#C9AC8C]/20"
-                  : "border border-[#00BFFF] bg-[#00BFFF]/10 text-[#00BFFF] shadow-[0_0_8px_#00BFFF] hover:bg-[#00BFFF]/20"
+                  ? "border border-[#C9AC8C]/50 bg-[#C9AC8C]/10 text-[#C9AC8C] hover:bg-[#C9AC8C]/20"
+                  : "border border-[#00BFFF]/50 bg-[#00BFFF]/10 text-[#00BFFF] hover:bg-[#00BFFF]/20"
               }`}
             >
               {user.role === "SUPER_ADMIN" ? "Super Admin" : "Admin"}
@@ -158,8 +158,8 @@ const Page = () => {
             <span
               className={`rounded-full px-3 py-1 text-xs font-medium ${
                 user.status === "ACTIVE"
-                  ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
-                  : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
+                  ? "border-green-700/50 bg-green-500/10 text-green-400"
+                  : "border-red-700/50 bg-red-500/10 text-red-400"
               }`}
             >
               {user.status === "ACTIVE" ? "Active" : "Inactive"}

@@ -23,12 +23,11 @@ interface Comment {
 }
 
 const statusColor = {
-  APPROVED:
-    "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]",
-  PENDING:
-    "border border-[#FFD60A] bg-[#FFD60A]/10 text-[#FFD60A] shadow-[0_0_8px_#FFD60A]",
-  REJECTED:
-    "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]",
+  APPROVED: "border border-[#39FF14]/50 bg-[#39FF14]/10 text-[#39FF14]",
+
+  PENDING: "border border-[#FFD60A]/50 bg-[#FFD60A]/10 text-[#FFD60A]",
+
+  REJECTED: "border border-[#FF3131]/50 bg-[#FF3131]/10 text-[#FF3131]",
 };
 
 const page = () => {
@@ -127,7 +126,13 @@ const page = () => {
             <>
               <div>
                 <p className="mb-1 text-sm text-gray-400">Name</p>
-                <p className="text-white">{comment.name ?? "-"}</p>
+                <p className="text-white">
+                  {" "}
+                  {comment.name
+                    ? comment.name.charAt(0).toUpperCase() +
+                      comment.name.slice(1)
+                    : "-"}
+                </p>
               </div>
 
               <div>

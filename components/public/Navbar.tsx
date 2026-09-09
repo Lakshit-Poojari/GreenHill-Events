@@ -40,13 +40,15 @@ const Navbar = () => {
       <nav className="flex items-center justify-between mx-4 sm:mx-6 md:mx-10 lg:mx-12 xl:mx-16 px-1 sm:px-5 md:px-6 lg:px-6.5">
         {/* Logo */}
         <div className="shrink-0">
-          <Image
-            src="/greenhill.jpg"
-            alt="logo"
-            width={400}
-            height={400}
-            className="h-12 sm:h-14 md:h-16 lg:h-17 lg:w-60 xl:w-85 w-auto transition-all duration-300"
-          />
+          <Link href="/" className={navClass("/")}>
+            <Image
+              src="/greenhill.jpg"
+              alt="logo"
+              width={400}
+              height={400}
+              className="h-12 sm:h-14 md:h-16 lg:h-17 lg:w-60 xl:w-85 w-auto transition-all duration-300"
+            />
+          </Link>
         </div>
 
         {/* Desktop Menu */}

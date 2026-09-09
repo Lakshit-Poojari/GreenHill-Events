@@ -9,7 +9,7 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <div className="flex h-screen bg-[#101010]">
+      <div className="flex h-screen overflow-hidden bg-[#101010]">
         {/* Sidebar */}
         <Sidebar />
 
@@ -19,7 +19,7 @@ export default function DashboardLayout({
           <Navbar />
 
           {/* Page Content */}
-          <main className="flex-1 overflow-y-auto p-6">
+          <main className="min-h-0 flex-1 overflow-y-auto p-6">
             <div className="mx-auto max-w-7xl">{children}</div>
           </main>
         </div>

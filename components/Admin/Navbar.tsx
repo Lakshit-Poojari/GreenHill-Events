@@ -45,7 +45,13 @@ export default function Navbar() {
             <Menu size={24} />
           </button>
 
-          <h2 className="text-lg font-semibold text-white">Dashboard</h2>
+          <div>
+            <h2 className="text-sm font-semibold text-white">
+              {profile?.email || "Loading..."}
+            </h2>
+
+            <p className="text-xs text-gray-400">{profile?.role || ""}</p>
+          </div>
         </div>
 
         {/* Right */}

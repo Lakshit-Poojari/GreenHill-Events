@@ -53,8 +53,8 @@ const page = () => {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center bg-[#101010] px-4">
-      <div className="w-full max-w-md rounded-2xl border border-gray-700 bg-[#181616] p-8 shadow-2xl">
+    <div className="flex min-h-screen items-center justify-center bg-[#101010] px-4 py-8 -translate-y-4">
+      <div className="w-full max-w-md -translate-y-4 rounded-2xl border border-gray-700 bg-[#181616] p-8 shadow-2xl">
         {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold tracking-wide text-[#C9AC8C]">
@@ -62,6 +62,11 @@ const page = () => {
           </h1>
 
           <p className="mt-2 text-sm text-gray-400">Admin Control Panel</p>
+
+          <p className="mt-3 text-base leading-relaxed text-gray-400">
+            Manage events, content, comments, and website settings from one
+            place.
+          </p>
         </div>
 
         <form className="space-y-5" onSubmit={handleSubmit}>
@@ -81,7 +86,7 @@ const page = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="h-12 w-full rounded-lg border border-gray-700 bg-[#232121] px-4 text-white placeholder-gray-500 
+              className="h-12 w-full rounded-lg border border-gray-700 bg-[#232121] px-4 text-white placeholder-gray-300
                 transition-all duration-300 focus:border-[#C9AC8C] focus:ring-2 focus:ring-[#C9AC8C]/20 focus:outline-none"
             />
           </div>
@@ -104,14 +109,14 @@ const page = () => {
                 value={form.password}
                 onChange={handleChange}
                 className="h-12 w-full rounded-lg border border-gray-700 bg-[#232121] px-4 pr-12 text-white 
-                placeholder-gray-500 transition-all duration-300 focus:border-[#C9AC8C] focus:ring-2 focus:ring-[#C9AC8C]/20 
+                placeholder-gray-300 transition-all duration-300 focus:border-[#C9AC8C] focus:ring-2 focus:ring-[#C9AC8C]/20 
                 focus:outline-none"
               />
 
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-3 flex items-center text-gray-400 transition hover:text-[#C9AC8C]"
+                className="absolute inset-y-0 right-5 flex items-center text-gray-400 transition hover:text-[#C9AC8C]"
               >
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </button>

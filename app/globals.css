@@ -14,8 +14,6 @@ body {
   color: var(--foreground);
 }
 
-
-
 /* Button left right animation */
 
 @keyframes shake-horizontal {
@@ -43,9 +41,6 @@ body {
   }
 }
 
-
-
-
 /* loading screen */
 
 @keyframes ripple {
@@ -57,8 +52,8 @@ body {
   }
 
   100% {
-    width: 350px;   /* Increase radius */
-    height: 350px;  /* Increase radius */
+    width: 350px; /* Increase radius */
+    height: 350px; /* Increase radius */
     opacity: 0;
     border-width: 10px;
   }
@@ -72,8 +67,8 @@ body {
   }
 
   100% {
-    width: 250px;   /* Increase radius */
-    height: 250px;  /* Increase radius */
+    width: 250px; /* Increase radius */
+    height: 250px; /* Increase radius */
     opacity: 0;
     border-width: 30px;
   }
@@ -97,9 +92,6 @@ body {
   animation-delay: 1.6s;
 }
 
-
-
-
 /* Distinct upward slide */
 
 @keyframes slide-in-bottom {
@@ -115,11 +107,8 @@ body {
 }
 
 .slide-in-bottom {
-  animation: slide-in-bottom 0.5s cubic-bezier(.25,.46,.45,.94) both;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
-
-
-
 
 /* Disting image slide*/
 
@@ -136,6 +125,24 @@ body {
 }
 
 .slide-in-left {
-  animation: slide-in-left 1s cubic-bezier(.25,.46,.45,.94) both;
+  animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
+/* scroll bar */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #101010;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6b6b6b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #858585;
+}

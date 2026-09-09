@@ -22,7 +22,7 @@ const Page = () => {
           Entertainment Offerings
         </h1>
 
-        <p className="mt-2 text-gray-400">
+        <p className="mt-2 text-gray-300">
           Manage offering categories and performers displayed on the website.
         </p>
       </div>
@@ -43,7 +43,7 @@ const Page = () => {
             Offering Categories
           </h2>
 
-          <p className="mt-2 text-sm text-gray-400">
+          <p className="mt-2 text-sm tracking-wider text-gray-300">
             Create, edit, and organize offering categories such as Singing
             Waiters, DJs, Live Bands, Magicians, and more.
           </p>
@@ -67,7 +67,7 @@ const Page = () => {
             Performers
           </h2>
 
-          <p className="mt-2 text-sm text-gray-400">
+          <p className="mt-2 text-sm tracking-wider text-gray-300">
             Manage performers, assign them to offering categories, upload
             images, descriptions, and YouTube videos.
           </p>

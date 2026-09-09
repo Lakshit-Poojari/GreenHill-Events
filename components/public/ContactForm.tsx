@@ -31,6 +31,18 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Phone validation
+    const phone = formData.phone.trim();
+
+    if (phone) {
+      const normalizedPhone = phone.replace(/[\s()-]/g, "");
+
+      if (!/^\+?[1-9]\d{7,14}$/.test(normalizedPhone)) {
+        alert("Please enter a valid international phone number.");
+        return;
+      }
+    }
+
     if (!captchaToken) {
       alert("Please complete the reCAPTCHA.");
       return;
@@ -98,6 +110,9 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            minLength={2}
+            maxLength={50}
+            pattern="[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*"
             required
             className="h-12 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-5 text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
           />
@@ -130,6 +145,9 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
+            inputMode="tel"
+            maxLength={20}
+            placeholder="e.g. +1 415 555 2671"
             className="h-12 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-5 text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
           />
         </div>
@@ -145,6 +163,7 @@ const ContactForm = ({ bgClass = "bg-transparent" }: ContactFormProps) => {
             name="message"
             value={formData.message}
             onChange={handleChange}
+            maxLength={2000}
             required
             className="w-full resize-none rounded-xl border border-[#57514C] bg-[#1A1717] p-5 text-white outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
           />

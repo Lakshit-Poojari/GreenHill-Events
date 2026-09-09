@@ -23,7 +23,7 @@ const links = [
     icon: Clapperboard,
   },
   {
-    name: "Case study",
+    name: "Case Study",
     href: "/controlpanel/case-studies",
     icon: FileText,
   },

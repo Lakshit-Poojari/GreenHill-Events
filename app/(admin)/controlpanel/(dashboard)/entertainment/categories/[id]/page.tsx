@@ -125,8 +125,8 @@ const Page = () => {
             <span
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
                 category.status === "ACTIVE"
-                  ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
-                  : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
+                  ? "border-green-700/50 bg-green-500/10 text-green-400"
+                  : "border-red-700/50 bg-red-500/10 text-red-400"
               }`}
             >
               {category.status}
@@ -138,8 +138,8 @@ const Page = () => {
             <span
               className={`rounded-full px-3 py-1 text-xs font-semibold ${
                 category.has_details
-                  ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
-                  : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
+                  ? "border-green-700/50 bg-green-500/10 text-green-400"
+                  : "border-red-700/50 bg-red-500/10 text-red-400"
               }`}
             >
               {category.has_details ? "Yes" : "No"}

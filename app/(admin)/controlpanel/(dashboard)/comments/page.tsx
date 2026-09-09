@@ -26,12 +26,11 @@ interface Comment {
 }
 
 const statusColor = {
-  APPROVED:
-    "border border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]",
-  PENDING:
-    "border border-[#FFD60A] bg-[#FFD60A]/10 text-[#FFD60A] shadow-[0_0_8px_#FFD60A]",
-  REJECTED:
-    "border border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]",
+  APPROVED: "border border-[#39FF14]/50 bg-[#39FF14]/10 text-[#39FF14]",
+
+  PENDING: "border border-[#FFD60A]/50 bg-[#FFD60A]/10 text-[#FFD60A]",
+
+  REJECTED: "border border-[#FF3131]/50 bg-[#FF3131]/10 text-[#FF3131]",
 };
 
 export default function CommentsPage() {
@@ -175,7 +174,11 @@ export default function CommentsPage() {
                 >
                   <td className="px-6 py-5">
                     <div className="font-medium text-white">
-                      {comment.name ?? comment.created_by_name ?? "Admin"}
+                      {(() => {
+                        const name =
+                          comment.name ?? comment.created_by_name ?? "Admin";
+                        return name.charAt(0).toUpperCase() + name.slice(1);
+                      })()}
                     </div>
 
                     <div className="text-sm text-gray-400">
@@ -211,18 +214,18 @@ export default function CommentsPage() {
                     <div className="flex justify-center gap-2">
                       <Link
                         href={`/controlpanel/comments/${comment.id}`}
-                        className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] 
-                            shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:scale-105 hover:bg-[#A855F7]/20 
-                            hover:shadow-[0_0_12px_#A855F7]"
+                        className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+             hover:border-[#A855F7]/70 hover:bg-[#A855F7]/10 hover:text-[#A855F7]"
                       >
                         <Eye size={18} />
                       </Link>
 
                       <Link
                         href={`/controlpanel/comments/${comment.id}/edit`}
-                        className="rounded-lg border border-[#00BFFF] bg-[#00BFFF]/10 p-2 text-[#00BFFF] 
-                            shadow-[0_0_8px_#00BFFF] transition-all duration-300 hover:bg-[#00BFFF]/20 
-                            hover:shadow-[0_0_12px_#00BFFF]"
+                        className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+            hover:border-[#00BFFF]/70 hover:bg-[#00BFFF]/10 hover:text-[#00BFFF]"
                       >
                         <Edit size={18} />
                       </Link>

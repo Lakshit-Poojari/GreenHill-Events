@@ -189,8 +189,8 @@ const Page = () => {
                       <span
                         className={`rounded-full px-3 py-1 text-xs font-semibold ${
                           video.status === "ACTIVE"
-                            ? "border-[#39FF14] bg-[#39FF14]/10 text-[#39FF14] shadow-[0_0_8px_#39FF14]"
-                            : "border-[#FF3131] bg-[#FF3131]/10 text-[#FF3131] shadow-[0_0_8px_#FF3131]"
+                            ? "border-green-700/50 bg-green-500/10 text-green-400"
+                            : "border-red-700/50 bg-red-500/10 text-red-400"
                         }`}
                       >
                         {video.status}
@@ -205,25 +205,27 @@ const Page = () => {
                       <div className="flex justify-center gap-3">
                         <Link
                           href={`/controlpanel/entertainment/offering/performers/${performerId}/videos/${video.id}`}
-                          className="rounded-lg border border-[#A855F7] bg-[#A855F7]/10 p-2 text-[#A855F7] 
-                            shadow-[0_0_8px_#A855F7] transition-all duration-300 hover:scale-105 hover:bg-[#A855F7]/20 
-                            hover:shadow-[0_0_12px_#A855F7]"
+                          className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+             hover:border-[#A855F7]/70 hover:bg-[#A855F7]/10 hover:text-[#A855F7]"
                         >
                           <Eye size={18} />
                         </Link>
 
                         <Link
                           href={`/controlpanel/entertainment/offering/performers/${performerId}/videos/${video.id}/edit`}
-                          className="rounded-lg border border-[#00E5FF] bg-[#00E5FF]/10 p-2 text-[#00E5FF] 
-                            shadow-[0_0_8px_#00E5FF] transition hover:bg-[#00E5FF]/20"
+                          className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+            hover:border-[#00BFFF]/70 hover:bg-[#00BFFF]/10 hover:text-[#00BFFF]"
                         >
                           <Edit size={18} />
                         </Link>
 
                         <button
                           onClick={() => handleDelete(video.id)}
-                          className="rounded-lg border border-[#FF3131] bg-[#FF3131]/10 p-2 text-[#FF3131] 
-                            shadow-[0_0_8px_#FF3131] transition hover:bg-[#FF3131]/20"
+                          className="rounded-lg border border-gray-700 bg-[#232121] p-2 text-gray-400
+             transition-all duration-300
+             hover:border-red-500/70 hover:bg-red-500/10 hover:text-red-400"
                         >
                           <Trash2 size={18} />
                         </button>
