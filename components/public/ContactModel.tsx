@@ -132,40 +132,42 @@ export default function ContactModal({ open, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-9999 flex items-center justify-center overflow-y-auto bg-black/80 p-3 backdrop-blur-sm sm:p-4"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-y-auto bg-black/80 p-2.5 backdrop-blur-sm sm:p-3"
       onClick={onClose}
     >
       <div
-        className="relative my-4 w-full max-w-4xl overflow-hidden rounded-2xl bg-[#1D1919] shadow-[0_25px_60px_rgba(0,0,0,0.6)] sm:my-6 sm:rounded-3xl"
+        className="relative my-3 w-full max-w-4xl overflow-hidden rounded-2xl bg-[#1D1919] shadow-[0_25px_60px_rgba(0,0,0,0.6)] sm:my-6 sm:rounded-3xl"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-[#C9AC8C] transition-all duration-300 hover:bg-[#C9AC8C] hover:text-black sm:right-5 sm:top-5 sm:h-10 sm:w-10"
+          aria-label="Close contact form"
         >
-          <X size={20} />
+          <X size={18} className="sm:h-5 sm:w-5" />
         </button>
 
-        <section className="bg-[#171414]">
-          <div className="mx-auto max-w-5xl p-5 md:p-6">
-            <div className="rounded-2xl  bg-[#242020] p-6 md:p-7">
+      
+  
+            <div className="rounded-xl bg-[#242020] p-4  sm:rounded-2xl sm:p-6 md:p-7">
               {/* Heading */}
-              <div className="mb-2 pb-3">
-                <h2 className="font-['Playfair_Display'] text-4xl text-[#C9AC8C]">
+              <div className="mb-2 sm:mb-2">
+                <h2 className="pr-10 font-['Playfair_Display'] text-3xl text-[#C9AC8C] sm:text-4xl">
                   Contact Me
                 </h2>
 
-                <p className="mt-1 text-gray-300">
+                <p className="mt-2 text-sm leading-relaxed text-gray-300 sm:text-base">
                   Fields marked with
-                  <span className="mx-1 text-red-500"> * </span>
+                  <span className="mx-1 text-red-500">*</span>
                   are required.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="mb-1 block text-lg font-medium text-white">
+                  <label className="mb-1 block text-base font-medium text-white sm:text-lg">
                     Name <span className="text-red-500">*</span>
                   </label>
 
@@ -178,13 +180,13 @@ export default function ContactModal({ open, onClose }: Props) {
                     minLength={2}
                     maxLength={50}
                     required
-                    className="h-10 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-5 text-white placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
+                    className="h-10 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C] sm:h-11 sm:px-5 sm:text-base"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="mb-1 block text-lg font-medium text-white">
+                  <label className="mb-1 block text-base font-medium text-white sm:text-lg">
                     Email <span className="text-red-500">*</span>
                   </label>
 
@@ -194,29 +196,31 @@ export default function ContactModal({ open, onClose }: Props) {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="h-10 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-5 text-white placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
+                    className="h-10 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C] sm:h-11 sm:px-5 sm:text-base"
                   />
                 </div>
 
                 {/* Message */}
-                <div>
-                  <label className="mb-1 block text-lg font-medium text-white">
+                <div className="m-1">
+                  <label className="mb-1 block text-base font-medium text-white sm:text-lg">
                     Message <span className="text-red-500">*</span>
                   </label>
 
                   <textarea
-                    rows={5}
+                    rows={3}
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    minLength={5}
+                    maxLength={2000}
                     required
-                    className="w-full rounded-xl border border-[#57514C] bg-[#1A1717] p-5 text-white outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]"
+                    className="w-full resize-none rounded-xl border border-[#57514C] bg-[#1A1717] p-2 text-sm text-white outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C] sm:p-5 sm:text-base"
                   />
                 </div>
 
                 {/* Recaptcha */}
-                <div>
-                  <h3 className="mb-1 text-lg font-medium text-white">
+                <div className="overflow-x-auto">
+                  <h3 className="mb-1 text-base font-medium text-white sm:text-lg">
                     Recaptcha
                   </h3>
 
@@ -230,15 +234,15 @@ export default function ContactModal({ open, onClose }: Props) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="rounded-full border border-[#C9AC8C] bg-[#2A2626] px-8 py-3 text-lg font-semibold text-[#C9AC8C] transition-all duration-300 hover:-translate-y-1 hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="w-full rounded-full border border-[#C9AC8C] bg-[#2A2626] px-6 py-3 text-base font-semibold text-[#C9AC8C] transition-all duration-300 hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-8 sm:py-3 sm:text-lg"
                 >
                   {loading ? "Submitting..." : "Submit"}
                 </button>
               </form>
             </div>
           </div>
-        </section>
+    
       </div>
-    </div>
+
   );
 }
