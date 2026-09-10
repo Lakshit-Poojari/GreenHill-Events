@@ -132,16 +132,16 @@ export default function ContactModal({ open, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-9999 flex items-center justify-center bg-black/80 p-2 backdrop-blur-sm"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-y-auto bg-black/80 p-3 backdrop-blur-sm sm:p-4"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl overflow-hidden rounded-3xl bg-[#1D1919] shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
+        className="relative my-4 w-full max-w-4xl overflow-hidden rounded-2xl bg-[#1D1919] shadow-[0_25px_60px_rgba(0,0,0,0.6)] sm:my-6 sm:rounded-3xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute right-5 top-5 z-10 flex h-10 w-20 items-center justify-center rounded-full bg-white/5 text-[#C9AC8C] transition-all duration-300 hover:rotate-180 hover:bg-[#C9AC8C] hover:text-black"
+          className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/5 text-[#C9AC8C] transition-all duration-300 hover:bg-[#C9AC8C] hover:text-black sm:right-5 sm:top-5 sm:h-10 sm:w-10"
         >
           <X size={20} />
         </button>

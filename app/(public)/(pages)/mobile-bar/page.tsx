@@ -38,10 +38,10 @@ const page = () => {
       <MobileBarCompany />
 
       <div className="mx-16.25 px-6.75 flex  flex-col items-center justify-center">
-        <p className="font-['Poppins'] text-[4.5rem] py-20 sm:py-24 md:py-32 lg:py-40 xl:py-50 font-light text-center text-white">
+        <p className="font-['Poppins'] text-[4.5rem] py-7 sm:py-7 md:py-7 lg:py-7 xl:py-7 font-light text-center text-white">
           We're more than just refreshments...
         </p>
-        <p className="text-left italic text-[20.4px] leading-6 tracking-[0.6px] text-[#C9AC8C] font-['Cormorant_Garamond']">
+        <p className="text-left italic text-[20.4px] pt-4 leading-6 tracking-[0.6px] text-[#C9AC8C] font-['Cormorant_Garamond']">
           As well as offering the Greenhill Bar, our sister company, Greenhill
           Entertainment, are specialists in providing bespoke event
           entertainment solutions. From weddings and parties to corporate
@@ -65,7 +65,7 @@ const page = () => {
       <ClientReview />
 
       <div>
-        <p className="font-['Poppins'] text-[4.5rem] py-20 sm:py-24 md:py-32 lg:py-40 xl:py-50 font-light text-center text-white">
+        <p className="font-['Poppins'] text-[4.5rem] py-5 sm:py-5 md:py-5 lg:py-5 xl:py-5 font-light text-center text-white">
           Make yours an event to remember!
         </p>
       </div>

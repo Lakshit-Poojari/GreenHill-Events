@@ -14,7 +14,7 @@ const FloatingCallButton = () => {
       </div>
 
       {/* Text */}
-      <div className="-ml-1 rounded-r-full rounded-l-full bg-white px-7 py-3 shadow-xl">
+      <div className=" rounded-r-full rounded-l-full bg-white px-7 py-3 shadow-xl">
         <span className="text-lg font-medium text-[#555]">Contact Us</span>
       </div>
     </a>

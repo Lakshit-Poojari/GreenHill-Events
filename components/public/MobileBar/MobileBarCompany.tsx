@@ -4,7 +4,7 @@ import React from "react";
 const MobileBarCompany = () => {
   return (
     <>
-      <div className="text-center mx-16.25 px-6.75 py-6  text-[#C9AC8C]">
+      <div className="text-center mx-16.25 px-6.75 pt-6  text-[#C9AC8C]">
         <div>
           <p className="font-['Cormorant_Garamond'] italic font-bold text-[27.2px] tracking-[4.08px]">
             Companies we work with.
@@ -17,7 +17,7 @@ const MobileBarCompany = () => {
             you want it.
           </p>
         </div>
-        <div className="px-6 py-6 flex justify-center items-center">
+        <div className="px-6 pb-6 flex justify-center items-center">
           <Image
             src="/MobileBar/Company/footer-logo.png"
             alt="Companys"
