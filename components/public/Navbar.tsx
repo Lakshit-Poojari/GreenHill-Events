@@ -46,7 +46,7 @@ const Navbar = () => {
               alt="logo"
               width={400}
               height={400}
-              className="h-14 sm:h-14 md:h-16 lg:h-16.5 lg:w-60 xl:w-85 w-auto pr-4 transition-all duration-300"
+              className="h-auto w-[clamp(200px,28vw,400px)] object-contain pr-2 transition-all duration-300"
             />
           </Link>
         </div>
