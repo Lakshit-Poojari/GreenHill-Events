@@ -80,22 +80,25 @@ const EntertaimentEvents = () => {
                         className="object-cover object-left rounded-lg brightness-35"
                       />
                     </div>
-                    <div className="absolute backface-hidden w-3xl top-40 left-1/2 -translate-x-1/2 z-10">
+                    <div className="absolute backface-hidden top-1/2 left-1/2 z-10 w-[90%] -translate-x-1/2 -translate-y-1/2">
                       <h3
-                        className="    text-white
-                          text-2xl
-                          sm:text-3xl
-                          md:text-4xl
-                          lg:text-5xl
-                          xl:text-5xl
-                          font-['Playfair_Display']
-                          font-bold
+                        className="
                           text-center
-                          leading-tight"
+                          font-['Playfair_Display']
+                          text-xl
+                          font-bold
+                          leading-tight
+                          text-white
+                          sm:text-2xl
+                          md:text-3xl
+                          lg:text-4xl
+                          xl:text-5xl
+                        "
                       >
                         {card.title}
                       </h3>
-                      <hr className="w-[102] mx-auto mt-6 border-2 rounded-full border-[#C9AC8C]" />
+
+                      <hr className="mx-auto mt-4 w-20 rounded-full border-2 border-[#C9AC8C] sm:mt-6" />
                     </div>
 
                     {/* Back */}
