@@ -37,8 +37,8 @@ const page = () => {
 
       <MobileBarCompany />
 
-      <div className="mx-16.25 px-6.75 flex  flex-col items-center justify-center">
-        <p className="font-['Poppins'] text-[4.5rem] py-7 sm:py-7 md:py-7 lg:py-7 xl:py-7 font-light text-center text-white">
+      <div className="mx-16.25 flex  flex-col items-center justify-center">
+        <p className="py-4 text-center font-['Poppins'] text-2xl font-light leading-tight text-white sm:py-7 sm:text-3xl md:text-4xl lg:text-[4rem] xl:text-[4.5rem]">
           We're more than just refreshments...
         </p>
         <p className="text-left italic text-[20.4px] pt-4 leading-6 tracking-[0.6px] text-[#C9AC8C] font-['Cormorant_Garamond']">
@@ -51,8 +51,9 @@ const page = () => {
         <div>
           <Link href="/">
             <button
-              className="mt-12 mb-5 text-[1.25rem] border-3  border-white rounded-4xl px-10 py-3 text-[#C9AC8C]
-                animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both] hover:bg-[#C9AC8C] hover:text-black transition duration-300"
+              className="mt-8 mb-5 w-full sm:w-auto rounded-4xl border-2 sm:border-3 border-white px-5 py-3 sm:px-8 md:px-10 text-sm sm:text-base 
+              md:text-lg lg:text-[1.25rem] leading-tight text-[#C9AC8C] transition duration-300 animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]
+              hover:bg-[#C9AC8C] hover:text-black "
             >
               VISIT SIMONGREENHILL.COM
             </button>
@@ -65,7 +66,7 @@ const page = () => {
       <ClientReview />
 
       <div>
-        <p className="font-['Poppins'] text-[4.5rem] py-5 sm:py-5 md:py-5 lg:py-5 xl:py-5 font-light text-center text-white">
+        <p className="py-4 text-center font-['Poppins'] text-2xl font-light leading-tight text-white sm:py-7 sm:text-3xl md:text-4xl lg:text-[4rem] xl:text-[4.5rem]">
           Make yours an event to remember!
         </p>
       </div>

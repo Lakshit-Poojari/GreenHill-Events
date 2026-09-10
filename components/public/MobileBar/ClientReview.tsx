@@ -21,7 +21,7 @@ const clientreviews = [
 const ClientReview = () => {
   return (
     <>
-      <div className="text-center mx-16.25 px-6.75 py-6 ">
+      <div className="text-center mx-16.25 py-6 ">
         <div className="font-['Cormorant_Garamond'] text-[#C9AC8C] italic font-bold text-[27.2px] py-6 tracking-[4.08px]">
           <p>What our clients say…</p>
         </div>

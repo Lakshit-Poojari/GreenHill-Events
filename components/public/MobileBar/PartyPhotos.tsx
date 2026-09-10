@@ -44,7 +44,7 @@ export default function PartyPhotos() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden w-full">
+    <div className="relative w-full overflow-hidden">
       <div
         className={`flex ${
           isAnimating
@@ -57,7 +57,14 @@ export default function PartyPhotos() {
           <div
             key={index}
             onMouseEnter={() => setHovered(index)}
-            className="relative basis-1/3 shrink-0 h-80 md:h-105 lg:h-125 overflow-hidden"
+            className="
+          relative basis-1/3 shrink-0 overflow-hidden
+          h-52
+          sm:h-80
+          md:h-96
+          lg:h-105
+          xl:h-100
+        "
           >
             <Image
               src={src}
@@ -79,7 +86,14 @@ export default function PartyPhotos() {
       {/* Previous */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-5xl text-[#C9A227]/70 hover:text-[#C9A227]"
+        className="
+      absolute left-2 top-1/2 z-10
+      -translate-y-1/2
+      text-3xl text-[#C9A227]/70
+      transition-colors hover:text-[#C9A227]
+      sm:left-3 sm:text-4xl
+      md:left-4 md:text-5xl
+    "
       >
         &#10094;
       </button>
@@ -87,7 +101,14 @@ export default function PartyPhotos() {
       {/* Next */}
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-5xl text-[#C9A227]/70 hover:text-[#C9A227]"
+        className="
+      absolute right-2 top-1/2 z-10
+      -translate-y-1/2
+      text-3xl text-[#C9A227]/70
+      transition-colors hover:text-[#C9A227]
+      sm:right-3 sm:text-4xl
+      md:right-4 md:text-5xl
+    "
       >
         &#10095;
       </button>

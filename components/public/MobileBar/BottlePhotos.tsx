@@ -9,7 +9,6 @@ const photos = [
   "/MobileBar/Bottles/photo3.jpg",
   "/MobileBar/Bottles/photo4.jpg",
   "/MobileBar/Bottles/photo5.jpg",
-  "/MobileBar/Bottles/photo6.jpg",
 ];
 
 const BottlePhotos = () => {
@@ -33,7 +32,7 @@ const BottlePhotos = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden w-full">
+    <div className="relative w-full overflow-hidden py-5">
       <div
         className="flex transition-transform duration-700 ease-in-out"
         style={{
@@ -45,13 +44,18 @@ const BottlePhotos = () => {
           <div
             key={index}
             onMouseEnter={() => setHovered(index)}
-            className="basis-1/3 shrink-0 relative h-80 md:h-105 lg:h-125 overflow-hidden"
+            className="
+          relative h-64 w-1/2 shrink-0 overflow-hidden
+          sm:h-80
+          md:h-105 md:w-1/3
+          lg:h-125
+        "
           >
             <Image
               src={src}
               alt={`slide-${index}`}
               fill
-              className="w-full h-full object-contain transition-all duration-500"
+              className="h-full w-full object-cover transition-all duration-500"
               style={{
                 transform: hovered === index ? "scale(1.08)" : "scale(1)",
                 filter:
@@ -67,7 +71,14 @@ const BottlePhotos = () => {
       {/* Previous */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-[#C9A227]/70 hover:text-[#C9A227] text-5xl z-10"
+        className="
+      absolute left-2 top-1/2 z-10
+      -translate-y-1/2
+      text-4xl text-[#C9A227]/70
+      transition-colors
+      hover:text-[#C9A227]
+      sm:left-4 sm:text-5xl
+    "
       >
         &#10094;
       </button>
@@ -75,7 +86,14 @@ const BottlePhotos = () => {
       {/* Next */}
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#C9A227]/70 hover:text-[#C9A227] text-5xl z-10"
+        className="
+      absolute right-2 top-1/2 z-10
+      -translate-y-1/2
+      text-4xl text-[#C9A227]/70
+      transition-colors
+      hover:text-[#C9A227]
+      sm:right-4 sm:text-5xl
+    "
       >
         &#10095;
       </button>

@@ -4,7 +4,7 @@ import React from "react";
 const DryHire = () => {
   return (
     <>
-      <div className="text-center mx-16.25 px-6.75 py-6  text-[#C9AC8C]">
+      <div className="text-center mx-16.25 py-6  text-[#C9AC8C]">
         <p className="font-['Cormorant_Garamond'] italic font-bold text-[27.2px] tracking-[4.08px]">
           Dry Hire.
         </p>
@@ -17,8 +17,9 @@ const DryHire = () => {
         <div>
           <Link href="/contact-us">
             <button
-              className="mt-12 mb-5 text-[1.25rem] border-3 border-white rounded-4xl px-10 py-3 text-[#C9AC8C]
-                    animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both] hover:bg-[#C9AC8C] hover:text-black transition duration-300"
+              className="mt-8 mb-5 w-full sm:w-auto rounded-4xl border-2 sm:border-3 border-white px-5 py-3 sm:px-8 md:px-10 text-sm sm:text-base 
+              md:text-lg lg:text-[1.25rem] leading-tight text-[#C9AC8C] transition duration-300 animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]
+              hover:bg-[#C9AC8C] hover:text-black "
             >
               CONTACT US FOR MORE INFORMATION
             </button>

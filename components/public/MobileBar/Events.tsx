@@ -34,14 +34,14 @@ const Occasions = [
 
 const Events = () => {
   return (
-    <div className="mx-16.25 grid grid-cols-1 px-6.75 md:grid-cols-2 lg:grid-cols-4">
+    <div className="mx-16.25 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
       {Occasions.map((Occasion, index) => {
         const Icon = Occasion.icon;
 
         return (
           <div
             key={index}
-            className="group flex flex-col items-center px-5 text-center transition-all duration-500 hover:-translate-y-2"
+            className="group flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2"
           >
             <div className="rounded-full p-4 transition-all duration-500 group-hover:bg-[#C9AC8C]/10 group-hover:shadow-[0_0_35px_rgba(201,172,140,0.18)]">
               <Icon
