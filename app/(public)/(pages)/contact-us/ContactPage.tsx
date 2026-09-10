@@ -66,7 +66,7 @@ const Page = () => {
             </p>
 
             <p>
-              IN PERSON / <span className="font-extrabold">London</span>
+              IN PERSON / <span className="font-bold">London</span>
             </p>
 
             <p>
