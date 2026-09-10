@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <div className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C]">
+      <div className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C] italic font-['Old_Standard_TT']">
         <SectionHeading title="Dry Hire" />
         <div className="py-6">
           <div className="text-[20.4px] items-start italic text-justify space-y-1.5 my-6 py-3 font-['Old_Standard_TT']">
