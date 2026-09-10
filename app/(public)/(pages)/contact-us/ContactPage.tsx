@@ -10,7 +10,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="mx-16.25 px-6.75 pt-26 text-center">
+      <div className="mx-13.25 px-4.75 pt-26 text-center">
         <SectionHeading title="Contact Us" />
 
         <div>
@@ -22,19 +22,17 @@ const Page = () => {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-row gap-5">
-          <div className="w-1/2 text-right text-6xl">Office</div>
 
-          <div className="w-1/2 text-left">
-            <p className="mb-3 text-[1.25rem] tracking-[6px] text-[#C9AC8C]">
-              CONTACT
+          <div className="">
+            <p className="mt-9 my-3 text-[1.25rem] tracking-[6px] text-[#C9AC8C]">
+              OFFICE CONTACT
             </p>
 
             <p>
               Phone /{" "}
               <a
                 href="tel:+441483497213"
-                className="font-extrabold underline hover:text-[#C9AC8C]"
+                className="font-bold underline hover:text-[#C9AC8C]"
               >
                 44 (0)1483 497213
               </a>
@@ -44,7 +42,7 @@ const Page = () => {
               Mobile /{" "}
               <a
                 href="tel:+447595219612"
-                className="font-extrabold underline hover:text-[#C9AC8C]"
+                className="font-bold underline hover:text-[#C9AC8C]"
               >
                 44 (0)7595 219612
               </a>
@@ -54,14 +52,14 @@ const Page = () => {
               EMAIL /{" "}
               <a
                 href="mailto:hello@simongreenhill.com"
-                className="font-extrabold underline hover:text-[#C9AC8C]"
+                className="font-bold leading-7 tracking-[1px] underline hover:text-[#C9AC8C]"
               >
                 hello@simongreenhill.com
               </a>{" "}
               /{" "}
               <a
                 href="mailto:simon@simongreenhill.com"
-                className="font-extrabold underline hover:text-[#C9AC8C]"
+                className="font-bold leading-7 tracking-[1px] underline hover:text-[#C9AC8C]"
               >
                 simon@simongreenhill.com
               </a>
@@ -85,7 +83,7 @@ const Page = () => {
             </button>
           </div>
         </div>
-      </div>
+      
 
       {/* Modal */}
       <ContactModal open={open} onClose={() => setOpen(false)} />
