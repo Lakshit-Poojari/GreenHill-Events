@@ -48,12 +48,13 @@ const page = () => {
               concerts & festivals.
             </p>
           </div>
-          <div className="">
+          <div className="flex items-center justify-center">
             <Image
               src={"/About/About.jpg"}
               alt="About"
               width={700}
               height={450}
+              className="h-auto w-full object-contain"
             />
           </div>
         </div>

@@ -32,27 +32,39 @@ const Page = () => {
 
             <p>
               Phone /{" "}
-              <span className="font-extrabold underline">
+              <a
+                href="tel:+441483497213"
+                className="font-extrabold underline hover:text-[#C9AC8C]"
+              >
                 44 (0)1483 497213
-              </span>
+              </a>
             </p>
 
             <p>
               Mobile /{" "}
-              <span className="font-extrabold underline">
+              <a
+                href="tel:+447595219612"
+                className="font-extrabold underline hover:text-[#C9AC8C]"
+              >
                 44 (0)7595 219612
-              </span>
+              </a>
             </p>
 
             <p>
               EMAIL /{" "}
-              <span className="font-extrabold underline">
+              <a
+                href="mailto:hello@simongreenhill.com"
+                className="font-extrabold underline hover:text-[#C9AC8C]"
+              >
                 hello@simongreenhill.com
-              </span>{" "}
+              </a>{" "}
               /{" "}
-              <span className="font-extrabold underline">
+              <a
+                href="mailto:simon@simongreenhill.com"
+                className="font-extrabold underline hover:text-[#C9AC8C]"
+              >
                 simon@simongreenhill.com
-              </span>
+              </a>
             </p>
 
             <p>

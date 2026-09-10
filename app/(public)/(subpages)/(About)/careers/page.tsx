@@ -17,8 +17,8 @@ const page = () => {
     <>
       <div className="pt-26 mx-16.25 px-6.75">
         <SectionHeading title="Careers" />
-        <div className="grid grid-cols-2 gap-4 my-6 py-6 ">
-          <div className="text-[#C9AC8C] text-[20.4px] items-start italic text-justify space-y-1.5 font-['Old_Standard_TT']">
+        <div className="mt-6 grid grid-cols-1 gap-8 py-3 md:grid-cols-2">
+          <div className="text-justify font-['Old_Standard_TT'] text-[20.4px] italic leading-relaxed text-[#C9AC8C]">
             <p>
               As a rapidly growing business we are constantly in search of new
               talent: not only when it comes to acts and artists, but also when
@@ -44,12 +44,13 @@ const page = () => {
               drop us your CV.
             </p>
           </div>
-          <div>
+          <div className="flex items-center justify-center">
             <Image
               src={"/About/Careers.jpg"}
               alt="our-founder"
               width={600}
-              height={100}
+              height={1600}
+              className="h-auto w-full max-w-150 object-contain"
             />
           </div>
         </div>

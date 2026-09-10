@@ -42,18 +42,18 @@ const Navbar = () => {
         <div className="shrink-0">
           <Link href="/" className={navClass("/")}>
             <Image
-              src="/greenhill.jpg"
+              src="/greenhill-logo.png"
               alt="logo"
               width={400}
               height={400}
-              className="h-12 sm:h-14 md:h-16 lg:h-17 lg:w-60 xl:w-85 w-auto transition-all duration-300"
+              className="h-14 sm:h-14 md:h-16 lg:h-20 lg:w-60 xl:w-85 w-auto pr-4 transition-all duration-300"
             />
           </Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden lg:block">
-          <ul className="flex items-center gap-8 md:gap-10 lg:gap-6 xl:gap-15 font-['Poppins'] text-[11px] lg:text-xs xl:text-sm">
+          <ul className="flex items-center gap-6 md:gap-5 lg:gap-3 xl:gap-15 font-['Poppins'] text-[11px] lg:text-xs xl:text-sm">
             <li>
               <Link href="/" className={navClass("/")}>
                 HOME

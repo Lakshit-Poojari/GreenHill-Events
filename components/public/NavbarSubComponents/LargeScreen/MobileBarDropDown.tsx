@@ -50,7 +50,7 @@ const MobileBarDropDown = () => {
         <span className="text-3xl mb-7.5">ˬ</span>
       </Link>
 
-      <ul className="absolute top-full left-0 invisible group-hover:visible bg-[#111111d0] min-w-56 z-50">
+      <ul className="absolute top-full left-0 invisible group-hover:visible bg-[#111111d0] min-w-36 z-50">
         {mobileBarsMenu.map((item) => (
           <li key={item.href} className="relative group/sub">
             <Link
@@ -62,7 +62,7 @@ const MobileBarDropDown = () => {
             </Link>
 
             {/* Second Level */}
-            <ul className="absolute left-full top-0 invisible group-hover/sub:visible bg-[#111111d0] min-w-64">
+            <ul className="absolute left-full top-0 invisible group-hover/sub:visible bg-[#111111d0] min-w-60">
               {item.children?.map((child) => (
                 <li key={child.href}>
                   <Link
