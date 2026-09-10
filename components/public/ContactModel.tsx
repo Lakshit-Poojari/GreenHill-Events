@@ -132,7 +132,7 @@ export default function ContactModal({ open, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-9999 flex items-center justify-center overflow-y-auto bg-black/80 p-2.5 backdrop-blur-sm sm:p-3"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-y-auto bg-black/80 p-2.5 backdrop-blur-sm sm:p-2"
       onClick={onClose}
     >
       <div
@@ -150,10 +150,10 @@ export default function ContactModal({ open, onClose }: Props) {
 
       
   
-            <div className="rounded-xl bg-[#242020] p-4  sm:rounded-2xl sm:p-6 md:p-7">
+            <div className="rounded-xl bg-[#242020] p-2 sm:rounded-2xl sm:p-4 md:p-5">
               {/* Heading */}
               <div className="mb-2 sm:mb-2">
-                <h2 className="pr-10 font-['Playfair_Display'] text-3xl text-[#C9AC8C] sm:text-4xl">
+                <h2 className="pr-10 font-['Playfair_Display'] text-3xl text-[#C9AC8C]">
                   Contact Me
                 </h2>
 
@@ -167,7 +167,7 @@ export default function ContactModal({ open, onClose }: Props) {
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="mb-1 block text-base font-medium text-white sm:text-lg">
+                  <label className="mb-1 block text-base font-medium text-white">
                     Name <span className="text-red-500">*</span>
                   </label>
 
@@ -186,7 +186,7 @@ export default function ContactModal({ open, onClose }: Props) {
 
                 {/* Email */}
                 <div>
-                  <label className="mb-1 block text-base font-medium text-white sm:text-lg">
+                  <label className="mb-1 block text-base font-medium text-white">
                     Email <span className="text-red-500">*</span>
                   </label>
 
@@ -202,12 +202,12 @@ export default function ContactModal({ open, onClose }: Props) {
 
                 {/* Message */}
                 <div className="m-1">
-                  <label className="mb-1 block text-base font-medium text-white sm:text-lg">
+                  <label className="mb-1 block text-base font-medium text-white">
                     Message <span className="text-red-500">*</span>
                   </label>
 
                   <textarea
-                    rows={3}
+                    rows={2}
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
@@ -220,7 +220,7 @@ export default function ContactModal({ open, onClose }: Props) {
 
                 {/* Recaptcha */}
                 <div className="overflow-x-auto">
-                  <h3 className="mb-1 text-base font-medium text-white sm:text-lg">
+                  <h3 className="mb-1 text-base font-medium text-white">
                     Recaptcha
                   </h3>
 
@@ -234,7 +234,7 @@ export default function ContactModal({ open, onClose }: Props) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-full border border-[#C9AC8C] bg-[#2A2626] px-6 py-3 text-base font-semibold text-[#C9AC8C] transition-all duration-300 hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-8 sm:py-3 sm:text-lg"
+                  className="w-full rounded-full border border-[#C9AC8C] bg-[#2A2626] px-5 py-2 text-base font-semibold text-[#C9AC8C] transition-all duration-300 hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-7 sm:py-2 sm:text-lg"
                 >
                   {loading ? "Submitting..." : "Submit"}
                 </button>
