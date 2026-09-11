@@ -51,15 +51,19 @@ const Page = () => {
             <p>
               EMAIL /{" "}
               <a
-                href="mailto:hello@simongreenhill.com"
-                className="font-bold leading-7 tracking-[1px] underline hover:text-[#C9AC8C]"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@simongreenhill.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block break-all text-white transition-colors duration-300 hover:text-[#C9AC8C]"
               >
                 hello@simongreenhill.com
               </a>{" "}
               /{" "}
               <a
-                href="mailto:simon@simongreenhill.com"
-                className="font-bold leading-7 tracking-[1px] underline hover:text-[#C9AC8C]"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=simon@simongreenhill.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block break-all text-white transition-colors duration-300 hover:text-[#C9AC8C]"
               >
                 simon@simongreenhill.com
               </a>

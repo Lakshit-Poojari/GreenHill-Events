@@ -107,8 +107,10 @@ const Footer = () => {
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:hello@simongreenhill.com"
-                  className="text-white break-all hover:text-[rgba(201,172,140,1)] transition-colors"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@simongreenhill.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block break-all text-white transition-colors duration-300 hover:text-[#C9AC8C]"
                 >
                   hello@simongreenhill.com
                 </a>
@@ -116,8 +118,10 @@ const Footer = () => {
 
               <p>
                 <a
-                  href="mailto:simon@simongreenhill.com"
-                  className="text-white break-all hover:text-[rgba(201,172,140,1)] transition-colors"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=simon@simongreenhill.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block break-all text-white transition-colors duration-300 hover:text-[#C9AC8C]"
                 >
                   simon@simongreenhill.com
                 </a>
