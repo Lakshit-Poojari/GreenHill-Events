@@ -131,32 +131,25 @@ const Page = () => {
           </div>
         </div>
 
+        {/* Role & Status */}
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-400">
-            Role
+            Role & Status
           </label>
 
-          <div className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3">
+          <div className="flex items-center gap-4">
             <span
-              className={`rounded-full px-3 py-1 text-xs font-semibold ${
+              className={`inline-flex rounded-full border px-3 py-1 text-xs font-semibold ${
                 user.role === "SUPER_ADMIN"
-                  ? "border border-[#C9AC8C]/50 bg-[#C9AC8C]/10 text-[#C9AC8C] hover:bg-[#C9AC8C]/20"
-                  : "border border-[#00BFFF]/50 bg-[#00BFFF]/10 text-[#00BFFF] hover:bg-[#00BFFF]/20"
+                  ? "border-[#C9AC8C]/50 bg-[#C9AC8C]/10 text-[#C9AC8C]"
+                  : "border-[#00BFFF]/50 bg-[#00BFFF]/10 text-[#00BFFF]"
               }`}
             >
               {user.role === "SUPER_ADMIN" ? "Super Admin" : "Admin"}
             </span>
-          </div>
-        </div>
 
-        <div>
-          <label className="mb-2 block text-sm font-medium text-gray-400">
-            Status
-          </label>
-
-          <div className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3">
             <span
-              className={`rounded-full px-3 py-1 text-xs font-medium ${
+              className={`inline-flex rounded-full border px-3 py-1 text-xs font-medium ${
                 user.status === "ACTIVE"
                   ? "border-green-700/50 bg-green-500/10 text-green-400"
                   : "border-red-700/50 bg-red-500/10 text-red-400"
@@ -167,34 +160,39 @@ const Page = () => {
           </div>
         </div>
 
+        {/* Created At */}
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-400">
             Created At
           </label>
+
           <div className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white">
             {new Date(user.created_at).toLocaleString()}
           </div>
         </div>
 
+        {/* Updated At */}
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-400">
             Updated At
           </label>
+
           <div className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white">
             {new Date(user.updated_at).toLocaleString()}
           </div>
         </div>
 
+        {/* Last Login */}
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-400">
             Last Login
           </label>
 
-          <p className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white">
+          <div className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-3 text-white">
             {user.last_login_at
               ? new Date(user.last_login_at).toLocaleString()
               : "-"}
-          </p>
+          </div>
         </div>
       </div>
     </div>
