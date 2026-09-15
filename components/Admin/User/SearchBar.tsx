@@ -19,12 +19,9 @@ const SearchBar = ({
   setStatus,
 }: SearchBarProps) => {
   return (
-    <div
-      className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-5 shadow-lg md:flex-row 
-      md:items-center md:justify-between"
-    >
+    <div className="flex flex-col gap-4 rounded-xl border border-gray-700 bg-[#181616] p-5 shadow-lg md:flex-row md:items-center">
       {/* Search */}
-      <div className="relative w-full md:max-w-md">
+      <div className="relative w-full md:w-125 lg:w-226">
         <Search
           size={18}
           className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -35,32 +32,32 @@ const SearchBar = ({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search by name or email..."
-          className="w-full rounded-lg border border-gray-700 bg-[#232121] py-2.5 pl-10 pr-4 text-sm text-white 
-          placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[#C9AC8C]"
+          className="w-full rounded-lg border border-gray-700 bg-[#232121] py-2.5 pl-10 pr-4 text-sm text-white placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[#C9AC8C]"
         />
       </div>
 
-      <select
-        value={status}
-        onChange={(e) => setStatus(e.target.value)}
-        className="rounded-lg border border-gray-600 bg-[#181616] px-4 py-2 text-white"
-      >
-        <option value="ALL">All Status</option>
-        <option value="ACTIVE">Active</option>
-        <option value="INACTIVE">Inactive</option>
-      </select>
+      {/* Filters */}
+      <div className="flex w-full gap-3 md:w-auto">
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-2.5 text-sm text-white outline-none transition-all duration-300 focus:border-[#C9AC8C]"
+        >
+          <option value="ALL">All Status</option>
+          <option value="ACTIVE">Active</option>
+          <option value="INACTIVE">Inactive</option>
+        </select>
 
-      {/* Filter */}
-      <select
-        value={role}
-        onChange={(e) => setRole(e.target.value)}
-        className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-2.5 text-sm text-white outline-none transition-all 
-          duration-300 focus:border-[#C9AC8C]"
-      >
-        <option value="ALL">All Roles</option>
-        <option value="SUPER_ADMIN">Super Admin</option>
-        <option value="ADMIN">Admin</option>
-      </select>
+        <select
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          className="rounded-lg border border-gray-700 bg-[#232121] px-4 py-2.5 text-sm text-white outline-none transition-all duration-300 focus:border-[#C9AC8C]"
+        >
+          <option value="ALL">All Roles</option>
+          <option value="SUPER_ADMIN">Super Admin</option>
+          <option value="ADMIN">Admin</option>
+        </select>
+      </div>
     </div>
   );
 };
