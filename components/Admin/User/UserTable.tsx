@@ -46,11 +46,17 @@ const UserTable = ({
   };
   if (users.length === 0) {
     return (
-      <div className="rounded-xl border border-gray-700 bg-[#181616] py-16 text-center">
-        <h3 className="text-lg font-semibold text-white">No Users Found</h3>
+      <div className="rounded-xl border border-gray-700 bg-[#181616] px-3 py-7 text-center">
+        <h3 className="text-2xl font-semibold text-white">No Users Found</h3>
 
-        <p className="mt-2 text-sm text-gray-400">
-          Try changing your search or create a new admin.
+        <p className="mx-auto mt-3 max-w-lg text-base leading-7 text-gray-200">
+          We couldn't find any users matching your current search or filter
+          criteria.
+        </p>
+
+        <p className="mx-auto mt-2 max-w-lg text-base leading-7 text-gray-200">
+          Try searching with a different name or email, change the status or
+          role filter, or create a new administrator to get started.
         </p>
       </div>
     );
