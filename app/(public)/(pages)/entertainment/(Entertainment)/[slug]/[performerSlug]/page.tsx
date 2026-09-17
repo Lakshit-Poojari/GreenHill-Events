@@ -37,9 +37,9 @@ export default function PerformerPage() {
         if (!performerResult.success) return;
 
         const offering = performerResult.offering;
-        console.log("====================================");
-        console.log(offering);
-        console.log("====================================");
+        // console.log("====================================");
+        // console.log(offering);
+        // console.log("====================================");
 
         // Get videos
         const videoRes = await fetch(
@@ -47,7 +47,7 @@ export default function PerformerPage() {
         );
         const videoResult = await videoRes.json();
 
-        console.log(videoResult.data, "video");
+        // console.log(videoResult.data, "video");
 
         setPerformer({
           ...offering,

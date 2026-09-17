@@ -31,11 +31,11 @@ export default function Page() {
 
       const result = await res.json();
 
-      console.log(result, "casestudies");
+      // console.log(result, "casestudies");
       // console.log(typeof result.blog.comment_count, result.blog.comment_count);
 
       if (res.ok) {
-        console.log(typeof result.caseStudies[2].comment_count);
+        // console.log(typeof result.caseStudies[2].comment_count);
         setBlogs(result.caseStudies);
       }
     } catch (error) {

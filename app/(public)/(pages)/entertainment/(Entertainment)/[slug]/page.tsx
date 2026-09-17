@@ -22,8 +22,8 @@ const Page = () => {
         const offeringRes = await fetch(`/api/offerings/category/${slug}`);
         const offeringResult = await offeringRes.json();
 
-        console.log("Category Result:", categoryResult);
-        console.log("Offering Result:", offeringResult);
+        // console.log("Category Result:", categoryResult);
+        // console.log("Offering Result:", offeringResult);
 
         if (
           categoryResult.success &&

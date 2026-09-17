@@ -13,7 +13,7 @@ export async function generateMetadata({
   try {
     const result = await getCategoryBySlugController(slug);
 
-    console.log("METADATA RESULT:", result);
+    // console.log("METADATA RESULT:", result);
 
     const category = result.category?.[0];
     

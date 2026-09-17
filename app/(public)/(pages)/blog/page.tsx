@@ -84,7 +84,7 @@ export default function Page() {
               </div>
             </Link>
 
-            <div className="relative z-10 mx-auto -mt-8 flex h-60 w-full flex-col rounded-2xl border border-[#C9AC8C] bg-[#2A2626] px-4 pb-6 pt-5 shadow-xl transition-all duration-300 group-hover:shadow-2xl sm:h-[250px] md:h-[260px] lg:h-[240px] xl:h-[250px]">
+            <div className="relative z-10 mx-auto -mt-8 flex h-60 w-full flex-col rounded-2xl border border-[#C9AC8C] bg-[#2A2626] px-4 pb-6 pt-5 shadow-xl transition-all duration-300 group-hover:shadow-2xl sm:h-62.5 md:h-65 lg:h-60 xl:h-62.5">
               <h2 className="mt-3 text-center text-[18px] font-semibold uppercase tracking-[3px] text-white transition-colors duration-300 group-hover:text-[#C9AC8C] md:text-[22px] lg:text-[18px]">
                 {blog.title}
               </h2>

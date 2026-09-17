@@ -43,7 +43,7 @@ const EntertainmentCards = ({
         <SectionHeading title={heading} />
       </div>
 
-      <div className="text-[#C9AC8C] mx-16.25 px-6.75 text-xl my-8 italic text-center space-y-1.5 py-4 font-['Old_Standard_TT']">
+      <div className="text-[#C9AC8C] mx-16.25 px-6.75 text-xl my-5 italic text-center space-y-1.5 py-4 font-['Old_Standard_TT']">
         <p>{description}</p>
       </div>
 
