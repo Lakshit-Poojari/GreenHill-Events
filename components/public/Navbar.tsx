@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <header
       className={`fixed border-b border-[#88868466] font-['Poppins'] top-0 left-0 w-full  z-50 transition-all duration-300 
-      ${scrolled ? "bg-black/95 shadow-md  h-17" : "bg-transparent py-7"}`}
+      ${scrolled ? "bg-black/95 shadow-md  h-17.8" : "bg-transparent py-7"}`}
     >
       <nav className="flex items-center justify-between mx-4 sm:mx-6 md:mx-10 lg:mx-12 xl:mx-16 px-1 sm:px-5 md:px-6 lg:px-6.5">
         {/* Logo */}
@@ -53,7 +53,7 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:block">
-          <ul className="flex items-center gap-6 md:gap-5 lg:gap-3 xl:gap-15 font-['Poppins'] text-[11px] lg:text-xs xl:text-sm">
+          <ul className="flex items-center gap-6 md:gap-5 lg:gap-8 xl:gap-13 font-['Poppins'] text-[11px] lg:text-xs xl:text-sm">
             <li>
               <Link href="/" className={navClass("/")}>
                 HOME
