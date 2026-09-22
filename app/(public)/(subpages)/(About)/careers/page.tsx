@@ -19,13 +19,13 @@ const page = () => {
         <SectionHeading title="Careers" />
         <div className="mt-6 grid grid-cols-1 gap-8 py-3 md:grid-cols-2">
           <div className="text-justify font-['Old_Standard_TT'] text-[20.4px] italic leading-relaxed text-[#C9AC8C]">
-            <p>
+            <p className="pb-3">
               As a rapidly growing business we are constantly in search of new
               talent: not only when it comes to acts and artists, but also when
               it comes to the diverse range of careers within the entertainment,
               events and hospitality industry.
             </p>
-            <p>
+            <p className="pb-3">
               Our Head Office is in Surrey. We provide entertainment, bar
               services and event management across the UK including London, The
               South West, South East, East Midlands, West Midlands, Home
@@ -33,7 +33,7 @@ const page = () => {
               overseas and travel extensively in Europe, America, Africa, Asia,
               Dubai, Abu Dhabi, Australia & New Zealand.
             </p>
-            <p>
+            <p className="pb-3">
               If you are looking to further your career in the events, bar or
               hospitality industry and would like to work at the many events
               such as large-scale awards ceremonies, intimate conferences, team

@@ -54,7 +54,7 @@ export default function Page() {
   }
 
   return (
-    <div className="mx-12.25 px-4.75 pt-26 text-center">
+    <div className="mx-4 pt-26 sm:mx-10 md:mx-14 lg:mx-16 xl:mx-16.25 text-center">
       <SectionHeading title="Blog" />
 
       <p className="mt-10 text-center font-['Old_Standard_TT'] text-[1.2rem] italic text-[#C9AC8C]">

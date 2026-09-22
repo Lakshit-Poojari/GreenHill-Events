@@ -5,7 +5,7 @@ import SectionHeading from "../SectionHeading";
 const Heading = () => {
   return (
     <>
-      <div className="mx-16.25 px-6.75">
+      <div className="mx-4 sm:mx-6 md:mx-10 lg:mx-16 xl:mx-16.25">
         <SectionHeading title="Events" />
 
         <div>

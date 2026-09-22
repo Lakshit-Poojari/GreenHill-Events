@@ -10,7 +10,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="mx-13.25 px-4.75 pt-26 text-center">
+      <div className="mx-2 px-1 sm:mx-6 sm:px-4 md:mx-10 md:px-6 lg:mx-12.25 lg:px-4.75 pt-26 text-center">
         <SectionHeading title="Contact Us" />
 
         <div>
@@ -28,7 +28,7 @@ const Page = () => {
               OFFICE CONTACT
             </p>
 
-            <p>
+            <p className="mb-1.5">
               Phone /{" "}
               <a
                 href="tel:+441483497213"
@@ -38,7 +38,7 @@ const Page = () => {
               </a>
             </p>
 
-            <p>
+            <p className="mb-1.5">
               Mobile /{" "}
               <a
                 href="tel:+447595219612"
@@ -48,7 +48,7 @@ const Page = () => {
               </a>
             </p>
 
-            <p>
+            <p className="mb-1.5">
               EMAIL /{" "}
               <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@simongreenhill.com"
@@ -69,7 +69,7 @@ const Page = () => {
               </a>
             </p>
 
-            <p>
+            <p className="mb-1.5">
               IN PERSON / <span className="font-bold">London</span>
             </p>
 

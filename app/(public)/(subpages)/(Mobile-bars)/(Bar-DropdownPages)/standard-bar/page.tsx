@@ -17,7 +17,7 @@ const page = () => {
   return (
     <>
       <div
-        className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C] text-[20.4px] items-start italic text-justify space-y-1.5 my-6 py-3 
+        className="mx-4 pt-26 sm:mx-6 md:mx-10 lg:mx-16 xl:mx-16.25 text-[#C9AC8C] text-[20.4px] items-start italic text-justify space-y-1.5 my-6 py-3 
         font-['Old_Standard_TT']"
       >
         <SectionHeading title="Standard Bar" />

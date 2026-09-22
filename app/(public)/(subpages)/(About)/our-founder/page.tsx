@@ -21,20 +21,20 @@ const page = () => {
         <SectionHeading title="About – Simon Greenhill" />
         <div className="mt-6 grid grid-cols-1 gap-8 py-3 md:grid-cols-2">
           <div className="text-justify font-['Old_Standard_TT'] text-[20.4px] italic leading-relaxed text-[#C9AC8C]">
-            <p>
+            <p className="pb-3">
               Simon is an Actor, Singer and an Entrepreneur. He won the
               prestigious scholarship of The Stage Newspaper and received
               funding from The Sir Anthony Hopkins trust, which paved the way
               for his studies at Mountview Theatre Academy.
             </p>
-            <p>
+            <p className="pb-3">
               As an actor, he has been fortunate to have performed in West End
               Musicals such as Joseph and the Amazing Technicolour Dreamcoat and
               The Full Monty (and, yes, he did get naked!), Operas such as
               Jonathan Dove’s Tobias and the Angel and has appeared in numerous
               plays, short films and commercials.
             </p>
-            <p>
+            <p className="pb-3">
               Alongside the events industry Simon’s other passion as a huge
               sporting fan, he has been fortunate to have sung at many sporting
               arenas all over the world including Wembley Stadium, Twickenham,
@@ -46,14 +46,14 @@ const page = () => {
               Exeter Chiefs, HCup, Yorkshire CCC, British Lions, Cheltenham
               Festival, Shanghai International Horse Festival.
             </p>
-            <p>
+            <p className="pb-3">
               With his background as a performer in West End productions and in
               countless International Corporate Acts, Simon identified the need
               for a higher quality entertainment service and brought together a
               trusted team of experienced performers, musicians, choreographers
               and musical directors to create a truly bespoke service.
             </p>
-            <p>
+            <p className="pb-3">
               Simon continues to build his artistic team with a commitment to
               maintaining quality, discovering new talent, and finding new ways
               to ensure that his new and existing clients’ events stand out.

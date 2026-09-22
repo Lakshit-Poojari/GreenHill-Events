@@ -64,24 +64,24 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <div className="pt-26 mx-16.25 px-6.75 text-[#C9AC8C]">
+      <div className="mx-4 pt-26 sm:mx-6 md:mx-10 lg:mx-16 xl:mx-16.25 text-[#C9AC8C]">
         <SectionHeading title="Bar" />
         <div className=" text-[20.4px] items-start italic text-justify space-y-1.5 my-6 py-3 font-['Old_Standard_TT']">
           <div>
-            <p>
+            <p className="pb-3">
               WE ASPIRE TO DELIVER A TRULY UNIQUE AND MEMORABLE EXPERIENCE FROM
               START TO FINISH.
             </p>
           </div>
           <div>
-            <p>
+            <p className="pb-3">
               While the market already offered a range of horse box bars, the
               majority only offer the bar. We believed there was a gap in the
               market for a company that not only supplies the bar but can offer
               a range of entertainment acts or the option to organise the whole
               event for you.
             </p>
-            <p>
+            <p className="pb-3">
               Simon Greenhill owner of The Greenhill Bar and entertainment has
               always had a passion for good alcohol and music. With a passion to
               deliver an unrivalled level of service Simon founded a business
@@ -89,12 +89,12 @@ const page = () => {
               conversations and smiles and a beautifully presented bar with
               excellent entertainment.
             </p>
-            <p>
+            <p className="pb-3">
               We operate a clear pricing tariff with no extra hidden charges.
               The Booking fee covers the cost of setting up the bar and two
               trained members of staff per event.
             </p>
-            <p>
+            <p className="pb-3">
               Depending on the size of the event and bar package, there might be
               a minimum spend deposit required.
             </p>
@@ -112,7 +112,7 @@ const page = () => {
           </div>
         </div>
         <div
-          className={`grid gap-15 mx-9 items-stretch ${
+          className={`grid gap-15 mx-4 items-stretch ${
             services.length === 1
               ? "grid-cols-1 max-w-md mx-auto"
               : services.length === 2
@@ -133,7 +133,7 @@ const page = () => {
                 className="w-full h-64 object-cover"
               />
 
-              <div className="p-6 flex flex-col flex-1">
+              <div className="py-6 px-1 flex flex-col flex-1">
                 <h3 className="text-[20.4px] italic font-semibold font-['Old_Standard_TT'] mb-3 text-center">
                   {service.title}
                 </h3>

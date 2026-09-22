@@ -3,8 +3,8 @@ import React from "react";
 
 const MobileBarIntro = () => {
   return (
-    <div className="text-center mx-16.25  py-6  text-[#C9AC8C]">
-      <p className="font-['Cormorant_Garamond'] italic font-bold text-[27.2px] tracking-[4.08px]">
+    <div className="text-center mx-4 sm:mx-6 md:mx-10 lg:mx-16 xl:mx-16.25 py-6  text-[#C9AC8C]">
+      <p className="font-['Cormorant_Garamond'] italic font-bold text-[27.2px] mb-4 tracking-[4.08px]">
         Bring a touch of Mayfair to your event.
       </p>
 

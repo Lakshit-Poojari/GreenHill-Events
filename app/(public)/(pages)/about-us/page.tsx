@@ -20,26 +20,26 @@ const page = () => {
         <SectionHeading title="About Us" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
           <div className="text-[#C9AC8C] text-xl italic text-justify space-y-1.5 font-['Old_Standard_TT']">
-            <p >
+            <p className="pb-3">
               Since 2007, Greenhill Events have been forging a reputation as a
               pioneer in the event entertainment industry. With our unique
               consultative approach, we have been able to create bespoke event
               experiences for a variety of clients all over the globe.
             </p>
-            <p>
+            <p className="pb-3">
               Building upon our success within the United Kingdom and further
               afield into Europe, the Middle East and Asia, the business
               expanded internationally and in 2011 we opened Elegant
               Entertainment in South Africa, which serves to cover the Southern
               Hemisphere.
             </p>
-            <p>
+            <p className="pb-3">
               In 2016 we were commissioned to organise our first event for a
               client. Since then we have gone on to organise and event manage
               sporting lunches, hospitality events, private parties, birthday
               parties, charity events and concerts.
             </p>
-            <p>
+            <p className="pb-3">
               2018 saw us launch our fleet of bars. The Greenhill bars are a
               fleet of beautifully restored rice horseboxes which bring an
               elegant drinks experience to large scale events. Since our
