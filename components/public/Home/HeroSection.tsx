@@ -42,20 +42,20 @@ const HeroSection = () => {
       {/* Left Button */}
       <button
         onClick={prevText}
-        className="absolute left-8 top-1/2 -translate-y-1/2 text-5xl text-white"
+        className="absolute left-3 sm:left-58 top-1/2 -translate-y-1/2 text-5xl text-white"
       >
         &#10094;
       </button>
 
       {/* Text */}
-      <p className="max-w-5xl mx-auto pt-5 px-14 sm:px-10 md:px-10 lg:px-20 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-['Playfair_Display'] text-white">
+      <p className="max-w-5xl mx-auto pt-5 px-10 sm:px-10 md:px-10 lg:px-20 text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-['Playfair_Display'] text-white">
         {text[currentText]}
       </p>
 
       {/* Right Button */}
       <button
         onClick={nextText}
-        className="absolute right-8 top-1/2 -translate-y-1/2 text-5xl  text-white"
+        className="absolute right-3 sm:right-58 top-1/2 -translate-y-1/2 text-5xl  text-white"
       >
         &#10095;
       </button>

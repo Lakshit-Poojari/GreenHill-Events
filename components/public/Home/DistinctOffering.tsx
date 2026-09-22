@@ -58,7 +58,7 @@ const DistinctOffering = () => {
 
   return (
     <>
-      <div className="bg-[#1a1919] mx-12.25 px-4.75 py-10 text-center">
+      <div className="bg-[#1a1919] mx-2 px-3 sm:mx-6 sm:px-4 md:mx-10 md:px-6 lg:mx-12.25 lg:px-4.75 py-10 text-center">
         <p className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[4.5rem]">
           DISTINCT OFFERINGS
         </p>

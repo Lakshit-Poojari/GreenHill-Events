@@ -3,7 +3,7 @@ import React from "react";
 const WellcomeToGrennHill = () => {
   return (
     <>
-      <div className="mx-12.25 bg-[#1a1919] px-4.75 pt-10 pb-20 sm:pt-15 md:pt-25 lg:pt-55">
+      <div className=" bg-[#1a1919] mx-2 px-3 sm:mx-6 sm:px-4 md:mx-10 md:px-6 lg:mx-12.25 lg:px-4.75 pt-10 pb-20 sm:pt-15 md:pt-25 lg:pt-55">
         <div className="text-center  ">
           <p className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[4.125rem]">
             Welcome to Simon Greenhill

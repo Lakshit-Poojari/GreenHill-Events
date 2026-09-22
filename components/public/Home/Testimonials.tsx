@@ -57,7 +57,7 @@ const Testimonials = () => {
 
   return (
     <>
-  <div className="mx-4 sm:mx-8 md:mx-12 lg:mx-16 xl:mx-16.25 px-4 sm:px-6 md:px-8 lg:px-10 py-10 sm:py-12 md:py-14 lg:py-17 text-center">
+  <div className="mx-1 sm:mx-5 md:mx-12 lg:mx-16 xl:mx-16.25 px-1 sm:px-3 md:px-8 lg:px-10 py-10 sm:py-12 md:py-14 lg:py-17 text-center">
   <div>
     <p className="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[4.125rem]">
       Testimonials
@@ -67,7 +67,7 @@ const Testimonials = () => {
   </div>
 
   <div>
-    <section className="relative flex min-h-70 sm:min-h-75 md:min-h-70 items-center justify-center px-10 sm:px-14 md:px-16 lg:px-20 py-10 sm:py-14 md:py-17">
+    <section className="relative flex min-h-70 sm:min-h-75 md:min-h-70 items-center justify-center px-6 sm:px-6 md:px-16 lg:px-20 py-10 sm:py-14 md:py-17">
 
       {/* Left Button */}
       <button
@@ -78,7 +78,7 @@ const Testimonials = () => {
       </button>
 
       {/* Text */}
-      <div className="w-full max-w-5xl mx-auto px-2 sm:px-6 md:px-10 lg:px-20 text-center">
+      <div className="w-full max-w-5xl mx-auto px-2 sm:px-1 md:px-5 lg:px-20 text-center">
         <p className="font-['Playfair_Display'] text-lg sm:text-xl md:text-2xl lg:text-[25px] font-normal tracking-[-0.4px] md:tracking-[-0.88px] text-white">
           {testimonials[currentTestimonial].name}
         </p>
