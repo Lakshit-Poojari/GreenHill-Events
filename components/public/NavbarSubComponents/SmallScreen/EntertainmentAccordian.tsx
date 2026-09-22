@@ -9,7 +9,11 @@ interface Category {
   slug: string;
 }
 
-const EntertainmentAccordian = () => {
+interface EntertainmentAccordianProps {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const EntertainmentAccordian = ({ setOpen }: EntertainmentAccordianProps) => {
   const [entertainmentOpen, setEntertainmentOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
 
@@ -48,16 +52,30 @@ const EntertainmentAccordian = () => {
 
   return (
     <>
-      <Link href="/entertainment">
-        <button
-          onClick={() => setEntertainmentOpen(!entertainmentOpen)}
-          className="w-full flex justify-between px-6 py-4"
+      {/* ENTERTAINMENT */}
+      <div className="w-full flex justify-between items-center px-6 py-4">
+        {/* ENTERTAINMENT → OPEN PAGE */}
+        <Link
+          href="/entertainment"
+          onClick={() => {
+            setEntertainmentOpen(false);
+            setOpen(false);
+          }}
         >
           ENTERTAINMENT
+        </Link>
+
+        {/* ARROW → OPEN/CLOSE OPTIONS */}
+        <button
+          onClick={() => setEntertainmentOpen(!entertainmentOpen)}
+          className="px-2"
+          aria-label="Toggle Entertainment menu"
+        >
           <span className="text-2xl">{entertainmentOpen ? "̭" : "̬"}</span>
         </button>
-      </Link>
+      </div>
 
+      {/* ENTERTAINMENT DROPDOWN */}
       {entertainmentOpen && (
         <ul className="bg-[#111] pl-8">
           {categories.map((item) => (
@@ -68,6 +86,10 @@ const EntertainmentAccordian = () => {
                     ? "/bespoke"
                     : `/entertainment/${item.slug}`
                 }
+                onClick={() => {
+                  setEntertainmentOpen(false);
+                  setOpen(false);
+                }}
                 className="block py-3"
               >
                 {item.menu_name}

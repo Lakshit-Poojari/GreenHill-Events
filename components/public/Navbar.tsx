@@ -118,15 +118,15 @@ const Navbar = () => {
             </li>
 
             <li>
-              <AboutAccordion />
+              <AboutAccordion setOpen={setOpen} />
             </li>
 
             <li>
-              <EntertainmentAccordian />
+              <EntertainmentAccordian setOpen={setOpen} />
             </li>
 
             <li>
-              <MobileBarAccordian />
+              <MobileBarAccordian setOpen={setOpen} />
             </li>
 
             <li>
