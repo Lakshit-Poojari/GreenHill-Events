@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <div className="pt-26 mx-16.25 px-6.75">
+      <div className="mx-4 pt-26 sm:mx-10 md:mx-14 lg:mx-16 xl:mx-16.25">
         <SectionHeading title="About Us" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
           <div className="text-[#C9AC8C] text-xl italic text-justify space-y-1.5 font-['Old_Standard_TT']">
-            <p>
+            <p >
               Since 2007, Greenhill Events have been forging a reputation as a
               pioneer in the event entertainment industry. With our unique
               consultative approach, we have been able to create bespoke event

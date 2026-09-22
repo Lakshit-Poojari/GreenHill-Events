@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <div className="pt-26 mx-16.25 px-6.75">
+      <div className="mx-4 pt-26 sm:mx-10 md:mx-14 lg:mx-16 xl:mx-16.25">
         <SectionHeading title="Vision and Values" />
         <div className=" ">
           <div className="flex items-center my-6 py-3 justify-center">

@@ -17,7 +17,7 @@ const Footer = () => {
             Social Links
           </h3>
 
-          <div className="flex  md:justify-start gap-3">
+          <div className="flex  md:justify-start gap-2 sm:gap-0 md:gap-2 lg:gap-3">
             <Link
               target="_blank"
               href="https://www.facebook.com/simongreenhillallin/"

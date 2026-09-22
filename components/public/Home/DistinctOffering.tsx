@@ -71,7 +71,7 @@ const DistinctOffering = () => {
             <button
               key={index}
               onClick={() => setActiveTab(index)}
-              className={`rounded-sm px-2 py-2 text-sm transition-all  duration-300 sm:px-5 sm:py-3 sm:text-base ${
+              className={`w-full rounded-sm px-2 py-2 text-sm transition-all duration-300 sm:w-auto sm:px-5 sm:py-3 sm:text-base ${
                 activeTab === index
                   ? "bg-white text-black"
                   : "bg-[#f79468] text-white hover:bg-[#f47e4c]"

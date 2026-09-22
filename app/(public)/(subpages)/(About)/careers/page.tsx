@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <div className="pt-26 mx-16.25 px-6.75">
+      <div className="mx-4 pt-26 sm:mx-10 md:mx-14 lg:mx-16 xl:mx-16.25">
         <SectionHeading title="Careers" />
         <div className="mt-6 grid grid-cols-1 gap-8 py-3 md:grid-cols-2">
           <div className="text-justify font-['Old_Standard_TT'] text-[20.4px] italic leading-relaxed text-[#C9AC8C]">

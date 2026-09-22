@@ -60,7 +60,7 @@ export default function Page() {
   }
 
   return (
-    <div className="pt-26 mx-12.25 px-4.75">
+    <div className="mx-4 pt-26 sm:mx-10 md:mx-14 lg:mx-16 xl:mx-16.25">
       <SectionHeading title="Case Studies" />
 
       <div className="grid grid-cols-1 gap-10 py-15 md:grid-cols-2">
