@@ -39,7 +39,7 @@ export default function CaseStudyTemplate({
   recentPosts,
   recentComments,
 }: Props) {
-  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/case-studies/${data.slug}`;
+  const pageUrl = `${window.location.origin}/case-studies/${data.slug}`;
   return (
     <section className="mx-auto max-w-7xl pt-36  px-6.75 py-30">
       <div className="grid lg:grid-cols-[2fr_1fr] gap-20">
