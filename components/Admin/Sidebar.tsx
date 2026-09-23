@@ -57,7 +57,7 @@ export default function Sidebar() {
       <button
         type="button"
         onClick={() => setSidebarOpen((prev) => !prev)}
-        className="fixed top-4 left-4 z-9999 rounded-lg bg-[#181616] p-3 text-[#C9AC8C] lg:hidden"
+        className="fixed top-4 left-4 z-9999 rounded-lg bg-[#181616] p-1 text-[#C9AC8C] lg:hidden"
       >
         {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
