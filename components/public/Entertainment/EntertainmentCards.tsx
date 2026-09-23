@@ -74,11 +74,11 @@ const EntertainmentCards = ({
                 <div
                   className={`relative min-h-115 w-full transform-3d transition-transform duration-700 ${
                     flippedCard === index
-                      ? "transform:[rotateY(180deg)]"
+                      ? "transform-[rotateY(180deg)]"
                       : ""
                   } ${
                     canHover
-                      ? "group-hover:transform:[rotateY(180deg)]"
+                      ? "group-hover:transform-[rotateY(180deg)]"
                       : ""
                   }`}
                 >
@@ -120,7 +120,7 @@ const EntertainmentCards = ({
                   </div>
 
                   {/* Back */}
-                  <div className="absolute inset-0 flex flex-col justify-between rounded-lg bg-black p-2 shadow-lg shadow-[#454545] transform:[rotateY(180deg)] backface-hidden">
+                  <div className="absolute inset-0 flex flex-col justify-between rounded-lg bg-black p-2 shadow-lg shadow-[#454545] transform-[rotateY(180deg)] backface-hidden">
                     <p className="text-xl italic font-['Playfair_Display'] text-[#C9AC8C]">
                       {card.text}
                     </p>
