@@ -7,6 +7,12 @@ import React, { useEffect, useState } from "react";
 const EntertaimentEvents = () => {
   const [cards, setCards] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [flippedCard, setFlippedCard] = useState<number | null>(null);
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    setCanHover(window.matchMedia("(hover: hover)").matches);
+  }, []);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -60,13 +66,17 @@ const EntertaimentEvents = () => {
               {cards.map((card, index) => (
                 <div
                   key={index}
-                  className={`group w-full h-112.5 perspective-[1000px] ${
+                  className={`group w-full h-110 perspective-[1000px] ${
                     cards.length % 2 !== 0 && index === cards.length - 1
                       ? "lg:col-span-2 lg:max-w-[50%] lg:mx-auto"
                       : ""
                   }`}
                 >
-                  <div className="relative min-h-89 w-full transition-transform  duration-700 transform-3d group-hover:transform-[rotateY(180deg)]">
+                  <div
+                    className={`relative min-h-105 w-full transform-3d transition-transform duration-700 ${
+                      flippedCard === index ? "transform-[rotateY(180deg)]" : ""
+                    } ${canHover ? "group-hover:transform-[rotateY(180deg)]" : ""}`}
+                  >
                     {/* Front */}
                     <div className="absolute shadow-lg rounded-lg shadow-[#454545] inset-0 backface-hidden">
                       <Image
@@ -98,15 +108,24 @@ const EntertaimentEvents = () => {
                         {card.title}
                       </h3>
 
-                      <hr className="mx-auto mt-4 w-20 rounded-full border-2 border-[#C9AC8C] sm:mt-6" />
+                      <hr className="mx-auto my-2 mb-6 w-20 rounded-full border-2 border-[#C9AC8C] sm:mt-2" />
+                      {!canHover && (
+                        <button
+                          type="button"
+                          onClick={() => setFlippedCard(index)}
+                          className="mx-auto mt-4 block rounded-full border border-[#C9AC8C] px-6 py-3 text-[#C9AC8C]"
+                        >
+                          READ MORE
+                        </button>
+                      )}
                     </div>
 
                     {/* Back */}
                     <div
-                      className=" absolute inset-0 shadow-lg shadow-[#454545] flex  flex-col justify-between bg-black text-white p-6 rounded-lg 
+                      className=" absolute inset-0 shadow-lg shadow-[#454545] flex  flex-col justify-between bg-black text-white p-2 rounded-lg 
                           transform-[rotateY(180deg)] backface-hidden "
                     >
-                      <p className="md:text-xl pt-5 mt-5 text-[20.4px] italic font-['Poppins'] text-[#C9AC8C] leading-relaxed">
+                      <p className="md:text-xl pt-0 mt-0 lg:pt-5 lg:mt-5 text-[20.4px] italic font-['Poppins'] text-[#C9AC8C] leading-relaxed">
                         {card.text}
                       </p>
 
