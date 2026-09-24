@@ -107,7 +107,7 @@ export default function Sidebar() {
           {/* Sidebar */}
           <aside className="relative z-10 flex h-full w-64 flex-col border-r border-gray-800 bg-[#181616]">
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-gray-800 p-2 mt-20">
+            <div className="flex items-center justify-between border-b border-gray-800 p-2 ml-5 mt-20">
               <div>
                 <h1 className="text-2xl font-bold text-[#C9AC8C]">
                   Green Hill Event

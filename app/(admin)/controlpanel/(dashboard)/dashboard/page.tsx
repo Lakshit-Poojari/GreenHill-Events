@@ -142,40 +142,42 @@ const page = () => {
       >
         <h2 className="text-xl font-semibold text-white">Quick Actions</h2>
 
-        <div className="mt-4 flex flex-wrap gap-4">
-          <Link href={"case-studies"}>
-            <button
-              className="rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium text-black transition-all duration-300 
-                hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
-            >
-              Add Case Study
-            </button>
+        <div className="mt-4 flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+          <Link
+            href="case-studies"
+            className="inline-flex items-center justify-center rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium leading-normal text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
+          >
+            Add Case Study
           </Link>
 
-          <Link href={"comments"}>
-            <button
-              className="rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium text-black transition-all duration-300 
-                hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
-            >
-              Manage Comments
-            </button>
+          <Link
+            href="comments"
+            className="inline-flex items-center justify-center rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium leading-normal text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
+          >
+            Manage Comments
+          </Link>
+
+          <Link
+            href="mails"
+            className="inline-flex items-center justify-center rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium leading-normal text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
+          >
+            Manage Emails
           </Link>
 
           {user?.role === "SUPER_ADMIN" && (
-            <Link href={"users"}>
-              <button className="rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]">
-                Add User
-              </button>
+            <Link
+              href="users"
+              className="inline-flex items-center justify-center rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium leading-normal text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
+            >
+              Add User
             </Link>
           )}
 
-          <Link href={"entertainment"}>
-            <button
-              className="rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium text-black transition-all duration-300 
-                hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
-            >
-              Add Entertainment
-            </button>
+          <Link
+            href="entertainment"
+            className="inline-flex items-center justify-center rounded-lg bg-[#C9AC8C] px-5 py-2 font-medium leading-normal text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(201,172,140,0.4)]"
+          >
+            Add Entertainment
           </Link>
         </div>
       </div>
