@@ -5,13 +5,13 @@ import { Phone, PhoneCall } from "lucide-react";
 const FloatingCallButton = () => {
   return (
     <a
-      href="tel:07595219612"
+      href="tel:447595219612"
       className="fixed bottom-3 left-6 z-9999 flex items-center group"
     >
       {/* Phone Icon */}
       <div
         className="
-      relative z-10 flex h-16 w-16 items-center justify-center
+      relative z-10 flex h-12 w-12 items-center justify-center
       rounded-full bg-[#00E676]
       shadow-xl
       transition-all duration-300
@@ -37,7 +37,7 @@ const FloatingCallButton = () => {
       -ml-4 rounded-r-full
       border border-[#C9AC8C]/50
       bg-[#242020]
-      px-7 py-3 pl-9
+      px-5 py-2 pl-7
       shadow-xl
       transition-all duration-300
       group-hover:border-[#C9AC8C]

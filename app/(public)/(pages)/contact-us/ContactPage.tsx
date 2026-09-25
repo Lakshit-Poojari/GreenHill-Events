@@ -34,7 +34,7 @@ const Page = () => {
                 href="tel:+441483497213"
                 className="font-bold underline hover:text-[#C9AC8C]"
               >
-                44 (0)1483 497213
+                +44 (0)1483 497213
               </a>
             </p>
 
@@ -44,7 +44,7 @@ const Page = () => {
                 href="tel:+447595219612"
                 className="font-bold underline hover:text-[#C9AC8C]"
               >
-                44 (0)7595 219612
+                +44 (0)7595 219612
               </a>
             </p>
 
