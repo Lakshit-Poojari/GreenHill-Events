@@ -121,13 +121,13 @@ const EntertainmentCards = ({
 
                   {/* Back */}
                   <div className="absolute inset-0 flex flex-col justify-between rounded-lg bg-black p-2 shadow-lg shadow-[#454545] transform-[rotateY(180deg)] backface-hidden">
-                    <p className="text-xl italic font-['Playfair_Display'] text-[#C9AC8C]">
+                    <p className="text-xl xl:px-5 md:text-xl pt-0 mt-0 lg:pt-5 lg:mt-5 italic font-['Playfair_Display'] text-[#C9AC8C]">
                       {card.text}
                     </p>
 
                     <Link
                       href={card.link || `/entertainment/${card.slug}`}
-                      className="self-center rounded-full border border-[#C9AC8C] px-6 py-3 text-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]"
+                      className="self-center rounded-full border mb-6 border-[#C9AC8C] px-6 py-3 text-[#C9AC8C] hover:bg-[#C9AC8C] hover:text-black animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]"
                     >
                       FIND OUT MORE
                     </Link>
