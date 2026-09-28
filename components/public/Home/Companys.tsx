@@ -3,14 +3,14 @@
 import Image from "next/image";
 
 const images = [
-  "/Home/Company/duerr's.webp",
-  "/Home/Company/thatcher.webp",
-  "/Home/Company/sab.webp",
-  "/Home/Company/saracens.webp",
-  "/Home/Company/twinings.webp",
-  "/Home/Company/london-stadium.png",
-  "/Home/Company/surrey-kia-oval.webp",
-  "/Home/Company/srm.webp",
+  "/Home/Company/duerr's.png",
+  "/Home/Company/thatchers.png",
+  "/Home/Company/sab.png",
+  "/Home/Company/saracens.png",
+  "/Home/Company/twinings.avif",
+  "/Home/Company/stadium.png",
+  "/Home/Company/Surrey-Kia-Oval-Logo.svg",
+  "/Home/Company/srm.png",
 ];
 
 export const Companys = () => {
