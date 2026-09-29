@@ -47,7 +47,8 @@ const BottlePhotos = () => {
             className="
           relative h-64 w-1/2 shrink-0 overflow-hidden
           sm:h-80
-          md:h-105 md:w-1/3
+          md:h-105 
+          md:w-1/3
           lg:h-125
         "
           >

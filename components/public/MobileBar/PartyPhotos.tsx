@@ -58,19 +58,18 @@ export default function PartyPhotos() {
             key={index}
             onMouseEnter={() => setHovered(index)}
             className="
-          relative basis-1/3 shrink-0 overflow-hidden
-          h-52
-          sm:h-80
-          md:h-96
-          lg:h-105
-          xl:h-100
+          relative h-80 w-1/2 shrink-0 overflow-hidden
+          sm:h-90
+          md:h-105 
+          md:w-1/3
+          lg:h-125
         "
           >
             <Image
               src={src}
               alt={`slide-${index}`}
               fill
-              className="object-contain transition-all duration-500"
+              className="h-full w-full object-contain transition-all duration-500"
               style={{
                 transform: hovered === index ? "scale(1.08)" : "scale(1)",
                 filter:
