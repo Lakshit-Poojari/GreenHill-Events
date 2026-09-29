@@ -84,7 +84,7 @@ export default function PartyPhotos() {
       </div>
 
       {/* Previous */}
-      <button
+      {/* <button
         onClick={prev}
         className="
       absolute left-2 top-1/2 z-10
@@ -96,10 +96,10 @@ export default function PartyPhotos() {
     "
       >
         &#10094;
-      </button>
+      </button> */}
 
       {/* Next */}
-      <button
+      {/* <button
         onClick={next}
         className="
       absolute right-2 top-1/2 z-10
@@ -111,7 +111,7 @@ export default function PartyPhotos() {
     "
       >
         &#10095;
-      </button>
+      </button> */}
     </div>
   );
 }

@@ -4,11 +4,11 @@ import React from "react";
 const DryHire = () => {
   return (
     <>
-      <div className="text-center mx-16.25 py-6  text-[#C9AC8C]">
+      <div className="text-center mx-4 sm:mx-6 md:mx-10 lg:mx-16 xl:mx-16.25 py-6  text-[#C9AC8C]">
         <p className="font-['Cormorant_Garamond'] italic font-bold text-[27.2px] tracking-[4.08px]">
           Dry Hire.
         </p>
-        <p className="text-left italic text-[20.4px] leading-6 tracking-[0.6px] font-['Cormorant_Garamond']">
+        <p className="text-justify italic text-[20.4px] leading-6 tracking-[0.6px] font-['Cormorant_Garamond']">
           Our stylish horse boxes are also available to dry hire. We simply
           provide the horse box and you or the venue can supply the
           refreshments. We will deliver it safely and collect it from your
