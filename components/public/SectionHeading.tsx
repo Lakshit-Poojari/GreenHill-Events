@@ -12,7 +12,8 @@ const SectionHeading = ({ title }: SectionHeadingProps) => {
           max-w-5xl
           mx-auto
           px-4
-          py-3
+          pt-5
+          pb-1
           font-['Playfair_Display']
           font-light
           text-center

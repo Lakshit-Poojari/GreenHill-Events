@@ -234,7 +234,7 @@ export default function ContactModal({ open, onClose }: Props) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full rounded-full border border-[#C9AC8C] bg-[#2A2626] px-5 py-2 text-base font-semibold text-[#C9AC8C] transition-all duration-300 hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-7 sm:py-2 sm:text-lg"
+                  className=" rounded-full border border-[#C9AC8C] bg-[#2A2626] px-5 py-2 mt-3 text-base font-semibold text-[#C9AC8C] transition-all duration-300 hover:bg-[#C9AC8C] hover:text-black hover:shadow-lg hover:shadow-[#C9AC8C]/20 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:px-7 sm:py-2 sm:text-lg"
                 >
                   {loading ? "Submitting..." : "Submit"}
                 </button>

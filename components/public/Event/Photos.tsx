@@ -17,13 +17,13 @@ const Photos = () => {
   const [current, setCurrent] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
 
-  const next = () => {
-    setCurrent((prev) => (prev + 1) % photos.length);
-  };
+  // const next = () => {
+  //   setCurrent((prev) => (prev + 1) % photos.length);
+  // };
 
-  const prev = () => {
-    setCurrent((prev) => (prev - 1 + photos.length) % photos.length);
-  };
+  // const prev = () => {
+  //   setCurrent((prev) => (prev - 1 + photos.length) % photos.length);
+  // };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,20 +66,20 @@ const Photos = () => {
       </div>
 
       {/* Previous */}
-      <button
+      {/* <button
         onClick={prev}
         className="absolute left-4 top-1/2 -translate-y-1/2  text-[#C9A227]/70 hover:text-[#C9A227]  text-5xl z-10"
       >
         &#10094;
-      </button>
+      </button> */}
 
       {/* Next */}
-      <button
+      {/* <button
         onClick={next}
         className="absolute right-4 top-1/2 -translate-y-1/2  text-[#C9A227]/70 hover:text-[#C9A227] text-5xl z-10"
       >
         &#10095;
-      </button>
+      </button> */}
     </div>
   );
 };
