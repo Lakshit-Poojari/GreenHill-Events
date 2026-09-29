@@ -41,7 +41,7 @@ export default function CaseStudyTemplate({
 }: Props) {
   const pageUrl = `${window.location.origin}/case-studies/${data.slug}`;
   return (
-    <section className="mx-auto max-w-7xl pt-36  px-6.75 py-30">
+    <section className="  pt-36 mx-2 px-3 sm:mx-6 sm:px-4 md:mx-10 md:px-6 lg:mx-15.25 lg:px-6.75">
       <div className="grid lg:grid-cols-[2fr_1fr] gap-20">
         {/* LEFT */}
 
