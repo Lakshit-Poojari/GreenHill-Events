@@ -9,11 +9,11 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white  px-4.75">
-      <div className="mx-12.25  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.2fr_2fr_1fr_0.8fr] py-7">
+    <footer className="bg-black text-white mt-8 pt-5 px-4.75">
+      <div className="mx-12.25 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.2fr_2fr_1fr_0.8fr] py-7">
         {/* Social Links */}
-        <div className="pb-10">
-          <h3 className=" font-[1.2em] font-['Playfair_Display'] mb-2">
+        <div className="pb-10 ">
+          <h3 className=" font-[1.2em] font-['Playfair_Display'] my-2">
             Social Links
           </h3>
 
@@ -58,7 +58,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="pb-10">
-          <h3 className="font-[1.2em] font-['Playfair_Display'] mb-2">
+          <h3 className="font-[1.2em] font-['Playfair_Display'] my-2">
             Copyright &copy;
           </h3>
 
@@ -77,7 +77,7 @@ const Footer = () => {
 
         {/* Contact */}
         <div className="pb-10">
-          <h3 className="font-[1.2em] font-['Playfair_Display'] mb-2">
+          <h3 className="font-[1.2em] font-['Playfair_Display'] my-2">
             Contact
           </h3>
 
@@ -132,7 +132,7 @@ const Footer = () => {
 
         {/* Terms */}
         <div className="pb-10">
-          <h3 className="font-[1.2em] font-['Playfair_Display'] mb-2">Terms</h3>
+          <h3 className="font-[1.2em] font-['Playfair_Display'] my-2">Terms</h3>
 
           <div className="flex flex-col gap-1 mb-0.5 text-[#A7A7A7] text-[15px] font-['Poppins']">
             <Link href="#">Terms & conditions</Link>

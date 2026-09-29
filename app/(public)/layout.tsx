@@ -18,9 +18,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="min-h-full flex flex-col text-white">
+    <div className="min-h-screen flex flex-col text-white">
       <Navbar />
-      {children}
+      <main className="flex-1">{children}</main>
       <Footer />
       <FloatingCallButton />
     </div>
