@@ -164,11 +164,11 @@ export default function ContactModal({ open, onClose }: Props) {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-10 sm:space-y-4 md:space-y-5 lg:space-y-8 xl:space-y-6
+              <form onSubmit={handleSubmit} className="space-y-0.3 sm:space-y-4 md:space-y-5 lg:space-y-8 xl:space-y-6
 ">
                 {/* Name */}
                 <div>
-                  <label className="mb-3 block font-medium text-xl text-white">
+                  <label className="mb-1 mt-2 block font-medium text-lg text-white">
                     Name <span className="text-red-500">*</span>
                   </label>
 
@@ -181,13 +181,13 @@ export default function ContactModal({ open, onClose }: Props) {
                     minLength={2}
                     maxLength={50}
                     required
-                    className="h-10 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-4 text-xl text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C] sm:h-12 sm:px-5 sm:text-lg"
+                    className="h-10 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-4 text-md text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C] sm:h-10 sm:px-5 sm:text-md"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="mb-3 block text-xl font-medium text-white">
+                  <label className="mb-1 mt-2 block text-xl font-medium text-white">
                     Email <span className="text-red-500">*</span>
                   </label>
 
@@ -197,13 +197,13 @@ export default function ContactModal({ open, onClose }: Props) {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="h-10 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-4 text-xl text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C] sm:h-12 sm:px-5 sm:text-lg"
+                    className="h-10 w-full rounded-xl border border-[#57514C] bg-[#1A1717] px-4 text-md text-white outline-none transition-all duration-300 placeholder:text-gray-500 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C] sm:h-10 sm:px-5 sm:text-md"
                   />
                 </div>
 
                 {/* Message */}
                 <div className="m-1">
-                  <label className="mb-3 block text-xl font-medium text-white">
+                  <label className="mb-1 mt-2 block text-xl font-medium text-white">
                     Message <span className="text-red-500">*</span>
                   </label>
 
@@ -215,13 +215,13 @@ export default function ContactModal({ open, onClose }: Props) {
                     minLength={5}
                     maxLength={2000}
                     required
-                    className="w-full resize-none rounded-xl border border-[#57514C] bg-[#1A1717] p-2 text-xl text-white outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]  sm:px-5 sm:text-lg"
+                    className="w-full resize-none rounded-xl border border-[#57514C] bg-[#1A1717] p-2 text-md text-white outline-none transition-all duration-300 focus:border-[#C9AC8C] focus:ring-1 focus:ring-[#C9AC8C]  sm:px-5 sm:text-md"
                   />
                 </div>
 
                 {/* Recaptcha */}
                 <div className="overflow-x-auto">
-                  <h3 className="mb-3 text-xl font-medium text-white">
+                  <h3 className="mb-1 mt-2 text-xl font-medium text-white">
                     Recaptcha
                   </h3>
 

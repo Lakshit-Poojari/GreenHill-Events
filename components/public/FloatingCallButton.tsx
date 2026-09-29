@@ -6,7 +6,7 @@ const FloatingCallButton = () => {
   return (
     <a
       href="tel:447595219612"
-      className="fixed bottom-3 left-6 z-9999 flex items-center group"
+      className="fixed bottom-2 left-6 z-9999 flex items-center group"
     >
       {/* Phone Icon */}
       <div
