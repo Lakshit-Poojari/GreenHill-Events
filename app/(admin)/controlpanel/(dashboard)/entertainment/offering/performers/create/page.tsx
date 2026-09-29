@@ -180,7 +180,6 @@ const Page = () => {
               name="page_url"
               value={formData.page_url}
               onChange={handleChange}
-              required
               placeholder="https://greenhill-events.com/performer-name"
               className="w-full rounded-lg border border-gray-600 bg-[#222] px-4 py-3 text-white outline-none focus:border-[#C9AC8C]"
             />

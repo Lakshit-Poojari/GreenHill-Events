@@ -24,7 +24,7 @@ const Page = () => {
 
 
           <div className="mt-20">
-            <p className="my-5 my-3 text-[1.25rem] tracking-[6px] text-[#C9AC8C]">
+            <p className="my-5 text-[1.25rem] tracking-[6px] text-[#C9AC8C]">
               OFFICE CONTACT
             </p>
 

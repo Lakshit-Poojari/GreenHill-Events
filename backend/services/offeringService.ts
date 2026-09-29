@@ -31,7 +31,6 @@ export async function createOfferingService(
       !offering.performer_name ||
       !offering.small_description ||
       !offering.large_description ||
-      !offering.page_url ||
       !offering.status ||
       !offering.offering_category_id ||
       !offering.image_path
@@ -71,7 +70,6 @@ export async function updateOfferingService(
       !offering.performer_name ||
       !offering.small_description ||
       !offering.large_description ||
-      !offering.page_url ||
       !offering.status
     ) {
       throw new Error("All fields are required.");
