@@ -34,7 +34,7 @@ const RecentPosts = () => {
         }
 
         const result = await res.json();
-        console.log(result);
+        // console.log(result);
 
         // If your API returns { success: true, data: [...] }
         setPosts(result.caseStudies || []);
