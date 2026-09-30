@@ -42,7 +42,7 @@ const HeroSection = () => {
       {/* Left Button */}
       <button
         onClick={prevText}
-        className="absolute left-3 sm:left-58 top-1/2 -translate-y-1/2 text-5xl text-white"
+        className="absolute left-3 sm:left-5 md:left-18 lg:left-25 xl:left-55  top-1/2 -translate-y-1/2 text-5xl text-white"
       >
         &#10094;
       </button>
@@ -55,7 +55,7 @@ const HeroSection = () => {
       {/* Right Button */}
       <button
         onClick={nextText}
-        className="absolute right-3 sm:right-58 top-1/2 -translate-y-1/2 text-5xl  text-white"
+        className="absolute right-3 sm:right-5 md:right-15 lg:right-25 xl:right-55 top-1/2 -translate-y-1/2 text-5xl  text-white"
       >
         &#10095;
       </button>
