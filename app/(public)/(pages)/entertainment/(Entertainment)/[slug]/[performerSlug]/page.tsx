@@ -110,7 +110,7 @@ export default function PerformerPage() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center rounded-full border border-[#C9AC8C] px-6 py-3 text-[#C9AC8C] transition-all duration-300 hover:bg-[#C9AC8C] hover:text-black"
                 >
-                  Click here for Bloomfield Collection
+                  Click here for {performer.performer_name} Collection
                 </Link>
               </div>
             )}
