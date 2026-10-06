@@ -225,7 +225,7 @@ const Page = () => {
                 }}
               />
               {image && (
-                <p className="mt-2 text-sm text-[#C9AC8C]">
+                <p className=" text-sm text-[#C9AC8C]">
                   Selected: {image.name}
                 </p>
               )}

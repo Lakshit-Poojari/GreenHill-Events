@@ -171,11 +171,11 @@ export default function PerformerPage() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="space-y-8 font-['Old_Standard_TT'] text-[1.2rem] italic leading-10 text-[#C9AC8C] text-justify">
+            <div className="space-y-8 font-['Old_Standard_TT'] text-[1.2rem] italic leading-7 text-[#C9AC8C] text-justify">
               {performer.large_description
                 .split("%")
                 .map((paragraph, index) => (
-                  <p key={index} className="transition-colors duration-300">
+                  <p key={index} className="transition-colors duration-300 mb-3">
                     {paragraph.trim()}
                   </p>
                 ))}
