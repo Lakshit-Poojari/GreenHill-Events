@@ -15,6 +15,17 @@ const PerformerVideos = ({ videos }: PerformerVideosProps) => {
           src={videos[0]}
           allowFullScreen
         />
+      ) : videos.length % 2 === 0 ? (
+        <div className="grid md:grid-cols-2 gap-6">
+          {videos.map((video, index) => (
+            <iframe
+              key={index}
+              className="w-full aspect-video rounded-lg"
+              src={video}
+              allowFullScreen
+            />
+          ))}
+        </div>
       ) : (
         <>
           <iframe
