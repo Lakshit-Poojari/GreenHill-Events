@@ -164,9 +164,13 @@ export default function PerformerPage() {
 
                 {/* Email */}
                 <Link
-                  href={`mailto:?subject=${encodeURIComponent(
-                    performer.performer_name,
-                  )}&body=${encodeURIComponent(`${performer.performer_name}\n\n${pageUrl}`)}`}
+                   href={`https://mail.google.com/mail/?view=cm&fs=1&to=simon@simongreenhill.com&su=${encodeURIComponent(
+                      performer.performer_name,
+                    )}&body=${encodeURIComponent(
+                      `${performer.performer_name}\n\n${pageUrl}`,
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   className="rounded-full border border-[#EA4335]/60 p-3 text-[#EA4335] transition-all duration-300 hover:-translate-y-1 hover:border-[#EA4335] hover:bg-[#EA4335] hover:text-white hover:shadow-lg hover:shadow-[#EA4335]/20"
                 >
                   <MdEmail size={20} />
