@@ -16,7 +16,7 @@ interface Performer {
   large_description: string;
   youtubeVideos: string[];
   soundcloud_link: string;
-  page_url: string;
+  // page_url: string;
 }
 
 export default function PerformerPage() {
@@ -83,6 +83,11 @@ export default function PerformerPage() {
     );
   }
 
+  const pageUrl =
+    typeof window !== "undefined"
+      ? window.location.href
+      : "";
+
   return (
     <div className="pt-26 bg-[#1d1a1a] text-white min-h-screen">
       <SectionHeading title={performer.performer_name} />
@@ -124,7 +129,7 @@ export default function PerformerPage() {
                 {/* X */}
                 <Link
                   href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                    performer.page_url,
+                    pageUrl,
                   )}&text=${encodeURIComponent(performer.performer_name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -136,7 +141,7 @@ export default function PerformerPage() {
                 {/* Facebook */}
                 <Link
                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                    performer.page_url,
+                    pageUrl,
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -148,7 +153,7 @@ export default function PerformerPage() {
                 {/* LinkedIn */}
                 <Link
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                    performer.page_url,
+                    pageUrl,
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -161,7 +166,7 @@ export default function PerformerPage() {
                 <Link
                   href={`mailto:?subject=${encodeURIComponent(
                     performer.performer_name,
-                  )}&body=${encodeURIComponent(`${performer.performer_name}\n\n${performer.page_url}`)}`}
+                  )}&body=${encodeURIComponent(`${performer.performer_name}\n\n${pageUrl}`)}`}
                   className="rounded-full border border-[#EA4335]/60 p-3 text-[#EA4335] transition-all duration-300 hover:-translate-y-1 hover:border-[#EA4335] hover:bg-[#EA4335] hover:text-white hover:shadow-lg hover:shadow-[#EA4335]/20"
                 >
                   <MdEmail size={20} />
