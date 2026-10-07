@@ -67,8 +67,6 @@ export default function PerformerPage() {
     }
   }, [performerSlug]);
 
-  if (!performer) return null;
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center ">
@@ -82,6 +80,8 @@ export default function PerformerPage() {
       </div>
     );
   }
+
+  if (!performer) return null;
 
   const pageUrl =
     typeof window !== "undefined"
