@@ -1,8 +1,10 @@
+"use client";
+
 import SectionHeading from "@/components/public/SectionHeading";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const services = [
   {
@@ -51,17 +53,79 @@ const services = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: "Bar - GreenHillEvent",
-  // description: "",     ###############################################################
-  icons: {
-    icon: "/faviconV2.png",
-    shortcut: "/faviconV2.png",
-    apple: "/faviconV2.png",
-  },
-};
-
 const page = () => {
+  const [cardsPerView, setCardsPerView] = useState(3);
+  const [currentIndex, setCurrentIndex] = useState(services.length);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  // Responsive cards per view
+  useEffect(() => {
+    const getCardsPerView = () => {
+      if (window.innerWidth < 640) return 1;
+      if (window.innerWidth < 1024) return 2;
+      return 3;
+    };
+
+    const handleResize = () => {
+      setCardsPerView(getCardsPerView());
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Create cloned sets for infinite slider
+  const extendedServices = [...services, ...services, ...services];
+
+  // Next slide
+  const nextSlide = useCallback(() => {
+    setIsTransitioning(true);
+
+    setCurrentIndex((prev) => prev + 1);
+  }, []);
+
+  // Previous slide
+  const prevSlide = useCallback(() => {
+    setIsTransitioning(true);
+
+    setCurrentIndex((prev) => prev - 1);
+  }, []);
+
+  // Auto slide every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [nextSlide]);
+
+  // Reset position after reaching cloned slides
+  const handleTransitionEnd = () => {
+    // Reached third set
+    if (currentIndex >= services.length * 2) {
+      setIsTransitioning(false);
+
+      setCurrentIndex((prev) => prev - services.length);
+    }
+
+    // Reached first set
+    else if (currentIndex < services.length) {
+      setIsTransitioning(false);
+
+      setCurrentIndex((prev) => prev + services.length);
+    }
+  };
+
+  const cardWidthPercent = 100 / cardsPerView;
+
+  const translatePercent = currentIndex * cardWidthPercent;
+
   return (
     <>
       <div className="mx-4 pt-26 sm:mx-6 md:mx-10 lg:mx-16 xl:mx-16.25 text-[#C9AC8C]">
@@ -111,48 +175,110 @@ const page = () => {
             </div>
           </div>
         </div>
-        <div
-          className={`grid gap-15 mx-4 items-stretch ${
-            services.length === 1
-              ? "grid-cols-1 max-w-md mx-auto"
-              : services.length === 2
-                ? "grid-cols-2 max-w-4xl mx-auto"
-                : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          }`}
-        >
-          {services.map((service, index) => (
+        {/* Slider */}
+        <section className="relative flex items-center mt-12 overflow-hidden">
+          {/* Previous Button */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20
+              text-3xl sm:text-4xl lg:text-5xl
+              text-[#C9AC8C]
+              bg-black/20 hover:bg-black/50
+              rounded-full
+              w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12
+              flex items-center justify-center"
+          >
+            &#10094;
+          </button>
+
+          {/* Carousel Window */}
+          <div className="w-full mx-8 sm:mx-10 lg:mx-12 overflow-hidden">
             <div
-              key={index}
-              className="shadow-md overflow-hidden flex flex-col min-h-197.5"
+              className={`flex ${
+                isTransitioning
+                  ? "transition-transform duration-500 ease-in-out"
+                  : ""
+              }`}
+              style={{
+                transform: `translateX(-${translatePercent}%)`,
+              }}
+              onTransitionEnd={handleTransitionEnd}
             >
-              <Image
-                src={service.image}
-                alt={service.title}
-                width={500}
-                height={300}
-                className="w-full h-64 object-cover"
-              />
-
-              <div className="py-6 px-1 flex flex-col flex-1">
-                <h3 className="text-[20.4px] italic font-semibold font-['Old_Standard_TT'] mb-3 text-center">
-                  {service.title}
-                </h3>
-
-                <p className="text-justify font-['Poppins'] flex-1">{service.description}</p>
-
-                <Link href={service.link} className="mt-auto self-center">
-                  <button
-                    className="mb-5 text-[1.25rem] border border-[#C9AC8C] rounded-4xl px-10 py-3
-                                    text-[#C9AC8C] animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]
-                                    hover:bg-[#C9AC8C] hover:text-black transition duration-300"
+              {extendedServices.map((service, index) => (
+                <div
+                  key={`${service.title}-${index}`}
+                  className="shrink-0 px-2 sm:px-3 lg:px-4"
+                  style={{
+                    width: `${cardWidthPercent}%`,
+                  }}
+                >
+                  <div
+                    className="    group relative
+    shadow-md
+    overflow-hidden
+    flex flex-col
+    min-h-197.5 h-full
+    border border-[#C9AC8C]/40
+    transition-all duration-500
+    hover:border-[#C9AC8C] p-3 rounded-2xl"
                   >
-                    MORE INFO
-                  </button>
-                </Link>
-              </div>
+                    <div className="group overflow-hidden rounded-2xl">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        width={500}
+                        height={300}
+                        className="
+      w-full h-64 object-cover rounded-2xl
+      transition-transform duration-500 ease-in-out
+      group-hover:scale-110
+    "
+                      />
+                    </div>
+
+                    <div className="py-6 px-1 flex flex-col flex-1">
+                      <h3 className="text-[20.4px] italic font-semibold font-['Old_Standard_TT'] mb-3 text-center">
+                        {service.title}
+                      </h3>
+
+                      <p className="text-justify font-['Poppins'] flex-1">
+                        {service.description}
+                      </p>
+
+                      <Link href={service.link} className="mt-auto self-center">
+                        <button
+                          className="mb-5 text-[1.25rem] border border-[#C9AC8C]
+                            rounded-4xl px-10 py-3
+                            text-[#C9AC8C]
+                            animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]
+                            hover:bg-[#C9AC8C]
+                            hover:text-black
+                            transition duration-300"
+                        >
+                          MORE INFO
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20
+              text-3xl sm:text-4xl lg:text-5xl
+              text-[#C9AC8C]
+              bg-black/20 hover:bg-black/50
+              rounded-full
+              w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12
+              flex items-center justify-center"
+          >
+            &#10095;
+          </button>
+        </section>
       </div>
     </>
   );
