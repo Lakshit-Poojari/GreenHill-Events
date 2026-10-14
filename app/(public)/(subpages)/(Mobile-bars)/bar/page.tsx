@@ -214,13 +214,13 @@ const page = () => {
                 >
                   <div
                     className="    group relative
-    shadow-md
-    overflow-hidden
-    flex flex-col
-    min-h-197.5 h-full
-    border border-[#C9AC8C]/40
-    transition-all duration-500
-    hover:border-[#C9AC8C] p-3 rounded-2xl"
+                        shadow-md
+                        overflow-hidden
+                        flex flex-col
+                        min-h-197.5 h-full
+                        border border-[#C9AC8C]/40
+                        transition-all duration-500
+                        hover:border-[#C9AC8C] p-3 rounded-2xl"
                   >
                     <div className="group overflow-hidden rounded-2xl">
                       <Image
@@ -229,10 +229,10 @@ const page = () => {
                         width={500}
                         height={300}
                         className="
-      w-full h-64 object-cover rounded-2xl
-      transition-transform duration-500 ease-in-out
-      group-hover:scale-110
-    "
+                            w-full h-64 object-cover rounded-2xl
+                            transition-transform duration-500 ease-in-out
+                            group-hover:scale-110
+                        "
                       />
                     </div>
 
@@ -253,7 +253,7 @@ const page = () => {
                             animate-[shake-horizontal_3.5s_cubic-bezier(.455,.03,.515,.955)_infinite_both]
                             hover:bg-[#C9AC8C]
                             hover:text-black
-                            transition duration-300"
+                            transition duration-300 mt-5"
                         >
                           MORE INFO
                         </button>
