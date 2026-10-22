@@ -5,8 +5,6 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "About Us - GreenHillEvent",
-  description: 
-  "Pioneers in event entertainment since 2007. Greenhill Events creates bespoke events for clients worldwide.",    
   icons: {
     icon: "/faviconV2.png",
     shortcut: "/faviconV2.png",
@@ -55,6 +53,7 @@ const page = () => {
               alt="About"
               width={700}
               height={450}
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="h-auto w-full object-contain"
             />
           </div>
