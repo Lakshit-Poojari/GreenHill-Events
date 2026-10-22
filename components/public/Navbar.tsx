@@ -45,7 +45,9 @@ const Navbar = () => {
               src="/greenhill-logo.png"
               alt="logo"
               width={400}
-              height={400}
+              height={120}
+              sizes="(max-width: 714px) 200px, (max-width: 1428px) 28vw, 400px"
+              loading="eager"
               className="h-auto w-[clamp(200px,28vw,400px)] object-contain pr-2 transition-all duration-300"
             />
           </Link>

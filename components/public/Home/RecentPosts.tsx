@@ -1,5 +1,6 @@
 "use client";
 
+import YouTubeFacade from "@/components/YouTubeFacade";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useCallback } from "react";
@@ -177,6 +178,8 @@ const RecentPosts = () => {
                         alt={post.title}
                         width={1000}
                         height={500}
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        quality={70}
                         className="h-48 sm:h-56 lg:h-60 w-full object-cover transition-transform duration-700 hover:scale-110"
                       />
                     </Link>
@@ -206,14 +209,9 @@ const RecentPosts = () => {
 
                     {post.youtube_url ? (
                       <div className="mt-5 overflow-hidden rounded-xl">
-                        <iframe
-                          width="100%"
-                          height="250"
-                          src={post.youtube_url}
+                        <YouTubeFacade
+                          url={post.youtube_url}
                           title={post.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
                         />
                       </div>
                     ) : (
