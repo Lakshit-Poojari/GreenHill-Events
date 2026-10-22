@@ -5,7 +5,8 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "About Us - GreenHillEvent",
-  // description: "",     ###############################################################
+  description: 
+  "Pioneers in event entertainment since 2007. Greenhill Events creates bespoke events for clients worldwide.",    
   icons: {
     icon: "/faviconV2.png",
     shortcut: "/faviconV2.png",
