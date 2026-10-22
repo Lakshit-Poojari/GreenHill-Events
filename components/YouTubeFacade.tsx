@@ -15,9 +15,11 @@ function getYouTubeId(url: string): string | null {
 export default function YouTubeFacade({
   url,
   title,
+  className = "h-62.5 w-full",
 }: {
   url: string;
   title: string;
+  className?: string;
 }) {
   const [play, setPlay] = useState(false);
   const id = getYouTubeId(url);
@@ -26,7 +28,7 @@ export default function YouTubeFacade({
   if (!id) return null;
 
   return (
-    <div className="relative h-62.5 w-full overflow-hidden bg-black">
+    <div className={`relative overflow-hidden bg-black ${className}`}>
       {play ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1`}

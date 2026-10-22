@@ -1,51 +1,47 @@
-"use client";
+import YouTubeFacade from "@/components/YouTubeFacade";
+
 
 interface PerformerVideosProps {
   videos: string[];
+  performerName?: string;
 }
 
-const PerformerVideos = ({ videos }: PerformerVideosProps) => {
+const PerformerVideos = ({ videos, performerName }: PerformerVideosProps) => {
   if (!videos || videos.length === 0) return null;
 
+  const label = performerName ?? "Greenhill Events";
+  const videoClass = "aspect-video w-full rounded-lg";
+
+  const renderVideo = (video: string, number: number) => (
+    <YouTubeFacade
+      key={`${video}-${number}`}
+      url={video}
+      title={`${label} video ${number}`}
+      className={videoClass}
+    />
+  );
+
+  // Single video: full width
+  if (videos.length === 1) {
+    return <div className="mt-8">{renderVideo(videos[0], 1)}</div>;
+  }
+
+  // Even count: two-column grid
+  if (videos.length % 2 === 0) {
+    return (
+      <div className="mt-8 grid gap-6 md:grid-cols-2">
+        {videos.map((video, i) => renderVideo(video, i + 1))}
+      </div>
+    );
+  }
+
+  // Odd count: first video featured, the rest in a grid
   return (
     <div className="mt-8 space-y-6">
-      {videos.length === 1 ? (
-        <iframe
-          className="w-full aspect-video rounded-lg"
-          src={videos[0]}
-          allowFullScreen
-        />
-      ) : videos.length % 2 === 0 ? (
-        <div className="grid md:grid-cols-2 gap-6">
-          {videos.map((video, index) => (
-            <iframe
-              key={index}
-              className="w-full aspect-video rounded-lg"
-              src={video}
-              allowFullScreen
-            />
-          ))}
-        </div>
-      ) : (
-        <>
-          <iframe
-            className="w-full aspect-video rounded-lg"
-            src={videos[0]}
-            allowFullScreen
-          />
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {videos.slice(1).map((video, index) => (
-              <iframe
-                key={index}
-                className="w-full aspect-video rounded-lg"
-                src={video}
-                allowFullScreen
-              />
-            ))}
-          </div>
-        </>
-      )}
+      {renderVideo(videos[0], 1)}
+      <div className="grid gap-6 md:grid-cols-2">
+        {videos.slice(1).map((video, i) => renderVideo(video, i + 2))}
+      </div>
     </div>
   );
 };

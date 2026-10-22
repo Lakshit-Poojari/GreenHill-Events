@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Edit } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import YouTubeFacade from "@/components/YouTubeFacade";
 
 interface Performer {
   id: number;
@@ -120,11 +121,10 @@ const Page = () => {
 
           {video?.youtube_url ? (
             <div className="overflow-hidden rounded-lg border border-gray-700">
-              <iframe
-                src={video.youtube_url}
-                title="YouTube Video"
+              <YouTubeFacade
+                url={video.youtube_url}
+                title="YouTube video"
                 className="aspect-video w-full"
-                allowFullScreen
               />
             </div>
           ) : (

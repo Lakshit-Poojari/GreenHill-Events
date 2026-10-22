@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowLeft, Edit } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import YouTubeFacade from "@/components/YouTubeFacade";
 
 interface CaseStudy {
   id: number;
@@ -185,10 +186,10 @@ const Page = () => {
             <div>
               <h2 className="text-sm text-gray-400">YouTube Video</h2>
 
-              <iframe
+              <YouTubeFacade
+                url={caseStudy.youtube_url}
+                title={caseStudy.title}
                 className="mt-3 aspect-video w-full max-w-2xl rounded-lg"
-                src={caseStudy.youtube_url}
-                allowFullScreen
               />
             </div>
           )}
