@@ -21,6 +21,7 @@ const Footer = () => {
             <Link
               target="_blank"
               href="https://www.facebook.com/simongreenhillallin/"
+              aria-label="Greenhill Events on Facebook (opens in a new tab)"
               className="w-12 h-12 md:w-11 md:h-11 lg:w-12 lg:h-12 bg-[#1877F2] rounded-md flex items-center justify-center text-white text-xl"
             >
               <FaFacebookF />
@@ -29,6 +30,7 @@ const Footer = () => {
             <Link
               target="_blank"
               href="https://www.instagram.com/greenhill_entertainment/?hl=en"
+              aria-label="Greenhill Events on Instagram  (opens in a new tab)"
               className="w-12 h-12 rounded-md flex items-center justify-center text-white text-xl "
               style={{
                 background:
@@ -41,6 +43,7 @@ const Footer = () => {
             <Link
               target="_blank"
               href="https://uk.pinterest.com/simongreenhill7/"
+              aria-label="Greenhill Events on Pinterest  (opens in a new tab)"
               className="w-12 h-12 bg-[#E60023] rounded-md flex items-center justify-center text-white text-xl"
             >
               <FaPinterestP />
@@ -49,6 +52,7 @@ const Footer = () => {
             <Link
               target="_blank"
               href="https://x.com/si_greenhill"
+              aria-label="Greenhill Events on Twitter  (opens in a new tab)"
               className="w-12 h-12 bg-black border border-gray-600 rounded-md flex items-center justify-center text-white text-xl "
             >
               <FaXTwitter />
