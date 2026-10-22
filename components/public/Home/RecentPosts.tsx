@@ -88,12 +88,12 @@ const RecentPosts = () => {
 
   const nextPost = useCallback(() => {
     setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
+    setCurrentIndex((prev) => prev - 1);
   }, []);
 
   const prevPost = useCallback(() => {
     setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
+    setCurrentIndex((prev) => prev + 1);
   }, []);
 
   // This fires instantly when the CSS sliding animation finishes
